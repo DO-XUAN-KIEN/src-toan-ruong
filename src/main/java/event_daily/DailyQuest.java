@@ -126,42 +126,40 @@ public class DailyQuest {
         if (p.quest_daily[0] == -1) {
             Service.send_notice_box(p.conn, "Hiện tại không nhận nhiệm vụ nào!");
         } else if (p.quest_daily[2] == p.quest_daily[3]) {
-            short id_blue = (short) Util.random(216, 226);
-            short id_yellow = (short) Util.random(226, 236);
-            short id_violet = (short) Util.random(236, 246);
+            short id_ruong = (short) Util.random(352,360);
             short id_ngocrong = (short) Util.random(464,470);
             int vang = Util.random(100_000, 500_000);
-            int ngoc = p.quest_daily[1] == 3 ? Util.random(100, 1000)
-                    : (p.quest_daily[1] == 2 ? Util.random(400, 500)
-                    : (p.quest_daily[1] == 1 ? Util.random(10, 200) : Util.random(10, 20)));
+//            int ngoc = p.quest_daily[1] == 3 ? Util.random(100, 1000)
+//                    : (p.quest_daily[1] == 2 ? Util.random(400, 500)
+//                    : (p.quest_daily[1] == 1 ? Util.random(10, 200) : Util.random(10, 20)));
             int exp = Util.random(1000, 10000) * (p.quest_daily[1] + 1) * p.quest_daily[2];
             p.update_vang(vang);
-            p.update_ngoc(ngoc);
+            p.ngoc_and_coin();
             Log.gI().add_log(p.name, "Nhận " + vang + " nhiệm vụ hàng ngày");
             p.update_Exp(exp, false);
             if (p.quest_daily[1] == 1) {
-                if (((p.item.get_bag_able() > 0) || (p.item.total_item_by_id(7, id_blue) > 0))) {
+                if (((p.item.get_bag_able() > 0) || (p.item.total_item_by_id(7, id_ruong) > 0))) {
                     Item47 itbag = new Item47();
-                    itbag.id = id_blue;
-                    itbag.quantity = (short) Util.random(0, 5);
-                    itbag.category = 7;
-                    p.item.add_item_bag47(7, itbag);
+                    itbag.id = id_ruong;
+                    itbag.quantity = (short) Util.random(0, 3);
+                    itbag.category = 4;
+                    p.item.add_item_bag47(4, itbag);
                 }
             } else if (p.quest_daily[1] == 2) {
-                if (((p.item.get_bag_able() > 0) || (p.item.total_item_by_id(7, id_yellow) > 0))) {
+                if (((p.item.get_bag_able() > 0) || (p.item.total_item_by_id(7, id_ruong) > 0))) {
                     Item47 itbag = new Item47();
-                    itbag.id = id_yellow;
+                    itbag.id = id_ruong;
                     itbag.quantity = (short) Util.random(0, 5);
-                    itbag.category = 7;
-                    p.item.add_item_bag47(7, itbag);
+                    itbag.category = 4;
+                    p.item.add_item_bag47(4, itbag);
                 }
             } else if (p.quest_daily[1] == 3) {
                 if (((p.item.get_bag_able() > 5))) {
                     Item47 itbag = new Item47();
-                    itbag.id = id_ngocrong;
-                    itbag.quantity = 1;
-                    itbag.category = 7;
-                    p.item.add_item_bag47(7, itbag);
+                    itbag.id = id_ruong;
+                    itbag.quantity = (short) Util.random(0, 10);
+                    itbag.category = 4;
+                    p.item.add_item_bag47(4, itbag);
                 }
                 if (Manager.gI().event == 11){
                     Item47 itbag = new Item47();
@@ -175,7 +173,7 @@ public class DailyQuest {
             p.item.char_inventory(4);
             p.item.char_inventory(7);
             Service.send_notice_box(p.conn,
-                    "Trả thành công, nhận được " + vang + " vàng, " + ngoc + " coin và " + exp + " kinh nghiệm!");
+                    "Trả thành công, nhận được " + vang + " vàng và " + exp + " kinh nghiệm!");
             p.quest_daily[0] = -1;
             p.quest_daily[1] = -1;
             p.quest_daily[2] = 0;

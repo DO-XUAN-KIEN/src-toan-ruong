@@ -172,10 +172,10 @@ public class ChiemThanhManager {
                 m.mobs[i] = new Mob_in_map();
                 if (i == 4) {
                     m.mobs[i] = truChinh;
-                    m.mobs[i].Set_Dame(100_000);
+                    m.mobs[i].Set_Dame(10_000_000);
                 }
                 else{
-                    m.mobs[i].Set_Dame(50_000);
+                    m.mobs[i].Set_Dame(5_000_000);
                 }
                 m.mobs[i].template = Mob.entrys.get(i < 4 ? 151 : 152);
                 m.mobs[i].index = i + 10;
@@ -357,7 +357,7 @@ public class ChiemThanhManager {
         } else if (p.myclan.get_vang() < 10_000_000) {
             Service.send_notice_box(p.conn, "Cần tối thiểu 10tr quỹ bang để đăng kí.");
         } else {
-            List<String> nameP = new ArrayList<>();
+            List<String> nameP = new ArrayList<>();// tạo nhóm
             for (int i = 0; i < p.party.get_mems().size(); i++) {
                 Player p2 = p.party.get_mems().get(i);
                 if (p2 == null || p2.conn == null || !p2.conn.connected) {
@@ -619,9 +619,8 @@ public class ChiemThanhManager {
             short id_medal_material = -1;
             short sizeRandomMedal = 0;
             switch (mob.template.mob_id) {
-                case 151: { 
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 18};
-                    id_item_leave7 = new short[]{11, 13, 2, 3, 2, 3, 14};
+                case 151: {
+                    id_item_leave4 = new short[]{(short) Util.random(352, 360)};
                     if(Util.random(200)<10) {
                         id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
                     }
@@ -630,6 +629,9 @@ public class ChiemThanhManager {
                             id_item_hongio = new short[]{337};
                         }
                     }
+                    if (Util.random(300)< 50){
+                        p.ngoc_and_coin();
+                    }
                     break;
                 }
                 case 152: {
@@ -637,13 +639,13 @@ public class ChiemThanhManager {
                         return;
                     }
                     dem = true;
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 18};
-                    id_item_leave7 = new short[]{11, 13, 2, 3, 2, 3, 14};
+                    id_item_leave4 = new short[]{(short) Util.random(352, 360)};
                     if(Util.random(150)< 20)
                         id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
                     if (Manager.gI().event == 11){
                         id_item_hongio = new short[]{337};
                     }
+                    p.ngoc_and_coin();
                  //   sizeRandomMedal = (short) (60);
                     break;
                 }

@@ -82,6 +82,10 @@ public class Dungeon {
                     if (mobs.size() > 0) {
                         for (Mob_Dungeon mob_temp : mobs) {
                             for (Player p0 : template.players) {
+                                if(p0 == null){
+                                    Service.send_notice_box(p0.conn, "Lỗi rồi");
+                                    return;
+                                }
                                 Message m2 = new Message(17);
                                 m2.writer().writeShort(p0.index);
                                 m2.writer().writeShort(mob_temp.index);

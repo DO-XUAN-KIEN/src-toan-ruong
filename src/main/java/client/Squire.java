@@ -228,7 +228,10 @@ public class Squire extends Player {
                     temp.tierStar = Byte.parseByte(jsar2.get(10).toString());
                 }
                 if (jsar2.size() >= 12) {
-                    temp.expiry_date = Long.parseLong(jsar2.get(11).toString());
+                    temp.tierhop = Byte.parseByte(jsar2.get(11).toString());
+                }
+                if (jsar2.size() >= 13) {
+                    temp.expiry_date = Long.parseLong(jsar2.get(12).toString());
                 }
                 temp.time_use = 0;
                 temp.UpdateName();
@@ -262,7 +265,7 @@ public class Squire extends Player {
                 JSONArray js = (JSONArray) JSONValue.parse(jsar.get(i).toString());
                 Pet temp = new Pet();
                 temp.setup(js);
-                temp.update_grown(t_off);
+                //temp.update_grown(t_off);
                 if (temp.is_follow) {
                     pet_follow = temp.get_id();
                 }
@@ -431,6 +434,7 @@ public class Squire extends Player {
                         jsar2.add(jsar3);
                         jsar2.add(i);
                         jsar2.add(temp.tierStar);
+                        jsar2.add(temp.tierhop);
                         jsar2.add(temp.expiry_date);
                         jsar.add(jsar2);
                     }

@@ -35,7 +35,7 @@ public class Player extends Body2 {
     public final Session conn;
     //    public final int index;
     public boolean already_setup;
-    //    public String name;
+        //public String name;
     public Map map;
     public boolean is_changemap;
     public long timeCantChangeMap;
@@ -64,12 +64,12 @@ public class Player extends Body2 {
     public long vang;
     public int kimcuong;
     //    public boolean isdie;
-    public short tiemnang;
-    public short kynang;
-    public short point1;
-    public short point2;
-    public short point3;
-    public short point4;
+    public long tiemnang;
+    public long kynang;
+    public long point1;
+    public long point2;
+    public long point3;
+    public long point4;
     public int suckhoe;
     public int pointarena;
     //    public byte typepk;
@@ -159,6 +159,7 @@ public class Player extends Body2 {
     public Player owner;
     public boolean isOwner = true;
     public boolean ngu = false;
+    public boolean hop_tb2 = false;
     public boolean isSquire;
     public boolean isLiveSquire;
     public String taixiu = "Bạn chưa đặt cược.";
@@ -210,11 +211,13 @@ public class Player extends Body2 {
     public boolean isdothan = false;
     public boolean ismdthan = false;
     public boolean istb2 = false;
+    public boolean istb1 = false;
     public byte ClazzItemStar = -1;
     public byte TypeItemStarCreate = -1;
     public short[] MaterialItemStar;
     public short[] NLdothan;
     public short[] NLtb2;
+    public short[] NLtb1;
     public int id_Upgrade_Medal_Star = -1;
 
     //biến heo chiến trường
@@ -229,6 +232,9 @@ public class Player extends Body2 {
         isdothan = false;
         ismdthan = false;
         istb2 = false;
+        istb1 = false;
+        ngu = false;
+        hop_tb2 = false;
         isCreateArmor = false;
         ClazzItemStar = -1;
         TypeItemStarCreate = -1;
@@ -259,28 +265,57 @@ public class Player extends Body2 {
         }
     }
 
+//    public void SetMaterialItemStar() {
+//        MaterialItemStar = new short[]{
+//                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
+//                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
+//                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
+//                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
+//                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
+//                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
+//                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
+//                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),};
+//    }
     public void SetMaterialItemStar() {
-        MaterialItemStar = new short[]{
-                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
-                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
-                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
-                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
-                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
-                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
-                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),
-                (short) Util.random(417, 437), (short) Util.random(437, 457), (short) Util.random(326, 336), (short) Util.random(336, 346), (short) Util.random(457, 464),};
+        short[] baseValues = {
+                (short) Util.random(417, 437),
+                (short) Util.random(437, 457),
+                (short) Util.random(326, 336),
+                (short) Util.random(336, 346),
+                (short) Util.random(457, 464)
+        };
+        MaterialItemStar = new short[baseValues.length * 8];
+        for (int i = 0; i < MaterialItemStar.length; i++) {
+            MaterialItemStar[i] = baseValues[i % baseValues.length];
+        }
     }
     public void setnldothan() {
-        NLdothan = new short[]{
-                (short) Util.random(246, 316), (short) Util.random(246, 316), (short) Util.random(316, 326), (short) Util.random(326, 336), (short) Util.random(336, 346),
-                (short) Util.random(246, 316), (short) Util.random(246, 316), (short) Util.random(316, 326), (short) Util.random(326, 336), (short) Util.random(336, 346),
-                (short) Util.random(246, 316), (short) Util.random(246, 316), (short) Util.random(316, 326), (short) Util.random(326, 336), (short) Util.random(336, 346),
-                (short) Util.random(246, 316), (short) Util.random(246, 316), (short) Util.random(316, 326), (short) Util.random(326, 336), (short) Util.random(336, 346),
-                (short) Util.random(246, 316), (short) Util.random(246, 316), (short) Util.random(316, 326), (short) Util.random(326, 336), (short) Util.random(336, 346),
-                (short) Util.random(246, 316), (short) Util.random(246, 316), (short) Util.random(316, 326), (short) Util.random(326, 336), (short) Util.random(336, 346),
-                (short) Util.random(246, 316), (short) Util.random(246, 316), (short) Util.random(316, 326), (short) Util.random(326, 336), (short) Util.random(336, 346),
-                (short) Util.random(246, 316), (short) Util.random(246, 316), (short) Util.random(316, 326), (short) Util.random(326, 336), (short) Util.random(336, 346),};
+        short[] baseValues = {
+                (short) Util.random(246, 316),
+                (short) Util.random(246, 316),
+                (short) Util.random(316, 326),
+                (short) Util.random(326, 336),
+                (short) Util.random(336, 346)
+        };
+        NLdothan = new short[baseValues.length * 8];
+        for (int i = 0; i < NLdothan.length; i++) {
+            NLdothan[i] = baseValues[i % baseValues.length];
+        }
     }
+    public void SetNLtb1() {
+        short[] baseValues = {
+                (short) Util.random(246, 316),
+                (short) Util.random(316, 326),
+                (short) Util.random(326, 336),
+                (short) Util.random(336, 346),
+                (short) 495
+        };
+        NLtb1 = new short[baseValues.length * 8];
+        for (int i = 0; i < NLtb1.length; i++) {
+            NLtb1[i] = baseValues[i % baseValues.length];
+        }
+    }
+
     public void setnltb2() {
         short[] baseValues = {493};
         NLtb2 = new short[baseValues.length * 8];
@@ -434,12 +469,12 @@ public class Player extends Body2 {
                 kimcuong = rs.getInt("kimcuong");
                 exp_tutien = rs.getInt("exptt");
                 isDie = false;
-                tiemnang = rs.getShort("tiemnang");
-                kynang = rs.getShort("kynang");
-                point1 = rs.getShort("point1");
-                point2 = rs.getShort("point2");
-                point3 = rs.getShort("point3");
-                point4 = rs.getShort("point4");
+                tiemnang = rs.getLong("tiemnang");
+                kynang = rs.getLong("kynang");
+                point1 = rs.getLong("point1");
+                point2 = rs.getLong("point2");
+                point3 = rs.getLong("point3");
+                point4 = rs.getLong("point4");
                 pointarena = rs.getInt("point_arena");
                 group_king_cup = rs.getByte("group_king_cup");
                 point_king_cup = rs.getShort("point_king_cup");
@@ -554,10 +589,13 @@ public class Player extends Body2 {
                         temp.tierStar = Byte.parseByte(jsar2.get(10).toString());
                     }
                     if (jsar2.size() >= 12) {
-                        temp.time_use = Long.parseLong(jsar2.get(11).toString());
+                        temp.tierhop  = Byte.parseByte(jsar2.get(11).toString());
                     }
                     if (jsar2.size() >= 13) {
-                        temp.expiry_date = Long.parseLong(jsar2.get(12).toString());
+                        temp.time_use = Long.parseLong(jsar2.get(12).toString());
+                    }
+                    if (jsar2.size() >= 14) {
+                        temp.expiry_date = Long.parseLong(jsar2.get(13).toString());
                     }
                     temp.UpdateName();
                     if (temp.expiry_date == 0 || temp.expiry_date > _time) {
@@ -604,7 +642,10 @@ public class Player extends Body2 {
                             temp.tierStar = Byte.parseByte(jsar2.get(10).toString());
                         }
                         if (jsar2.size() >= 12) {
-                            temp.expiry_date = Long.parseLong(jsar2.get(11).toString());
+                            temp.tierhop  = Byte.parseByte(jsar2.get(11).toString());
+                        }
+                        if (jsar2.size() >= 13) {
+                            temp.expiry_date = Long.parseLong(jsar2.get(12).toString());
                         }
                         temp.time_use = 0;
                         temp.UpdateName();
@@ -711,10 +752,13 @@ public class Player extends Body2 {
                         temp.tierStar = Byte.parseByte(jsar2.get(10).toString());
                     }
                     if (jsar2.size() >= 12) {
-                        temp.time_use = Long.parseLong(jsar2.get(11).toString());
+                        temp.tierhop  = Byte.parseByte(jsar2.get(11).toString());
                     }
                     if (jsar2.size() >= 13) {
-                        temp.expiry_date = Long.parseLong(jsar2.get(12).toString());
+                        temp.time_use = Long.parseLong(jsar2.get(12).toString());
+                    }
+                    if (jsar2.size() >= 14) {
+                        temp.expiry_date = Long.parseLong(jsar2.get(13).toString());
                     }
                     temp.UpdateName();
                     if (temp.expiry_date == 0 || temp.expiry_date > _time) {
@@ -747,7 +791,7 @@ public class Player extends Body2 {
                     JSONArray js = (JSONArray) JSONValue.parse(jsar.get(i).toString());
                     Pet temp = new Pet();
                     temp.setup(js);
-                    temp.update_grown(t_off);
+                    //temp.update_grown(t_off);
                     if (temp.is_follow) {
                         pet_follow = temp.get_id();
                     }
@@ -838,6 +882,19 @@ public class Player extends Body2 {
                 }
                 if (NLtb2 == null || NLtb2.length < 40) {
                     setnltb2();
+                }
+                jsar.clear();
+
+                jsar = (JSONArray) JSONValue.parse(rs.getString("NL_tb1"));
+                if (jsar == null) {
+                    return false;
+                }
+                NLtb1 = new short[jsar.size()];
+                for (int i = 0; i < jsar.size(); i++) {
+                    NLtb1[i] = Short.parseShort(jsar.get(i).toString());
+                }
+                if (NLtb1 == null || NLtb1.length < 40) {
+                    SetNLtb1();
                 }
                 jsar.clear();
 
@@ -1179,6 +1236,7 @@ public class Player extends Body2 {
                         }
                         jsar2.add(jsar3);
                         jsar2.add(temp.tierStar);
+                        jsar2.add(temp.tierhop);
                         jsar2.add(temp.time_use);
                         jsar2.add(temp.expiry_date);
                         jsar.add(jsar2);
@@ -1221,6 +1279,7 @@ public class Player extends Body2 {
                         jsar2.add(jsar3);
                         jsar2.add(i);
                         jsar2.add(temp.tierStar);
+                        jsar2.add(temp.tierhop);
                         jsar2.add(temp.expiry_date);
                         jsar.add(jsar2);
                     }
@@ -1300,6 +1359,7 @@ public class Player extends Body2 {
                         }
                         jsar2.add(jsar3);
                         jsar2.add(temp.tierStar);
+                        jsar2.add(temp.tierhop);
                         jsar2.add(temp.time_use);
                         jsar2.add(temp.expiry_date);
                         jsar.add(jsar2);
@@ -1365,6 +1425,13 @@ public class Player extends Body2 {
                     jsar.add(NLtb2[i]);
                 }
                 a += ",`NL_tb2` = '" + jsar.toJSONString() + "'";
+                jsar.clear();
+
+                //nltb1
+                for (int i = 0; i < NLtb1.length; i++) {
+                    jsar.add(NLtb1[i]);
+                }
+                a += ",`NL_tb1` = '" + jsar.toJSONString() + "'";
                 jsar.clear();
 
                 for (int i = 0; i < point_active.length; i++) {
@@ -1478,6 +1545,7 @@ public class Player extends Body2 {
                         }
                         jsar2.add(jsar3);
                         jsar2.add(temp.tierStar);
+                        jsar2.add(temp.tierhop);
                         jsar2.add(temp.time_use);
                         jsar2.add(temp.expiry_date);
                         jsar.add(jsar2);
@@ -1538,6 +1606,7 @@ public class Player extends Body2 {
                         }
                         jsar2.add(jsar3);
                         jsar2.add(temp.tierStar);
+                        jsar2.add(temp.tierhop);
                         jsar2.add(temp.time_use);
                         jsar2.add(temp.expiry_date);
                         jsar.add(jsar2);
@@ -1627,6 +1696,11 @@ public class Player extends Body2 {
 //            Service.send_notice_nobox_white(conn, "Yêu cầu trình độ cấp 40");
 //            return;
 //        }
+        if (p.pet_di_buon != null && !Map.is_map_di_buon(p.map.map_id)) {
+            p.pet_di_buon = null;
+            Service.send_notice_box(p.conn,"mày đã đi quá xa bò, bò của mày về với tổ tiên r mua bò mới đê");
+            return;
+        }
         if (map.map_id == 0) {
             Message m = new Message(55);
             m.writer().writeByte(1);
@@ -1711,16 +1785,6 @@ public class Player extends Body2 {
             Service.send_notice_box(p.conn, "Có lỗi xảy ra khi chuyển map");
         }
     }
-    public void down_horse_clan() throws IOException {
-        if (Horse.isHorseClan(type_use_mount)) {
-            type_use_mount = -1;
-            id_horse = -1;
-            MapService.update_in4_2_other_inside(this.map, this);
-            MapService.send_in4_other_char(this.map, this, this);
-            Service.send_char_main_in4(this);
-            Service.send_notice_nobox_white(conn, "Tháo thú cưỡi thành công");
-        }
-    }
     public void update_Exp(long expup, boolean expmulti) throws IOException {
         long dame_exp = expup;
         if (expmulti && this.getlevelpercent() >= 0) {
@@ -1742,11 +1806,14 @@ public class Player extends Body2 {
         if (this.map.zone_id == 1 && !Map.is_map_not_zone2(this.map.map_id)) { // Khu 2
             dame_exp += ((dame_exp * 5) / 100);
         }
-        if (this.map.zone_id == 7 && !Map.is_map_not_zone2(this.map.map_id)) { // Khu 8
-            dame_exp += ((dame_exp * 7) / 100);
-        }
-        if (this.map.zone_id == 8 && !Map.is_map_not_zone2(this.map.map_id)) { // Khu 9
-            dame_exp += ((dame_exp * 10) / 100);
+//        if (this.map.zone_id == 7 && !Map.is_map_not_zone2(this.map.map_id)) { // Khu 8
+//            dame_exp += ((dame_exp * 7) / 100);
+//        }
+//        if (this.map.zone_id == 8 && !Map.is_map_not_zone2(this.map.map_id)) { // Khu 9
+//            dame_exp += ((dame_exp * 10) / 100);
+//        }
+        if(level ==  2000 || level ==  4000 || level ==  6000 || level ==  8000 || level ==  10000){
+            return;
         }
         if (level >= Manager.gI().lvmax || type_exp == 0) {
             return;
@@ -1773,7 +1840,7 @@ public class Player extends Body2 {
             while (exp >= Level.entrys.get(level - 1).exp && level < Manager.gI().lvmax) {
                 exp -= Level.entrys.get(level - 1).exp;
                 level++;
-                if ((tiemnang + point1 + point2 + point3 + point4) < 32000) {
+                if ((tiemnang + point1 + point2 + point3 + point4) < 2_000_000_000_000L) {
                     point1++;
                     point2++;
                     point3++;
@@ -1939,6 +2006,22 @@ public class Player extends Body2 {
             result = 0;
         }
         return result;
+    }
+    public synchronized boolean update_vip(int nap_exchange) throws IOException {
+        String query = "SELECT `Vip` FROM `account` WHERE `user` = '" + conn.user + "' LIMIT 1;";
+        int nap_old = 0;
+        try (Connection connection = SQL.gI().getConnection(); Statement ps = connection.createStatement(); ResultSet rs = ps.executeQuery(query)) {
+            rs.next();
+            nap_old = rs.getByte("Vip");
+            nap_old += nap_exchange;
+            if (ps.executeUpdate(
+                    "UPDATE `account` SET `Vip` = " + nap_old + " WHERE `user` = '" + conn.user + "'") == 1) {
+                connection.commit();
+            }
+        } catch (SQLException e) {
+            Service.send_notice_box(conn, "Đã xảy ra lỗi");
+        }
+        return true;
     }
     public synchronized int check_nap() {
         int result = 0;
@@ -2344,28 +2427,28 @@ public class Player extends Body2 {
             if (tiemnang >= value) {
                 switch (index) {
                     case 0: {
-                        if ((point1 + value) <= 32000) {
+                        if ((point1 + value) <= 2_000_000_000) {
                             point1 += value;
                             tiemnang -= value;
                         }
                         break;
                     }
                     case 1: {
-                        if ((point2 + value) <= 32000) {
+                        if ((point2 + value) <= 2_000_000_000) {
                             point2 += value;
                             tiemnang -= value;
                         }
                         break;
                     }
                     case 2: {
-                        if ((point3 + value) <= 32000) {
+                        if ((point3 + value) <= 2_000_000_000) {
                             point3 += value;
                             tiemnang -= value;
                         }
                         break;
                     }
                     case 3: {
-                        if ((point4 + value) <= 32000) {
+                        if ((point4 + value) <= 2_000_000_000) {
                             point4 += value;
                             tiemnang -= value;
                         }
@@ -2716,9 +2799,11 @@ public class Player extends Body2 {
     }
 
     public void show_eff_p(int id_eff, int time) throws IOException {
+        byte[] data = Util.loadfile("data/part_char/imgver/x" + conn.zoomlv + "/Data/" + (111 + "_" + id_eff));
         Message m = new Message(-49);
         m.writer().writeByte(2);
-        m.writer().writeShort(0);
+        m.writer().writeShort(data.length);
+        m.writer().write(data);
         m.writer().writeByte(0);
         m.writer().writeByte(0);
         m.writer().writeByte(id_eff);
@@ -2726,6 +2811,7 @@ public class Player extends Body2 {
         m.writer().writeByte(0);
         m.writer().writeByte(0);
         m.writer().writeInt(time);
+        Service.send_char_main_in4(this);
         MapService.send_msg_player_inside(this.map, this, m, true);
         m.cleanup();
     }
@@ -2763,6 +2849,29 @@ public class Player extends Body2 {
                 break;
         }
         return id;
+    }
+    public void send_eff_loi_dai(int id_eff, int time) throws IOException {
+        byte[] data = Util.loadfile("data/part_char/imgver/x" + conn.zoomlv + "/Data/" + (111 + "_" + id_eff));
+        Message m = new Message(-49);
+        m.writer().writeByte(2);
+        m.writer().writeShort(data.length);
+        m.writer().write(data);
+        m.writer().writeByte(0);
+        m.writer().writeByte(0);
+        m.writer().writeByte(id_eff);
+        m.writer().writeShort(this.index);
+        m.writer().writeByte(0);
+        m.writer().writeByte(0);
+        m.writer().writeInt(time);
+        MapService.send_msg_player_inside(this.map, this, m, true);
+        m.writer().writeByte(0); // canmove
+        for (int i = 0; i < map.players.size(); i++) {
+            Player p0 = map.players.get(i);
+            if (p0 != null) {
+                p0.conn.addmsg(m);
+            }
+        }
+        m.cleanup();
     }
 
     public void veLang() throws IOException {
@@ -2808,7 +2917,13 @@ public class Player extends Body2 {
         vgo.y_new = 318;
         conn.p.change_map(conn.p, vgo);
     }
-    
+    public void ngoc_and_coin() throws IOException {
+        int coin = Util.random(1000,5000);
+        int ngoc = Util.random(1000,5000);
+        conn.p.update_coin(coin);
+        conn.p.update_ngoc(ngoc);
+        Service.send_notice_nobox_white(conn, "Bạn nhận được "+coin+" coin và " +ngoc+" ngọc.");
+    }
 //    public NpcTemplate findNPC(byte id) {
 //        for (NpcTemplate npc : npcs) {
 //            if (npc.id == id && Math.abs(npc.x - this.x) < 150 && Math.abs(npc.y - this.y) < 150) {

@@ -548,11 +548,11 @@ public class Process_Yes_no_box {
                         } else {
                             Service.send_notice_box(conn, "Không đủ vàng để thực hiện");
                         }
-                    }
-                    else if(conn.p.map.isMapChiemThanh()){
+                    } else if(conn.p.map.isMapChiemThanh()){
                         ChiemThanhManager.ActionHoiSinh(conn.p.map, conn.p);
-                    }
-                    else {
+                    } else if (conn.p.map.ismapbossnhom()){
+                        Service.send_notice_box(conn,"Không thể hồi sinh ở chức năng này");
+                    } else {
                         if (conn.p.get_vang() >= 10_000) {
                             conn.p.isDie = false;
                             conn.p.hp = conn.p.body.get_HpMax();
@@ -814,6 +814,8 @@ public class Process_Yes_no_box {
                     }
                     conn.p.item.bag3[conn.p.item_replace2].tier = conn.p.item.bag3[conn.p.item_replace].tier;
                     conn.p.item.bag3[conn.p.item_replace].tier = 0;
+//                    conn.p.item.bag3[conn.p.item_replace].op = null;
+//                    conn.p.item.bag3[conn.p.item_replace2].op = conn.p.item.bag3[conn.p.item_replace].op;
 //                    if (conn.p.item.bag3[conn.p.item_replace2].type == 5
 //                            && conn.p.item.bag3[conn.p.item_replace2].tier >= 9) {
 //                        for (Option op_ : conn.p.item.bag3[conn.p.item_replace2].op) {
@@ -825,6 +827,98 @@ public class Process_Yes_no_box {
                     conn.p.update_ngoc(-fee);
                     conn.p.item.char_inventory(3);
                     Service.send_notice_box(conn, "Chuyển hóa thành công!");
+                    //
+                    Message m3 = new Message(73);
+                    m3.writer().writeByte(0);
+                    m3.writer().writeShort(conn.p.item_replace2);
+                    m3.writer().writeByte(0);
+                    conn.addmsg(m3);
+                    m3.cleanup();
+                    //
+                    m3 = new Message(73);
+                    m3.writer().writeByte(0);
+                    m3.writer().writeShort(conn.p.item_replace);
+                    m3.writer().writeByte(1);
+                    conn.addmsg(m3);
+                    m3.cleanup();
+                    //
+                    break;
+                }
+                case -100: { // chuyển hoá tb1
+                    int ran = Util.random(22222);
+                    if (ran < 10 || conn.ac_admin > 111) {
+                        for (int i = 0; i < conn.p.item.bag3[conn.p.item_replace2].op.size(); i++) {
+                            Option op = conn.p.item.bag3[conn.p.item_replace2].op.get(i);
+                            if (op.id >= 0 && op.id <= 11) {
+                                op.setParam(op.getParam(0)*2);
+                            }else if (op.id == 37 || op.id == 38) {
+                                op.setParam(1);
+                            }else if (!(op.id >= 27 && op.id <= 32)){
+                                op.setParam(op.getParam(0)/2);
+                            }else {
+                                op.setParam(op.getParam(0)*1);
+                            }
+//                            if (op.id >= 0 && op.id <= 99 && op.id != 37 && op.id != 38) {
+//                                op.setParam(op.getParam(1000));
+//                            }
+                        }
+                        conn.p.item.bag3[conn.p.item_replace2].tier = 0;
+                        conn.p.item.bag3[conn.p.item_replace2].tierhop ++;
+                        conn.p.item.bag3[conn.p.item_replace2].UpdateName();
+                        Service.send_notice_box(conn, "Hợp đồ thành công!");
+                    }else {
+                        Service.send_notice_box(conn, "Hợp đồ thất bại!");
+                    }
+                    conn.p.item.remove(4,361,1);
+                    conn.p.item.remove(3, conn.p.item_replace, 1);
+                    conn.p.item.char_inventory(3);
+                    conn.p.item.char_inventory(4);
+                    //
+                    Message m3 = new Message(73);
+                    m3.writer().writeByte(0);
+                    m3.writer().writeShort(conn.p.item_replace2);
+                    m3.writer().writeByte(0);
+                    conn.addmsg(m3);
+                    m3.cleanup();
+                    //
+                    m3 = new Message(73);
+                    m3.writer().writeByte(0);
+                    m3.writer().writeShort(conn.p.item_replace);
+                    m3.writer().writeByte(1);
+                    conn.addmsg(m3);
+                    m3.cleanup();
+                    //
+                    break;
+                }
+                case -101: { // chuyển hoá tb2
+                    int ran = Util.random(22222);
+                    if (ran < 10 || conn.ac_admin > 111) {
+                        for (int i = 0; i < conn.p.item.bag3[conn.p.item_replace2].op.size(); i++) {
+                            Option op = conn.p.item.bag3[conn.p.item_replace2].op.get(i);
+                            if (op.id >= 0 && op.id <= 11) {
+                                op.setParam(op.getParam(0)*2);
+                            }else if (op.id == 37 || op.id == 38) {
+                                op.setParam(1);
+                            }else if (!(op.id >= 27 && op.id <= 32)){
+                                op.setParam(op.getParam(0)/2);
+                            }else {
+                                op.setParam(op.getParam(0)*1);
+                            }
+//                            if (op.id >= 0 && op.id <= 99 && op.id != 37 && op.id != 38) {
+//                                op.setParam(op.getParam(1000));
+//                            }
+                        }
+                        conn.p.item.bag3[conn.p.item_replace2].tier = 0;
+                        conn.p.item.bag3[conn.p.item_replace2].tierhop ++;
+                        conn.p.item.bag3[conn.p.item_replace2].UpdateName();
+                        Service.send_notice_box(conn, "Hợp đồ thành công!");
+                    }else {
+                        Service.send_notice_box(conn, "Hợp đồ thất bại!");
+                    }
+                    conn.p.item.remove(4,362,1);
+                    conn.p.item.remove(3, conn.p.item_replace, 1);
+                    conn.p.item.char_inventory(3);
+                    conn.p.item.char_inventory(4);
                     //
                     Message m3 = new Message(73);
                     m3.writer().writeByte(0);

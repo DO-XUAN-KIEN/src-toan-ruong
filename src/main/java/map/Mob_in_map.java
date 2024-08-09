@@ -23,6 +23,11 @@ public class Mob_in_map extends MainObject {
     public final static HashMap<Integer, Mob_in_map> ENTRYS = new HashMap<>();
     public int time_refresh = 3;
     private boolean is_boss;
+    public int dameboss;
+    public int phan;
+    public int ne;
+    public int crit;
+    public int xg;
     public long time_back;
     public final List<Player> list_fight = new ArrayList<>();
     public long time_fight;
@@ -69,7 +74,7 @@ public class Mob_in_map extends MainObject {
             dmob = (dmob * 21) / 10;
         }
         if (this.is_boss) {
-            dmob = (int) (dmob * this.level * 0.03);
+            return this.dameboss * 100;
         }
         if (this.color_name != 0 && (this.template.mob_id < 89 || this.template.mob_id > 92)) {
             dmob *= 2;
@@ -130,7 +135,7 @@ public class Mob_in_map extends MainObject {
                 mob.is_boss_active = false;
                 if (!Map.is_map_cant_save_site(mob.map_id)) {
                     Manager.gI().chatKTGprocess("" + mainAtk.name + " Đã Tiêu Diệt " + mob.template.name);
-                    Manager.gI().chatKTGprocess("" + top_dame + " Đã Nhận Quà 1 Top Sát Thương Đánh " + mob.template.name + "");
+                    //Manager.gI().chatKTGprocess("" + top_dame + " Đã Nhận Quà 1 Top Sát Thương Đánh " + mob.template.name + "");
                     Manager.gI().chatKTGprocess("" + mainAtk.name + " Chỵ Xin Boss Nhé Mấy Cưng !!!");
                 }
                 if (mainAtk.isPlayer()) {
@@ -143,57 +148,67 @@ public class Mob_in_map extends MainObject {
             } else {
                 mob.time_back = System.currentTimeMillis() + mob.time_refresh * 1000L - 1000L;
                 p.danhvong += 1;
-                if (zone_id == 7 || zone_id == 8){
-                    p.update_exptt(1);
-                }
                 p.item.char_inventory(5);
                 if (mainAtk.isPlayer()) {
-                    if (Math.abs(mob.level - mainAtk.level) <= 10 && !check_mob_roi_ngoc_kham) {
+                    if ((Math.abs(mob.level - mainAtk.level) <= 10 || (mainAtk.level >= 140 && p.map.map_id == 136) || (mainAtk.level >= 1 && p.map.map_id == 137)) && !check_mob_roi_ngoc_kham) {
+                        if (Util.random(2000)< 10){
+                            p.ngoc_and_coin();
+                        }
                         if (map.isMapLangPhuSuong()) {
                             int percent = 20;
                             if (percent > Util.random(0, 300)) {
                                 LeaveItemMap.leave_vang(map, mob, (Player) mainAtk);
-                            } else if (percent > Util.random(0, 300)) {
-                                LeaveItemMap.leave_item_by_type7(map, (short) Util.random(481, 485), p, mob.index);
-                            } else if (percent > Util.random(0, 500)) {
-                                LeaveItemMap.leave_item_by_type7(map, (short) Util.random(485, 489), p, mob.index);
-                            } else if (percent > Util.random(0, 300)) {
-                                LeaveItemMap.leave_item_by_type7(map, (short) Util.random(471, 480), p, mob.index);
-                            } else if (percent > Util.random(0, 100)) {
-                                LeaveItemMap.leave_item_by_type7(map, (short) Util.random(0, 2), p, mob.index);
                             }
                             if (Manager.gI().event != -1 && 30 > Util.random(0, 100) && Math.abs(mob.level - mainAtk.level) <= 5) {
                                 LeaveItemMap.leave_item_event(map, mob, (Player) mainAtk);
                             }
+                        }else if (map.map_id == 137){
+                            int percent = 20;
+                            if (p.checkvip() >= 2 && percent > Util.random(0,4000)){
+                                if (percent > Util.random(0, 1000)){
+                                    LeaveItemMap.leave_item_by_type4(map,(short) 205, p, mob.index);
+                                }else if (percent > Util.random(0, 800)){
+                                    LeaveItemMap.leave_item_by_type4(map,(short) 207, p, mob.index);
+                                }
+                            }
+                            if (percent > Util.random(0,5000)){
+                                LeaveItemMap.leave_item_by_type4(map,(short) Util.random(347,352),p,mob.index);
+                            }
+                            if (percent > Util.random(0,10000)){
+                                LeaveItemMap.leave_item_by_type4(map,(short) Util.random(357,360),p,mob.index);
+                            }
+                            if (percent > Util.random(0,3000)){
+                                LeaveItemMap.leave_item_by_type4(map,(short) 360, p, mob.index);
+                            }
+                            if (percent > Util.random(0,3000)){
+                                LeaveItemMap.leave_item_by_type4(map,(short) 206, p, mob.index);
+                            }
+                            if (percent > Util.random(0, 1000)) {
+                                LeaveItemMap.leave_item_4(map, mob, (Player) mainAtk);
+                            }
+                            if (percent + 10 > Util.random(0, 300)) {
+                                LeaveItemMap.leave_vang(map, mob, (Player) mainAtk);
+                            }
                         } else {
                             int percent = 20;
-                            if ((zone_id == 1 || zone_id == 7 || zone_id == 8) && !Map.is_map_not_zone2(map_id)
+                            if (zone_id == 1 && !Map.is_map_not_zone2(map_id)
                                     && p.get_EffDefault(-127) != null) {
                                 percent = 40;
                             }
                             if (Math.abs(mob.level - mainAtk.level) <= 5 && Manager.gI().event == 3 && Util.random_ratio(10)) {
                                 ev_he.Event_3.LeaveItemMap(map, this, mainAtk);
-//                            } else if (mob.level >= 133) {
-//                                ev_he.Event_3.LeaveItemMap(map, this, mainAtk);
                             }
-                            if (percent > Util.random(0, 300) || mob.color_name != 0) {
-                                LeaveItemMap.leave_item_3(map, mob, (Player) mainAtk);
-                            }
-                            else if (percent > Util.random(0, 500) && zone_id == 1 && !Map.is_map_not_zone2(map_id)
+                            else if (percent > Util.random(0, 2000) && zone_id == 1 && !Map.is_map_not_zone2(map_id)
                                     && p.get_EffDefault(-127) != null) {
-                                if(Util.random(2000) < 4) {
-                                    LeaveItemMap.leave_item_by_type7(map, (short) 494, p, mob.index);
+                                if (p.checkvip() >= 2){
+                                    if (percent > Util.random(0, 500)){
+                                        LeaveItemMap.leave_item_by_type4(map,(short) 205, p, mob.index);
+                                    }else if (percent > Util.random(0, 300)){
+                                        LeaveItemMap.leave_item_by_type4(map,(short) 207, p, mob.index);
+                                    }
                                 }
-                                if (Util.random(1000) < 4) {
-                                    LeaveItemMap.leave_item_by_type4(map, (short) Util.random(342,345),p,mob.index);
-                                }
-                                if (Util.random(1500) < 4) {
-                                    LeaveItemMap.leave_item_by_type4(map, (short) 346,p,mob.index);
-                                }
-                                if (Util.random(0, 10) < 2) {
-                                    LeaveItemMap.leave_item_by_type7(map, (short) Util.random(116, 126), p, mob.index);
-                                } else {
-                                    LeaveItemMap.leave_item_by_type7(map, (short) 13, p, mob.index);
+                                if (percent > Util.random(0,3000)){
+                                    LeaveItemMap.leave_item_by_type4(map,(short) Util.random(347,352),p,mob.index);
                                 }
                                 if (Manager.gI().event == 11){
                                     if (Util.random(500) < 4){
@@ -201,42 +216,27 @@ public class Mob_in_map extends MainObject {
                                     }
                                 }
                             }
-                            if (percent > Util.random(0, 300) && zone_id == 7 && !Map.is_map_not_zone2(map_id)) {
-                                if (Util.random(300) < 4) {
-                                    LeaveItemMap.leave_item_by_type4(map, (short) Util.random(342,345),p,mob.index);
-                                }
-                                if (Util.random(500) < 4) {
-                                    LeaveItemMap.leave_item_by_type4(map, (short) 346,p,mob.index);
-                                }
-                                if (Manager.gI().event == 11){
-                                    if (Util.random(400) < 4){
-                                        LeaveItemMap.leave_item_by_type4(map,(short) Util.random(335, 339),p,mob.index);
-                                    }
-                                }
-                            } else if (percent > Util.random(0, 200) && zone_id == 8 && !Map.is_map_not_zone2(map_id)) {
-                                if (Util.random(100) < 4) {
-                                    LeaveItemMap.leave_item_by_type4(map, (short) Util.random(342,345),p,mob.index);
-                                }
-                                if (Util.random(200) < 4) {
-                                    LeaveItemMap.leave_item_by_type4(map, (short) 346,p,mob.index);
-                                }
-                                if (Manager.gI().event == 11){
-                                    if (Util.random(200) < 4){
-                                        LeaveItemMap.leave_item_by_type4(map,(short) Util.random(335, 339),p,mob.index);
-                                    }
+                            if (p.checkvip() >= 2 && percent > Util.random(0,4000)){
+                                if (percent > Util.random(0, 1000)){
+                                    LeaveItemMap.leave_item_by_type4(map,(short) 205, p, mob.index);
+                                }else if (percent > Util.random(0, 800)){
+                                    LeaveItemMap.leave_item_by_type4(map,(short) 207, p, mob.index);
                                 }
                             }
-                            if (percent > Util.random(0, 300)) {
+                            if (percent > Util.random(0,5000)){
+                                LeaveItemMap.leave_item_by_type4(map,(short) Util.random(347,352),p,mob.index);
+                            }
+                            if (percent > Util.random(0,10000)){
+                                LeaveItemMap.leave_item_by_type4(map,(short) Util.random(357,360),p,mob.index);
+                            }
+                            if (percent > Util.random(0,3000)){
+                                LeaveItemMap.leave_item_by_type4(map,(short) 206, p, mob.index);
+                            }
+                            if (percent > Util.random(0, 1000)) {
                                 LeaveItemMap.leave_item_4(map, mob, (Player) mainAtk);
-                            }
-                            if (percent > Util.random(0, 300)) {
-                                LeaveItemMap.leave_item_7(map, mob, (Player) mainAtk);
                             }
                             if (percent + 10 > Util.random(0, 300)) {
                                 LeaveItemMap.leave_vang(map, mob, (Player) mainAtk);
-                            }
-                            if (percent + 10 > Util.random(0, 300)) {
-                                LeaveItemMap.leave_material(map, mob, (Player) mainAtk);
                             }
                             if (Manager.gI().event != 0 && 30 > Util.random(0, 100) && Math.abs(mob.level - mainAtk.level) <= 5) {
                                 LeaveItemMap.leave_item_event(map, mob, (Player) mainAtk);
@@ -348,5 +348,8 @@ public class Mob_in_map extends MainObject {
 
     public void add_Eff(int id, int param, int time) {
         this.add_EffDefault(id, param, System.currentTimeMillis() + time);
+    }
+    public void ADD_Eff(int id, int garam, int time) throws IOException{
+        this.addEffTinhTu(id, garam, System.currentTimeMillis() + time);
     }
 }

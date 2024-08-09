@@ -2,10 +2,9 @@ package map;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 import client.Pet;
 import client.Player;
 import core.Service;
@@ -38,7 +37,6 @@ public class Leo_thap {
     public Leo_thap() throws IOException {
         init();
     }
-
     private void init() {
         try {
             Map temp = Map.get_Leo_thap(46);
@@ -377,7 +375,7 @@ public class Leo_thap {
                 mob_speed = 50;
                 num_mob_max = 1;
                 num_mob = num_mob_max;
-                dame_buff = 5;
+                dame_buff = 1;
                 name = "Easy";
                 break;
             }
@@ -386,7 +384,7 @@ public class Leo_thap {
                 mob_speed = 75;
                 num_mob_max = 3;
                 num_mob = num_mob_max;
-                dame_buff = 10;
+                dame_buff = 3;
                 name = "Normal";
                 break;
             }
@@ -395,7 +393,7 @@ public class Leo_thap {
                 mob_speed = 100;
                 num_mob_max = 5;
                 num_mob = num_mob_max;
-                dame_buff = 15;
+                dame_buff = 5;
                 name = "Hard";
                 break;
             }
@@ -404,7 +402,7 @@ public class Leo_thap {
                 mob_speed = 150;
                 num_mob_max = 8;
                 num_mob = num_mob_max;
-                dame_buff = 20;
+                dame_buff = 8;
                 name = "Nightmare";
                 break;
             }
@@ -413,7 +411,7 @@ public class Leo_thap {
                 mob_speed = 200;
                 num_mob_max = 10;
                 num_mob = num_mob_max;
-                dame_buff = 25;
+                dame_buff = 10;
                 name = "Hell";
                 break;
             }

@@ -32,36 +32,36 @@ public class KingCupManager {
 
     public static void register(final Player p) throws IOException {
         int level = p.level;
-        if (level > 64) {
+        if (level > 100) {
             if (p.get_ngoc() < 1000) {
                 Service.send_notice_box(p.conn, "Bạn không đủ 1000 ngọc");
                 return;
             }
-            if (level <= 74) {
+            if (level <= 500) {
                 group_65_74.add(p.name);
                 updateData(group_65_74, "group_65_74");
                 p.group_king_cup = 1;
-            } else if (level <= 84) {
+            } else if (level <= 1000) {
                 group_75_84.add(p.name);
                 updateData(group_75_84, "group_75_84");
                 p.group_king_cup = 2;
-            } else if (level <= 94) {
+            } else if (level <= 2000) {
                 group_85_94.add(p.name);
                 updateData(group_85_94, "group_85_94");
                 p.group_king_cup = 3;
-            } else if (level <= 104) {
+            } else if (level <= 3000) {
                 group_95_104.add(p.name);
                 updateData(group_95_104, "group_95_104");
                 p.group_king_cup = 4;
-            } else if (level <= 114) {
+            } else if (level <= 4000) {
                 group_105_114.add(p.name);
                 updateData(group_105_114, "group_105_114");
                 p.group_king_cup = 5;
-            } else if (level <= 124) {
+            } else if (level <= 5000) {
                 group_115_124.add(p.name);
                 updateData(group_115_124, "group_115_124");
                 p.group_king_cup = 6;
-            } else if (level > 125) {
+            } else if (level > 5000) {
                 group_125_139.add(p.name);
                 updateData(group_125_139, "group_125_139");
                 p.group_king_cup = 7;
@@ -196,51 +196,51 @@ public class KingCupManager {
 
         switch (p.type_reward_king_cup) {
             case 1, 5, 9, 13 -> {
-                id_reward_7 = new short[]{14, (short) Util.random(8, 10), 11, 349};
-                quantity_reward_7 = new short[]{5, 15, 15, 2};
-                id_reward_4 = new short[]{53, 54};
-                quantity_reward_4 = new short[]{1, 1};
+//                id_reward_7 = new short[]{14, (short) Util.random(8, 10), 11, 349};
+//                quantity_reward_7 = new short[]{5, 15, 15, 2};
+                id_reward_4 = new short[]{352,353,354,355,356,357,358,359};
+                quantity_reward_4 = new short[]{10, 10, 10, 10, 10,10,10,10};
                 coin = 30_000;
                 p.update_coin(coin);
             }
             case 17, 21, 25 -> {
-                id_reward_7 = new short[]{14, (short) Util.random(8, 10), 11, 349};
-                quantity_reward_7 = new short[]{5, 20, 20, 2};
-                id_reward_4 = new short[]{10, 53, 54};
-                quantity_reward_4 = new short[]{1, 1, 1};
+//                id_reward_7 = new short[]{14, (short) Util.random(8, 10), 11, 349};
+//                quantity_reward_7 = new short[]{5, 20, 20, 2};
+                id_reward_4 = new short[]{352,353,354,355,356,357,358,359};
+                quantity_reward_4 = new short[]{15, 15, 15, 15, 15,15,15,15};
                 coin = 40_000;
                 p.update_coin(coin);
                 isHaveBook = true;
             }
             case 2, 6, 10, 14 -> {
-                id_reward_7 = new short[]{(short) Util.random(8, 10), 11};
-                quantity_reward_7 = new short[]{10, 10};
-                id_reward_4 = new short[]{53, 54};
-                quantity_reward_4 = new short[]{1, 1};
+//                id_reward_7 = new short[]{(short) Util.random(8, 10), 11};
+//                quantity_reward_7 = new short[]{10, 10};
+                id_reward_4 = new short[]{352,353,354,355,356,357,358,359};
+                quantity_reward_4 = new short[]{6, 6, 6, 6, 6, 6, 6, 6};
                 coin = 20_000;
                 p.update_coin(coin);
             }
             case 18, 22, 26 -> {
-                id_reward_7 = new short[]{14};
-                quantity_reward_7 = new short[]{7};
-                id_reward_4 = new short[]{10};
-                quantity_reward_4 = new short[]{5};
+//                id_reward_7 = new short[]{14};
+//                quantity_reward_7 = new short[]{7};
+                id_reward_4 = new short[]{352,353,354,355,356,357,358,359};
+                quantity_reward_4 = new short[]{10, 10, 10, 10, 10, 10, 10, 10};
                 coin = 30_000;
                 p.update_coin(coin);
             }
             case 3, 7, 11, 15 -> {
-                id_reward_7 = new short[]{(short) Util.random(8, 10), 11};
-                quantity_reward_7 = new short[]{6, 6};
-                id_reward_4 = new short[]{53};
-                quantity_reward_4 = new short[]{3};
+//                id_reward_7 = new short[]{(short) Util.random(8, 10), 11};
+//                quantity_reward_7 = new short[]{6, 6};
+                id_reward_4 = new short[]{352,353,354,355,356,357,358,359};
+                quantity_reward_4 = new short[]{3, 3, 3, 3, 3,3,3,3};
                 coin = 10_000;
                 p.update_coin(coin);
             }
             case 19, 23, 27 -> {
-                id_reward_7 = new short[]{14};
-                quantity_reward_7 = new short[]{1};
-                id_reward_4 = new short[]{10, 53, 54};
-                quantity_reward_4 = new short[]{1, 1, 1};
+//                id_reward_7 = new short[]{14};
+//                quantity_reward_7 = new short[]{1};
+                id_reward_4 = new short[]{352,353,354,355,356,357,358,359};
+                quantity_reward_4 = new short[]{5, 5, 5, 5, 5,5,5,5};
                 coin = 20_000;
                 p.update_coin(coin);
             }
@@ -248,22 +248,27 @@ public class KingCupManager {
                 return;
             }
         }
-        if (p.item.get_bag_able() < (id_reward_7.length + id_reward_4.length + 1)) {
+        if (p.item.get_bag_able() < (id_reward_4.length + 1)) {
             Service.send_notice_nobox_white(p.conn, "Hành trang đầy!");
             return;
         }
+//        if (p.item.get_bag_able() < (id_reward_7.length + id_reward_4.length + 1)) {
+//            Service.send_notice_nobox_white(p.conn, "Hành trang đầy!");
+//            return;
+//        }
 
         int gold = calculateGold(p.point_king_cup);
 
         Message m = new Message(78);
         m.writer().writeUTF("Bạn nhận được + " + coin + "coin.");
         if (isHaveBook) {
-            m.writer().writeByte(id_reward_7.length + id_reward_4.length + 2);
+            //m.writer().writeByte(id_reward_7.length + id_reward_4.length + 2);
+            m.writer().writeByte(id_reward_4.length + 2);
             addBookSkill(m, p, 1);
         } else {
-            m.writer().writeByte(id_reward_7.length + id_reward_4.length + 1);
+            m.writer().writeByte(id_reward_4.length + 1);
         }
-        writeRewardsToMessage(p, m, id_reward_7, quantity_reward_7, (byte) 7);
+        //writeRewardsToMessage(p, m, id_reward_7, quantity_reward_7, (byte) 7);
         writeRewardsToMessage(p, m, id_reward_4, quantity_reward_4, (byte) 4);
 
         m.writer().writeUTF("vàng");

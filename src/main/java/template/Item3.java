@@ -17,7 +17,7 @@ public class Item3 {
     public String name;
     public byte tier;
     public byte tierStar;
-    public byte dothan;
+    public byte tierhop;
     public List<Option> op;
     public List<Option> opMedal;
     public long time_use;
@@ -38,6 +38,7 @@ public class Item3 {
         this.name = Origin.name;
         this.tier = Origin.tier;
         this.tierStar = Origin.tierStar;
+        this.tierhop = Origin.tierhop;
         this.op = new ArrayList<>();
         if (Origin.op != null) {
             this.op.addAll(Origin.op);
@@ -63,8 +64,11 @@ public class Item3 {
         if (islock) {
             name += " [Khóa]";
         }
-        if (tierStar > 0 && (id >= 4587 && id <= 4590) || (id >= 4831 && id <= 4873)){
-            name += "[Siêu cấp " + tierStar +"]";
+        if (tierhop > 0 && (type >= 0 && type <= 11) || (type >= 21 && type <= 28 || type == 55 || type == 102) && color >= 4) {
+            name += "[Đẳng cấp " + tierhop + "]";
+        }
+        if (tierStar > 0 && (id >= 4587 && id <= 4590) || (id >= 4831 && id <= 4873)) {
+            name += "[Siêu cấp " + tierStar + "]";
         } else if (tierStar > 0) {
             name += " [Cấp " + tierStar + "]";
         }

@@ -64,6 +64,8 @@ public class MessageHandler {
                     DoSieucap.nangmdthan(conn,m);
                 } else if (conn.p.istb2) {
                     DoSieucap.nangtb2(conn,m);
+                } else if (conn.p.istb1) {
+                    DoSieucap.nangtb1(conn,m);
                 } else {
                     GameSrc.Create_Medal(conn, m);
                 }
@@ -82,7 +84,13 @@ public class MessageHandler {
                 break;
             }
             case 73: {
-                GameSrc.replace_item_process(conn.p, m);
+                if (conn.p.ngu) {
+                    hopdovip.hop_do(conn.p, m);
+                }else if (conn.p.hop_tb2){
+                    hopdovip.hop_do_tb2(conn.p, m);
+                }else {
+                    GameSrc.replace_item_process(conn.p, m);
+                }
                 break;
             }
             case 36: {

@@ -18,20 +18,14 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
+
+import core.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
 import client.Clan;
 import client.MessageHandler;
 import client.Player;
-import core.CheckDDOS;
-import core.Log;
-import core.Manager;
-import core.SQL;
-import core.SaveData;
-import core.ServerManager;
-import core.SessionManager;
-import core.Util;
-import core.infoServer;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
@@ -62,6 +56,7 @@ public class Session implements Runnable {
     public String user;
     public String pass;
     public byte ac_admin = 0;
+    public byte Vip;
     public String ip;
     private final MessageHandler controller;
     public Player p;
@@ -88,7 +83,6 @@ public class Session implements Runnable {
         this.controller = new MessageHandler(this);
         get_in4 = false;
     }
-
     public void init() {
         try {
             this.ip = this.socket.getInetAddress().getHostAddress();
@@ -421,12 +415,14 @@ public class Session implements Runnable {
             noticelogin("Vượt quá số lượng ip có thể truy cập vào thời điểm này!");
             return;
         }
+
         if (pass.equals("1") && user.equals("1")) {
+//            noticelogin("Vui lòng lên website!");
+//            return;
             if (Manager.gI().isServerAdmin && this.ac_admin <= 0) {
                 noticelogin("Server này chỉ admin mới có thể truy cập!");
                 return;
             }
-            // Kiểm tra số lượng IP trùng nhau
             try (Connection connect = SQL.gI().getConnection(); Statement ps = connect.createStatement()) {
                 // Đếm số lượng IP trùng nhau
                 ResultSet rs = ps.executeQuery("SELECT COUNT(*) AS ip_count FROM account WHERE ip = '" + this.ip + "'");
@@ -434,27 +430,39 @@ public class Session implements Runnable {
                 if (rs.next()) {
                     ipCount = rs.getInt("ip_count");
                 }
-                if (ipCount < 5) {
-                    user = "knightauto_hsr_" + String.valueOf(System.nanoTime());
-                    pass = "hsr_132";
-                    if (!ps.execute("INSERT INTO `account` (`user`, `pass`, `ac_admin`, `char`, `lock`, `coin`, `ip`) VALUES ('" + user
-                            + "', '" + pass + "', '0' ,'[]', '0', '0', '" + ip + "')")) {
-                        connect.commit();
-                    }
-                    this.list_char = new String[3];
-                    for (int i = 0; i < 3; i++) {
-                        this.list_char[i] = "";
-                    }
-                } else {
+                // Kiểm tra số lượng IP trùng nhau
+                if (ipCount >= 3) {
                     noticelogin("Số lượng IP đăng ký đã đạt giới hạn, vui lòng thử lại sau!");
+                    // Xóa tài khoản vừa mới tạo
+                    String deleteQuery = "DELETE FROM `account` WHERE `user` = '" + user + "'";
+                    try (Statement deleteStatement = connect.createStatement()) {
+                        deleteStatement.executeUpdate(deleteQuery);
+                        connect.commit();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        noticelogin("Có lỗi xảy ra trong quá trình xóa tài khoản!");
+                    }
+
                     return;
+                }
+                // Tiếp tục xử lý đăng ký khi số lượng IP chưa đạt giới hạn
+                user = "knightauto_hsr_" + String.valueOf(System.nanoTime());
+                pass = "hsr_132";
+                if (!ps.execute("INSERT INTO `account` (`user`, `pass`, `ac_admin`, `char`, `lock`, `coin`, `ip`) VALUES ('" + user
+                        + "', '" + pass + "', '0' ,'[]', '0', '0', '" + ip + "')")) {
+                    connect.commit();
+                }
+                this.list_char = new String[3];
+                for (int i = 0; i < 3; i++) {
+                    this.list_char[i] = "";
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
                 noticelogin("Có lỗi xảy ra, hãy thử lại!");
                 return;
             }
-        }else {
+
+        } else {
             //
             String query = "SELECT * FROM `account` WHERE `user` = '" + user + "' AND `pass` = '" + pass + "' LIMIT 1;";
             try ( Connection conn = SQL.gI().getConnection();  Statement ps = conn.createStatement();  ResultSet rs = ps.executeQuery(query)) {
@@ -464,6 +472,7 @@ public class Session implements Runnable {
                 }
                 this.id = rs.getInt("id");
                 this.ac_admin = rs.getByte("ac_admin");
+                this.Vip = rs.getByte("Vip");
                 this.status = rs.getByte("status");
                 this.coin = rs.getLong("coin");
               //  this.topnap = rs.getInt("topnap");

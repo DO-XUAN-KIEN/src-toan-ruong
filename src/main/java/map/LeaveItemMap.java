@@ -1,5 +1,8 @@
 package map;
 
+import BossHDL.BossManager;
+import Helps.ItemStar;
+import core.Service;
 import event.EventManager;
 import event.Event_1;
 import java.io.IOException;
@@ -8,14 +11,10 @@ import java.util.List;
 import client.Player;
 import core.Manager;
 import core.Util;
+import event_daily.Bossnhom;
 import io.Message;
-import template.EffTemplate;
-import template.ItemTemplate3;
-import template.ItemTemplate4;
-import template.ItemTemplate7;
-import template.MainObject;
-import template.Medal_Material;
-import template.Option;
+import io.Session;
+import template.*;
 
 public class LeaveItemMap {
 
@@ -35,7 +34,6 @@ public class LeaveItemMap {
     public static List<Short> item13x = new ArrayList<>();
     public static List<Short> item14x = new ArrayList<>();
     public static List<Short> item15x = new ArrayList<>();
-
     public static void leave_vang(Map map, Mob_in_map mob, Player p) throws IOException {
         if (mob != null) {
             int index_item_map = map.get_item_map_index_able();
@@ -44,7 +42,7 @@ public class LeaveItemMap {
                 map.item_map[index_item_map] = new ItemMap();
                 map.item_map[index_item_map].id_item = -1;
                 map.item_map[index_item_map].color = 0;
-                int vang_drop = Util.random(mob.level * 25, mob.level * 60);
+                int vang_drop = Util.random(mob.level * 100, mob.level * 200);
                 EffTemplate ef = p.get_EffDefault(52);
                 if (ef != null) {
                     vang_drop += (vang_drop * (ef.param / 100)) / 100;
@@ -300,304 +298,63 @@ public class LeaveItemMap {
             short[] id_item_leave3 = new short[]{};
             short[] id_item_leave4 = new short[]{};
             short[] id_item_leave7 = new short[]{};
-            short[] id_item_leave = new short[]{};
             short[] id_item_hongio = new short[]{};
-            short[] id_sk = new short[]{};
-            short[] id_item_leave_boss = new short[]{};
-            short[] id_medal_material = new short[]{};
-            short[] id_item_tt_lt = new short[]{};
           //  short id_medal_material = -19;
-
             short sizeRandomMedal = 0;
             switch (mob.template.mob_id) {
-                case 101: { // xa nu
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1};
-                    if(Util.random(100)<10){
-                        id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                    }
+                case 101, 84, 83, 103, 104, 105, 106, 149,155: { // xa nu
+                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1,(short) Util.random(347,357)};
+                    id_item_leave7 = new short[]{(short) Util.random(481,493),(short) Util.random(472,480)};
                     if(Manager.gI().event == 11){
                         id_item_hongio = new short[]{336};
                     }
-                    if(Util.random(200)< 4){
-                        id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                    }
-                    id_item_leave_boss = new short[]{138,(short) Util.random(473,480)};
-                    sizeRandomMedal = (short) (30);
+                    p.ngoc_and_coin();
+                    //sizeRandomMedal = (short) (30);
                     break;
                 }
-                case 84: { // de vang
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 27, 27};
-                    if(Util.random(100)<10){
-                        id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                    }
+                case 173, 195, 196, 197, 186, 187, 188: { //tho tuyet
+                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1,(short) Util.random(347,357)};
+                    id_item_leave7 = new short[]{(short) Util.random(481,493),(short) Util.random(472,480)};
                     if(Manager.gI().event == 11){
                         id_item_hongio = new short[]{336};
                     }
-                    if(Util.random(200)< 4){
-                        id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                    }
-                    id_item_leave_boss = new short[]{139,(short) Util.random(473,480)};
-                    sizeRandomMedal = (short) (35);
-
+                    p.ngoc_and_coin();
                     break;
                 }
-                case 83: { // de bac
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1};
-                    if(Util.random(100)<10){
-                        id_item_leave4 = new short[]{(short) Util.random(319,323)};
+                case 191: {//boss phụ của boss nhóm
+                    Bossnhom.bossphu += 1;
+                    String chat = "Nhóm của bạn đã hoàn thành " +Bossnhom.bossphu+ " Boss / 5 Boss phụ";
+                    Service.chat_nhom(p.party,chat);
+                    if(Bossnhom.bossphu == 5){
+                        Bossnhom.timeAttack = 0;
+                        Bossnhom.timeAttack = System.currentTimeMillis() + 1000 * 60* 10;
+                        BossManager.callBossToMapdangcap(46,0,194,486,402,1_500_000_000,p.level * 50,p.level * 2,p.level * 2,p.level* 2,p.level * 2,10);
                     }
-                    if(Manager.gI().event == 11){
-                        id_item_hongio = new short[]{336};
-                    }
-                    if(Util.random(200)< 4){
-                        id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                    }
-                    id_item_leave_boss = new short[]{141,(short) Util.random(473,480)};
-                    sizeRandomMedal = (short) (45);
                     break;
                 }
-                case 103: { // bo cap chua
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 48, 50, 18, 9, 48, 50, 18, 9, 2, 5, 2, 5, 2, 5, 2, 5};
-                    if(Util.random(100)<10){
-                        id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                    }
-                    if(Manager.gI().event == 11){
-                        id_item_hongio = new short[]{336};
-                    }
-                    if(Util.random(200)< 4){
-                        id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                    }
-                    id_item_leave_boss = new short[]{136,(short) Util.random(473,480)};
-                    sizeRandomMedal = (short) (20);
+                case 194: {//boss chính của boss nhóm
+                    Bossnhom.bosschinh = 1;
+                    String chat = "Diệt boss thành công các bạn sẽ thoát khỏi map sau 30s nữa";
+                    Service.chat_nhom(p.party,chat);
+                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1,(short) Util.random(347,357)};
+                    id_item_leave7 = new short[]{(short) Util.random(481,493),(short) Util.random(472,480)};
+                    p.ngoc_and_coin();
                     break;
                 }
-                case 104: { // quy 1 mat
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 10, 10};
-                    if(Util.random(100)<10){
-                        id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                    }
-                    if(Manager.gI().event == 11){
-                        id_item_hongio = new short[]{336};
-                    }
-                    if(Util.random(200)< 4){
-                        id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                    }
-                    id_item_leave_boss = new short[]{137,(short) Util.random(473,480)};
-                    sizeRandomMedal = (short) (25);
-                    break;
-                }
-                case 105: { // quy dau bo
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 49, 49};
-                    if(Util.random(100)<10){
-                        id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                    }
-                    if(Manager.gI().event == 11){
-                        id_item_hongio = new short[]{336};
-                    }
-                    if(Util.random(200)< 4){
-                        id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                    }
-                    id_item_leave_boss = new short[]{140,(short) Util.random(473,480)};
-                    sizeRandomMedal = (short) (40);
-                    break;
-                }
-                case 106: { // ky sy dia nguc
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 18};
-                    if(Util.random(100)<10){
-                        id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                    }
-                    if(Manager.gI().event == 11){
-                        id_item_hongio = new short[]{336};
-                    }
-                    if(Util.random(200)< 4){
-                        id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                    }
-                    id_item_leave_boss = new short[]{142,(short) Util.random(473,480)};
-//                    if (Util.random(100) < 10) {
-//                  //      id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
-//                    }
-                    sizeRandomMedal = (short) (50);
-                    break;
-                }
-                case 149: { // nhen chua
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 18};
-                    if(Util.random(100)<10){
-                        id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                    }
-                    if(Manager.gI().event == 11){
-                        id_item_hongio = new short[]{336};
-                    }
-                    if(Util.random(200)< 4){
-                        id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                    }
-                    id_item_leave_boss = new short[]{136,138,140,142,143,(short) Util.random(473,480)};
-//                    if (Util.random(100) < 15) {
-//                //        id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
-//                    }
-                    sizeRandomMedal = (short) (55);
-                    break;
-                }
-                case 155: { // giant skeleton
-                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 18};
-                    if(Util.random(100)<10){
-                        id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                    }
-                    if(Manager.gI().event == 11){
-                        id_item_hongio = new short[]{336};
-                    }
-                    if(Util.random(200)< 4){
-                        id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                    }
-                    id_item_leave_boss = new short[]{144,145,137,139,141,(short) Util.random(473,480)};
-//                    if (Util.random(100) < 20) {
-//                        id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
-//                    }
-                    sizeRandomMedal = (short) (60);
-                    break;
-                }
-                    case 173: { //tho tuyet
-                        id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251, 319, 320, 321, 322};
-                        if(Util.random(100)<10){
-                            id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                        }
-                        if(Manager.gI().event == 11){
-                            id_item_hongio = new short[]{336};
-                        }
-                        if(Util.random(200)< 4){
-                            id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                        }
-                        id_item_leave_boss = new short[]{};
-                        if (Util.random(1) < 1) {
-                       //     id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
-                        }
-                       // sizeRandomMedal = (short) (60);
-                        break;
-                    }
-                    case 195: { // Godzila
-                        id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251, 319, 320, 321, 322};
-                        if(Util.random(100)<10){
-                            id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                        }
-                        if(Manager.gI().event == 11){
-                            id_item_hongio = new short[]{336};
-                        }
-                        if(Util.random(200)< 4){
-                            id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                        }
-                        id_item_leave7 = new short[]{14};
-                        if (Util.random(1) < 1) {
-                       //     id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
-                        }
-                       // sizeRandomMedal = (short) (60);
-                        break;
-                    }
-                    case 196: { // King kong
-                        id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251, 319, 320, 321, 322};
-                        if(Util.random(100)<10){
-                            id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                        }
-                        if(Manager.gI().event == 11){
-                            id_item_hongio = new short[]{336};
-                        }
-                        if(Util.random(200)< 4){
-                            id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                        }
-                        id_item_leave7 = new short[]{14};
-                        if (Util.random(1) < 1) {
-                       //     id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
-                        }
-                       // sizeRandomMedal = (short) (60);
-                        break;
-                    }
-                    case 197: { // ga trong
-                        id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251, 319, 320, 321, 322};
-                        if(Util.random(100)<10){
-                            id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                        }
-                        if(Manager.gI().event == 11){
-                            id_item_hongio = new short[]{336};
-                        }
-                        if(Util.random(200)< 4){
-                            id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                        }
-                        id_item_leave7 = new short[]{14};
-                        if (Util.random(1) < 1) {
-                       //     id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
-                        }
-                       // sizeRandomMedal = (short) (60);
-                        break;
-                    }
-                    case 186: { // Người tuyết nhỏ
-                        id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251, 319, 320, 321, 322};
-                        if(Util.random(100)<10){
-                            id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                        }
-                        if(Manager.gI().event == 11){
-                            id_item_hongio = new short[]{336};
-                        }
-                        if(Util.random(200)< 4){
-                            id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                        }
-                        id_item_leave7 = new short[]{14};
-                        if (Util.random(1) < 1) {
-                       //     id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
-                        }
-                       // sizeRandomMedal = (short) (60);
-                        break;
-                    }
-                    case 187: { // Lính rìu nhỏ
-                        id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251, 319, 320, 321, 322};
-                        if(Util.random(100)<10){
-                            id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                        }
-                        if(Manager.gI().event == 11){
-                            id_item_hongio = new short[]{336};
-                        }
-                        if(Util.random(200)< 4){
-                            id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                        }
-                        id_item_leave7 = new short[]{14};
-                        if (Util.random(1) < 1) {
-                       //     id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
-                        }
-                       // sizeRandomMedal = (short) (60);
-                        break;
-                    }
-
-                    case 188: { //Lão trọc
-                        id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251, 319, 320, 321, 322};
-                        if(Util.random(100)<10){
-                            id_item_leave4 = new short[]{(short) Util.random(319,323)};
-                        }
-                        if(Manager.gI().event == 11){
-                            id_item_hongio = new short[]{336};
-                        }
-                        if(Util.random(200)< 4){
-                            id_item_tt_lt = new short[]{(short) Util.random(342,345)};
-                        }
-                        id_item_leave7 = new short[]{14};
-                        if (Util.random(1) < 1) {
-                       //     id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
-                        }
-                       // sizeRandomMedal = (short) (60);
-                        break;
-                    }
-                    case 178: { //boss sk
-                        id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251, 319, 320, 321, 322};
-                        id_medal_material =new short[]{236,237,238,239,240,241,242,243,244,245};
-                        id_item_leave = new  short[]{471,349};
-                        id_sk = new short[]{470};
+                case 178: { //boss sk
+//                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251,(short) Util.random(352,357)};
+//                    id_item_leave7 = new short[]{(short) Util.random(481,493),(short) Util.random(472,480),349};
+//                    id_sk = new short[]{470};
                         // sizeRandomMedal = (short) (60);
-                        break;
-                    }
-                    case 193: {
-                        id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251, 319, 320, 321, 322, 342, 343, 344, 346};
-                        id_item_leave7 = new short[]{14,493};
-                        p.boss += 1;
                     break;
-                    }
-                
-
+                }
+                case 193: {// boss event hồn gió
+                    id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1, 273, 274, 251,(short) Util.random(352,357)};
+                    id_item_leave7 = new short[]{493};
+                    p.ngoc_and_coin();
+                    p.boss += 1;
+                    break;
+                }
             }
             for (short id : id_item_leave3) {
                 ItemTemplate3 temp = ItemTemplate3.item.get(id);
@@ -617,33 +374,8 @@ public class LeaveItemMap {
                     leave_item_by_type4(map, id, p, mob.index, p.index);
                 }
             }
-            for (int i = 0; i < 3; i++) {
-                for (short id : id_item_tt_lt) {
-                    leave_item_by_type4(map, id, p, mob.index, p.index);
-                }
-            }
             for (int i = 0; i < 5; i++) {
                 for (short id : id_item_leave7) {
-                    leave_item_by_type7(map, id, p, mob.index, p.index);
-                }
-            }
-            for (int i = 0; i < 5; i++) {
-                for (short id : id_item_leave_boss) {
-                    leave_item_by_type7(map, id, p, mob.index, p.index);
-                }
-            }
-            for (int i = 0; i < 5; i++) {
-                for (short id : id_item_leave) {
-                    leave_item_by_type7(map, id, p, mob.index, p.index);
-                }
-            }
-            for (int i = 0; i < 4; i++) {
-                for (short id : id_medal_material) {
-                    leave_item_by_type7(map, id, p, mob.index, p.index);
-                }
-            }
-            for (int i = 0; i < 2; i++) {
-                for (short id : id_sk) {
                     leave_item_by_type7(map, id, p, mob.index, p.index);
                 }
             }
@@ -835,7 +567,14 @@ public class LeaveItemMap {
                 }
                 case 125:
                 case 126:
-                case 127: {
+                case 127:
+                case 128:
+                case 129:
+                case 130:
+                case 131:
+                case 132:
+                case 133:
+                case 134: {
                     index_real = Medal_Material.m_white[0][Util.random(6, 10)];
                     break;
                 }
@@ -1044,5 +783,321 @@ public class LeaveItemMap {
             MapService.send_msg_player_inside(map, p_master, mi, true);
             mi.cleanup();
         }
+    }
+    public static void randomTT(Session conn, byte color, byte type) throws IOException {
+        byte clazz = (byte) Util.random(4);
+        short type_item = Helps.ItemStar.ConvertType(type, clazz);
+        short id_item = Helps.ItemStar.GetIDItem(type, clazz);
+        List<Option> ops = ItemStar.GetOpsItemStar(clazz, (byte) type_item, 0);
+
+        Item3 itbag = new Item3();
+        itbag.id = id_item;
+        itbag.name = ItemTemplate3.item.get(id_item).getName();
+        itbag.clazz = ItemTemplate3.item.get(id_item).getClazz();
+        itbag.type = ItemTemplate3.item.get(id_item).getType();
+        itbag.level = 45;
+        itbag.icon = ItemTemplate3.item.get(id_item).getIcon();
+        itbag.op = new ArrayList<>();
+        for (Option o : ops) {
+            int pr = o.getParam(0);
+            int pr1 = (int) (pr * color * 0.25);
+            if ((o.id >= 58 && o.id <= 60) || (o.id >= 100 && o.id <= 107)) {
+                itbag.op.add(new Option(o.id, pr, itbag.id));
+            } else if (o.id == 37 || o.id == 38) {
+                itbag.op.add(new Option(o.id, 2, itbag.id));
+            } else {
+                itbag.op.add(new Option(o.id, pr1, itbag.id));
+            }
+        }
+        int[] opAo = {-111, -110, -109, -108, -107};
+        int[] opNon = {-102, -113, -105};
+        int[] opVK = {-101, -113, -86, -84, -82, -80};
+        int[] opNhan = {-89, -87, -104, -86, -84, -82, -80};
+        int[] opDayChuyen = {-87, -105, -103, -91};
+        int[] opGang = {-89, -103, -91};
+        int[] opGiay = {-104, -103, -91};
+
+        if (color == 4) {
+            if (itbag.type == 0 || itbag.type == 1) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opAo[Util.nextInt(opAo.length)];
+                    int opid2 = opAo[Util.nextInt(opAo.length)];
+                    while (opid1 == opid2) {
+                        opid1 = opAo[Util.nextInt(opAo.length)];
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type == 2) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opNon[Util.nextInt(opNon.length)];
+                    int opid2 = opNon[Util.nextInt(opNon.length)];
+                    while (opid1 == opid2) {
+                        opid1 = opNon[Util.nextInt(opNon.length)];
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type == 3) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opGang[Util.nextInt(opGang.length)];
+                    int opid2 = opGang[Util.nextInt(opGang.length)];
+                    while (opid1 == opid2) {
+                        opid1 = opGang[Util.nextInt(opGang.length)];
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type == 4) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opNhan[Util.nextInt(opNhan.length)];
+                    int opid2 = opNhan[Util.nextInt(opNhan.length)];
+                    while (opid1 == opid2) {
+                        opid1 = opNhan[Util.nextInt(opNhan.length)];
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type == 5) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opDayChuyen[Util.nextInt(opDayChuyen.length)];
+                    int opid2 = opDayChuyen[Util.nextInt(opDayChuyen.length)];
+                    while (opid1 == opid2) {
+                        opid1 = opDayChuyen[Util.nextInt(opDayChuyen.length)];
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type == 6) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opGiay[Util.nextInt(opGiay.length)];
+                    int opid2 = opGiay[Util.nextInt(opGiay.length)];
+                    while (opid1 == opid2) {
+                        opid1 = opGiay[Util.nextInt(opGiay.length)];
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type > 6) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opVK[Util.nextInt(opVK.length)];
+                    int opid2 = opVK[Util.nextInt(opVK.length)];
+                    while (opid1 == opid2) {
+                        opid1 = opVK[Util.nextInt(opVK.length)];
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            }
+        } else if (color == 5) {
+            if (itbag.type == 0 || itbag.type == 1) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opAo[Util.nextInt(opAo.length)];
+                    int opid2 = opAo[Util.nextInt(opAo.length)];
+                    int opid3 = opAo[Util.nextInt(opAo.length)];
+                    while ((opid1 == opid2) || (opid1 == opid3)) {
+                        opid1 = opAo[Util.nextInt(opAo.length)];
+                    }
+                    while ((opid2 == opid1) || (opid2 == opid3)) {
+                        opid2 = opAo[Util.nextInt(opAo.length)];
+                    }
+                    while ((opid3 == opid2) || (opid1 == opid3)) {
+                        opid3 = opAo[Util.nextInt(opAo.length)];
+                    }
+                    if (percent > 95) {
+                        itbag.op.add(Option.createOpItemStar(opid3, itbag.id));
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type == 2) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opNon[Util.nextInt(opNon.length)];
+                    int opid2 = opNon[Util.nextInt(opNon.length)];
+                    int opid3 = opNon[Util.nextInt(opNon.length)];
+                    while ((opid1 == opid2) || (opid1 == opid3)) {
+                        opid1 = opNon[Util.nextInt(opNon.length)];
+                    }
+                    while ((opid2 == opid1) || (opid2 == opid3)) {
+                        opid2 = opNon[Util.nextInt(opNon.length)];
+                    }
+                    while ((opid3 == opid2) || (opid1 == opid3)) {
+                        opid3 = opNon[Util.nextInt(opNon.length)];
+                    }
+                    if (percent > 95) {
+                        itbag.op.add(Option.createOpItemStar(opid3, itbag.id));
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type == 3) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opGang[Util.nextInt(opGang.length)];
+                    int opid2 = opGang[Util.nextInt(opGang.length)];
+                    int opid3 = opGang[Util.nextInt(opGang.length)];
+                    while ((opid1 == opid2) || (opid1 == opid3)) {
+                        opid1 = opGang[Util.nextInt(opGang.length)];
+                    }
+                    while ((opid2 == opid1) || (opid2 == opid3)) {
+                        opid2 = opGang[Util.nextInt(opGang.length)];
+                    }
+                    while ((opid3 == opid2) || (opid1 == opid3)) {
+                        opid3 = opGang[Util.nextInt(opGang.length)];
+                    }
+                    if (percent > 95) {
+                        itbag.op.add(Option.createOpItemStar(opid3, itbag.id));
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type == 4) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opNhan[Util.nextInt(opNhan.length)];
+                    int opid2 = opNhan[Util.nextInt(opNhan.length)];
+                    int opid3 = opNhan[Util.nextInt(opNhan.length)];
+                    while ((opid1 == opid2) || (opid1 == opid3)) {
+                        opid1 = opNhan[Util.nextInt(opNhan.length)];
+                    }
+                    while ((opid2 == opid1) || (opid2 == opid3)) {
+                        opid2 = opNhan[Util.nextInt(opNhan.length)];
+                    }
+                    while ((opid3 == opid2) || (opid1 == opid3)) {
+                        opid3 = opNhan[Util.nextInt(opNhan.length)];
+                    }
+                    if (percent > 95) {
+                        itbag.op.add(Option.createOpItemStar(opid3, itbag.id));
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type == 5) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opDayChuyen[Util.nextInt(opDayChuyen.length)];
+                    int opid2 = opDayChuyen[Util.nextInt(opDayChuyen.length)];
+                    int opid3 = opDayChuyen[Util.nextInt(opDayChuyen.length)];
+                    while ((opid1 == opid2) || (opid1 == opid3)) {
+                        opid1 = opDayChuyen[Util.nextInt(opDayChuyen.length)];
+                    }
+                    while ((opid2 == opid1) || (opid2 == opid3)) {
+                        opid2 = opDayChuyen[Util.nextInt(opDayChuyen.length)];
+                    }
+                    while ((opid3 == opid2) || (opid1 == opid3)) {
+                        opid3 = opDayChuyen[Util.nextInt(opDayChuyen.length)];
+                    }
+                    if (percent > 95) {
+                        itbag.op.add(Option.createOpItemStar(opid3, itbag.id));
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type == 6) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 85) {
+                    int opid1 = opGiay[Util.nextInt(opGiay.length)];
+                    int opid2 = opGiay[Util.nextInt(opGiay.length)];
+                    int opid3 = opGiay[Util.nextInt(opGiay.length)];
+                    while ((opid1 == opid2) || (opid1 == opid3)) {
+                        opid1 = opGiay[Util.nextInt(opGiay.length)];
+                    }
+                    while ((opid2 == opid1) || (opid2 == opid3)) {
+                        opid2 = opGiay[Util.nextInt(opGiay.length)];
+                    }
+                    while ((opid3 == opid2) || (opid1 == opid3)) {
+                        opid3 = opGiay[Util.nextInt(opGiay.length)];
+                    }
+                    if (percent > 95) {
+                        itbag.op.add(Option.createOpItemStar(opid3, itbag.id));
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            } else if (itbag.type > 7) {
+                int percent = Util.nextInt(0, 100);
+                if (percent > 90) {
+                    int opid1 = opVK[Util.nextInt(opVK.length)];
+                    int opid2 = opVK[Util.nextInt(opVK.length)];
+                    int opid3 = opVK[Util.nextInt(opVK.length)];
+                    while ((opid1 == opid2) || (opid1 == opid3)) {
+                        opid1 = opVK[Util.nextInt(opVK.length)];
+                    }
+                    while ((opid2 == opid1) || (opid2 == opid3)) {
+                        opid2 = opVK[Util.nextInt(opVK.length)];
+                    }
+                    while ((opid3 == opid2) || (opid1 == opid3)) {
+                        opid3 = opVK[Util.nextInt(opVK.length)];
+                    }
+                    if (percent > 95) {
+                        itbag.op.add(Option.createOpItemStar(opid3, itbag.id));
+                    }
+                    itbag.op.add(Option.createOpItemStar(opid1, itbag.id));
+                    itbag.op.add(Option.createOpItemStar(opid2, itbag.id));
+                } else {
+                    int opid = opGiay[Util.nextInt(opGiay.length)];
+                    itbag.op.add(Option.createOpItemStar(opid, itbag.id));
+                }
+            }
+        }
+        if (color >= 0) {
+            itbag.op.add(Option.createOpItemStar(129, itbag.id));
+            itbag.op.add(Option.createOpItemStar(130, itbag.id));
+        }
+        itbag.color = color;
+        itbag.part = ItemTemplate3.item.get(id_item).getPart();
+        itbag.tier = 0;
+        itbag.time_use = 0;
+        itbag.islock = false;
+        conn.p.item.add_item_bag3(itbag);
+        conn.p.item.char_inventory(3);
     }
 }

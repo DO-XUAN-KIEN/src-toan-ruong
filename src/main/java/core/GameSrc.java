@@ -873,7 +873,6 @@ public class GameSrc {
                     Service.send_notice_box(p.conn, "Chỉ có thể bỏ vật phẩm +0 vào");
                     return;
                 }
-
                 if (p.item.bag3[p.item_replace].type != p.item.bag3[id].type) {
                     Service.send_notice_box(p.conn, "Chỉ có thể chuyển hóa trang bị cùng loại");
                     return;
@@ -2488,13 +2487,19 @@ public class GameSrc {
                         itbag.op = new ArrayList<>();
                         for (Option o : ops) {
                             int pr = o.getParam(0);
-                            int pr1 = (int) (pr * color * 0.3);
+                            int pr1 = (int) (pr * color * 2.5);
+                            int pr2 = (pr * color /5);
                             if ((o.id >= 58 && o.id <= 60) || (o.id >= 100 && o.id <= 107)) {
                                 itbag.op.add(new Option(o.id, pr, itbag.id));
                             } else if (o.id == 37 || o.id == 38) {
                                 itbag.op.add(new Option(o.id, 2, itbag.id));
-                            } else {
+                            } else if (o.id >= 0 && o.id <= 11) {
                                 itbag.op.add(new Option(o.id, pr1, itbag.id));
+                            } else if (!(o.id >= 27 && o.id <= 32)) {
+                                itbag.op.add(new Option(o.id, pr2, itbag.id));
+                            }
+                            else {
+                                itbag.op.add(new Option(o.id, pr, itbag.id));
                             }
                         }
                         int[] opAo = {-111, -110, -109, -108, -107};
@@ -2907,12 +2912,23 @@ public class GameSrc {
                 } else if (o.id == -127 || o.id == -126) {
                     temp.op.add(new Option(o.id, pr, temp.id));
                 } else if (o.id < -70) {
-                    int pr1 = (int) (pr + (int) temp.color * 40);
-                    int pr2 = (int) (pr + (int) temp.color * 40);
+                    int pr1 = (int) (pr + (int) temp.color * 100);
+                    int pr2 = (int) (pr + (int) temp.color * 100);
                     temp.op.add(new Option(o.id, Util.random(pr1, pr2), temp.id));
                 } else {
-                    int pr1 = (int) (pr * temp.color * 0.3);
-                    temp.op.add(new Option(o.id, pr1, temp.id));
+                    if (o.id >= 0 && o.id <= 11) {
+                        int pr2 = pr * temp.color * 2;
+                        int pr1 = (int) (pr * temp.color * 2.5);
+                        temp.op.add(new Option(o.id, Util.random(pr2, pr1), temp.id));
+                    } else if (!(o.id >= 27 && o.id <= 32)) {
+                        int pr1 = (int) (pr + temp.color /1.5);
+                        int pr2 = (pr + temp.color /2);
+                        temp.op.add(new Option(o.id, Util.random(pr1, pr2), temp.id));
+                    }
+                    else {
+                        int pr1 = (int) (pr + temp.color * 0.2);
+                        temp.op.add(new Option(o.id, pr1, temp.id));
+                    }
                 }
             }
         } else {

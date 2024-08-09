@@ -101,7 +101,7 @@ public class Option {
         //
         int parbuffer = this.param;
         if (this.id >= 0 && this.id <= 6) {
-            return (parbuffer + ((int) (parbuffer * tier * 0.33)));
+            return (parbuffer + ((int) (parbuffer * tier * 3)));
         }
 
         if (this.id == 81 || this.id == 86 || this.id == 88 || this.id == 77 || this.id == 79) // giây dòng vip

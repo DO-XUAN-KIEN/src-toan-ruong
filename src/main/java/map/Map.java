@@ -223,6 +223,9 @@ public class Map implements Runnable {
     public boolean isMapChiemThanh() {
         return map_id >= 83 && map_id <= 87;
     }
+    public boolean ismapbossnhom(){
+        return map_id == 46;
+    }
     public boolean ismapkogioihan(){
         return map_id == 55;
     }
@@ -1044,14 +1047,6 @@ public class Map implements Runnable {
         }
         return null;
     }
-    public static Map get_leothap(int id) {
-        for (Map[] temp : entrys) {
-            if (temp[0].map_id == id) {
-                return temp[0];
-            }
-        }
-        return null;
-    }
 
     public synchronized void drop_item(Player p, byte type, short id) throws IOException {
 //        His_DelItem hist = new His_DelItem(p.name);
@@ -1380,13 +1375,17 @@ public class Map implements Runnable {
 
     public static boolean is_map_cant_save_site(short id) {
         return id == 48 || id == 88 || id == 89 || id == 90 || id == 91 || id == 82 || id == 102 || id == 100 || (id >= 83 && id <= 87) || (id >= 53 && id <= 61)
-                || Map.is_map_chien_truong(id) || id == 125 || id == 127 || id == 129 || id == 132 || id == 135 || id == 46;
+                || Map.is_map_Boss_Nhom(id) || Map.is_map_chien_truong(id) || id == 125 || id == 127 || id == 129 || id == 132 || id == 135 || id == 46;
     }
     public static boolean is_map_not_zone2(short id) {
         return id == 48 || id == 88 || id == 89 || id == 90 || id == 91 || id == 82 || id == 102 || id == 100
                 || (id >= 83 && id <= 87) || (id >= 53 && id <= 61) || Map.is_map_chien_truong(id) || id == 1 || id == 10
                 || id == 14 || id == 18 || id == 28 || id == 32 || id == 33 || id == 34 || id == 35 || id == 36 || id == 67
                 || id == 68 || id == 69 || id == 70 || id == 93;
+    }
+    public static boolean is_map_di_buon(short id) {
+        return id == 7 || id == 8 || id == 15 || id == 16 || id == 17 || id == 18 || id == 20 || id == 22 || id == 23 || id == 24
+                || id == 25 || id == 33 || id == 34 || id == 42 || id == 44 || id == 45 || id == 52;
     }
 
     public synchronized void add_item_map_leave(Map map, Player p_master, ItemMap temp, int mob_index)
@@ -1444,7 +1443,9 @@ public class Map implements Runnable {
     public static boolean is_map_chien_truong(short id) {
         return id >= 53 && id <= 61;
     }
-
+    public static boolean is_map_Boss_Nhom(short id) {
+        return id == 46;
+    }
     public boolean isMapChienTruong() {
         return map_id >= 53 && map_id <= 61;
     }

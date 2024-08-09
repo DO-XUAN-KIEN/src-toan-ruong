@@ -1,6 +1,8 @@
 package core;
 
+import BossHDL.BossManager;
 import Helps._Time;
+import client.Player;
 import event.Event_1;
 import event.NauKeo;
 import java.io.IOException;
@@ -8,10 +10,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Calendar;
 
-import event_daily.ChiemThanhManager;
-import event_daily.ChienTruong;
-import event_daily.KingCup;
-import event_daily.KingCupManager;
+import event_daily.*;
 import io.Session;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,6 +19,7 @@ import map.Map;
 
 public class ServerManager implements Runnable {
 
+    public Player p;
     private static ServerManager instance;
     private final Thread mythread;
     private Thread server_live;
@@ -306,6 +306,7 @@ public class ServerManager implements Runnable {
                          Manager.gI().chatKTGprocess("Chiến Trường Đã Bắt Đầu Nhanh Tay Lẹ Chân Lên");
                     }
                     ChienTruong.gI().update();
+                    Bossnhom.update();
                     if(DayOfWeek % 2==0 && hour >= 20 && hour <= 23){
                         checkError = 16;
                         if(hour == 20 && min == 45)
@@ -350,6 +351,7 @@ public class ServerManager implements Runnable {
                     if (Manager.gI().event == 6 && min % 5 == 0 && sec == 0) {
                         ev_he.Event_6.sort_bxh();
                     }
+
                     checkError = 14;
                     _Time.timeDay = _Time.GetTime();
                     checkError = 21;

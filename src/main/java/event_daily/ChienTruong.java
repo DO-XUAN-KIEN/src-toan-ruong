@@ -518,32 +518,41 @@ public class ChienTruong {
 			short[] id_item_leave3 = new short[]{};
 			short[] id_item_leave4 = new short[]{};
 			short[] id_item_leave7 = new short[]{};
+			short[] id_item_hongio = new short[]{};
 			//short id_medal_material = -1;
 			short sizeRandomMedal = 0;
 			switch (mob.template.mob_id) {
 				case 93, 94, 95, 96, 97, 98, 99, 100: {
-					if(Util.random(100)>90){
-						id_item_leave7 =new short[]{(short) Util.random(126, 136)};
+					if (Util.random(1000)<10) {
+						id_item_leave4 = new short[]{(short) Util.random(352, 360)};
 					}
 					if(Util.random(10000) < 1 ){
 						id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
 					}
 					if (Manager.gI().event == 11){
 						if (Util.random(100) < 5){
-							id_item_leave4 = new short[]{337};
+							id_item_hongio = new short[]{337};
 						}
+					}
+					if (Util.random(300)< 10){
+						p.ngoc_and_coin();
 					}
 					p.update_point_arena(1);
 					p.item.char_inventory(5);
 					break;
 				}
 				case 89,90,91,92: {
-					id_item_leave7 = new short[]{(short) Util.random(126, 146)};
+					if (Util.random(1000)<10) {
+						id_item_leave4 = new short[]{(short) Util.random(352, 360)};
+					}
 					if(Util.random(5000) < 1){
 						id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
 					}
+					if (Util.random(100)< 10){
+						p.ngoc_and_coin();
+					}
 					if (Manager.gI().event == 11){
-						id_item_leave4 = new short[]{337};
+						id_item_hongio = new short[]{337};
 					}
 					p.update_point_arena(5);
 					p.item.char_inventory(5);
@@ -561,6 +570,11 @@ public class ChienTruong {
 					} else {
 						LeaveItemMap.leave_item_by_type4(map, id, p, mob.index,p.index);
 					}
+				}
+			}
+			for (int i = 0; i < 3; i++) {
+				for (short id : id_item_hongio) {
+					LeaveItemMap.leave_item_by_type4(map, id, p, mob.index,p.index);
 				}
 			}
 			for (int i = 0; i < 3; i++) {

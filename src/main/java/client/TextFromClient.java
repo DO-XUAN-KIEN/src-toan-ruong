@@ -25,14 +25,7 @@ import java.util.List;
 import map.Map;
 import map.MapService;
 import map.Vgo;
-import template.Clan_mems;
-import template.Item3;
-import template.Item47;
-import template.ItemTemplate3;
-import template.ItemTemplate4;
-import template.ItemTemplate7;
-import template.Level;
-import template.box_item_template;
+import template.*;
 
 public class TextFromClient {
 
@@ -129,7 +122,7 @@ public class TextFromClient {
                     Service.send_notice_box(conn, "Dữ liệu nhập không phải số!!");
                     return;
                 }
-                int quant = Integer.parseInt(value);
+                long quant = Integer.parseInt(value);
                 if (quant > 32_000 || quant <= 0) {
                     Service.send_notice_box(conn, "Số lượng không hợp lệ!");
                     return;
@@ -139,8 +132,8 @@ public class TextFromClient {
                     Service.send_notice_box(conn, "Số lượng trong hành trang không đủ!");
                     return;
                 }
-                int vang_required
-                        = (int) (((long) quant) * (GameSrc.get_vang_hopngoc(conn.p.id_ngoc_tinh_luyen) / 50_000L) * 1_000_000L);
+                long vang_required
+                        = (quant * (GameSrc.get_vang_hopngoc(conn.p.id_ngoc_tinh_luyen) / 50_000L) * 1_000_000L);
                 if (conn.p.get_vang() < vang_required) {
                     Service.send_notice_box(conn, "Không đủ " + vang_required + " vàng");
                     return;
@@ -155,7 +148,7 @@ public class TextFromClient {
                 it.id = (short) (conn.p.id_ngoc_tinh_luyen + 30);
                 it.quantity = (short) quant;
                 conn.p.item.add_item_bag47(7, it);
-                conn.p.item.remove(7, conn.p.id_ngoc_tinh_luyen, quant);
+                conn.p.item.remove(7, conn.p.id_ngoc_tinh_luyen, (int) quant);
                 Service.send_notice_box(conn,
                         "Tinh luyện thành công " + quant + " " + ItemTemplate7.item.get(it.id).getName());
                 conn.p.id_ngoc_tinh_luyen = -1;
@@ -2360,41 +2353,320 @@ public class TextFromClient {
                 Service.Show_open_box_notice_item(conn.p, "Bạn nhận được", new short[]{ruong}, new int[]{quant}, new short[]{4});
                 break;
             }
-            case 54:{
-                if (conn.ac_admin > 10) {
-                    //Service.send_notice_box(conn, "Chỉ admin mới mở được");
-                    String value1 = m2.reader().readUTF();
-                    String value2 = m2.reader().readUTF();
-                    String value3 = m2.reader().readUTF();
-                    if (!(Util.isnumber(value2) && Util.isnumber(value3))) {
-                        Service.send_notice_box(conn, "Dữ liệu nhập không phải số!!");
-                        return;
-                    }
-                    int sl_ = Integer.parseInt(value2);
-                    int sl_1 = Integer.parseInt(value3);
-
-                    if (sl_ < 0 || sl_1 < 0 || sl_ >= 2_000_000_000 || sl_1 >= 2_000_000_000) {
-                        Service.send_notice_box(conn, "Số nhập không hợp lệ");
-                        return;
-                    }
-                    try (Connection connection = SQL.gI().getConnection(); Statement st = connection.createStatement()) {
-                        st.execute("UPDATE `account` SET `tiennap` = `tiennap` + '" + value2 + "',`naptuan` = `naptuan` + '" + value2 +
-                                "',`tongthang` = `tongthang` + '" + value2 + "' , `tongnap` = `tongnap` + '" + value2 + "', `coin` = `coin` + '" + value3 + "'  WHERE `id` = '" + value1 + "';");
-//                        st.execute("UPDATE `player` SET `naptuan` = `naptuan` + '" + value2 + "',`tongthang` = `tongthang` + '" + value2 + "'  WHERE `name` = '" + value1 + "';");
-                        connection.commit();
-                    } catch (SQLException ex) {
-                     ex.printStackTrace();
-                     }
-                    Service.send_notice_box(conn, " Nạp Thành công cho id: " + value1 + "\nSố Tiền: " + value2 + "\nSố Coin: " + value3 + " ");
+//            case 54:{
+//                if (conn.ac_admin > 10) {
+//                    //Service.send_notice_box(conn, "Chỉ admin mới mở được");
+//                    String value1 = m2.reader().readUTF();
+//                    String value2 = m2.reader().readUTF();
+//                    if (!(Util.isnumber(value2))) {
+//                        Service.send_notice_box(conn, "Dữ liệu nhập không phải số!!");
+//                        return;
+//                    }
+//                    int sl_ = Integer.parseInt(value2);
+//                    if (sl_ < 0 || sl_ >= 6) {
+//                        Service.send_notice_box(conn, "Số nhập không hợp lệ");
+//                        return;
+//                    }
+//                    try (Connection connection = SQL.gI().getConnection(); Statement st = connection.createStatement()) {
+//                        st.execute("UPDATE `account` SET `Vip` = `Vip` + '" + value2 +  "'  WHERE `id` = '" + value1 + "';");
+////                        st.execute("UPDATE `player` SET `naptuan` = `naptuan` + '" + value2 + "',`tongthang` = `tongthang` + '" + value2 + "'  WHERE `name` = '" + value1 + "';");
+//                        connection.commit();
+//                    } catch (SQLException ex) {
+//                     ex.printStackTrace();
+//                     }
+//                    Service.send_char_main_in4(conn.p);
+//                    Service.send_notice_box(conn, " Xét Vip thành công cho id: " + value1 + "\nVip: " + value2);
+//                }
+//                break;
+//            }
+            case 54: {
+                String namep = m2.reader().readUTF();
+                String value = m2.reader().readUTF();
+                if (!Util.isnumber(value)) {
+                    Service.send_notice_box(conn, "Dữ liệu nhập không phải số!!");
+                    return;
                 }
+                Short sl = Short.parseShort(value);
+                Player p0 = null;
+                for (Player p1 : conn.p.map.players) {
+                    if (p1.conn != null && p1.conn.connected && p1.name.equals(namep)) {
+                        p0 = p1;
+                        break;
+                    }
+                }
+                if (p0 == null) {
+                    Service.send_notice_box(conn, "Người chơi không online");
+                    break;
+                }
+                if (sl < 0 || sl > 6) {
+                    Service.send_notice_box(conn, "Số nhập không < 0 và > 6");
+                    return;
+                }
+                if (p0.checkvip() > 0){
+                    int vip = p0.checkvip();
+                    p0.update_vip(-vip);
+                }
+                p0.update_vip(sl);
+                Service.send_notice_box(conn,"Bạn đã sét cho "+ namep +" thành VIP "+sl);
                 break;
+            }
+            case 55: {
+                if(conn.ac_admin < 111){
+                    return;
+                }
+                String namep = m2.reader().readUTF();
+                String value1 = m2.reader().readUTF();
+                String value2 = m2.reader().readUTF();
+                String value3 = m2.reader().readUTF();
+                int sl_0 = Integer.parseInt(value1);
+                int sl_1 = Integer.parseInt(value2);
+                int sl_2 = Integer.parseInt(value3);
+                Player p0 = null;
+                for (Player p1 : conn.p.map.players) {
+                    if (p1.conn != null && p1.conn.connected && p1.name.equals(namep)) {
+                        p0 = p1;
+                        break;
+                    }
+                }
+                if (p0 == null) {
+                    Service.send_notice_box(conn, "Người chơi không online");
+                    break;
+                }
+                if (sl_0 < 0 || sl_1 < 0 || sl_2 < 0 || sl_0 >= 2_000_000_000 || sl_1 >= 2_000_000_000|| sl_2 >= 2_000_000_000) {
+                    Service.send_notice_box(conn, "Số nhập không hợp lệ");
+                    return;
+                }
+                p0.update_coin(sl_0);
+                p0.update_vang(sl_1);
+                p0.update_ngoc(sl_2);
+                Service.send_notice_box(conn,"Bạn đã cộng cho "+ namep +" "+sl_0+" coin, " +sl_1+" vàng và "+sl_2+" ngọc.");
+                break;
+            }
+            case 56: {
+                String namep = m2.reader().readUTF();
+                String type = m2.reader().readUTF();
+                String id = m2.reader().readUTF();
+                String value = m2.reader().readUTF();
+                if (!(Util.isnumber(id) && Util.isnumber(value))) {
+                    Service.send_notice_box(conn, "Dữ liệu nhập không phải số!!");
+                    return;
+                }
+                Short sl = Short.parseShort(value);
+                Player p0 = null;
+                for (Player p1 : conn.p.map.players) {
+                    if (p1.conn != null && p1.conn.connected && p1.name.equals(namep)) {
+                        p0 = p1;
+                        break;
+                    }
+                }
+                if (p0 == null) {
+                    Service.send_notice_box(conn, "Người chơi không online");
+                    break;
+                }
+                if (sl < 0 || sl >= 32000) {
+                    Service.send_notice_box(conn, "Số nhập không hợp lệ");
+                    return;
+                }
+                if (p0.item.get_bag_able() > 0) {
+                    switch (type){
+                        case "4": {
+                            short iditem = (short) Integer.parseInt(id);
+                            if (iditem > (ItemTemplate4.item.size() - 1) || iditem < 0) {
+                                return;
+                            }
+                            Item47 itbag = new Item47();
+                            itbag.id = iditem;
+                            itbag.quantity = sl;
+                            itbag.category = 4;
+                            p0.item.add_item_bag47(4, itbag);
+                            p0.item.char_inventory(4);
+                        }
+                        case "7": {
+                            short iditem = (short) Integer.parseInt(id);
+                            if (iditem > (ItemTemplate7.item.size() - 1) || iditem < 0) {
+                                return;
+                            }
+                            Item47 itbag = new Item47();
+                            itbag.id = iditem;
+                            itbag.quantity = sl;
+                            itbag.category = 7;
+                            p0.item.add_item_bag47(7, itbag);
+                            p0.item.char_inventory(7);
+                        }
+                    }
+                }
+                Service.send_notice_box(conn,"Gửi đồ thành công");
+                break;
+            }
+            case 57: {
+                if (size != 1) {
+                    return;
+                }
+                String value = m2.reader().readUTF();
+                if (!(Util.isnumber(value))) {
+                    Service.send_notice_box(conn, "Dữ liệu nhập không phải số!!");
+                    return;
+                }
+
+                Short sl = Short.parseShort(value);
+                if (sl >= 32_000 || sl <= 0) {
+                    Service.send_notice_box(conn, "số lượng không hợp lệ!");
+                    return;
+                }
+                if (sl > conn.p.tiemnang) {
+                    Service.send_notice_box(conn, "Tiềm năng không đủ!");
+                    return;
+                }
+                int value_ = Integer.parseInt(value);
+                conn.p.tiemnang -= value_;
+                conn.p.point1 += value_;
+                MapService.update_in4_2_other_inside(conn.p.map, conn.p);
+                Service.send_char_main_in4(conn.p);
+                Service.send_notice_box(conn, "Tăng thành công!");
+                break;
+            }
+            case 58: {
+                if (size != 1) {
+                    return;
+                }
+                String value = m2.reader().readUTF();
+                if (!(Util.isnumber(value))) {
+                    Service.send_notice_box(conn, "Dữ liệu nhập không phải số!!");
+                    return;
+                }
+
+                Short sl = Short.parseShort(value);
+                if (sl >= 32_000 || sl <= 0) {
+                    Service.send_notice_box(conn, "số lượng không hợp lệ!");
+                    return;
+                }
+                if (sl > conn.p.tiemnang) {
+                    Service.send_notice_box(conn, "Tiềm năng không đủ!");
+                    return;
+                }
+                int value_ = Integer.parseInt(value);
+                conn.p.tiemnang -= value_;
+                conn.p.point2 += value_;
+                MapService.update_in4_2_other_inside(conn.p.map, conn.p);
+                Service.send_char_main_in4(conn.p);
+                Service.send_notice_box(conn, "Tăng thành công!");
+                break;
+            }
+            case 59: {
+                if (size != 1) {
+                    return;
+                }
+                String value = m2.reader().readUTF();
+                if (!(Util.isnumber(value))) {
+                    Service.send_notice_box(conn, "Dữ liệu nhập không phải số!!");
+                    return;
+                }
+
+                Short sl = Short.parseShort(value);
+                if (sl >= 32_000 || sl <= 0) {
+                    Service.send_notice_box(conn, "số lượng không hợp lệ!");
+                    return;
+                }
+                if (sl > conn.p.tiemnang) {
+                    Service.send_notice_box(conn, "Tiềm năng không đủ!");
+                    return;
+                }
+                int value_ = Integer.parseInt(value);
+                conn.p.tiemnang -= value_;
+                conn.p.point3 += value_;
+                MapService.update_in4_2_other_inside(conn.p.map, conn.p);
+                Service.send_char_main_in4(conn.p);
+                Service.send_notice_box(conn, "Tăng thành công!");
+                break;
+            }
+            case 60: {
+                if (size != 1) {
+                    return;
+                }
+                String value = m2.reader().readUTF();
+                if (!(Util.isnumber(value))) {
+                    Service.send_notice_box(conn, "Dữ liệu nhập không phải số!!");
+                    return;
+                }
+
+                Short sl = Short.parseShort(value);
+                if (sl >= 32_000 || sl <= 0) {
+                    Service.send_notice_box(conn, "số lượng không hợp lệ!");
+                    return;
+                }
+                if (sl > conn.p.tiemnang) {
+                    Service.send_notice_box(conn, "Tiềm năng không đủ!");
+                    return;
+                }
+                int value_ = Integer.parseInt(value);
+                conn.p.tiemnang -= value_;
+                conn.p.point4 += value_;
+                MapService.update_in4_2_other_inside(conn.p.map, conn.p);
+                Service.send_char_main_in4(conn.p);
+                Service.send_notice_box(conn, "Tăng thành công!");
+                break;
+            }
+            case 61: {
+                String namep = m2.reader().readUTF();
+                String name = namep;
+                Player p0 = null;
+                for (Map[] map : Map.entrys) {
+                    for (Map map0 : map) {
+                        for (int i = 0; i < map0.players.size(); i++) {
+                            Player p2 = map0.players.get(i);
+                            if (p2.name.equals(name)) {
+                                p0 = p2;
+                                break;
+                            }
+                        }
+                        if (p0 != null) {
+                            break;
+                        }
+                    }
+                    if (p0 != null) {
+                        break;
+                    }
+                }
+                if (p0 == null) {
+                    Service.send_notice_box(conn, "Người chơi không online");
+                } else {
+                    conn.p.is_changemap = false;
+                    Map mbuffer2 = p0.map;
+                    if (mbuffer2 != null) {
+                        if (conn.p.isDie) {
+                            return;
+                        }
+                        MapService.leave(conn.p.map, conn.p);
+                        conn.p.map = mbuffer2;
+                        conn.p.x = p0.x;
+                        conn.p.y = p0.y;
+                        MapService.enter(conn.p.map, conn.p);
+                        Message m = new Message(4);
+                        m.writer().writeByte(0);
+                        m.writer().writeShort(0);
+                        m.writer().writeShort(p0.index);
+                        m.writer().writeShort(p0.x);
+                        m.writer().writeShort(p0.y);
+                        m.writer().writeByte(-1);
+                        conn.addmsg(m);
+                        m.cleanup();
+                        //
+                        m = new Message(4);
+                        m.writer().writeByte(0);
+                        m.writer().writeShort(0);
+                        m.writer().writeShort(conn.p.index);
+                        m.writer().writeShort(conn.p.x);
+                        m.writer().writeShort(conn.p.y);
+                        m.writer().writeByte(-1);
+                        p0.conn.addmsg(m);
+                        m.cleanup();
+                    }
+                }
             }
             default: {
                 Service.send_notice_box(conn, "Đã xảy ra lỗi");
                 break;
             }
-        
-    
-        } 
-    }
         }
+    }
+}

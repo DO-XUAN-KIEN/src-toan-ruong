@@ -149,7 +149,7 @@ public class BossManager {
             }
             if (time - time_hoi >= 5000){
                 for (Mob_in_map mob : entrys) {
-                    mob.hp += 1_000_000;
+                    mob.hp += 10_000_000;
                     if (mob.hp >= mob.get_HpMax()) {
                         mob.hp = mob.get_HpMax();
                     }
@@ -196,6 +196,47 @@ public class BossManager {
         temp.zone_id = 0;
         temp.index = 10_000 + entrys.size();
         entrys.add(temp);
+    }
+    public static void callBossToMaprieng(int map_id,byte zone_id, int boss_id, int x, int y, int hp, int level) {
+        Mob m = Mob.entrys.get(boss_id);
+        Mob_in_map temp = new Mob_in_map();
+        temp.template = m;
+        temp.x = (short) x;
+        temp.y = (short) y;
+        temp.level = (short) level;
+        temp.color_name = 5;
+
+        temp.Set_isBoss(true);
+        temp.hp = temp.Set_hpMax(hp);
+        temp.map_id = (short) map_id;
+        temp.zone_id = zone_id;
+        temp.index = 10_000 + entrys.size();
+        entrys.add(temp);
+    }
+    public static void callBossToMapdangcap(int map_id,int zone_id, int boss_id, int x, int y, int hp,int dame, int crit, int phan, int ne, int xg, int level) {
+        try {
+            Mob m = Mob.entrys.get(boss_id);
+            Mob_in_map temp = new Mob_in_map();
+            temp.template = m;
+            temp.x = (short) x;
+            temp.y = (short) y;
+            temp.level = (short) level;
+            temp.color_name = 5;
+
+            temp.Set_isBoss(true);
+            temp.hp = temp.Set_hpMax(hp);
+            temp.dameboss = dame;
+            temp.ne = ne;
+            temp.phan = phan;
+            temp.crit = crit;
+            temp.xg = xg;
+            temp.map_id = (short) map_id;
+            temp.zone_id = (byte) zone_id;
+            temp.index = 10_000 + entrys.size();
+            entrys.add(temp);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
     
     

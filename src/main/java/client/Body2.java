@@ -273,7 +273,7 @@ public class Body2 extends MainObject {
     @Override
     public int get_Pierce() {
         int pie = total_item_param(36) + total_skill_param(36);
-        pie += get_point(4) * 2;
+        //pie += get_point(4) * 2;
         EffTemplate ef = get_EffDefault(36);
         if (ef != null) {
             pie += ef.param;
@@ -289,8 +289,7 @@ public class Body2 extends MainObject {
     }
     @Override
     public int get_PhanDame() {
-        int param = 2 * get_point(3);
-        param += total_item_param(35);
+        int param = total_item_param(35);
         if (p.get_EffDefault(35) != null) {
             param += p.get_EffDefault(35).param;
         }
@@ -302,14 +301,14 @@ public class Body2 extends MainObject {
             param = param / 10;
         }
         int phan = (int)(param / 2.1);
-        if (phan > 7000)
-            phan = 7000;
+        if (phan > 8000)
+            phan = 8000;
         return phan;
     }
     @Override
     public int get_Miss(boolean giam_ne) {
-        int param = 2 * get_point(2);
-        param += total_item_param(34);
+        int param = total_item_param(34);
+        //param += total_item_param(34);
         if (get_EffDefault(34) != null) {
             param += get_EffDefault(34).param;
         }
@@ -320,14 +319,14 @@ public class Body2 extends MainObject {
             param = param / 10 * 9;
         }
         int tile_ne = (int)(param / 1.8);
-        if (tile_ne > 7000)
+        if (tile_ne >= 7000)
             tile_ne = 7000;
         return tile_ne;
     }
     @Override
     public int get_Crit() {
         int crit = total_item_param(33) + total_skill_param(33);
-        crit += get_point(1) * 2;
+        //crit += get_point(1) * 2;
         EffTemplate ef = get_EffDefault(33);
         if (ef != null) {
             crit += ef.param;
@@ -393,7 +392,10 @@ public class Body2 extends MainObject {
         if (def < 0) {
             def = 0;
         }
-        return def;
+        int pt = def;
+        if (pt >= 50000)
+            pt = 50000;
+        return pt;
     }
 
     @Override
@@ -418,7 +420,11 @@ public class Body2 extends MainObject {
         if (ef != null) {
             def += (def * (ef.param / 100)) / 100;
         }
-        return (int) (def * 0.8);
+        //return (int) (def * 0.8);
+        int pt = (int) (def * 0.8);
+        if (pt >= 2_000_000_000)
+            pt = 2_000_000_000;
+        return pt;
     }
 
     @Override
@@ -817,20 +823,6 @@ public class Body2 extends MainObject {
                     p.map = m;
                     MapService.enter(p.map, p);
                 }
-            }
-            if (map.zone_id == 7 && p.checkvip() < 1 && !Map.is_map_not_zone2(map.map_id) && !p.isSquire) {
-                    Map m = Map.get_map_by_id(map.map_id)[0];
-                    MapService.leave(map, p);
-                    p.map = m;
-                    MapService.enter(p.map, p);
-                    Service.send_notice_box(p.conn,"Bạn chưa đủ vip 1 để vào");
-            }
-            if (map.zone_id == 8 && p.checkvip() < 2 && !Map.is_map_not_zone2(map.map_id) && !p.isSquire) {
-                Map m = Map.get_map_by_id(map.map_id)[0];
-                MapService.leave(map, p);
-                p.map = m;
-                MapService.enter(p.map, p);
-                Service.send_notice_box(p.conn,"Bạn chưa đủ vip 2 để vào");
             }
             if (p.pet_di_buon != null && p.pet_di_buon.id_map == p.map.map_id && p.map.zone_id == p.map.maxzone
                     && !p.pet_di_buon.item.isEmpty() && map.time_add_bot < System.currentTimeMillis()) {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import client.Clan;
+import client.Party;
 import client.Pet;
 import client.Player;
 import io.Message;
@@ -42,7 +43,7 @@ public class Service {
             m.writer().writeShort(temp.getId());
             m.writer().writeShort(temp.getIcon());
             m.writer().writeLong(temp.getPrice());
-            m.writer().writeUTF(temp.getName());
+                m.writer().writeUTF(temp.getName());
             m.writer().writeUTF(temp.getContent());
             m.writer().writeByte(temp.getType());
             m.writer().writeByte(temp.getPricetype());
@@ -144,9 +145,12 @@ public class Service {
         if (p.mp > mpMax) {
             p.mp = mpMax;
         }
+        if(p.level >= 2000){
+
+        }
         Message m = new Message(3);
         m.writer().writeShort(p.index);
-        m.writer().writeUTF(p.name);
+        m.writer().writeUTF(p.name + " - VIP: " + p.checkvip());
         m.writer().writeInt(p.hp);
         m.writer().writeInt(hpMax);
         m.writer().writeInt(p.mp);
@@ -166,13 +170,13 @@ public class Service {
         ///
         m.writer().writeShort(p.level); // lv
         m.writer().writeShort(p.getlevelpercent()); // lv percent
-        m.writer().writeShort(p.tiemnang); // tiem nang
-        m.writer().writeShort(p.kynang); // ky nang
+        m.writer().writeShort((int) p.tiemnang); // tiem nang
+        m.writer().writeShort((int) p.kynang); // ky nang
         ///
-        m.writer().writeShort(p.point1); // tiem nang goc
-        m.writer().writeShort(p.point2);
-        m.writer().writeShort(p.point3);
-        m.writer().writeShort(p.point4);
+        m.writer().writeShort((int) p.point1); // tiem nang goc
+        m.writer().writeShort((int) p.point2);
+        m.writer().writeShort((int) p.point3);
+        m.writer().writeShort((int) p.point4);
         ///
         m.writer().writeShort(p.body.get_plus_point(23)); // tiem nang them
         m.writer().writeShort(p.body.get_plus_point(24));
@@ -1010,6 +1014,8 @@ public class Service {
                     m.writer().writeUTF("Tiến hóa mề đay");
                 } else if (conn.p.istb2) {
                     m.writer().writeUTF("Cường hóa trang bị 2");
+                } else if (conn.p.istb1) {
+                    m.writer().writeUTF("Cường hóa trang bị thường");
                 } else {
                     m.writer().writeUTF("Nâng cấp mề đay");
                 }
@@ -1083,7 +1089,13 @@ public class Service {
                 break;
             }
             case 19: {
-                m.writer().writeUTF("Chuyển hóa trang bị");
+                if (conn.p.ngu) {
+                    m.writer().writeUTF("Hợp đồ tb1");
+                }else if (conn.p.hop_tb2){
+                    m.writer().writeUTF("Hợp đồ tb2");
+                } else {
+                    m.writer().writeUTF("Chuyển hóa trang bị");
+                }
                 m.writer().writeByte(9);
                 m.writer().writeShort(0);
                 break;
@@ -1382,7 +1394,7 @@ public class Service {
         if (p0 == null) {
         } else {
             EffTemplate ef = p0.get_EffDefault(-125);
-            if ((p0.map.zone_id == 1 || p0.map.zone_id == 7 || p0.map.zone_id == 8) && !Map.is_map_not_zone2(p0.map_id)) {
+            if (p0.map.zone_id == 1 && !Map.is_map_not_zone2(p0.map_id)) {
                 send_notice_box(conn, "Kẻ thù đang trong khu vực không thể đến");
                 return;
             }
@@ -1489,6 +1501,15 @@ public class Service {
         m.writer().writeByte(it7.getColor());
         //m.writer().writeByte(it7.getLamcoin());
         p.conn.addmsg(m);
+        m.cleanup();
+    }
+    public static void chat_nhom(Party party, String chat) throws IOException {
+        Message m = new Message(34);
+        m.writer().writeUTF("Đội nhóm");
+        m.writer().writeUTF("@Hệ thống : " + chat);
+        for (int i = 0; i < party.get_mems().size(); i++) {
+            party.get_mems().get(i).conn.addmsg(m);
+        }
         m.cleanup();
     }
 
@@ -2550,7 +2571,20 @@ public class Service {
         }
         m.cleanup();
     }
-
+    public static void show_eff_p(Player p, int id_eff, int time) throws IOException {
+        Message m = new Message(-49);
+        m.writer().writeByte(4);
+        m.writer().writeShort(0);
+        m.writer().writeByte(0);
+        m.writer().writeByte(0);
+        m.writer().writeByte(id_eff);
+        m.writer().writeShort(p.index);
+        m.writer().writeByte(0);
+        m.writer().writeByte(0);
+        m.writer().writeInt(time);
+        MapService.send_msg_player_inside(p.map, p, m, true);
+        m.cleanup();
+    }
     public static void send_eff_auto(Session conn, List<MainObject> objects, int id_eff) throws IOException {
         byte[] data = Util.loadfile("data/part_char/imgver/x" + conn.zoomlv + "/Data/" + (111 + "_" + id_eff));
         Message m = new Message(-49);

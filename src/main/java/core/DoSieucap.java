@@ -449,6 +449,14 @@ public class DoSieucap {
                         return;
                     }
                     Item3 item = conn.p.item.bag3[id];
+                    if(conn.p.checkvip()== 1 && item.tier >= 20 ||
+                       conn.p.checkvip()== 2 && item.tier >= 40 ||
+                       conn.p.checkvip()== 3 && item.tier >= 60 ||
+                       conn.p.checkvip()== 4 && item.tier >= 80 ||
+                       conn.p.checkvip()== 5 && item.tier >= 100) {
+                       Service.send_notice_box(conn,"Bạn đã nâng cấp trang bị tối đa mà VIP của bạn cho phép");
+                       return;
+                    }
                     if (item != null) {
                         if ((item.type >= 21 && item.type <= 28) || item.type == 55 || item.type == 102) {
                             if (item.tier < 100) {
@@ -533,6 +541,218 @@ public class DoSieucap {
                             item.tier++;
                             item.UpdateName();
                             conn.p.setnltb2();
+                            for (int i = 0; i < item.op.size(); i++) {
+                                Option op = item.op.get(i);
+                                if (op.id >= 0 && op.id <= 99 && op.id != 37 && op.id != 38) {
+                                    op.setParam(op.getParam(4));
+                                }
+                            }
+                        }
+                        m.cleanup();
+                        m = new Message(-105);
+                        m.writer().writeByte(3);
+                        if (suc) {
+                            m.writer().writeByte(3);
+                            m.writer().writeUTF("Thành công!");
+                        } else {
+                            m.writer().writeByte(4);
+                            m.writer().writeUTF("Thất bại!");
+                        }
+                        ItemTemplate3 temp = ItemTemplate3.item.get(item.id);
+                        m.writer().writeByte(3);
+                        m.writer().writeUTF(item.name);
+                        m.writer().writeByte(temp.getClazz());
+                        m.writer().writeShort(temp.getId());
+                        m.writer().writeByte(temp.getType());
+                        m.writer().writeShort(temp.getIcon());
+                        m.writer().writeByte(item.tier); // tier
+                        m.writer().writeShort(1); // level required
+                        m.writer().writeByte(item.color); // color
+                        m.writer().writeByte(0); // can sell
+                        m.writer().writeByte(0); // can trade
+                        m.writer().writeByte(item.op.size());
+                        for (int i = 0; i < item.op.size(); i++) {
+                            m.writer().writeByte(item.op.get(i).id);
+                            m.writer().writeInt(item.op.get(i).getParam(item.tier));
+                        }
+                        m.writer().writeInt(0); // time use
+                        m.writer().writeByte(0);
+                        m.writer().writeByte(0);
+                        m.writer().writeByte(0);
+                        conn.addmsg(m);
+                        m.cleanup();
+                        conn.p.item.char_inventory(4);
+                        conn.p.item.char_inventory(7);
+                        conn.p.item.char_inventory(3);
+                        m = new Message(-105);
+                        m.writer().writeByte(5);
+                        if (suc == true) {
+                            m.writer().writeByte(3);
+                            m.writer().writeUTF("Thành công!");
+                        } else {
+                            m.writer().writeByte(4);
+                            m.writer().writeUTF("Thất bại!");
+                        }
+                        m.writer().writeShort(id);
+                        conn.addmsg(m);
+                        m.cleanup();
+                    } else {
+                        Service.send_notice_box(conn, "Trang Bị đã đạt cấp tối đa!");
+                    }
+                    break;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public static void nangtb1(Session conn, Message m) {
+        try {
+            if (conn.p.time_speed_rebuild > System.currentTimeMillis()) {
+                Service.send_notice_box(conn, "Chậm thôi!");
+                return;
+            }
+            conn.p.time_speed_rebuild = System.currentTimeMillis() + 1000;
+            byte type = m.reader().readByte();
+            short id = -1;
+            byte cat = -1;
+            try {
+                id = m.reader().readShort();
+                cat = m.reader().readByte();
+            } catch (IOException e) {
+            }
+            switch (type) {
+                case 0: {
+                    if (cat != 3) {
+                        Service.send_notice_box(conn, "Trang bị không phù hợp!");
+                        return;
+                    }
+                    if (id >= conn.p.item.bag3.length) {
+                        return;
+                    }
+                    Item3 item = conn.p.item.bag3[id];
+                    if (item == null || item.tier < 15 || item.color < 4) {
+                        Service.send_notice_box(conn, "Trang bị + 15 trở Lên!");
+                        return;
+                    }
+                    if(conn.p.checkvip()== 1 && item.tier >= 20 ||
+                            conn.p.checkvip()== 2 && item.tier >= 40 ||
+                            conn.p.checkvip()== 3 && item.tier >= 60 ||
+                            conn.p.checkvip()== 4 && item.tier >= 80 ||
+                            conn.p.checkvip()== 5 && item.tier >= 100) {
+                        Service.send_notice_box(conn,"Bạn đã nâng cấp trang bị tối đa mà VIP của bạn cho phép");
+                        return;
+                    }
+                    if (item != null) {
+                        if (item.type >= 0 && item.type <= 11 && item.tier >= 15) {
+                            if (item.tier < 100) {
+                                Message m_send = new Message(-105);
+                                m_send.writer().writeByte(4);
+                                m_send.writer().writeByte(5);
+                                int nlnang = 0;
+                                if(item.tier >= 15 && item.tier < 30){
+                                    nlnang = 5;
+                                }else if (item.tier >= 30 && item.tier < 40){
+                                    nlnang = 10;
+                                }else if (item.tier >= 40 && item.tier < 50){
+                                    nlnang = 15;
+                                }else if (item.tier >= 50 && item.tier < 60){
+                                    nlnang = 20;
+                                }else if (item.tier >= 70 && item.tier < 80){
+                                    nlnang = 25;
+                                }else if (item.tier >= 80 && item.tier < 90){
+                                    nlnang = 30;
+                                }else if (item.tier >= 90 && item.tier < 111){
+                                    nlnang = 35;
+                                }
+                                for (short nl : conn.p.NLtb1) {
+                                    m_send.writer().writeShort(nl);
+                                    if (conn.version >= 270) {
+                                        m_send.writer().writeShort(nlnang);
+                                    } else {
+                                        m_send.writer().writeByte(nlnang);
+                                    }
+                                }
+                                conn.addmsg(m_send);
+                                m_send.cleanup();
+                            } else {
+                                Service.send_notice_box(conn, "Trang bị đã nâng tối đa");
+                            }
+                        } else {
+                            Service.send_notice_box(conn, "Vật phẩm không phù hợp");
+                        }
+                    } else {
+                        Service.send_notice_box(conn, "Vui lòng chọn Trang bị 1 để Nâng Cấp");
+                    }
+                    break;
+                }
+                case 4: {
+                    if (cat != 3) {
+                        return;
+                    }
+                    if (id >= conn.p.item.bag3.length) {
+                        return;
+                    }
+                    Item3 item = conn.p.item.bag3[id];
+                    if (item != null && (item.type >= 0 && item.type <= 11) && item.tier < 100 && item.tier >= 15) {
+                        int nlnang = 0;
+                        if(item.tier >= 15 && item.tier < 30){
+                            nlnang = 5;
+                        }else if (item.tier >= 30 && item.tier < 40){
+                            nlnang = 10;
+                        }else if (item.tier >= 40 && item.tier < 50){
+                            nlnang = 15;
+                        }else if (item.tier >= 50 && item.tier < 60){
+                            nlnang = 20;
+                        }else if (item.tier >= 70 && item.tier < 80){
+                            nlnang = 25;
+                        }else if (item.tier >= 80 && item.tier < 90){
+                            nlnang = 30;
+                        }else if (item.tier >= 90 && item.tier < 111){
+                            nlnang = 35;
+                        }
+                        for (int i = 0; i < 5; i++) {
+                            if (i < conn.p.NLtb1.length) {
+                                if (conn.p.item.total_item_by_id(7, conn.p.NLtb1[i]) < nlnang && (conn.ac_admin < 4 || !Manager.BuffAdmin)) {
+                                    Service.send_notice_box(conn, "Không đủ " + ItemTemplate7.item.get(conn.p.NLtb1[i]).getName() + "!");
+                                    return;
+                                }
+                            }
+                        }
+                        for (int i = 0; i < 5; i++) {
+                            if (i < conn.p.NLtb1.length) {
+                                conn.p.item.remove(7, conn.p.NLtb1[i], nlnang);
+                            }
+                        }
+                        int ran = Util.random(1000);
+                        boolean suc =(item.tier >= 0 && item.tier < 5) && ran > 100 ||
+                                (item.tier >= 5 && item.tier < 10) && ran > 150 ||
+                                (item.tier >= 10 && item.tier < 15) && ran > 200 ||
+                                (item.tier >= 15 && item.tier < 20) && ran > 250 ||
+                                (item.tier >= 20 && item.tier < 25) && ran > 300 ||
+                                (item.tier >= 25 && item.tier < 30) && ran > 350 ||
+                                (item.tier >= 30 && item.tier < 35) && ran > 400 ||
+                                (item.tier >= 35 && item.tier < 40) && ran > 450 ||
+                                (item.tier >= 40 && item.tier < 45) && ran > 500 ||
+                                (item.tier >= 45 && item.tier < 50) && ran > 550 ||
+                                (item.tier >= 50 && item.tier < 55) && ran > 600 ||
+                                (item.tier >= 55 && item.tier < 60) && ran > 650 ||
+                                (item.tier >= 60 && item.tier < 65) && ran > 700 ||
+                                (item.tier >= 65 && item.tier < 70) && ran > 750 ||
+                                (item.tier >= 70 && item.tier < 75) && ran > 800 ||
+                                (item.tier >= 75 && item.tier < 80) && ran > 850 ||
+                                (item.tier >= 80 && item.tier < 85) && ran > 900 ||
+                                (item.tier >= 85 && item.tier < 90) && ran > 950 ||
+                                (item.tier >= 90 && item.tier < 95) && ran > 980 ||
+                                (item.tier >= 95 && item.tier < 1000) && ran > 990;
+                        if (conn.ac_admin > 111 && Manager.BuffAdmin){
+                            suc = true;
+                        }
+                        if (suc) {
+                            item.tier++;
+                            item.color = 5;
+                            item.UpdateName();
+                            conn.p.SetNLtb1();
                             for (int i = 0; i < item.op.size(); i++) {
                                 Option op = item.op.get(i);
                                 if (op.id >= 0 && op.id <= 99 && op.id != 37 && op.id != 38) {

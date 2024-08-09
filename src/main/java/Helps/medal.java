@@ -212,11 +212,11 @@ public class medal {
                 else if(tem.color == 2)
                     param_add = Util.random(207, 254);
                 else if(tem.color == 3)
-                    param_add = Util.random(253, 300);
+                    param_add = Util.random(500, 1000);
                 else if(tem.color == 4)
-                    param_add = Util.random(300, 347);
+                    param_add = Util.random(1500, 2000);
                 else if(tem.color == 5)
-                    param_add = Util.random(500, 700);
+                    param_add = Util.random(2500, 3000);
             }
             else {
                 param_add = Util.random(50,200);

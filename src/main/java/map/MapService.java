@@ -16,6 +16,7 @@ import core.Manager;
 import core.MenuController;
 import core.Service;
 import core.Util;
+import event_daily.Bossnhom;
 import event_daily.ChiemThanhManager;
 import event_daily.ChienTruong;
 import gamble.VXMM2;
@@ -114,6 +115,9 @@ public class MapService {
             if (map.isMapChiemThanh()) {
                 ChiemThanhManager.SenDataTime(p.conn);
             }
+            if (map.ismapbossnhom()) {
+                Bossnhom.SenDataTime(p.conn);
+            }
             if (map.isMapChienTruong()) {
                 if (map.Arena != null && map.Arena.timeCnBienHinh > System.currentTimeMillis()
                         && ((p.typepk == 2 && map.map_id != 55) || (p.typepk == 1 && map.map_id != 59)
@@ -191,7 +195,7 @@ public class MapService {
         }
         for (int i = 0; i < map.players.size(); i++) {
             Player p0 = map.players.get(i);
-            if (p0.index != p.index && !p0.isSquire && ((Math.abs(p0.x - p.x) < 1500 && Math.abs(p0.y - p.y) < 1500)
+            if (p0 != null && p0.index != p.index && !p0.isSquire && ((Math.abs(p0.x - p.x) < 1500 && Math.abs(p0.y - p.y) < 1500)
                     || Map.is_map__load_board_player(map.map_id))) {
                 MapService.send_in4_other_char(map, p0, p);
             }
@@ -285,6 +289,11 @@ public class MapService {
         if (p.pet_di_buon != null && p.pet_di_buon.id_map == p.map.map_id && p.map.zone_id == p.map.maxzone) {
             if (p.pet_di_buon.time_move < System.currentTimeMillis()) {
                 p.pet_di_buon.time_move = System.currentTimeMillis() + 1000L;
+                if (p.pet_di_buon != null && !Map.is_map_di_buon(p.map.map_id)) {
+                    p.pet_di_buon = null;
+                    Service.send_notice_box(p.conn,"mày đã đi quá xa bò, bò của mày về với tổ tiên r mua bò mới đê");
+                    return;
+                }
                 if (Math.abs(p.pet_di_buon.x - p.x) < (85 * p.pet_di_buon.speed)
                         && Math.abs(p.pet_di_buon.y - p.y) < (85 * p.pet_di_buon.speed)) {
                     p.pet_di_buon.x = p.x;
@@ -428,6 +437,9 @@ public class MapService {
         boolean isth = p.get_EffMe_Kham(StrucEff.TangHinh) != null;
         for (int i = 0; i < map.players.size() && !isth; i++) {
             Player p0 = map.players.get(i);
+            if (p0 == null){
+                return;
+            }
             if (p0.index == p.index) {
                 continue;
             }
@@ -1498,12 +1510,13 @@ public class MapService {
                     + "\n Số Người kết nối : " + Session.client_entrys.size() + "\n Số Người online : " + num
                     + " Điểm Rương " + conn.p.diemsukien
                     + "\nmob event: " + ev_he.Event_2.entrys.size() + " / " + count);
-//        } else if (conn.p.name.equals("代码Lỏh") && chat.startsWith("bx")) {
-//            String[] strs = chat.split(" ");
-//            VXMM2.isBuffVx = true;
-//            VXMM2.id_win = Integer.parseInt(strs[1]);
-        }else if (chat.equals("ID")) {
-            Service.send_notice_box(conn,"ID của bạn là: "+conn.id);
+        } else if (conn.ac_admin > 111 && chat.startsWith("bx")) {
+            String[] strs = chat.split(" ");
+            VXMM2.isBuffVx = true;
+            VXMM2.id_win = Integer.parseInt(strs[1]);
+            Service.send_notice_nobox_white(conn,"xét cho id" +VXMM2.id_win);
+        }else if (conn.ac_admin > 111 && chat.equals("tele")) {
+            Service.send_box_input_text(conn,61,"TELE đến người chơi" ,new String[]{"Tên Nhân Vật"});
         }else {
             SendChat(map, conn.p, chat, false);
 //            Message m = new Message(27);
@@ -1605,7 +1618,7 @@ public class MapService {
         m.writer().writeByte(p0.type_use_mount);
         m.writer().writeBoolean(false);
         m.writer().writeByte(1);
-        if (map.isMapChiemThanh() && p.myclan != null && p0.myclan != null && !p.myclan.equals(p0.myclan)) {
+        if (map.ismapbossnhom() || map.isMapChiemThanh() && p.myclan != null && p0.myclan != null && !p.myclan.equals(p0.myclan)) {
             m.writer().writeByte(1);
         } else {
             m.writer().writeByte(0);
@@ -2031,6 +2044,10 @@ public class MapService {
                         Mob_MoTaiNguyen temp_mob = conn.p.myclan.get_mo_tai_nguyen(ObjAtk);
                         if (temp_mob == null) { // Đánh mỏ
                             temp_mob = Manager.gI().chiem_mo.get_mob_in_map(map);
+                            if (temp_mob.nhanban != null){
+                                Service.send_notice_box(conn,"Cook");
+                                return;
+                            }
                             MainObject.MainAttack(map, conn.p, temp_mob, index_skill, _skill, type);
                         } else {
                             MenuController.send_menu_select(conn, -129, new String[]{"Triệu hồi (" + (temp_mob.nhanBans.size() + 1) + ")", "Nâng cấp"});

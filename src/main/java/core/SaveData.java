@@ -33,7 +33,7 @@ public class SaveData {
         try {
 //            Connection conn = SQL.gI().getConnection();
             Connection conn = DriverManager.getConnection(SQL.gI().url, Manager.gI().mysql_user, Manager.gI().mysql_pass);
-            Manager.gI().chiem_mo.SaveData(conn);
+            //Manager.gI().chiem_mo.SaveData(conn);
             // clan
             BXH.BXH_clan.clear();
             for (Clan clan : Clan.get_all_clan()) {

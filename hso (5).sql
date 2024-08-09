@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table srcbanquyen.account
+-- Dumping structure for table sqlcu.account
 CREATE TABLE IF NOT EXISTS `account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(255) DEFAULT NULL,
@@ -24,13 +24,12 @@ CREATE TABLE IF NOT EXISTS `account` (
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `lock` tinyint(4) NOT NULL DEFAULT 0,
   `coin` int(255) NOT NULL DEFAULT 2000000000,
-  `Vip` tinyint(4) DEFAULT 0,
   `coin_old` int(11) NOT NULL DEFAULT 0,
+  `Vip` tinyint(4) NOT NULL DEFAULT 0,
   `phone` varchar(255) DEFAULT '0',
   `email` varchar(255) NOT NULL DEFAULT '""',
-  `ip` varchar(255) DEFAULT NULL,
+  `ip` varchar(255) NOT NULL DEFAULT '0',
   `last_ip` varchar(100) DEFAULT NULL,
-  `tichdiem` varchar(255) NOT NULL DEFAULT '0',
   `tiennap` int(11) NOT NULL DEFAULT 0,
   `pass2` varchar(255) DEFAULT '0',
   `naptuan` int(11) NOT NULL DEFAULT 0,
@@ -40,23 +39,20 @@ CREATE TABLE IF NOT EXISTS `account` (
   `expiration_otp` int(11) DEFAULT NULL,
   `token` int(11) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT current_timestamp(),
+  `tichdiem` varchar(255) NOT NULL DEFAULT '0',
   `admin_web` int(11) NOT NULL DEFAULT 0,
   `online` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `user` (`user`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.account: ~6 rows (approximately)
+-- Dumping data for table sqlcu.account: ~2 rows (approximately)
 DELETE FROM `account`;
-INSERT INTO `account` (`id`, `user`, `pass`, `ac_admin`, `char`, `status`, `lock`, `coin`, `Vip`, `coin_old`, `phone`, `email`, `ip`, `last_ip`, `tichdiem`, `tiennap`, `pass2`, `naptuan`, `tongnap`, `tongthang`, `otp`, `expiration_otp`, `token`, `create_time`, `admin_web`, `online`) VALUES
-	(1, 'admin', '1', 0, '["vinhloh"]', 0, 0, 9800000, 0, 0, '0', '""', '0', '127.0.0.1', '0', 0, '0', 0, 0, 0, NULL, NULL, NULL, '2024-05-15 16:15:23', 0, 0),
-	(2, 'admin1', '1', 123, '["ngunguoi"]', 0, 0, 12186000, 2, 0, '0', '""', '0', '127.0.0.1', '199900', 0, '0', 0, 0, 0, NULL, NULL, NULL, '2024-05-20 14:58:59', 0, 0),
-	(3, 'admin2', '1', 123, '["haylam"]', 0, 0, 1998450000, 0, 0, '0', '""', '0', '127.0.0.1', '0', 0, '0', 0, 0, 0, NULL, NULL, NULL, '2024-06-06 18:40:45', 0, 0),
-	(4, 'admin3', '1', 123, '["gagagaga"]', 0, 0, 2000000000, 0, 0, '0', '""', '0', '127.0.0.1', '0', 0, '0', 0, 0, 0, NULL, NULL, NULL, '2024-06-10 10:59:13', 0, 0),
-	(5, 'admin4', '1', 123, '["hyhyhy"]', 0, 0, 1999491000, 0, 0, '0', '""', '0', '127.0.0.1', '0', 0, '0', 0, 0, 0, NULL, NULL, NULL, '2024-06-10 10:59:22', 0, 0),
-	(15, '123456543', '23456', 0, '["sssssss"]', 1, 0, 0, 0, 0, '0', '""', '127.0.0.1', '127.0.0.1', '0', 0, '0', 0, 0, 0, NULL, NULL, NULL, '2024-07-01 00:49:33', 0, 0);
+INSERT INTO `account` (`id`, `user`, `pass`, `ac_admin`, `char`, `status`, `lock`, `coin`, `coin_old`, `Vip`, `phone`, `email`, `ip`, `last_ip`, `tiennap`, `pass2`, `naptuan`, `tongnap`, `tongthang`, `otp`, `expiration_otp`, `token`, `create_time`, `tichdiem`, `admin_web`, `online`) VALUES
+	(1, 'admin', 'mohotaocai0812', 123, '["y"]', 0, 0, 1147523648, 0, 5, '0', '""', '0', '127.0.0.1', 0, '0', 0, 0, 0, NULL, NULL, NULL, '2024-07-15 06:07:19', '0', 0, 0),
+	(2, 'admin1', '1', 123, '["haylam"]', 0, 0, 1147423648, 0, 0, '0', '""', '0', '127.0.0.1', 0, '0', 0, 0, 0, NULL, NULL, NULL, '2024-07-17 08:18:39', '0', 0, 0);
 
--- Dumping structure for table srcbanquyen.cards
+-- Dumping structure for table sqlcu.cards
 CREATE TABLE IF NOT EXISTS `cards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT 0,
@@ -75,21 +71,10 @@ CREATE TABLE IF NOT EXISTS `cards` (
   UNIQUE KEY `trans_id` (`trans_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table srcbanquyen.cards: ~0 rows (approximately)
+-- Dumping data for table sqlcu.cards: ~0 rows (approximately)
 DELETE FROM `cards`;
 
--- Dumping structure for table srcbanquyen.chat_thongbao
-CREATE TABLE IF NOT EXISTS `chat_thongbao` (
-  `tiêu đề` text DEFAULT NULL,
-  `Thông tin` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Dumping data for table srcbanquyen.chat_thongbao: ~1 rows (approximately)
-DELETE FROM `chat_thongbao`;
-INSERT INTO `chat_thongbao` (`tiêu đề`, `Thông tin`) VALUES
-	('Hello oki oki', 'ngắt thử ngắt thử 1');
-
--- Dumping structure for table srcbanquyen.chiem_mo
+-- Dumping structure for table sqlcu.chiem_mo
 CREATE TABLE IF NOT EXISTS `chiem_mo` (
   `idx` int(11) NOT NULL,
   `isbuff_hp` tinyint(4) NOT NULL DEFAULT 0,
@@ -100,14 +85,14 @@ CREATE TABLE IF NOT EXISTS `chiem_mo` (
   PRIMARY KEY (`idx`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table srcbanquyen.chiem_mo: 16 rows
+-- Dumping data for table sqlcu.chiem_mo: 16 rows
 DELETE FROM `chiem_mo`;
 /*!40000 ALTER TABLE `chiem_mo` DISABLE KEYS */;
 INSERT INTO `chiem_mo` (`idx`, `isbuff_hp`, `name_clan`, `nhanban`, `nhanban_save`, `time`) VALUES
-	(65517, 0, NULL, NULL, NULL, '2024-06-27 08:46:55'),
-	(65518, 0, NULL, NULL, NULL, '2024-06-21 01:43:25'),
-	(65519, 0, NULL, NULL, NULL, '2024-06-13 16:14:04'),
-	(65520, 0, NULL, NULL, NULL, '2024-06-21 01:43:25'),
+	(65517, 0, NULL, NULL, NULL, '2024-05-08 13:10:09'),
+	(65518, 0, NULL, NULL, NULL, '2024-05-08 13:10:09'),
+	(65519, 0, NULL, NULL, NULL, '2024-05-08 13:10:09'),
+	(65520, 0, NULL, NULL, NULL, '2024-05-08 13:10:09'),
 	(65521, 0, NULL, NULL, NULL, '2024-05-08 13:10:09'),
 	(65522, 0, NULL, NULL, NULL, '2024-05-08 13:10:09'),
 	(65523, 0, NULL, NULL, NULL, '2024-05-08 13:10:09'),
@@ -122,7 +107,7 @@ INSERT INTO `chiem_mo` (`idx`, `isbuff_hp`, `name_clan`, `nhanban`, `nhanban_sav
 	(65532, 0, NULL, NULL, NULL, '2024-05-08 13:10:09');
 /*!40000 ALTER TABLE `chiem_mo` ENABLE KEYS */;
 
--- Dumping structure for table srcbanquyen.clan
+-- Dumping structure for table sqlcu.clan
 CREATE TABLE IF NOT EXISTS `clan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -141,13 +126,14 @@ CREATE TABLE IF NOT EXISTS `clan` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.clan: ~2 rows (approximately)
+-- Dumping data for table sqlcu.clan: ~3 rows (approximately)
 DELETE FROM `clan`;
 INSERT INTO `clan` (`id`, `name`, `name_short`, `mems`, `level`, `exp`, `slogan`, `rule`, `notice`, `vang`, `kimcuong`, `max_mem`, `icon`, `item`) VALUES
-	(1, 'ADMIN', 'ADM', '[["ngunguoi",127,0,2000000000,0,8,39,139,[[21,8],[89,0],[90,2],[89,1]]],["vinhloh",126,0,0,0,11,3,114,[[23,10],[92,0],[93,2],[92,1]]],["gagagaga",122,0,0,0,10,2,88,[[0,11],[2,0],[2,2],[2,1]]],["haylam",122,0,0,0,8,0,111,[[0,8],[0,0],[0,1]]]]', 111, 22181448, '', '', '', 1011841111, 10235, 45, 786, '[[146,1],[159,1],[160,1],[161,1],[163,1],[19,1],[20,1],[228,1],[229,1],[230,1],[231,1],[232,1],[233,1],[234,1]]'),
-	(3, '5552', '222', '[["hyhyhy",127,0,0,0,11,3,66,[[0,10],[3,0],[3,2],[3,1]]]]', 1, 1406000, '', '', '', 999969000239999, 185, 5, 17, '[[163,1],[161,1],[160,1],[159,1],[146,1]]');
+	(1, 'baocasu', 'bcs', '[["ishshe",127,0,0,0,9,20,28,[[0,9],[1,0],[1,1]]]]', 1, 117, '', '', '', 0, 0, 5, 503, '[]'),
+	(2, 'tinhanhem ', 'atm', '[["saothe",127,0,0,0,9,0,64,[[0,9],[1,0],[1,1],[11,7]]]]', 1, 1571, '', '', '', 0, 0, 5, 822, '[]'),
+	(3, 'Tàn Bạo', 'Z98', '[["z98xathu",127,0,0,0,11,40,136,[[11,10],[3,0],[3,2],[3,1]]]]', 1, 6000, '', '', '', 0, 0, 5, 826, '[]');
 
--- Dumping structure for table srcbanquyen.cmt_posts
+-- Dumping structure for table sqlcu.cmt_posts
 CREATE TABLE IF NOT EXISTS `cmt_posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -157,10 +143,10 @@ CREATE TABLE IF NOT EXISTS `cmt_posts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table srcbanquyen.cmt_posts: ~0 rows (approximately)
+-- Dumping data for table sqlcu.cmt_posts: ~0 rows (approximately)
 DELETE FROM `cmt_posts`;
 
--- Dumping structure for table srcbanquyen.comments
+-- Dumping structure for table sqlcu.comments
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `post_id` int(11) DEFAULT NULL,
@@ -173,13 +159,13 @@ CREATE TABLE IF NOT EXISTS `comments` (
   UNIQUE KEY `post_id` (`post_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.comments: ~2 rows (approximately)
+-- Dumping data for table sqlcu.comments: ~2 rows (approximately)
 DELETE FROM `comments`;
 INSERT INTO `comments` (`id`, `post_id`, `nguoidung`, `tichdiem`, `image`, `traloi`, `created_at`) VALUES
 	(1, 5, 'tonkhe1', 0, _binary '', 'XÃ³a báº£n chplay Ä‘i :)', '2023-10-28 14:12:58'),
 	(2, 1, 'Phuong91', 0, _binary '', 'Em táº£i dc rá»“i vÃ  táº¡o tÃ i khoáº£n mÃ  vÃ´ gem báº£o lÃ  hÃ£y lÃªn wed táº£i tÃ i khoáº£n áº¡ mong ad giÃºp em', '2023-10-29 09:11:25');
 
--- Dumping structure for table srcbanquyen.config_server
+-- Dumping structure for table sqlcu.config_server
 CREATE TABLE IF NOT EXISTS `config_server` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -188,22 +174,22 @@ CREATE TABLE IF NOT EXISTS `config_server` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Dumping data for table srcbanquyen.config_server: ~4 rows (approximately)
+-- Dumping data for table sqlcu.config_server: ~4 rows (approximately)
 DELETE FROM `config_server`;
 INSERT INTO `config_server` (`id`, `name`, `data1`, `data2`) VALUES
 	(1, 'vua_chien_truong', '', 'true'),
 	(2, 'list_win_chien_truong', '[]', '0'),
 	(3, 'chiem_thanh', '[]', 'null'),
-	(4, 'thue', '5', '5');
+	(4, 'thue', '10', '10');
 
--- Dumping structure for table srcbanquyen.event
+-- Dumping structure for table sqlcu.event
 CREATE TABLE IF NOT EXISTS `event` (
   `id` int(11) NOT NULL,
   `data` text DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.event: ~6 rows (approximately)
+-- Dumping data for table sqlcu.event: ~6 rows (approximately)
 DELETE FROM `event`;
 INSERT INTO `event` (`id`, `data`) VALUES
 	(0, '{"list_caythong":[],"list_naukeo":[]}'),
@@ -213,7 +199,7 @@ INSERT INTO `event` (`id`, `data`) VALUES
 	(4, '{"list_trungthu":[]}'),
 	(5, '{"list_halloween":[]}');
 
--- Dumping structure for table srcbanquyen.fashiontemplate
+-- Dumping structure for table sqlcu.fashiontemplate
 CREATE TABLE IF NOT EXISTS `fashiontemplate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `part` varchar(255) DEFAULT NULL,
@@ -221,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `fashiontemplate` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4790 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.fashiontemplate: ~74 rows (approximately)
+-- Dumping data for table sqlcu.fashiontemplate: ~74 rows (approximately)
 DELETE FROM `fashiontemplate`;
 INSERT INTO `fashiontemplate` (`id`, `part`, `name`) VALUES
 	(3265, '[99,99,100,-1,-1,-1,-1]', 'Giáp Thiên Đường'),
@@ -299,41 +285,39 @@ INSERT INTO `fashiontemplate` (`id`, `part`, `name`) VALUES
 	(4787, '[127,127,121,-1,-1,-2,-1]', 'Giáp siêu nhân vàng'),
 	(4789, '[99,99,100,-1,-1,-1,-1]', 'Chưa rõ');
 
--- Dumping structure for table srcbanquyen.giftcode
+-- Dumping structure for table sqlcu.giftcode
 CREATE TABLE IF NOT EXISTS `giftcode` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `giftname` varchar(255) DEFAULT NULL,
   `limit` int(11) DEFAULT NULL,
+  `date` tinyint(4) DEFAULT 0,
   `item3` text DEFAULT NULL,
   `item4` text DEFAULT NULL,
   `item5` text DEFAULT NULL,
   `item7` text DEFAULT NULL,
-  `date` tinyint(4) DEFAULT 0,
   `item47random` text DEFAULT NULL,
   `countrandom` tinyint(4) DEFAULT 0,
   `vang` bigint(20) DEFAULT NULL,
   `ngoc` int(11) DEFAULT NULL,
-  `coin` int(11) DEFAULT NULL,
+  `coin` int(11) DEFAULT 0,
   `empty_box` tinyint(4) NOT NULL,
   `message` text DEFAULT NULL,
   `giftfor` varchar(500) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `giftname` (`giftname`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.giftcode: ~8 rows (approximately)
+-- Dumping data for table sqlcu.giftcode: ~6 rows (approximately)
 DELETE FROM `giftcode`;
-INSERT INTO `giftcode` (`id`, `giftname`, `limit`, `item3`, `item4`, `item5`, `item7`, `date`, `item47random`, `countrandom`, `vang`, `ngoc`, `coin`, `empty_box`, `message`, `giftfor`) VALUES
-	(1, 'tanthu', 99, '[[4800,1],[4801,1],[4802,1],[4803,1],[4804,1],[4805,1],[4806,1],[4807,1],[4808,1],[4809,1],[4810,1],[4811,1],[4797,1],[4791,1],[4789,1],[4790,1],[4781,1],[4775,1],[4783,1],[4763,1],[4764,1],[4767,1],[4773,1],[4774,1]]', '[]', '[]', '[]', 0, '[]', 0, 2000000000, 2000000000, NULL, 0, NULL, '0'),
-	(2, 'codemd', 99, '[]', '[]', '[]', '[[246,1000],[247,1000],[248,1000],[249,1000],[250,1000],[251,1000],[252,1000],[253,1000],[254,1000],[255,1000],[256,1000],[257,1000],[258,1000],[259,1000],[260,1000],[261,1000],[262,1000],[263,1000],[264,1000],[265,1000],[266,1000],[267,1000],[268,1000],[269,1000],[270,1000],[271,1000],[272,1000],[273,1000],[274,1000],[275,1000],[276,1000],[277,1000],[278,1000],[279,1000],[280,1000],[281,1000],[282,1000],[283,1000],[284,1000],[285,1000],[286,1000],[287,1000],[288,1000],[289,1000],[290,1000],[291,1000],[292,1000],[293,1000],[294,1000],[295,1000],[296,1000],[297,1000],[298,1000],[299,1000],[300,1000],[301,1000],[302,1000],[303,1000],[304,1000],[305,1000],[306,1000],[307,1000],[308,1000],[309,1000],[310,1000],[311,1000],[312,1000],[313,1000],[314,1000],[315,1000],[316,1000],[317,1000],[318,1000],[319,1000],[320,1000],[321,1000],[322,1000],[323,1000],[324,1000],[325,1000],[326,1000],[327,1000],[328,1000],[329,1000],[330,1000],[331,1000],[332,1000],[333,1000],[334,1000],[335,1000],[336,1000],[337,1000],[338,1000],[339,1000],[340,1000],[341,1000],[342,1000],[343,1000],[344,1000],[345,1000],[351,1000]]', 0, '[]', 0, 0, 0, NULL, 0, NULL, '0'),
-	(3, 'codecanh', 100, '[]', '[]', '[]', '[[0,32000],[8,32000],[9,32000],[10,32000],[11,32000]]', 0, '[]', 0, 0, 0, NULL, 0, NULL, '0'),
-	(4, 'codett', 99, '[]', '[]', '[]', '[[417,10000],[418,10000],[419,10000],[420,10000],[421,1000],[422,10000],[423,10000],[424,10000],[425,10000],[426,10000],[427,10000],[428,10000],[429,10000],[430,10000],[431,10000],[432,10000],[433,10000],[434,10000],[435,10000],[436,10000],[437,10000],[438,10000],[439,10000],[440,10000],[414,10000],[442,10000],[443,10000],[444,10000],[445,10000],[446,10000],[447,10000],[448,10000],[449,10000],[450,10000],[451,10000],[452,10000],[453,10000],[454,10000],[455,10000],[456,10000],[457,10000],[458,10000],[459,10000],[460,10000],[461,10000],[462,10000],[463,10000]]', 0, '[]', 0, 0, 0, NULL, 0, NULL, '0'),
-	(5, 'ngockham', 99, '[]', '[]', '[]', '[[27,10000],[32,10000],[43,10000],[38,10000],[356,10000],[361,10000],[366,10000],[371,10000],[376,10000],[381,10000],[386,10000],[391,10000],[396,10000],[401,10000],[406,10000],[411,10000],[416,10000]]', 0, '[]', 0, 0, 0, NULL, 0, NULL, '0'),
-	(6, 'bbb1', 94, '[[4800,1]]', '[[346,111],[345,111]]', '[]', '[]', 3, '[]', 0, 0, 0, 0, 0, NULL, '0'),
-	(7, 'buff', 1103, '[]', '[[328,999],[329,999],[330,999],[331,999],[332,999],[333,999],[334,999]]', '[]', '[]', 0, '[]', 0, 0, 0, NULL, 0, NULL, '0'),
-	(8, 'nlsk', 111, '[]', '[[335,999],[336,999],[337,999],[338,999],[339,999],[340,999],[341,999]]', '[]', '[]', 0, '[]', 0, 0, 0, 0, 0, NULL, '0');
+INSERT INTO `giftcode` (`id`, `giftname`, `limit`, `date`, `item3`, `item4`, `item5`, `item7`, `item47random`, `countrandom`, `vang`, `ngoc`, `coin`, `empty_box`, `message`, `giftfor`) VALUES
+	(1, 'tanthu', 100, 0, '[[4800,1],[4801,1],[4802,1],[4803,1],[4804,1],[4805,1],[4806,1],[4807,1],[4808,1],[4809,1],[4810,1],[4811,1],[4797,1],[4791,1],[4789,1],[4790,1],[4781,1],[4775,1],[4783,1],[4763,1],[4764,1],[4767,1],[4773,1],[4774,1]]', '[]', '[]', '[]', '[]', 0, 2000000000, 2000000000, 0, 0, NULL, '0'),
+	(2, 'codemd', 100, 0, '[]', '[]', '[]', '[[246,1000],[247,1000],[248,1000],[249,1000],[250,1000],[251,1000],[252,1000],[253,1000],[254,1000],[255,1000],[256,1000],[257,1000],[258,1000],[259,1000],[260,1000],[261,1000],[262,1000],[263,1000],[264,1000],[265,1000],[266,1000],[267,1000],[268,1000],[269,1000],[270,1000],[271,1000],[272,1000],[273,1000],[274,1000],[275,1000],[276,1000],[277,1000],[278,1000],[279,1000],[280,1000],[281,1000],[282,1000],[283,1000],[284,1000],[285,1000],[286,1000],[287,1000],[288,1000],[289,1000],[290,1000],[291,1000],[292,1000],[293,1000],[294,1000],[295,1000],[296,1000],[297,1000],[298,1000],[299,1000],[300,1000],[301,1000],[302,1000],[303,1000],[304,1000],[305,1000],[306,1000],[307,1000],[308,1000],[309,1000],[310,1000],[311,1000],[312,1000],[313,1000],[314,1000],[315,1000],[316,1000],[317,1000],[318,1000],[319,1000],[320,1000],[321,1000],[322,1000],[323,1000],[324,1000],[325,1000],[326,1000],[327,1000],[328,1000],[329,1000],[330,1000],[331,1000],[332,1000],[333,1000],[334,1000],[335,1000],[336,1000],[337,1000],[338,1000],[339,1000],[340,1000],[341,1000],[342,1000],[343,1000],[344,1000],[345,1000],[351,1000]]', '[]', 0, 0, 0, 0, 0, NULL, '0'),
+	(3, 'codecanh', 100, 0, '[]', '[]', '[]', '[[0,32000],[8,32000],[9,32000],[10,32000],[11,32000]]', '[]', 0, 0, 0, 0, 0, NULL, '0'),
+	(4, 'codett', 100, 0, '[]', '[]', '[]', '[[417,10000],[418,10000],[419,10000],[420,10000],[421,1000],[422,10000],[423,10000],[424,10000],[425,10000],[426,10000],[427,10000],[428,10000],[429,10000],[430,10000],[431,10000],[432,10000],[433,10000],[434,10000],[435,10000],[436,10000],[437,10000],[438,10000],[439,10000],[440,10000],[414,10000],[442,10000],[443,10000],[444,10000],[445,10000],[446,10000],[447,10000],[448,10000],[449,10000],[450,10000],[451,10000],[452,10000],[453,10000],[454,10000],[455,10000],[456,10000],[457,10000],[458,10000],[459,10000],[460,10000],[461,10000],[462,10000],[463,10000]]', '[]', 0, 0, 0, 0, 0, NULL, '0'),
+	(5, 'ngockham', 100, 0, '[]', '[]', '[]', '[[27,10000],[32,10000],[43,10000],[38,10000],[356,10000],[361,10000],[366,10000],[371,10000],[376,10000],[381,10000],[386,10000],[391,10000],[396,10000],[401,10000],[406,10000],[411,10000],[416,10000]]', '[]', 0, 0, 0, 0, 0, NULL, '0'),
+	(6, 'ruongvip', 11109, 0, '[]', '[[347,10000],[348,10000],[349,10000],[350,10000],[351,10000],[352,10000],[353,10000],[354,10000],[355,10000],[356,10000]]', '[]', '[[246,2000],[247,2000],[248,2000],[249,2000],[250,2000],[251,2000],[252,2000],[253,2000],[254,2000],[255,2000],[256,2000],[257,2000],[258,2000],[259,2000],[260,2000],[261,2000],[262,2000],[263,2000],[264,2000],[265,2000],[266,2000],[267,2000],[268,2000],[269,2000],[270,2000],[271,2000],[272,2000],[273,2000],[274,2000],[275,2000],[276,2000],[277,2000],[278,2000],[279,2000],[280,2000],[281,2000],[282,2000],[283,2000],[284,2000],[285,2000],[286,2000],[287,2000],[288,2000],[289,2000],[290,2000],[291,2000],[292,2000],[293,2000],[294,2000],[295,2000],[296,2000],[297,2000],[298,2000],[299,2000],[300,2000],[301,2000],[302,2000],[303,2000],[304,2000],[305,2000],[306,2000],[307,2000],[308,2000],[309,2000],[310,2000],[311,2000],[312,2000],[313,2000],[314,2000],[315,2000],[316,2000],[317,2000],[318,2000],[319,2000],[320,2000],[321,2000],[322,2000],[323,2000],[324,2000],[325,2000],[326,2000],[327,2000],[328,2000],[329,2000],[330,2000],[331,2000],[332,2000],[333,2000],[334,2000],[335,2000],[336,2000],[337,2000],[338,2000],[339,2000],[340,2000],[341,2000],[342,2000],[343,2000],[344,2000],[345,2000],[351,2000]]', '[]', 0, 0, 0, 0, 0, NULL, '0');
 
--- Dumping structure for table srcbanquyen.giftcode2
+-- Dumping structure for table sqlcu.giftcode2
 CREATE TABLE IF NOT EXISTS `giftcode2` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name_player` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -341,10 +325,8 @@ CREATE TABLE IF NOT EXISTS `giftcode2` (
   `item3_defauft` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `item4` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `item7` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `date` tinyint(4) NOT NULL DEFAULT 0,
   `vang` bigint(20) NOT NULL DEFAULT 0,
-  `ngoc` int(11) NOT NULL DEFAULT 0,
-  `coin` int(11) NOT NULL DEFAULT 0,
+  `ngoc` bigint(20) NOT NULL DEFAULT 0,
   `empty_box` tinyint(4) NOT NULL DEFAULT 0,
   `type_gift` tinyint(4) NOT NULL DEFAULT 0,
   `logger` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -353,14 +335,12 @@ CREATE TABLE IF NOT EXISTS `giftcode2` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=912 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table srcbanquyen.giftcode2: 1 rows
+-- Dumping data for table sqlcu.giftcode2: 0 rows
 DELETE FROM `giftcode2`;
 /*!40000 ALTER TABLE `giftcode2` DISABLE KEYS */;
-INSERT INTO `giftcode2` (`id`, `name_player`, `item3`, `item3_defauft`, `item4`, `item7`, `date`, `vang`, `ngoc`, `coin`, `empty_box`, `type_gift`, `logger`, `status`, `time`) VALUES
-	(1, 'ngunguoi', '[[4802,1]]', '[[4802,1]]', '[]', '[]', 1, 0, 0, 1000000, 0, 1, 'test', 1, '2024-06-14 01:32:21');
 /*!40000 ALTER TABLE `giftcode2` ENABLE KEYS */;
 
--- Dumping structure for table srcbanquyen.history_coin
+-- Dumping structure for table sqlcu.history_coin
 CREATE TABLE IF NOT EXISTS `history_coin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -372,10 +352,10 @@ CREATE TABLE IF NOT EXISTS `history_coin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table srcbanquyen.history_coin: ~0 rows (approximately)
+-- Dumping data for table sqlcu.history_coin: ~0 rows (approximately)
 DELETE FROM `history_coin`;
 
--- Dumping structure for table srcbanquyen.history_del_item
+-- Dumping structure for table sqlcu.history_del_item
 CREATE TABLE IF NOT EXISTS `history_del_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name_player` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -386,12 +366,12 @@ CREATE TABLE IF NOT EXISTS `history_del_item` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table srcbanquyen.history_del_item: 0 rows
+-- Dumping data for table sqlcu.history_del_item: 0 rows
 DELETE FROM `history_del_item`;
 /*!40000 ALTER TABLE `history_del_item` DISABLE KEYS */;
 /*!40000 ALTER TABLE `history_del_item` ENABLE KEYS */;
 
--- Dumping structure for table srcbanquyen.history_doi_dai_bang
+-- Dumping structure for table sqlcu.history_doi_dai_bang
 CREATE TABLE IF NOT EXISTS `history_doi_dai_bang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(50) DEFAULT NULL,
@@ -402,10 +382,10 @@ CREATE TABLE IF NOT EXISTS `history_doi_dai_bang` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Dumping data for table srcbanquyen.history_doi_dai_bang: ~0 rows (approximately)
+-- Dumping data for table sqlcu.history_doi_dai_bang: ~0 rows (approximately)
 DELETE FROM `history_doi_dai_bang`;
 
--- Dumping structure for table srcbanquyen.history_kmb2
+-- Dumping structure for table sqlcu.history_kmb2
 CREATE TABLE IF NOT EXISTS `history_kmb2` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name_player_sell` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -421,12 +401,12 @@ CREATE TABLE IF NOT EXISTS `history_kmb2` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table srcbanquyen.history_kmb2: 0 rows
+-- Dumping data for table sqlcu.history_kmb2: 0 rows
 DELETE FROM `history_kmb2`;
 /*!40000 ALTER TABLE `history_kmb2` DISABLE KEYS */;
 /*!40000 ALTER TABLE `history_kmb2` ENABLE KEYS */;
 
--- Dumping structure for table srcbanquyen.history_vxmm
+-- Dumping structure for table sqlcu.history_vxmm
 CREATE TABLE IF NOT EXISTS `history_vxmm` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name_player` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -438,14 +418,12 @@ CREATE TABLE IF NOT EXISTS `history_vxmm` (
   `logger` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `time` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Dumping data for table srcbanquyen.history_vxmm: ~1 rows (approximately)
+-- Dumping data for table sqlcu.history_vxmm: ~0 rows (approximately)
 DELETE FROM `history_vxmm`;
-INSERT INTO `history_vxmm` (`id`, `name_player`, `monney_join`, `money_round`, `type_monney`, `last_monney`, `monney`, `logger`, `time`) VALUES
-	(1, 'vinhloh', 1000, 2000, 1, 1999967620, 1999969220, 'có mặt', '2024-06-18 02:43:25');
 
--- Dumping structure for table srcbanquyen.item3
+-- Dumping structure for table sqlcu.item3
 CREATE TABLE IF NOT EXISTS `item3` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -457,9 +435,9 @@ CREATE TABLE IF NOT EXISTS `item3` (
   `data` varchar(255) DEFAULT NULL,
   `color` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4894 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=4874 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.item3: ~4,942 rows (approximately)
+-- Dumping data for table sqlcu.item3: ~4,942 rows (approximately)
 DELETE FROM `item3`;
 INSERT INTO `item3` (`id`, `name`, `type`, `part`, `clazz`, `iconid`, `level`, `data`, `color`) VALUES
 	(0, 'Gươm đá', 8, 0, 0, 0, 1, '[[0,54],[40,120]]', 0),
@@ -5115,7 +5093,7 @@ INSERT INTO `item3` (`id`, `name`, `type`, `part`, `clazz`, `iconid`, `level`, `
 	(4650, 'Thẻ đồng', 55, 0, 4, 13012, 1, '[[124,0]]', 5),
 	(4651, 'Thẻ vàng', 55, 0, 4, 13013, 1, '[[126,0]]', 5),
 	(4652, 'Thẻ kim cương', 55, 0, 4, 13014, 1, '[[127,0]]', 5),
-	(4653, 'Ngọc trai đen', 102, 0, 4, 13015, 1, '[]', 5),
+	(4653, 'Ngọc trai đen', 56, 0, 4, 13015, 1, '[]', 5),
 	(4654, 'Jasmine', 15, 0, 4, 13016, 1, '[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[-128,500]]', 5),
 	(4655, 'Aladin', 15, 0, 4, 13017, 1, '[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[-128,500]]', 5),
 	(4656, 'Áo chiến binh tinh tú', 0, 89, 0, 13095, 1, '[]', 5),
@@ -5337,7 +5315,7 @@ INSERT INTO `item3` (`id`, `name`, `type`, `part`, `clazz`, `iconid`, `level`, `
 	(4872, 'Dây chuyền tinh tú[VIP PRO]', 5, 0, 4, 13109, 1, '[]', 5),
 	(4873, 'Dây chuyền tinh tú[VIP PRO]', 5, 0, 4, 13109, 1, '[]', 5);
 
--- Dumping structure for table srcbanquyen.item4
+-- Dumping structure for table sqlcu.item4
 CREATE TABLE IF NOT EXISTS `item4` (
   `id` int(11) NOT NULL,
   `icon` int(11) DEFAULT NULL,
@@ -5352,7 +5330,7 @@ CREATE TABLE IF NOT EXISTS `item4` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.item4: ~347 rows (approximately)
+-- Dumping data for table sqlcu.item4: ~357 rows (approximately)
 DELETE FROM `item4`;
 INSERT INTO `item4` (`id`, `icon`, `price`, `name`, `content`, `typepotion`, `moneytype`, `sell`, `value`, `canTrade`) VALUES
 	(0, 1, 10, 'HP nhỏ', 'Hồi phục 1500 hp', 0, 0, 1, 1500, 1),
@@ -5407,7 +5385,7 @@ INSERT INTO `item4` (`id`, `icon`, `price`, `name`, `content`, `typepotion`, `mo
 	(49, 51, 3, 'Kẹo the', 'Dùng cho pet ăn tăng 7 điểm tinh thần', 25, 1, 1, 7, 0),
 	(50, 52, 3, 'Kẹo sữa', 'Dùng cho pet ăn tăng 7 điểm thể lực', 26, 1, 1, 7, 0),
 	(51, 53, 3, 'Kẹo hương cam', 'Dùng cho pet ăn tăng 7 điểm sức mạnh', 23, 1, 1, 7, 0),
-	(52, 54, 200000, 'Vé mở ly', 'Dùng để mở ly', 27, 0, 1, 7, 0),
+	(52, 54, 30, 'Vé mở ly', 'Dùng để mở ly', 27, 1, 1, 7, 0),
 	(53, 55, 3, 'Đồng tiền Horae', 'Vé đi phó bản', 28, 1, 0, 7, 0),
 	(54, 56, 3, 'Đồng bạc Tyche', 'Vé vào khu đặc biệt 2h. Tính theo thời gian thực (offline cũng tính)', 29, 1, 0, 7, 0),
 	(55, 57, 3, 'Vé khu 4h', 'Vé vào khu đặc biệt 4h. Tính theo thời gian thực (offline cũng tính)', 30, 1, 0, 7, 0),
@@ -5561,7 +5539,7 @@ INSERT INTO `item4` (`id`, `icon`, `price`, `name`, `content`, `typepotion`, `mo
 	(203, 183, 10000000, 'Cúp bạc', 'Vật phẩm sự kiện', 19, 0, 0, 1, 0),
 	(204, 184, 10000000, 'Trái bóng đồng', 'Vật phẩm sự kiện', 19, 0, 0, 1, 0),
 	(205, 185, 50, 'Rương đỏ', 'Mở Rương Đỏ sẽ rớt ra các loại Vũ khí, Mũ, Áo và Quần cùng lớp nhân vật đang sử dụng.', 59, 1, 1, 1, 1),
-	(206, 186, 1000, 'Rương vàng', 'Mở Rương Vàng sẽ rớt ra các loại đá cường hóa và nguyên liệu chế tạo cánh.', 59, 0, 1, 1, 1),
+	(206, 186, 100, 'Rương vàng', 'Mở Rương Vàng sẽ rớt ra các loại đá cường hóa và nguyên liệu chế tạo cánh.', 59, 1, 1, 1, 1),
 	(207, 187, 50, 'Rương tím', 'Mở Rương Tím sẽ rớt ra Găng Tay, Giày và các loại Trang sức cần thiết.', 59, 1, 1, 1, 1),
 	(208, 129, 5, 'Lồng đèn vàng', 'Có tác dụng trong 30 ngày, tăng 3% exp, rớt nguyên liệu thịt khi đánh quái', 19, 1, 0, 1, 0),
 	(209, 130, 10, 'Lồng đèn đỏ', 'Có tác dụng trong 1 tiếng, rớt nguyên liệu thịt khi đánh quái', 19, 1, 0, 1, 0),
@@ -5673,7 +5651,7 @@ INSERT INTO `item4` (`id`, `icon`, `price`, `name`, `content`, `typepotion`, `mo
 	(315, 245, 20000, 'Hỏa kì lân Vĩnh Viễn', '- Tăng tốc độ di chuyển thêm 2 \n- Tăng 15% giáp\n- Tăng 35% DAM', 44, 1, 0, 1, 0),
 	(316, 233, 20000, 'Mô tô ma tốc độ Vĩnh Viễn', 'Tăng tốc độ di chuyển thêm 2, tăng 15% giáp, tăng 15% DAM, tăng 10% máu, +10% MP trong 10 giây', 44, 1, 0, 1, 0),
 	(317, 234, 20000, 'Xe trượt tuyết vĩnh viễn', '+20% MP trong 10 giây, tốc độ +2, +10% giáp. Không mất thể lực khi đánh', 44, 1, 0, 1, 0),
-	(318, 271, 3000, 'Rương BackFriday', 'Nhận được ngẫu nhiên nguyên  liệu mề đay cấp 3 ', 76, 1, 0, 1, 1),
+	(318, 13064, 3000, 'Rương BackFriday', 'Nhận được ngẫu nhiên nguyên  liệu mề đay cấp 3 ', 19, 1, 0, 1, 1),
 	(319, 267, 200, 'Hồ Quang  Bạc', 'Nguyên liệu chế tạo giáp siêu nhân bạc', 19, 1, 0, 1, 0),
 	(320, 265, 200, 'Hồ Quang  Tím ', 'Nguyên liệu chế tạo giáp siêu nhân tím', 19, 1, 0, 1, 0),
 	(321, 266, 200, 'Hồ Quang  Xanh', 'Nguyên liệu chế tạo giáp siêu nhân xanh', 19, 1, 0, 1, 0),
@@ -5681,7 +5659,7 @@ INSERT INTO `item4` (`id`, `icon`, `price`, `name`, `content`, `typepotion`, `mo
 	(323, 263, 50, 'Cá Chép ', '-Tăng 10% phòng thủ - Tăng 10% sát thương - Tăng tốc độ di chuyển ', 44, 1, 0, 1, 0),
 	(324, 263, 250, 'Cá Chép x99', '-Tăng 10% phòng thủ - Tăng 10% sát thương - Tăng tốc độ di chuyển ', 44, 1, 0, 99, 0),
 	(325, 263, 2000, 'Cá Chép Vĩnh Viển', '-Tăng 10% phòng thủ - Tăng 10% sát thương - Tăng tốc độ di chuyển ', 44, 1, 0, 1, 0),
-	(326, 157, 100000000, 'Ngọc chuyển sinh', 'Dùng để chuyển sinh', 19, 0, 1, 1, 1),
+	(326, 267, 1000000, 'Biểu tượng mint VIP ', '+ 5% Dam và 10% may mắn rớt đồ. \n-Giá 10.000 Ngọc và 10 tỷ Vàng', 77, 0, 1, 1, 1),
 	(327, 260, 100, 'Vé vào làng phủ sương', 'Khi sử dụng sẽ được cho vào map ngẫu nhiên trong làng phủ sương tùy thep cấp độ, thời gian trong map là 4 tiếng', 80, 1, 0, 1, 0),
 	(328, 273, 1000000, 'Hộ Vệ Sực Mạnh', 'Gia tăng 20% sát thương bao gồm cả chí mạng, xuyên giáp', 19, 1, 0, 1, 0),
 	(329, 274, 1000000, 'Hộ Vệ Phòng Thủ', 'Gia tăng 20% phòng thủ', 19, 1, 0, 1, 0),
@@ -5701,9 +5679,19 @@ INSERT INTO `item4` (`id`, `icon`, `price`, `name`, `content`, `typepotion`, `mo
 	(343, 288, 1234564678, 'Ngọc đan mạch', 'Dùng để đả thông kinh mạch', 73, 1, 0, 1, 0),
 	(344, 289, 1234566, 'Ngọc thăng thiên', 'Dùng để tu tiên', 73, 1, 0, 1, 0),
 	(345, 196, 12345674, 'Vé khu boss cô đơn', 'Dùng để vào map boss cô đơn', 44, 1, 0, 1, 0),
-	(346, 157, 121212121, 'Ngọc chuyển sinh', 'dùng để chuyển sinh', 44, 1, 0, 1, 0);
+	(346, 157, 121212121, 'Ngọc chuyển sinh', 'dùng để chuyển sinh', 44, 1, 0, 1, 0),
+	(347, 291, 12345677, 'Rương NLMD VIP 1', 'Nhận được ngẫu nhiên nguyên  liệu mề đay cấp 3 ', 19, 1, 0, 1, 1),
+	(348, 292, 12345677, 'Rương NLMD VIP 2', 'Nhận được ngẫu nhiên nguyên  liệu mề đay cấp 3 ', 19, 1, 0, 1, 1),
+	(349, 293, 12345677, 'Rương NLMD VIP 3', 'Nhận được ngẫu nhiên nguyên  liệu mề đay cấp 3 ', 19, 1, 0, 1, 1),
+	(350, 294, 12345677, 'Rương NLMD VIP 4', 'Nhận được ngẫu nhiên nguyên  liệu mề đay cấp 3 ', 19, 1, 0, 1, 1),
+	(351, 295, 12345677, 'Rương NLMD VIP 5', 'Nhận được ngẫu nhiên nguyên  liệu mề đay cấp 3 ', 19, 1, 0, 1, 1),
+	(352, 296, 12345677, 'Rương NLTT VIP 1', 'Nhận được ngẫu nhiên nguyên  liệu tinh tú', 19, 1, 0, 1, 1),
+	(353, 297, 12345677, 'Rương NLTT VIP 2', 'Nhận được ngẫu nhiên nguyên  liệu tinh tú', 19, 1, 0, 1, 1),
+	(354, 298, 12345677, 'Rương NLTT VIP 3', 'Nhận được ngẫu nhiên nguyên  liệu tinh tú', 19, 1, 0, 1, 1),
+	(355, 299, 12345677, 'Rương NLTT VIP 4', 'Nhận được ngẫu nhiên nguyên  liệu tinh tú', 19, 1, 0, 1, 1),
+	(356, 300, 12345677, 'Rương NLTT VIP 5', 'Nhận được ngẫu nhiên nguyên  liệu tinh tú', 19, 1, 0, 1, 1);
 
--- Dumping structure for table srcbanquyen.item5
+-- Dumping structure for table sqlcu.item5
 CREATE TABLE IF NOT EXISTS `item5` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -5717,7 +5705,7 @@ CREATE TABLE IF NOT EXISTS `item5` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.item5: ~33 rows (approximately)
+-- Dumping data for table sqlcu.item5: ~33 rows (approximately)
 DELETE FROM `item5`;
 INSERT INTO `item5` (`id`, `name`, `type`, `part`, `clazz`, `iconid`, `level`, `data`, `color`) VALUES
 	(0, 'Nước mắt Smiley', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -5754,7 +5742,7 @@ INSERT INTO `item5` (`id`, `name`, `type`, `part`, `clazz`, `iconid`, `level`, `
 	(31, 'Mảnh bản đồ', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(32, 'Lọ thuốc thần', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
--- Dumping structure for table srcbanquyen.item7
+-- Dumping structure for table sqlcu.item7
 CREATE TABLE IF NOT EXISTS `item7` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `imgid` int(11) DEFAULT NULL,
@@ -5767,510 +5755,510 @@ CREATE TABLE IF NOT EXISTS `item7` (
   `value` int(11) DEFAULT NULL,
   `trade` tinyint(4) DEFAULT NULL,
   `setcolorname` tinyint(4) DEFAULT NULL,
-  `lamcoin` int(11) DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=495 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=496 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.item7: ~495 rows (approximately)
+-- Dumping data for table sqlcu.item7: ~496 rows (approximately)
 DELETE FROM `item7`;
-INSERT INTO `item7` (`id`, `imgid`, `price`, `name`, `content`, `type`, `pricetype`, `sell`, `value`, `trade`, `setcolorname`, `lamcoin`) VALUES
-	(0, 0, 5, 'Đá cường hóa', 'Nguyên liệu cường hóa', 12, 1, 0, 0, 0, 0, 0),
-	(1, 1, 1000, 'Sắt vụn', 'Nguyên liệu cường hóa', 8, 0, 1, 0, 0, 0, 0),
-	(2, 2, 2000, 'Thỏi Titan', 'Nguyên liệu cường hóa', 9, 0, 0, 0, 0, 0, 0),
-	(3, 3, 4000, 'Kim loại vũ trụ', 'Nguyên liệu cường hóa', 10, 0, 0, 0, 0, 0, 0),
-	(4, 4, 4, 'Đá may mắn', 'Tăng 30% tỷ lệ may mắn, 30% bảo hiểm không rớt cấp', 11, 1, 1, 30, 1, 0, 0),
-	(5, 5, 5, 'Gói x10 Sắt vụn', 'Nguyên liệu cường hóa', 8, 1, 1, 10, 1, 0, 0),
-	(6, 6, 10, 'Gói x10 Thỏi Titan', 'Nguyên liệu cường hóa', 9, 1, 1, 10, 1, 0, 0),
-	(7, 7, 20, 'Gói x10 Kim loại vũ trụ', 'Nguyên liệu cường hóa', 10, 1, 1, 10, 1, 0, 0),
-	(8, 8, 1, 'Lông xanh', 'Nguyên liệu chế tạo cánh', 22, 1, 0, 0, 0, 0, 0),
-	(9, 9, 1, 'Lông đỏ', 'Nguyên liệu chế tạo cánh', 21, 1, 0, 0, 0, 0, 0),
-	(10, 10, 1, 'Lông vàng', 'Nguyên liệu chế tạo cánh', 20, 1, 0, 0, 0, 0, 0),
-	(11, 11, 1, 'Khúc xương', 'Nguyên liệu chế tạo cánh', 23, 1, 0, 0, 0, 0, 0),
-	(12, 15, 6, 'Cỏ ba lá', 'Tăng 30% tỷ lệ may mắn, 30% bảo hiểm không rớt cấp, tụt 2 cấp khi cường hoá thất bại', 11, 1, 0, 30, 1, 0, 0),
-	(13, 14, 20, 'Cỏ bốn lá', 'Tăng 30% tỷ lệ may mắn, 30% bảo hiểm không rớt cấp, tụt 1 cấp khi cường hoá thất bại', 11, 1, 0, 30, 1, 0, 0),
-	(14, 13, 250, 'Đá ba màu', 'Tăng 30% tỷ lệ may mắn, thêm 5% tỷ lệ cường hoá thành công, 100% không rớt cấp khi cường hoá thất bại', 11, 1, 0, 30, 1, 0, 0),
-	(15, 16, 1, 'Mảnh TiTan lv1', 'Mảnh titan cấp 1 dùng hợp thành mảnh titan cấp 2', 31, 1, 0, 1, 1, 0, 0),
-	(16, 17, 1, 'Mảnh TiTan lv2', 'Mảnh titan cấp 2 dùng hợp thành mảnh titan cấp 3', 32, 1, 1, 1, 1, 0, 0),
-	(17, 18, 1, 'Mảnh TiTan lv3', 'Mảnh titan cấp 3 dùng hợp thành mảnh titan cấp 4', 33, 1, 0, 1, 1, 0, 0),
-	(18, 19, 1, 'Mảnh TiTan lv4', 'Mảnh titan cấp 4 dùng hợp thành mảnh titan cấp 5', 34, 1, 0, 1, 1, 0, 0),
-	(19, 20, 1, 'Mảnh kim loại vũ trụ lv1', 'Mảnh kim loại vũ trụ lv1 dùng hợp thành mảnh kim loại vũ trụ lv2', 35, 1, 0, 1, 1, 0, 0),
-	(20, 20, 1, 'Mảnh kim loại vũ trụ lv2', 'Mảnh kim loại vũ trụ lv2 dùng hợp thành mảnh kim loại vũ trụ lv3', 36, 1, 0, 1, 1, 0, 0),
-	(21, 20, 1, 'Mảnh kim loại vũ trụ lv3', 'Mảnh kim loại vũ trụ lv3 dùng hợp thành mảnh kim loại vũ trụ lv4', 37, 1, 0, 1, 1, 0, 0),
-	(22, 20, 1, 'Mảnh kim loại vũ trụ lv4', 'Mảnh kim loại vũ trụ lv4 dùng hợp thành kim loại vũ trụ', 38, 1, 0, 1, 1, 0, 0),
-	(23, 24, 1, 'Ngọc ánh sáng lv 1', 'Dùng để khảm vào vũ khí. Tăng 100 sát thương ánh sáng', 49, 1, 0, 1, 1, 0, 0),
-	(24, 25, 1, 'Ngọc ánh sáng lv 2', 'Dùng để khảm vào vũ khí. Tăng 200 sát thương ánh sáng', 49, 1, 0, 1, 1, 0, 0),
-	(25, 26, 1, 'Ngọc ánh sáng lv 3', 'Dùng để khảm vào vũ khí. Tăng 400 sát thương ánh sáng', 49, 1, 0, 1, 1, 0, 0),
-	(26, 27, 1, 'Ngọc ánh sáng lv 4', 'Dùng để khảm vào vũ khí. Tăng 800 sát thương ánh sáng', 49, 1, 0, 1, 0, 0, 0),
-	(27, 28, 1, 'Ngọc ánh sáng lv 5', 'Dùng để khảm vào vũ khí. Tăng 1600 sát thương ánh sáng', 49, 1, 0, 1, 0, 0, 0),
-	(28, 29, 1, 'Ngọc bóng tối lv 1', 'Dùng khảm vào vũ khí. Tăng 100 sát thương bóng tối', 49, 1, 0, 1, 1, 0, 0),
-	(29, 30, 1, 'Ngọc bóng tối lv 2', 'Dùng khảm vào vũ khí. Tăng 200 sát thương bóng tối', 49, 1, 0, 1, 1, 0, 0),
-	(30, 31, 1, 'Ngọc bóng tối lv 3', 'Dùng khảm vào vũ khí. Tăng 400 sát thương bóng tối', 49, 1, 0, 1, 1, 0, 0),
-	(31, 32, 1, 'Ngọc bóng tối lv 4', 'Dùng khảm vào vũ khí. Tăng 800 sát thương bóng tối', 49, 1, 0, 1, 0, 0, 0),
-	(32, 33, 1, 'Ngọc bóng tối lv 5', 'Dùng khảm vào vũ khí. Tăng 1600 sát thương bóng tối', 49, 1, 0, 1, 0, 0, 0),
-	(33, 34, 7000000, 'Đục huyền bí cấp 1', 'Dùng đục lỗ cho vũ khí và giáp', 50, 0, 1, 1, 1, 0, 0),
-	(34, 35, 1, 'Ngọc hộ mệnh bóng tối lv 1', 'Dùng để khảm vào giáp. Kháng 50 sát thương bóng tối', 49, 1, 0, 1, 0, 0, 0),
-	(35, 36, 1, 'Ngọc hộ mệnh bóng tối lv 2', 'Dùng để khảm vào giáp. Kháng 100 sát thương bóng tối', 49, 1, 0, 1, 0, 0, 0),
-	(36, 37, 1, 'Ngọc hộ mệnh bóng tối lv 3', 'Dùng để khảm vào giáp. Kháng 200 sát thương bóng tối', 49, 1, 0, 1, 0, 0, 0),
-	(37, 38, 1, 'Ngọc hộ mệnh bóng tối lv 4', 'Dùng để khảm vào giáp. Kháng 400 sát thương bóng tối', 49, 1, 0, 1, 0, 0, 0),
-	(38, 39, 1, 'Ngọc hộ mệnh bóng tối lv 5', 'Dùng để khảm vào giáp. Kháng 800 sát thương bóng tối', 49, 1, 0, 1, 0, 0, 0),
-	(39, 40, 1, 'Ngọc hộ mệnh ánh sáng lv 1', 'Dùng để khảm vào giáp. Kháng 50 sát thương ánh sáng', 49, 1, 0, 1, 0, 0, 0),
-	(40, 41, 1, 'Ngọc hộ mệnh ánh sáng lv 2', 'Dùng để khảm vào giáp. Kháng 100 sát thương ánh sáng', 49, 1, 0, 1, 0, 0, 0),
-	(41, 42, 1, 'Ngọc hộ mệnh ánh sáng lv 3', 'Dùng để khảm vào giáp. Kháng 200 sát thương ánh sáng', 49, 1, 0, 1, 0, 0, 0),
-	(42, 43, 1, 'Ngọc hộ mệnh ánh sáng lv 4', 'Dùng để khảm vào giáp. Kháng 400 sát thương ánh sáng', 49, 1, 0, 1, 0, 0, 0),
-	(43, 44, 1, 'Ngọc hộ mệnh ánh sáng lv 5', 'Dùng để khảm vào giáp. Kháng 800 sát thương ánh sáng', 49, 1, 0, 1, 0, 0, 0),
-	(44, 45, 15000000, 'Đục huyền bí cấp 2', 'Dùng đục lỗ cho vũ khí và giáp. Tăng thêm tỷ lệ thành công', 50, 0, 0, 1, 0, 0, 0),
-	(45, 46, 35000000, 'Đục huyền bí cấp 3', 'Dùng đục lỗ cho vũ khí và giáp. Tăng thêm tỷ lệ thành công', 50, 0, 0, 1, 0, 0, 1),
-	(46, 47, 6000000, 'Lông chim', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(47, 48, 6000000, 'Mắt cáo', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(48, 49, 6000000, 'Rong biển', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(49, 50, 6000000, 'Thảo dược', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(50, 51, 6000000, 'Huyết phong lan', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(51, 52, 6000000, 'Lá lan rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(52, 53, 6000000, 'Huyết quả ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(53, 54, 6000000, 'Hoa lan rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(54, 55, 6000000, 'Búp sen', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(55, 56, 6000000, 'Vỏ trai hồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(56, 57, 6000000, 'San hô', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(57, 58, 6000000, 'Nanh báo', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(58, 59, 6000000, 'Sừng tê giác trắng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(59, 60, 6000000, 'Mỏ phượng hoàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(60, 61, 6000000, 'Sừng tê giác vàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(61, 62, 6000000, 'Hắc mộc', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(62, 63, 6000000, 'Khối lục giác', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(63, 64, 6000000, 'Viên thủy tinh', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(64, 65, 6000000, 'Đầu lâu', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(65, 66, 6000000, 'Hắc mộc nhỏ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(66, 67, 6000000, 'Đuôi kỳ đà', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(67, 68, 6000000, 'Nấm đỏ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(68, 69, 6000000, 'Vỏ ốc', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(69, 70, 6000000, 'Huy chương', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(70, 71, 6000000, 'Sọ pha lê', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(71, 72, 6000000, 'Dây leo', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(72, 73, 6000000, 'Sâm rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(73, 74, 6000000, 'Mắt quỷ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(74, 75, 6000000, 'Tổ ong', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(75, 76, 6000000, 'Cành xương rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(76, 77, 6000000, 'Rễ cây', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(77, 78, 6000000, 'Nanh sói', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(78, 79, 6000000, 'Vải vụn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(79, 80, 6000000, 'Dây lưng hiệp sĩ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(80, 81, 6000000, 'Mảnh xương', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(81, 82, 6000000, 'Vỏ sò', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(82, 83, 6000000, 'Đá sao nhỏ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(83, 84, 6000000, 'Đá sao lớn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(84, 85, 6000000, 'Hổ phách', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(85, 86, 6000000, 'Lông đại bàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(86, 87, 6000000, 'Viên sỏi', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(87, 88, 6000000, 'Vỏ ốc biển', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(88, 89, 6000000, 'Mặt dây chuyền quỷ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(89, 90, 6000000, 'Bẫy thú', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(90, 91, 6000000, 'Trứng phượng hoàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(91, 92, 6000000, 'Dây chuyền quỷ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(92, 93, 6000000, 'Ngà voi rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(93, 94, 6000000, 'Móng vuốt', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(94, 95, 6000000, 'Lông vũ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(95, 96, 6000000, 'Đá ma thuật', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(96, 97, 6000000, 'Lông cừu', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(97, 98, 6000000, 'Móng vuốt sói', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(98, 99, 6000000, 'Móng vuốt rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(99, 100, 6000000, 'Con mắt ma thuật', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(100, 101, 6000000, 'Đuôi cáo', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(101, 102, 6000000, 'Vương miện vàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(102, 103, 6000000, 'Nanh lợn rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(103, 104, 6000000, 'Bia đá ma thuật', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(104, 105, 6000000, 'Xương dê', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(105, 106, 6000000, 'Xương chó sói', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(106, 107, 6000000, 'Gỗ trầm hương', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(107, 108, 6000000, 'Chân ếch', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(108, 109, 6000000, 'Cựa gà rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(109, 110, 6000000, 'Tơ nhện', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(110, 111, 6000000, 'Mai rùa xanh', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(111, 112, 6000000, 'Mỏ quạ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(112, 113, 6000000, 'Chuông ma thuật', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(113, 114, 6000000, 'Tai thỏ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(114, 115, 6000000, 'Viên pha lê', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(115, 116, 6000000, 'Gương ma thuật', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20, 0),
-	(116, 117, 16000000, 'Vuốt sói', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21, 0),
-	(117, 118, 16000000, 'Mặt nạ hiệp sĩ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21, 0),
-	(118, 119, 16000000, 'Vỏ cây', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21, 0),
-	(119, 120, 16000000, 'Đuôi thằn lằn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21, 0),
-	(120, 121, 16000000, 'Lông thỏ trắng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21, 0),
-	(121, 122, 16000000, 'Cánh dơi', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21, 0),
-	(122, 123, 16000000, 'Xương rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21, 0),
-	(123, 124, 16000000, 'Chân gấu', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21, 0),
-	(124, 125, 16000000, 'Tay gấu', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21, 0),
-	(125, 126, 16000000, 'Vẩy rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21, 0),
-	(126, 127, 24000000, 'Mặt nạ quỷ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22, 0),
-	(127, 128, 24000000, 'Da rắn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22, 0),
-	(128, 129, 24000000, 'Mỏ đại bàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22, 0),
-	(129, 130, 24000000, 'Đuôi rắn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22, 0),
-	(130, 131, 24000000, 'Đá nham thạch', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22, 0),
-	(131, 132, 24000000, 'Bọ pha lê', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22, 0),
-	(132, 133, 24000000, 'Hắc san hô', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22, 0),
-	(133, 134, 24000000, 'Chân rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22, 0),
-	(134, 135, 24000000, 'Cánh chim', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22, 0),
-	(135, 136, 24000000, 'Chân kì đà', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22, 0),
-	(136, 137, 36000000, 'Cánh rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23, 0),
-	(137, 138, 36000000, 'Đuôi cá chép', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23, 0),
-	(138, 139, 36000000, 'Vây cá mập', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23, 0),
-	(139, 140, 36000000, 'Vỏ sò xanh', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23, 0),
-	(140, 141, 36000000, 'Vây cá voi', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23, 0),
-	(141, 142, 36000000, 'Đuôi bọ cạp', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23, 0),
-	(142, 143, 36000000, 'Đuôi trăn gấm', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23, 0),
-	(143, 144, 36000000, 'Mắt chim ưng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23, 0),
-	(144, 145, 36000000, 'Nanh rắn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23, 0),
-	(145, 146, 36000000, 'Bí ngô rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23, 0),
-	(146, 147, 5000000, 'Lông chim cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(147, 148, 5000000, 'Mắt cáo cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(148, 149, 5000000, 'Rong biển cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(149, 150, 5000000, 'Thảo dược cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(150, 151, 5000000, 'Huyết phong lan cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(151, 152, 5000000, 'Lá lan rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(152, 153, 5000000, 'Huyết quả  cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(153, 154, 5000000, 'Hoa lan rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(154, 155, 5000000, 'Búp sen cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(155, 156, 5000000, 'Vỏ trai hồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(156, 157, 5000000, 'San hô cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(157, 158, 5000000, 'Nanh báo cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(158, 159, 5000000, 'Sừng tê giác trắng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(159, 160, 5000000, 'Mỏ phượng hoàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(160, 161, 5000000, 'Sừng tê giác vàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(161, 162, 5000000, 'Hắc mộc cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(162, 163, 5000000, 'Khối lục giác cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(163, 164, 5000000, 'Viên thủy tinh cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(164, 165, 5000000, 'Đầu lâu cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(165, 166, 5000000, 'Hắc mộc nhỏ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(166, 167, 5000000, 'Đuôi kỳ đà cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(167, 168, 5000000, 'Nấm đỏ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(168, 169, 5000000, 'Vỏ ốc cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(169, 170, 5000000, 'Huy chương cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(170, 171, 5000000, 'Sọ pha lê cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(171, 172, 5000000, 'Dây leo cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(172, 173, 5000000, 'Sâm rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(173, 174, 5000000, 'Mắt quỷ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(174, 175, 5000000, 'Tổ ong cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(175, 176, 5000000, 'Cành xương rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(176, 177, 5000000, 'Rễ cây cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(177, 178, 5000000, 'Nanh sói cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(178, 179, 5000000, 'Vải vụn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(179, 180, 5000000, 'Dây lưng hiệp sĩ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(180, 181, 5000000, 'Mảnh xương cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(181, 182, 5000000, 'Vỏ sò cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(182, 183, 5000000, 'Đá sao nhỏ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(183, 184, 5000000, 'Đá sao lớn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(184, 185, 5000000, 'Hổ phách cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(185, 186, 5000000, 'Lông đại bàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(186, 187, 5000000, 'Viên sỏi cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(187, 188, 5000000, 'Vỏ ốc biển cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(188, 189, 5000000, 'Mặt dây chuyền quỷ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(189, 190, 5000000, 'Bẫy thú cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(190, 191, 5000000, 'Trứng phượng hoàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(191, 192, 5000000, 'Dây chuyền quỷ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(192, 193, 5000000, 'Ngà voi rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(193, 194, 5000000, 'Móng vuốt cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(194, 195, 5000000, 'Lông vũ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(195, 196, 5000000, 'Đá ma thuật cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(196, 197, 5000000, 'Lông cừu cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(197, 198, 5000000, 'Móng vuốt sói cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(198, 199, 5000000, 'Móng vuốt rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(199, 200, 5000000, 'Con mắt ma thuật cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(200, 201, 5000000, 'Đuôi cáo cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(201, 202, 5000000, 'Vương miện vàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(202, 203, 5000000, 'Nanh lợn rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(203, 204, 5000000, 'Bia đá ma thuật cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(204, 205, 5000000, 'Xương dê cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(205, 206, 5000000, 'Xương chó sói cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(206, 207, 5000000, 'Gỗ trầm hương cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(207, 208, 5000000, 'Chân ếch cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(208, 209, 5000000, 'Cựa gà rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(209, 210, 5000000, 'Tơ nhện cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(210, 211, 5000000, 'Mai rùa xanh cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(211, 212, 5000000, 'Mỏ quạ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(212, 213, 5000000, 'Chuông ma thuật cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(213, 214, 5000000, 'Tai thỏ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(214, 215, 5000000, 'Viên pha lê cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(215, 216, 5000000, 'Gương ma thuật cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30, 0),
-	(216, 217, 5000000, 'Vuốt sói cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31, 0),
-	(217, 218, 5000000, 'Mặt nạ hiệp sĩ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31, 0),
-	(218, 219, 5000000, 'Vỏ cây cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31, 0),
-	(219, 220, 5000000, 'Đuôi thằn lằn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31, 0),
-	(220, 221, 5000000, 'Lông thỏ trắng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31, 0),
-	(221, 222, 5000000, 'Cánh dơi cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31, 0),
-	(222, 223, 5000000, 'Xương rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31, 0),
-	(223, 224, 5000000, 'Chân gấu cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31, 0),
-	(224, 225, 5000000, 'Tay gấu cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31, 0),
-	(225, 226, 5000000, 'Vẩy rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31, 0),
-	(226, 227, 5000000, 'Mặt nạ quỷ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32, 0),
-	(227, 228, 5000000, 'Da rắn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32, 0),
-	(228, 229, 5000000, 'Mỏ đại bàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32, 0),
-	(229, 230, 5000000, 'Đuôi rắn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32, 0),
-	(230, 231, 5000000, 'Đá nham thạch cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32, 0),
-	(231, 232, 5000000, 'Bọ pha lê cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32, 0),
-	(232, 233, 5000000, 'Hắc san hô cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32, 0),
-	(233, 234, 5000000, 'Chân rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32, 0),
-	(234, 235, 5000000, 'Cánh chim cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32, 0),
-	(235, 236, 5000000, 'Chân kì đà cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32, 0),
-	(236, 237, 5000000, 'Cánh rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33, 0),
-	(237, 238, 5000000, 'Đuôi cá chép cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33, 0),
-	(238, 239, 5000000, 'Vây cá mập cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33, 0),
-	(239, 240, 5000000, 'Vỏ sò xanh cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33, 0),
-	(240, 241, 5000000, 'Vây cá voi cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33, 0),
-	(241, 242, 5000000, 'Đuôi bọ cạp cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33, 0),
-	(242, 243, 5000000, 'Đuôi trăn gấm cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33, 0),
-	(243, 244, 5000000, 'Mắt chim ưng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33, 0),
-	(244, 245, 5000000, 'Nanh rắn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33, 0),
-	(245, 246, 5000000, 'Bí ngô rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33, 0),
-	(246, 247, 5000000, 'Lông chim cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(247, 248, 5000000, 'Mắt cáo cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(248, 249, 5000000, 'Rong biển cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(249, 250, 5000000, 'Thảo dược cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(250, 251, 5000000, 'Huyết phong lan cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(251, 252, 5000000, 'Lá lan rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(252, 253, 5000000, 'Huyết quả cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(253, 254, 5000000, 'Hoa lan rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(254, 255, 5000000, 'Búp sen cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(255, 256, 5000000, 'Vỏ trai hồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(256, 257, 5000000, 'San hô cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(257, 258, 5000000, 'Nanh báo cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(258, 259, 5000000, 'Sừng tê giác trắng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(259, 260, 5000000, 'Mỏ phượng hoàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(260, 261, 5000000, 'Sừng tê giác vàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(261, 262, 5000000, 'Hắc mộc cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(262, 263, 5000000, 'Khối lục giác cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(263, 264, 5000000, 'Viên thủy tinh cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(264, 265, 5000000, 'Đầu lâu cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(265, 266, 5000000, 'Hắc mộc nhỏ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(266, 267, 5000000, 'Đuôi kỳ đà cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(267, 268, 5000000, 'Nấm đỏ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(268, 269, 5000000, 'Vỏ ốc cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(269, 270, 5000000, 'Huy chương cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(270, 271, 5000000, 'Sọ pha lê cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(271, 272, 5000000, 'Dây leo cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(272, 273, 5000000, 'Sâm rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(273, 274, 5000000, 'Mắt quỷ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(274, 275, 5000000, 'Tổ ong cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(275, 276, 5000000, 'Cành xương rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(276, 277, 5000000, 'Rễ cây cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(277, 278, 5000000, 'Nanh sói cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(278, 279, 5000000, 'Vải vụn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(279, 280, 5000000, 'Dây lưng hiệp sĩ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(280, 281, 5000000, 'Mảnh xương cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(281, 282, 5000000, 'Vỏ sò cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(282, 283, 5000000, 'Đá sao nhỏ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(283, 284, 5000000, 'Đá sao lớn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(284, 285, 5000000, 'Hổ phách cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(285, 286, 5000000, 'Lông đại bàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(286, 287, 5000000, 'Viên sỏi cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(287, 288, 5000000, 'Vỏ ốc biển cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(288, 289, 5000000, 'Mặt dây chuyền quỷ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(289, 290, 5000000, 'Bẫy thú cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(290, 291, 5000000, 'Trứng phượng hoàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(291, 292, 5000000, 'Dây chuyền quỷ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(292, 293, 5000000, 'Ngà voi rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(293, 294, 5000000, 'Móng vuốt cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(294, 295, 5000000, 'Lông vũ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(295, 296, 5000000, 'Đá ma thuật cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(296, 297, 5000000, 'Lông cừu cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(297, 298, 5000000, 'Móng vuốt sói cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(298, 299, 5000000, 'Móng vuốt rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(299, 300, 5000000, 'Con mắt ma thuật cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(300, 301, 5000000, 'Đuôi cáo cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(301, 302, 5000000, 'Vương miện vàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(302, 303, 5000000, 'Nanh lợn rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(303, 304, 5000000, 'Bia đá ma thuật cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(304, 305, 5000000, 'Xương dê cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(305, 306, 5000000, 'Xương chó sói cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(306, 307, 5000000, 'Gỗ trầm hương cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(307, 308, 5000000, 'Chân ếch cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(308, 309, 5000000, 'Cựa gà rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(309, 310, 5000000, 'Tơ nhện cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(310, 311, 5000000, 'Mai rùa xanh cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(311, 312, 5000000, 'Mỏ quạ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(312, 313, 5000000, 'Chuông ma thuật cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(313, 314, 5000000, 'Tai thỏ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(314, 315, 5000000, 'Viên pha lê cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(315, 316, 5000000, 'Gương ma thuật cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 40, 1),
-	(316, 317, 5000000, 'Vuốt sói cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 41, 1),
-	(317, 318, 5000000, 'Mặt nạ hiệp sĩ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 41, 1),
-	(318, 319, 5000000, 'Vỏ cây cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 41, 1),
-	(319, 320, 5000000, 'Đuôi thằn lằn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 41, 1),
-	(320, 321, 5000000, 'Lông thỏ trắng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 41, 1),
-	(321, 322, 5000000, 'Cánh dơi cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 41, 1),
-	(322, 323, 5000000, 'Xương rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 41, 1),
-	(323, 324, 5000000, 'Chân gấu cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 41, 1),
-	(324, 325, 5000000, 'Tay gấu cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 41, 1),
-	(325, 326, 5000000, 'Vẩy rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 41, 1),
-	(326, 327, 5000000, 'Mặt nạ quỷ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 42, 1),
-	(327, 328, 5000000, 'Da rắn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 42, 1),
-	(328, 329, 5000000, 'Mỏ đại bàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 42, 1),
-	(329, 330, 5000000, 'Đuôi rắn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 42, 1),
-	(330, 331, 5000000, 'Đá nham thạch cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 42, 1),
-	(331, 332, 5000000, 'Bọ pha lê cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 42, 1),
-	(332, 333, 5000000, 'Hắc san hô cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 42, 1),
-	(333, 334, 5000000, 'Chân rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 42, 1),
-	(334, 335, 5000000, 'Cánh chim cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 42, 1),
-	(335, 336, 5000000, 'Chân kì đà cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 42, 1),
-	(336, 337, 5000000, 'Cánh rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 43, 1),
-	(337, 338, 5000000, 'Đuôi cá chép cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 43, 1),
-	(338, 339, 5000000, 'Vây cá mập cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 43, 1),
-	(339, 340, 5000000, 'Vỏ sò xanh cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 43, 1),
-	(340, 341, 5000000, 'Vây cá voi cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 43, 1),
-	(341, 342, 5000000, 'Đuôi bọ cạp cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 43, 1),
-	(342, 343, 5000000, 'Đuôi trăn gấm cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 43, 1),
-	(343, 344, 5000000, 'Mắt chim ưng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 43, 1),
-	(344, 345, 5000000, 'Nanh rắn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 43, 1),
-	(345, 346, 5000000, 'Bí ngô rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 1, 0, 1, 0, 43, 1),
-	(346, 347, 150, 'Đá thạch anh cấp 1', 'Dùng chuyển hóa trang bị có chỉ số cường hóa <=10. Không tụt chỉ số, chuyển hóa chính xác 100% chỉ số. Tỉ lệ thành công 100%', 56, 1, 1, 1, 1, 0, 0),
-	(347, 348, 350, 'Đá thạch anh cấp 2', 'Dùng chuyển hóa trang bị có chỉ số cường hóa >10 và <13. Không tụt chỉ số, chuyển hóa chính xác 100% chỉ số. Tỉ lệ thành công 100%', 56, 1, 1, 1, 1, 0, 0),
-	(348, 349, 500, 'Đá thạch anh cấp 3', 'Dùng chuyển hóa trang bị có chỉ số cường hóa >=13. Không tụt chỉ số, chuyển hóa chính xác 100% chỉ số. Tỉ lệ thành công 100%', 56, 1, 1, 1, 1, 0, 1),
-	(349, 350, 150, 'Đá krypton cấp 1', 'Tăng thêm 5% tỉ lệ thành công khi nâng cấp mề đay.', 57, 1, 0, 1, 0, 0, 0),
-	(350, 351, 350, 'Đá krypton cấp 2', 'Tăng thêm 10% tỉ lệ thành công khi nâng cấp mề đay.', 57, 1, 0, 1, 0, 0, 0),
-	(351, 352, 500, 'Đá krypton cấp 3', 'Tăng thêm 30% tỉ lệ thành công khi nâng cấp mề đay.', 57, 1, 0, 1, 0, 0, 1),
-	(352, 353, 500, 'Ngọc hỗn nguyên cấp 1 ', 'Khảm vô vũ khí, khi đánh trúng 25 hit lên [người khác, boss] sẽ được x2 sát thương, giảm 50% Hp, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0, 0),
-	(353, 354, 500, 'Ngọc hỗn nguyên cấp 2 ', 'Khảm vô vũ khí, khi đánh trúng 20 hit lên [người khác, boss] sẽ được x2 sát thương, giảm 50% Hp, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0, 0),
-	(354, 355, 500, 'Ngọc hỗn nguyên cấp 3 ', 'Khảm vô vũ khí, khi đánh trúng 15 hit lên [người khác, boss] sẽ được x2 sát thương, giảm 50% Hp, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0, 1),
-	(355, 356, 500, 'Ngọc hỗn nguyên cấp 4 ', 'Khảm vô vũ khí, khi đánh trúng 10 hit lên [người khác, boss] sẽ được x2 sát thương, giảm 50% Hp, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0, 0),
-	(356, 357, 500, 'Ngọc hỗn nguyên cấp 5 ', 'Khảm vô vũ khí, khi đánh trúng 5 hit lên [người khác, boss] sẽ được x2 sát thương, giảm 50% Hp, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0, 0),
-	(357, 358, 500, 'Ngọc khải hoàn cấp 1', 'Khảm vô vũ khí. Khi bị đánh trúng 25 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, bị giảm tỷ lệ né tránh, chí mạng, phảm đam, xuyên giáp đi 20%, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0, 0),
-	(358, 359, 500, 'Ngọc khải hoàn cấp 2', 'Khảm vô vũ khí. Khi bị đánh trúng 20 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, bị giảm tỷ lệ né tránh, chí mạng, phảm đam, xuyên giáp đi 20%, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0, 0),
-	(359, 360, 500, 'Ngọc khải hoàn cấp 3', 'Khảm vô vũ khí. Khi bị đánh trúng 15 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, bị giảm tỷ lệ né tránh, chí mạng, phảm đam, xuyên giáp đi 20%, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0, 1),
-	(360, 361, 500, 'Ngọc khải hoàn cấp 4', 'Khảm vô vũ khí. Khi bị đánh trúng 10 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, bị giảm tỷ lệ né tránh, chí mạng, phảm đam, xuyên giáp đi 20%, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0, 0),
-	(361, 362, 500, 'Ngọc khải hoàn cấp 5', 'Khảm vô vũ khí. Khi bị đánh trúng 5 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật,  bị giảm tỷ lệ né tránh, chí mạng, phảm đam, xuyên giáp đi 20%, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0, 0),
-	(362, 363, 500, 'Ngọc lục bảo cấp 1', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, không hồi hp trong thời gian này, tồn tại trong 3 giây, tỷ lệ xuất hiện: 0.5%', 49, 1, 0, 1, 0, 0, 0),
-	(363, 364, 500, 'Ngọc lục bảo cấp 2', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, không hồi hp trong thời gian này, tồn tại trong 3 giây, tỷ lệ xuất hiện: 1.0%', 49, 1, 0, 1, 0, 0, 0),
-	(364, 365, 500, 'Ngọc lục bảo cấp 3', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, không hồi hp trong thời gian này, tồn tại trong 3 giây, tỷ lệ xuất hiện: 1.5%', 49, 1, 0, 1, 0, 0, 1),
-	(365, 366, 500, 'Ngọc lục bảo cấp 4', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, không hồi hp trong thời gian này, tồn tại trong 3 giây, tỷ lệ xuất hiện: 2.5%', 49, 1, 0, 1, 0, 0, 0),
-	(366, 367, 500, 'Ngọc lục bảo cấp 5', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, không hồi hp trong thời gian này, tồn tại trong 3 giây, tỷ lệ xuất hiện: 3.5%', 49, 1, 0, 1, 0, 0, 0),
-	(367, 368, 500, 'Ngọc phong ma cấp 1', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 20% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 1% hp sau mỗi nhát đánh, tồn tại trong 3 giây, tỉ lệ 0.5%', 49, 1, 0, 1, 0, 0, 0),
-	(368, 369, 500, 'Ngọc phong ma cấp 2', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 30% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 2% hp sau mỗi nhát đánh, tồn tại trong 3 giây, tỉ lệ 1.0%', 49, 1, 0, 1, 0, 0, 0),
-	(369, 370, 500, 'Ngọc phong ma cấp 3', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 40% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 5% hp sau mỗi nhát đánh, tồn tại trong 3 giây, tỉ lệ 1.5%', 49, 1, 0, 1, 0, 0, 1),
-	(370, 371, 500, 'Ngọc phong ma cấp 4', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 50% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 7% hp sau mỗi nhát đánh, tồn tại trong 3 giây, tỉ lệ 2.5%', 49, 1, 0, 1, 0, 0, 0),
-	(371, 372, 500, 'Ngọc phong ma cấp 5', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 70% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 10% hp sau mỗi nhát đánh, tồn tại trong 3 giây, tỉ lệ 3.5%', 49, 1, 0, 1, 0, 0, 0),
-	(372, 373, 500, 'Ngọc sinh mệnh cấp 1', 'Khảm vô nhẫn, dây chuyền. Giảm 20% sát thương khi đánh quái, tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 2.0%', 49, 1, 0, 1, 0, 0, 0),
-	(373, 374, 500, 'Ngọc sinh mệnh cấp 2', 'Khảm vô nhẫn, dây chuyền. Giảm 20% sát thương khi đánh quái, tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 2.5%', 49, 1, 0, 1, 0, 0, 0),
-	(374, 375, 500, 'Ngọc sinh mệnh cấp 3', 'Khảm vô nhẫn, dây chuyền. Giảm 20% sát thương khi đánh quái, tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 3.0%', 49, 1, 0, 1, 0, 0, 1),
-	(375, 376, 500, 'Ngọc sinh mệnh cấp 4', 'Khảm vô nhẫn, dây chuyền. Giảm 20% sát thương khi đánh quái, tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 3.5%', 49, 1, 0, 1, 0, 0, 0),
-	(376, 377, 500, 'Ngọc sinh mệnh cấp 5', 'Khảm vô nhẫn, dây chuyền. Giảm 20% sát thương khi đánh quái, tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 4.5%', 49, 1, 0, 1, 0, 0, 0),
-	(377, 378, 500, 'Ngọc tâm linh cấp 1 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 3.0%', 49, 1, 0, 1, 0, 0, 0),
-	(378, 379, 500, 'Ngọc tâm linh cấp 2 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 5.0%', 49, 1, 0, 1, 0, 0, 0),
-	(379, 380, 500, 'Ngọc tâm linh cấp 3 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 7.0%', 49, 1, 0, 1, 0, 0, 1),
-	(380, 381, 500, 'Ngọc tâm linh cấp 4 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 9.0%', 49, 1, 0, 1, 0, 0, 0),
-	(381, 382, 500, 'Ngọc tâm linh cấp 5 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 14.0%', 49, 1, 0, 1, 0, 0, 0),
-	(382, 383, 500, 'Ngọc hỗn nguyên tinh luyện cấp 1 ', 'Khảm vô vũ khí, khi đánh trúng 25 hit lên [người khác, boss] sẽ được x2 sát thương, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0, 0),
-	(383, 384, 500, 'Ngọc hỗn nguyên tinh luyện cấp 2 ', 'Khảm vô vũ khí, khi đánh trúng 20 hit lên [người khác, boss] sẽ được x2 sát thương, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0, 0),
-	(384, 385, 500, 'Ngọc hỗn nguyên tinh luyện cấp 3 ', 'Khảm vô vũ khí, khi đánh trúng 15 hit lên [người khác, boss] sẽ được x2 sát thương, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0, 1),
-	(385, 386, 500, 'Ngọc hỗn nguyên tinh luyện cấp 4 ', 'Khảm vô vũ khí, khi đánh trúng 10 hit lên [người khác, boss] sẽ được x2 sát thương, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0, 0),
-	(386, 387, 500, 'Ngọc hỗn nguyên tinh luyện cấp 5 ', 'Khảm vô vũ khí, khi đánh trúng 5 hit lên [người khác, boss] sẽ được x2 sát thương, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0, 0),
-	(387, 388, 500, 'Ngọc khải hoàn tinh luyện cấp 1', 'Khảm vô vũ khí. Khi bị đánh trúng 25 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0, 0),
-	(388, 389, 500, 'Ngọc khải hoàn tinh luyện cấp 2', 'Khảm vô vũ khí. Khi bị đánh trúng 20 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0, 0),
-	(389, 390, 500, 'Ngọc khải hoàn tinh luyện cấp 3', 'Khảm vô vũ khí. Khi bị đánh trúng 15 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0, 1),
-	(390, 391, 500, 'Ngọc khải hoàn tinh luyện cấp 4', 'Khảm vô vũ khí. Khi bị đánh trúng 10 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0, 0),
-	(391, 392, 500, 'Ngọc khải hoàn tinh luyện cấp 5', 'Khảm vô vũ khí. Khi bị đánh trúng 5 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0, 0),
-	(392, 393, 500, 'Ngọc lục bảo tinh luyện cấp 1', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, tồn tại trong 3 giây, tỷ lệ xuất hiện: 0.5%', 49, 1, 0, 1, 0, 0, 0),
-	(393, 394, 500, 'Ngọc lục bảo tinh luyện cấp 2', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, tồn tại trong 3 giây, tỷ lệ xuất hiện: 1.0%', 49, 1, 0, 1, 0, 0, 0),
-	(394, 395, 500, 'Ngọc lục bảo tinh luyện cấp 3', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, tồn tại trong 3 giây, tỷ lệ xuất hiện: 1.5%', 49, 1, 0, 1, 0, 0, 1),
-	(395, 396, 500, 'Ngọc lục bảo tinh luyện cấp 4', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, tồn tại trong 3 giây, tỷ lệ xuất hiện: 2.5%', 49, 1, 0, 1, 0, 0, 0),
-	(396, 397, 500, 'Ngọc lục bảo tinh luyện cấp 5', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, tồn tại trong 3 giây, tỷ lệ xuất hiện: 3.5%', 49, 1, 0, 1, 0, 0, 0),
-	(397, 398, 500, 'Ngọc phong ma tinh luyện cấp 1', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 20% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 1% hp sau mỗi nhát đánh, tồn tại trong 5 giây, tỉ lệ 1.5%', 49, 1, 0, 1, 0, 0, 0),
-	(398, 399, 500, 'Ngọc phong ma tinh luyện cấp 2', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 30% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 2% hp sau mỗi nhát đánh, tồn tại trong 5 giây, tỉ lệ 2.0%', 49, 1, 0, 1, 0, 0, 0),
-	(399, 400, 500, 'Ngọc phong ma tinh luyện cấp 3', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 40% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 5% hp sau mỗi nhát đánh, tồn tại trong 5 giây, tỉ lệ 2.5%', 49, 1, 0, 1, 0, 0, 1),
-	(400, 401, 500, 'Ngọc phong ma tinh luyện cấp 4', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 50% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 7% hp sau mỗi nhát đánh, tồn tại trong 5 giây, tỉ lệ 3.5%', 49, 1, 0, 1, 0, 0, 0),
-	(401, 402, 500, 'Ngọc phong ma tinh luyện cấp 5', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 70% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 10% hp sau mỗi nhát đánh, tồn tại trong 5 giây, tỉ lệ 4.5%', 49, 1, 0, 1, 0, 0, 0),
-	(402, 403, 500, 'Ngọc sinh mệnh tinh luyện cấp 1', 'Khảm vô nhẫn, dây chuyền. Tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 2.0%', 49, 1, 0, 1, 0, 0, 0),
-	(403, 404, 500, 'Ngọc sinh mệnh tinh luyện cấp 2', 'Khảm vô nhẫn, dây chuyền. Tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 2.5%', 49, 1, 0, 1, 0, 0, 0),
-	(404, 405, 500, 'Ngọc sinh mệnh tinh luyện cấp 3', 'Khảm vô nhẫn, dây chuyền. Tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 3.0%', 49, 1, 0, 1, 0, 0, 1),
-	(405, 406, 500, 'Ngọc sinh mệnh tinh luyện cấp 4', 'Khảm vô nhẫn, dây chuyền. Tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 3.5%', 49, 1, 0, 1, 0, 0, 0),
-	(406, 407, 500, 'Ngọc sinh mệnh tinh luyện cấp 5', 'Khảm vô nhẫn, dây chuyền. Tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 4.5%', 49, 1, 0, 1, 0, 0, 0),
-	(407, 408, 500, 'Ngọc tâm linh tinh luyện cấp 1 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 3.0%', 49, 1, 0, 1, 0, 0, 0),
-	(408, 409, 500, 'Ngọc tâm linh tinh luyện cấp 2', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 5.0%', 49, 1, 0, 1, 0, 0, 0),
-	(409, 410, 500, 'Ngọc tâm linh tinh luyện cấp 3', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 7.0%', 49, 1, 0, 1, 0, 0, 1),
-	(410, 411, 500, 'Ngọc tâm linh tinh luyện cấp 4 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 9.0%', 49, 1, 0, 1, 0, 0, 0),
-	(411, 412, 500, 'Ngọc tâm linh tinh luyện cấp 5 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 14.0%', 49, 1, 0, 1, 0, 0, 0),
-	(412, 413, 500, 'Ngọc nguyên thủy cấp 1', 'Khảm vô mề đay, xuất hiện đánh đối thủ đăng xuất 1%', 49, 1, 0, 1, 1, 0, 0),
-	(413, 414, 500, 'Ngọc nguyên thủy cấp 2', 'Khảm vô mề đay, xuất hiện đánh đối thủ đăng xuất 3%', 49, 1, 0, 1, 1, 0, 0),
-	(414, 415, 500, 'Ngọc nguyên thủy cấp 3', 'Khảm vô mề đay, xuất hiện đánh đối thủ đăng xuất 5%', 49, 1, 0, 1, 1, 0, 1),
-	(415, 416, 500, 'Ngọc nguyên thủy cấp 4', 'Khảm vô mề đay, xuất hiện đánh đối thủ đăng xuất 7%', 49, 1, 0, 1, 1, 0, 0),
-	(416, 417, 500, 'Ngọc nguyên thủy cấp 5', 'Khảm vô mề đay, xuất hiện đánh đối thủ đăng xuất 9%', 49, 1, 0, 1, 1, 0, 0),
-	(417, 418, 40000000, 'Kim cương thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(418, 419, 40000000, 'Bạc tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(419, 420, 40000000, 'Thiên thạch sao thủy', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(420, 421, 40000000, 'Đá ảo giác', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(421, 422, 40000000, 'Ngọc trai thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(422, 423, 40000000, 'Thép tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(423, 424, 40000000, 'Thiên thạch sao kim', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(424, 425, 40000000, 'Đá thiên hà', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(425, 426, 40000000, 'Xà cừ thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(426, 427, 40000000, 'Thạch anh tím', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(427, 428, 40000000, 'Thiên thạch sao hỏa', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(428, 429, 40000000, 'Đá phù thủy', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(429, 430, 40000000, 'Thạch anh tím thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(430, 431, 40000000, 'Đồng tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(431, 432, 40000000, 'Thiên thạch sao mộc', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(432, 433, 40000000, 'Đá lời nguyền', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(433, 434, 40000000, 'Lam bảo thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(434, 435, 40000000, 'Lục bảo tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(435, 436, 40000000, 'Thiên thạch sao hải vương', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(436, 437, 40000000, 'Đá tiên tri', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(437, 438, 40000000, 'Lục bảo thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(438, 439, 40000000, 'Sắt tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(439, 440, 40000000, 'Thiên thạch sao thiên vương', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(440, 441, 40000000, 'Đá giả kim', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(441, 442, 40000000, 'Hoàng ngọc thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(442, 443, 40000000, 'Vàng tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(443, 444, 40000000, 'Thiên thạch sao diêm vương', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(444, 445, 40000000, 'Đá phục sinh', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(445, 446, 40000000, 'Ngọc bích thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(446, 447, 40000000, 'Ngọc xà cừ', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(447, 448, 40000000, 'Thiên thạch sao thổ', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(448, 449, 40000000, 'Đá pha lê', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(449, 450, 40000000, 'Nham thạch thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(450, 451, 40000000, 'Ngọc mắt mèo', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(451, 452, 40000000, 'Thiên thạch mặt trăng', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(452, 453, 40000000, 'Nước mắt thiên sứ', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(453, 454, 40000000, 'Cẩm thạch thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(454, 455, 40000000, 'Đá hồng ngọc', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(455, 456, 40000000, 'Mảnh hóa thạch', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(456, 457, 40000000, 'Đá trường sinh', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(457, 458, 40000000, 'Lửa cực quang', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(458, 459, 40000000, 'Lửa bóng tối', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(459, 460, 40000000, 'Lửa kỳ lân', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(460, 461, 40000000, 'Lửa trường sinh', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(461, 462, 40000000, 'Lửa rồng gai', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(462, 463, 40000000, 'Lửa địa ngục', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(463, 464, 40000000, 'Lửa ánh sao', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0, 0),
-	(464, 465, 5000000, 'Ngọc 1 sao', '', 70, 0, 0, 1, 0, 0, 0),
-	(465, 466, 5000000, 'Ngọc 2 sao', '', 70, 0, 0, 1, 0, 0, 0),
-	(466, 467, 5000000, 'Ngọc 3 sao', '', 70, 0, 0, 1, 0, 0, 0),
-	(467, 468, 5000000, 'Ngọc 4 sao', '', 70, 0, 0, 1, 0, 0, 0),
-	(468, 469, 5000000, 'Ngọc 5 sao', '', 70, 0, 0, 1, 0, 0, 0),
-	(469, 470, 5000000, 'Ngọc 6 sao', '', 70, 0, 0, 1, 0, 0, 0),
-	(470, 471, 5000000, 'Ngọc 7 sao', '', 70, 0, 0, 1, 0, 0, 0),
-	(471, 472, 40000, 'Đá hỏa tinh', 'Không tụt độ bền đồ tinh tú khi nâng cấp.\n- Tăng 5% thành công', 79, 1, 0, 1, 0, 0, 0),
-	(472, 473, 40000, 'Mảnh sách đỏ 1', 'Dùng ghép sách kĩ năng vật lý 110', 81, 1, 0, 1, 0, 0, 0),
-	(473, 474, 40000, 'Mảnh sách đỏ 2', 'Dùng ghép sách kĩ năng vật lý 110', 81, 1, 0, 1, 0, 0, 0),
-	(474, 475, 40000, 'Mảnh sách đỏ 3', 'Dùng ghép sách kĩ năng vật lý 110', 81, 1, 0, 1, 0, 0, 0),
-	(475, 476, 40000, 'Mảnh sách đỏ 4', 'Dùng ghép sách kĩ năng vật lý 110', 81, 1, 0, 1, 0, 0, 0),
-	(476, 477, 40000, 'Mảnh sách xanh 1', 'Dùng ghép sách kĩ năng phép 110', 81, 1, 0, 1, 0, 0, 0),
-	(477, 478, 40000, 'Mảnh sách xanh 2', 'Dùng ghép sách kĩ năng phép 110', 81, 1, 0, 1, 0, 0, 0),
-	(478, 479, 40000, 'Mảnh sách xanh 3', 'Dùng ghép sách kĩ năng phép 110', 81, 1, 0, 1, 0, 0, 0),
-	(479, 480, 40000, 'Mảnh sách xanh 4', 'Dùng ghép sách kĩ năng phép 110', 81, 1, 0, 1, 0, 0, 0),
-	(480, 481, 40000, 'Thẻ hợp thể pet', 'Dùng để hợp thể pet', 82, 1, 0, 1, 0, 0, 0),
-	(481, 482, 40000, 'Hồ quang bạc', 'Nguyên liệu chế tạo giáp siêu nhân bạc', 83, 1, 0, 1, 0, 0, 0),
-	(482, 483, 40000, 'Hồ quang tím', 'Nguyên liệu chế tạo giáp siêu nhân tím', 83, 1, 0, 1, 0, 0, 0),
-	(483, 484, 40000, 'Hồ quang xanh', 'Nguyên liệu chế tạo giáp siêu nhân xanh', 83, 1, 0, 1, 0, 0, 0),
-	(484, 485, 40000, 'Hồ quang vàng', 'Nguyên liệu chế tạo giáp siêu nhân vàng', 83, 1, 0, 1, 0, 0, 0),
-	(485, 490, 40000, 'Hồ quang bạc cấp 2', 'Nguyên liệu nâng cấp giáp siêu nhân bạc cấp 5-7', 83, 1, 0, 1, 0, 0, 0),
-	(486, 488, 40000, 'Hồ quang tím cấp 2', 'Nguyên liệu nâng cấp giáp siêu nhân tím cấp 5-7', 83, 1, 0, 1, 0, 0, 0),
-	(487, 489, 40000, 'Hồ quang xanh cấp 2', 'Nguyên liệu nâng cấp giáp siêu nhân xanh cấp 5-7', 83, 1, 0, 1, 0, 0, 0),
-	(488, 487, 40000, 'Hồ quang vàng cấp 2', 'Nguyên liệu nâng cấp giáp siêu nhân vàng cấp 5-7', 83, 1, 0, 1, 0, 0, 0),
-	(489, 494, 40000, 'Hồ quang bạc cấp 3', 'Nguyên liệu nâng cấp giáp siêu nhân bạc cấp 8-10', 83, 1, 0, 1, 0, 0, 1),
-	(490, 492, 40000, 'Hồ quang tím cấp 3', 'Nguyên liệu nâng cấp giáp siêu nhân tím cấp 8-10', 83, 1, 0, 1, 0, 0, 1),
-	(491, 493, 40000, 'Hồ quang xanh cấp 3', 'Nguyên liệu nâng cấp giáp siêu nhân xanh cấp 8-10', 83, 1, 0, 1, 0, 0, 1),
-	(492, 491, 40000, 'Hồ quang vàng cấp 3', 'Nguyên liệu nâng cấp giáp siêu nhân vàng cấp 8-10', 83, 1, 0, 1, 0, 0, 1),
-	(493, 486, 40000, 'Đá hỏa tinh cấp 2', 'Không tụt độ bền đồ tinh tú khi nâng cấp.- Tăng 10% thành công', 79, 1, 0, 1, 0, 0, 0),
-	(494, 481, 40000, 'Đồng money', 'Dùng để đổi money', 82, 1, 0, 1, 0, 0, 0);
+INSERT INTO `item7` (`id`, `imgid`, `price`, `name`, `content`, `type`, `pricetype`, `sell`, `value`, `trade`, `setcolorname`) VALUES
+	(0, 0, 5, 'Đá cường hóa', 'Nguyên liệu cường hóa', 12, 1, 0, 0, 0, 0),
+	(1, 1, 1000, 'Sắt vụn', 'Nguyên liệu cường hóa', 8, 0, 1, 0, 0, 0),
+	(2, 2, 2000, 'Thỏi Titan', 'Nguyên liệu cường hóa', 9, 0, 0, 0, 0, 0),
+	(3, 3, 4000, 'Kim loại vũ trụ', 'Nguyên liệu cường hóa', 10, 0, 0, 0, 0, 0),
+	(4, 4, 4, 'Đá may mắn', 'Tăng 30% tỷ lệ may mắn, 30% bảo hiểm không rớt cấp', 11, 1, 1, 30, 1, 0),
+	(5, 5, 5, 'Gói x10 Sắt vụn', 'Nguyên liệu cường hóa', 8, 1, 1, 10, 1, 0),
+	(6, 6, 10, 'Gói x10 Thỏi Titan', 'Nguyên liệu cường hóa', 9, 1, 1, 10, 1, 0),
+	(7, 7, 20, 'Gói x10 Kim loại vũ trụ', 'Nguyên liệu cường hóa', 10, 1, 1, 10, 1, 0),
+	(8, 8, 1, 'Lông xanh', 'Nguyên liệu chế tạo cánh', 22, 1, 0, 0, 0, 0),
+	(9, 9, 1, 'Lông đỏ', 'Nguyên liệu chế tạo cánh', 21, 1, 0, 0, 0, 0),
+	(10, 10, 1, 'Lông vàng', 'Nguyên liệu chế tạo cánh', 20, 1, 0, 0, 0, 0),
+	(11, 11, 1, 'Khúc xương', 'Nguyên liệu chế tạo cánh', 23, 1, 0, 0, 0, 0),
+	(12, 15, 6, 'Cỏ ba lá', 'Tăng 30% tỷ lệ may mắn, 30% bảo hiểm không rớt cấp, tụt 2 cấp khi cường hoá thất bại', 11, 1, 0, 30, 1, 0),
+	(13, 14, 20, 'Cỏ bốn lá', 'Tăng 30% tỷ lệ may mắn, 30% bảo hiểm không rớt cấp, tụt 1 cấp khi cường hoá thất bại', 11, 1, 0, 30, 1, 0),
+	(14, 13, 250, 'Đá ba màu', 'Tăng 30% tỷ lệ may mắn, thêm 5% tỷ lệ cường hoá thành công, 100% không rớt cấp khi cường hoá thất bại', 11, 1, 0, 30, 1, 0),
+	(15, 16, 1, 'Mảnh TiTan lv1', 'Mảnh titan cấp 1 dùng hợp thành mảnh titan cấp 2', 31, 1, 0, 1, 1, 0),
+	(16, 17, 1, 'Mảnh TiTan lv2', 'Mảnh titan cấp 2 dùng hợp thành mảnh titan cấp 3', 32, 1, 1, 1, 1, 0),
+	(17, 18, 1, 'Mảnh TiTan lv3', 'Mảnh titan cấp 3 dùng hợp thành mảnh titan cấp 4', 33, 1, 0, 1, 1, 0),
+	(18, 19, 1, 'Mảnh TiTan lv4', 'Mảnh titan cấp 4 dùng hợp thành mảnh titan cấp 5', 34, 1, 0, 1, 1, 0),
+	(19, 20, 1, 'Mảnh kim loại vũ trụ lv1', 'Mảnh kim loại vũ trụ lv1 dùng hợp thành mảnh kim loại vũ trụ lv2', 35, 1, 0, 1, 1, 0),
+	(20, 20, 1, 'Mảnh kim loại vũ trụ lv2', 'Mảnh kim loại vũ trụ lv2 dùng hợp thành mảnh kim loại vũ trụ lv3', 36, 1, 0, 1, 1, 0),
+	(21, 20, 1, 'Mảnh kim loại vũ trụ lv3', 'Mảnh kim loại vũ trụ lv3 dùng hợp thành mảnh kim loại vũ trụ lv4', 37, 1, 0, 1, 1, 0),
+	(22, 20, 1, 'Mảnh kim loại vũ trụ lv4', 'Mảnh kim loại vũ trụ lv4 dùng hợp thành kim loại vũ trụ', 38, 1, 0, 1, 1, 0),
+	(23, 24, 1, 'Ngọc ánh sáng lv 1', 'Dùng để khảm vào vũ khí. Tăng 100 sát thương ánh sáng', 49, 1, 0, 1, 1, 0),
+	(24, 25, 1, 'Ngọc ánh sáng lv 2', 'Dùng để khảm vào vũ khí. Tăng 200 sát thương ánh sáng', 49, 1, 0, 1, 1, 0),
+	(25, 26, 1, 'Ngọc ánh sáng lv 3', 'Dùng để khảm vào vũ khí. Tăng 400 sát thương ánh sáng', 49, 1, 0, 1, 1, 0),
+	(26, 27, 1, 'Ngọc ánh sáng lv 4', 'Dùng để khảm vào vũ khí. Tăng 800 sát thương ánh sáng', 49, 1, 0, 1, 0, 0),
+	(27, 28, 1, 'Ngọc ánh sáng lv 5', 'Dùng để khảm vào vũ khí. Tăng 1600 sát thương ánh sáng', 49, 1, 0, 1, 0, 0),
+	(28, 29, 1, 'Ngọc bóng tối lv 1', 'Dùng khảm vào vũ khí. Tăng 100 sát thương bóng tối', 49, 1, 0, 1, 1, 0),
+	(29, 30, 1, 'Ngọc bóng tối lv 2', 'Dùng khảm vào vũ khí. Tăng 200 sát thương bóng tối', 49, 1, 0, 1, 1, 0),
+	(30, 31, 1, 'Ngọc bóng tối lv 3', 'Dùng khảm vào vũ khí. Tăng 400 sát thương bóng tối', 49, 1, 0, 1, 1, 0),
+	(31, 32, 1, 'Ngọc bóng tối lv 4', 'Dùng khảm vào vũ khí. Tăng 800 sát thương bóng tối', 49, 1, 0, 1, 0, 0),
+	(32, 33, 1, 'Ngọc bóng tối lv 5', 'Dùng khảm vào vũ khí. Tăng 1600 sát thương bóng tối', 49, 1, 0, 1, 0, 0),
+	(33, 34, 7000000, 'Đục huyền bí cấp 1', 'Dùng đục lỗ cho vũ khí và giáp', 50, 0, 1, 1, 1, 0),
+	(34, 35, 1, 'Ngọc hộ mệnh bóng tối lv 1', 'Dùng để khảm vào giáp. Kháng 50 sát thương bóng tối', 49, 1, 0, 1, 0, 0),
+	(35, 36, 1, 'Ngọc hộ mệnh bóng tối lv 2', 'Dùng để khảm vào giáp. Kháng 100 sát thương bóng tối', 49, 1, 0, 1, 0, 0),
+	(36, 37, 1, 'Ngọc hộ mệnh bóng tối lv 3', 'Dùng để khảm vào giáp. Kháng 200 sát thương bóng tối', 49, 1, 0, 1, 0, 0),
+	(37, 38, 1, 'Ngọc hộ mệnh bóng tối lv 4', 'Dùng để khảm vào giáp. Kháng 400 sát thương bóng tối', 49, 1, 0, 1, 0, 0),
+	(38, 39, 1, 'Ngọc hộ mệnh bóng tối lv 5', 'Dùng để khảm vào giáp. Kháng 800 sát thương bóng tối', 49, 1, 0, 1, 0, 0),
+	(39, 40, 1, 'Ngọc hộ mệnh ánh sáng lv 1', 'Dùng để khảm vào giáp. Kháng 50 sát thương ánh sáng', 49, 1, 0, 1, 0, 0),
+	(40, 41, 1, 'Ngọc hộ mệnh ánh sáng lv 2', 'Dùng để khảm vào giáp. Kháng 100 sát thương ánh sáng', 49, 1, 0, 1, 0, 0),
+	(41, 42, 1, 'Ngọc hộ mệnh ánh sáng lv 3', 'Dùng để khảm vào giáp. Kháng 200 sát thương ánh sáng', 49, 1, 0, 1, 0, 0),
+	(42, 43, 1, 'Ngọc hộ mệnh ánh sáng lv 4', 'Dùng để khảm vào giáp. Kháng 400 sát thương ánh sáng', 49, 1, 0, 1, 0, 0),
+	(43, 44, 1, 'Ngọc hộ mệnh ánh sáng lv 5', 'Dùng để khảm vào giáp. Kháng 800 sát thương ánh sáng', 49, 1, 0, 1, 0, 0),
+	(44, 45, 15000000, 'Đục huyền bí cấp 2', 'Dùng đục lỗ cho vũ khí và giáp. Tăng thêm tỷ lệ thành công', 50, 0, 0, 1, 0, 0),
+	(45, 46, 35000000, 'Đục huyền bí cấp 3', 'Dùng đục lỗ cho vũ khí và giáp. Tăng thêm tỷ lệ thành công', 50, 0, 0, 1, 0, 0),
+	(46, 47, 1000000, 'Lông chim', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(47, 48, 1000000, 'Mắt cáo', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(48, 49, 1000000, 'Rong biển', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(49, 50, 1000000, 'Thảo dược', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(50, 51, 1000000, 'Huyết phong lan', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(51, 52, 1000000, 'Lá lan rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(52, 53, 1000000, 'Huyết quả ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(53, 54, 1000000, 'Hoa lan rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(54, 55, 1000000, 'Búp sen', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(55, 56, 1000000, 'Vỏ trai hồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(56, 57, 1000000, 'San hô', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(57, 58, 1000000, 'Nanh báo', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(58, 59, 1000000, 'Sừng tê giác trắng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(59, 60, 1000000, 'Mỏ phượng hoàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(60, 61, 1000000, 'Sừng tê giác vàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(61, 62, 1000000, 'Hắc mộc', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(62, 63, 1000000, 'Khối lục giác', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(63, 64, 1000000, 'Viên thủy tinh', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(64, 65, 1000000, 'Đầu lâu', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(65, 66, 1000000, 'Hắc mộc nhỏ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(66, 67, 1000000, 'Đuôi kỳ đà', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(67, 68, 1000000, 'Nấm đỏ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(68, 69, 1000000, 'Vỏ ốc', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(69, 70, 1000000, 'Huy chương', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(70, 71, 1000000, 'Sọ pha lê', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(71, 72, 1000000, 'Dây leo', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(72, 73, 1000000, 'Sâm rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(73, 74, 1000000, 'Mắt quỷ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(74, 75, 1000000, 'Tổ ong', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(75, 76, 1000000, 'Cành xương rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(76, 77, 1000000, 'Rễ cây', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(77, 78, 1000000, 'Nanh sói', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(78, 79, 1000000, 'Vải vụn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(79, 80, 1000000, 'Dây lưng hiệp sĩ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(80, 81, 1000000, 'Mảnh xương', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(81, 82, 1000000, 'Vỏ sò', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(82, 83, 1000000, 'Đá sao nhỏ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(83, 84, 1000000, 'Đá sao lớn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(84, 85, 1000000, 'Hổ phách', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(85, 86, 1000000, 'Lông đại bàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(86, 87, 1000000, 'Viên sỏi', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(87, 88, 1000000, 'Vỏ ốc biển', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(88, 89, 1000000, 'Mặt dây chuyền quỷ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(89, 90, 1000000, 'Bẫy thú', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(90, 91, 1000000, 'Trứng phượng hoàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(91, 92, 1000000, 'Dây chuyền quỷ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(92, 93, 1000000, 'Ngà voi rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(93, 94, 1000000, 'Móng vuốt', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(94, 95, 1000000, 'Lông vũ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(95, 96, 1000000, 'Đá ma thuật', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(96, 97, 1000000, 'Lông cừu', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(97, 98, 1000000, 'Móng vuốt sói', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(98, 99, 1000000, 'Móng vuốt rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(99, 100, 1000000, 'Con mắt ma thuật', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(100, 101, 1000000, 'Đuôi cáo', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(101, 102, 1000000, 'Vương miện vàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(102, 103, 1000000, 'Nanh lợn rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(103, 104, 1000000, 'Bia đá ma thuật', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(104, 105, 1000000, 'Xương dê', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(105, 106, 1000000, 'Xương chó sói', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(106, 107, 1000000, 'Gỗ trầm hương', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(107, 108, 1000000, 'Chân ếch', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(108, 109, 1000000, 'Cựa gà rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(109, 110, 1000000, 'Tơ nhện', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(110, 111, 1000000, 'Mai rùa xanh', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(111, 112, 1000000, 'Mỏ quạ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(112, 113, 1000000, 'Chuông ma thuật', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(113, 114, 1000000, 'Tai thỏ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(114, 115, 1000000, 'Viên pha lê', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(115, 116, 1000000, 'Gương ma thuật', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 20),
+	(116, 117, 2000000, 'Vuốt sói', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21),
+	(117, 118, 2000000, 'Mặt nạ hiệp sĩ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21),
+	(118, 119, 2000000, 'Vỏ cây', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21),
+	(119, 120, 2000000, 'Đuôi thằn lằn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21),
+	(120, 121, 2000000, 'Lông thỏ trắng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21),
+	(121, 122, 2000000, 'Cánh dơi', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21),
+	(122, 123, 2000000, 'Xương rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21),
+	(123, 124, 2000000, 'Chân gấu', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21),
+	(124, 125, 2000000, 'Tay gấu', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21),
+	(125, 126, 2000000, 'Vẩy rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 21),
+	(126, 127, 5000000, 'Mặt nạ quỷ', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22),
+	(127, 128, 5000000, 'Da rắn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22),
+	(128, 129, 5000000, 'Mỏ đại bàng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22),
+	(129, 130, 5000000, 'Đuôi rắn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22),
+	(130, 131, 5000000, 'Đá nham thạch', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22),
+	(131, 132, 5000000, 'Bọ pha lê', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22),
+	(132, 133, 5000000, 'Hắc san hô', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22),
+	(133, 134, 5000000, 'Chân rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22),
+	(134, 135, 5000000, 'Cánh chim', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22),
+	(135, 136, 5000000, 'Chân kì đà', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 22),
+	(136, 137, 8000000, 'Cánh rồng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23),
+	(137, 138, 8000000, 'Đuôi cá chép', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23),
+	(138, 139, 8000000, 'Vây cá mập', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23),
+	(139, 140, 8000000, 'Vỏ sò xanh', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23),
+	(140, 141, 8000000, 'Vây cá voi', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23),
+	(141, 142, 8000000, 'Đuôi bọ cạp', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23),
+	(142, 143, 8000000, 'Đuôi trăn gấm', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23),
+	(143, 144, 8000000, 'Mắt chim ưng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23),
+	(144, 145, 8000000, 'Nanh rắn', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23),
+	(145, 146, 8000000, 'Bí ngô rừng', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 23),
+	(146, 147, 5000000, 'Lông chim cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(147, 148, 5000000, 'Mắt cáo cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(148, 149, 5000000, 'Rong biển cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(149, 150, 5000000, 'Thảo dược cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(150, 151, 5000000, 'Huyết phong lan cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(151, 152, 5000000, 'Lá lan rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(152, 153, 5000000, 'Huyết quả  cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(153, 154, 5000000, 'Hoa lan rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(154, 155, 5000000, 'Búp sen cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(155, 156, 5000000, 'Vỏ trai hồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(156, 157, 5000000, 'San hô cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(157, 158, 5000000, 'Nanh báo cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(158, 159, 5000000, 'Sừng tê giác trắng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(159, 160, 5000000, 'Mỏ phượng hoàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(160, 161, 5000000, 'Sừng tê giác vàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(161, 162, 5000000, 'Hắc mộc cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(162, 163, 5000000, 'Khối lục giác cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(163, 164, 5000000, 'Viên thủy tinh cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(164, 165, 5000000, 'Đầu lâu cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(165, 166, 5000000, 'Hắc mộc nhỏ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(166, 167, 5000000, 'Đuôi kỳ đà cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(167, 168, 5000000, 'Nấm đỏ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(168, 169, 5000000, 'Vỏ ốc cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(169, 170, 5000000, 'Huy chương cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(170, 171, 5000000, 'Sọ pha lê cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(171, 172, 5000000, 'Dây leo cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(172, 173, 5000000, 'Sâm rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(173, 174, 5000000, 'Mắt quỷ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(174, 175, 5000000, 'Tổ ong cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(175, 176, 5000000, 'Cành xương rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(176, 177, 5000000, 'Rễ cây cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(177, 178, 5000000, 'Nanh sói cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(178, 179, 5000000, 'Vải vụn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(179, 180, 5000000, 'Dây lưng hiệp sĩ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(180, 181, 5000000, 'Mảnh xương cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(181, 182, 5000000, 'Vỏ sò cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(182, 183, 5000000, 'Đá sao nhỏ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(183, 184, 5000000, 'Đá sao lớn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(184, 185, 5000000, 'Hổ phách cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(185, 186, 5000000, 'Lông đại bàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(186, 187, 5000000, 'Viên sỏi cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(187, 188, 5000000, 'Vỏ ốc biển cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(188, 189, 5000000, 'Mặt dây chuyền quỷ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(189, 190, 5000000, 'Bẫy thú cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(190, 191, 5000000, 'Trứng phượng hoàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(191, 192, 5000000, 'Dây chuyền quỷ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(192, 193, 5000000, 'Ngà voi rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(193, 194, 5000000, 'Móng vuốt cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(194, 195, 5000000, 'Lông vũ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(195, 196, 5000000, 'Đá ma thuật cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(196, 197, 5000000, 'Lông cừu cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(197, 198, 5000000, 'Móng vuốt sói cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(198, 199, 5000000, 'Móng vuốt rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(199, 200, 5000000, 'Con mắt ma thuật cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(200, 201, 5000000, 'Đuôi cáo cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(201, 202, 5000000, 'Vương miện vàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(202, 203, 5000000, 'Nanh lợn rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(203, 204, 5000000, 'Bia đá ma thuật cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(204, 205, 5000000, 'Xương dê cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(205, 206, 5000000, 'Xương chó sói cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(206, 207, 5000000, 'Gỗ trầm hương cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(207, 208, 5000000, 'Chân ếch cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(208, 209, 5000000, 'Cựa gà rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(209, 210, 5000000, 'Tơ nhện cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(210, 211, 5000000, 'Mai rùa xanh cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(211, 212, 5000000, 'Mỏ quạ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(212, 213, 5000000, 'Chuông ma thuật cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(213, 214, 5000000, 'Tai thỏ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(214, 215, 5000000, 'Viên pha lê cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(215, 216, 5000000, 'Gương ma thuật cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 30),
+	(216, 217, 5000000, 'Vuốt sói cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31),
+	(217, 218, 5000000, 'Mặt nạ hiệp sĩ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31),
+	(218, 219, 5000000, 'Vỏ cây cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31),
+	(219, 220, 5000000, 'Đuôi thằn lằn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31),
+	(220, 221, 5000000, 'Lông thỏ trắng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31),
+	(221, 222, 5000000, 'Cánh dơi cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31),
+	(222, 223, 5000000, 'Xương rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31),
+	(223, 224, 5000000, 'Chân gấu cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31),
+	(224, 225, 5000000, 'Tay gấu cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31),
+	(225, 226, 5000000, 'Vẩy rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 31),
+	(226, 227, 5000000, 'Mặt nạ quỷ cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32),
+	(227, 228, 5000000, 'Da rắn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32),
+	(228, 229, 5000000, 'Mỏ đại bàng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32),
+	(229, 230, 5000000, 'Đuôi rắn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32),
+	(230, 231, 5000000, 'Đá nham thạch cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32),
+	(231, 232, 5000000, 'Bọ pha lê cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32),
+	(232, 233, 5000000, 'Hắc san hô cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32),
+	(233, 234, 5000000, 'Chân rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32),
+	(234, 235, 5000000, 'Cánh chim cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32),
+	(235, 236, 5000000, 'Chân kì đà cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 32),
+	(236, 237, 5000000, 'Cánh rồng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33),
+	(237, 238, 5000000, 'Đuôi cá chép cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33),
+	(238, 239, 5000000, 'Vây cá mập cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33),
+	(239, 240, 5000000, 'Vỏ sò xanh cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33),
+	(240, 241, 5000000, 'Vây cá voi cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33),
+	(241, 242, 5000000, 'Đuôi bọ cạp cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33),
+	(242, 243, 5000000, 'Đuôi trăn gấm cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33),
+	(243, 244, 5000000, 'Mắt chim ưng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33),
+	(244, 245, 5000000, 'Nanh rắn cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33),
+	(245, 246, 5000000, 'Bí ngô rừng cấp 2', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 33),
+	(246, 247, 5000000, 'Lông chim cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(247, 248, 5000000, 'Mắt cáo cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(248, 249, 5000000, 'Rong biển cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(249, 250, 5000000, 'Thảo dược cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(250, 251, 5000000, 'Huyết phong lan cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(251, 252, 5000000, 'Lá lan rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(252, 253, 5000000, 'Huyết quả cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(253, 254, 5000000, 'Hoa lan rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(254, 255, 5000000, 'Búp sen cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(255, 256, 5000000, 'Vỏ trai hồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(256, 257, 5000000, 'San hô cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(257, 258, 5000000, 'Nanh báo cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(258, 259, 5000000, 'Sừng tê giác trắng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(259, 260, 5000000, 'Mỏ phượng hoàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(260, 261, 5000000, 'Sừng tê giác vàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(261, 262, 5000000, 'Hắc mộc cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(262, 263, 5000000, 'Khối lục giác cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(263, 264, 5000000, 'Viên thủy tinh cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(264, 265, 5000000, 'Đầu lâu cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(265, 266, 5000000, 'Hắc mộc nhỏ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(266, 267, 5000000, 'Đuôi kỳ đà cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(267, 268, 5000000, 'Nấm đỏ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(268, 269, 5000000, 'Vỏ ốc cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(269, 270, 5000000, 'Huy chương cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(270, 271, 5000000, 'Sọ pha lê cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(271, 272, 5000000, 'Dây leo cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(272, 273, 5000000, 'Sâm rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(273, 274, 5000000, 'Mắt quỷ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(274, 275, 5000000, 'Tổ ong cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(275, 276, 5000000, 'Cành xương rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(276, 277, 5000000, 'Rễ cây cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(277, 278, 5000000, 'Nanh sói cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(278, 279, 5000000, 'Vải vụn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(279, 280, 5000000, 'Dây lưng hiệp sĩ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(280, 281, 5000000, 'Mảnh xương cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(281, 282, 5000000, 'Vỏ sò cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(282, 283, 5000000, 'Đá sao nhỏ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(283, 284, 5000000, 'Đá sao lớn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(284, 285, 5000000, 'Hổ phách cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(285, 286, 5000000, 'Lông đại bàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(286, 287, 5000000, 'Viên sỏi cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(287, 288, 5000000, 'Vỏ ốc biển cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(288, 289, 5000000, 'Mặt dây chuyền quỷ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(289, 290, 5000000, 'Bẫy thú cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(290, 291, 5000000, 'Trứng phượng hoàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(291, 292, 5000000, 'Dây chuyền quỷ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(292, 293, 5000000, 'Ngà voi rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(293, 294, 5000000, 'Móng vuốt cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(294, 295, 5000000, 'Lông vũ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(295, 296, 5000000, 'Đá ma thuật cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(296, 297, 5000000, 'Lông cừu cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(297, 298, 5000000, 'Móng vuốt sói cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(298, 299, 5000000, 'Móng vuốt rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(299, 300, 5000000, 'Con mắt ma thuật cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(300, 301, 5000000, 'Đuôi cáo cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(301, 302, 5000000, 'Vương miện vàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(302, 303, 5000000, 'Nanh lợn rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(303, 304, 5000000, 'Bia đá ma thuật cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(304, 305, 5000000, 'Xương dê cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(305, 306, 5000000, 'Xương chó sói cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(306, 307, 5000000, 'Gỗ trầm hương cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(307, 308, 5000000, 'Chân ếch cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(308, 309, 5000000, 'Cựa gà rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(309, 310, 5000000, 'Tơ nhện cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(310, 311, 5000000, 'Mai rùa xanh cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(311, 312, 5000000, 'Mỏ quạ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(312, 313, 5000000, 'Chuông ma thuật cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(313, 314, 5000000, 'Tai thỏ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(314, 315, 5000000, 'Viên pha lê cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(315, 316, 5000000, 'Gương ma thuật cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 40),
+	(316, 317, 5000000, 'Vuốt sói cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 41),
+	(317, 318, 5000000, 'Mặt nạ hiệp sĩ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 41),
+	(318, 319, 5000000, 'Vỏ cây cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 41),
+	(319, 320, 5000000, 'Đuôi thằn lằn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 41),
+	(320, 321, 5000000, 'Lông thỏ trắng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 41),
+	(321, 322, 5000000, 'Cánh dơi cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 41),
+	(322, 323, 5000000, 'Xương rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 41),
+	(323, 324, 5000000, 'Chân gấu cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 41),
+	(324, 325, 5000000, 'Tay gấu cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 41),
+	(325, 326, 5000000, 'Vẩy rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 41),
+	(326, 327, 5000000, 'Mặt nạ quỷ cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 42),
+	(327, 328, 5000000, 'Da rắn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 42),
+	(328, 329, 5000000, 'Mỏ đại bàng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 42),
+	(329, 330, 5000000, 'Đuôi rắn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 42),
+	(330, 331, 5000000, 'Đá nham thạch cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 42),
+	(331, 332, 5000000, 'Bọ pha lê cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 42),
+	(332, 333, 5000000, 'Hắc san hô cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 42),
+	(333, 334, 5000000, 'Chân rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 42),
+	(334, 335, 5000000, 'Cánh chim cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 42),
+	(335, 336, 5000000, 'Chân kì đà cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 42),
+	(336, 337, 5000000, 'Cánh rồng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 43),
+	(337, 338, 5000000, 'Đuôi cá chép cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 43),
+	(338, 339, 5000000, 'Vây cá mập cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 43),
+	(339, 340, 5000000, 'Vỏ sò xanh cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 43),
+	(340, 341, 5000000, 'Vây cá voi cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 43),
+	(341, 342, 5000000, 'Đuôi bọ cạp cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 43),
+	(342, 343, 5000000, 'Đuôi trăn gấm cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 43),
+	(343, 344, 5000000, 'Mắt chim ưng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 43),
+	(344, 345, 5000000, 'Nanh rắn cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 43),
+	(345, 346, 5000000, 'Bí ngô rừng cấp 3', 'Nguyên liệu dùng chế tạo mề đay', 54, 0, 0, 1, 0, 43),
+	(346, 347, 150, 'Đá thạch anh cấp 1', 'Dùng chuyển hóa trang bị có chỉ số cường hóa <=10. Không tụt chỉ số, chuyển hóa chính xác 100% chỉ số. Tỉ lệ thành công 100%', 56, 1, 1, 1, 1, 0),
+	(347, 348, 350, 'Đá thạch anh cấp 2', 'Dùng chuyển hóa trang bị có chỉ số cường hóa >10 và <13. Không tụt chỉ số, chuyển hóa chính xác 100% chỉ số. Tỉ lệ thành công 100%', 56, 1, 1, 1, 1, 0),
+	(348, 349, 500, 'Đá thạch anh cấp 3', 'Dùng chuyển hóa trang bị có chỉ số cường hóa >=13. Không tụt chỉ số, chuyển hóa chính xác 100% chỉ số. Tỉ lệ thành công 100%', 56, 1, 1, 1, 1, 0),
+	(349, 350, 150, 'Đá krypton cấp 1', 'Tăng thêm 5% tỉ lệ thành công khi nâng cấp mề đay.', 57, 1, 0, 1, 0, 0),
+	(350, 351, 350, 'Đá krypton cấp 2', 'Tăng thêm 10% tỉ lệ thành công khi nâng cấp mề đay.', 57, 1, 0, 1, 0, 0),
+	(351, 352, 500, 'Đá krypton cấp 3', 'Tăng thêm 30% tỉ lệ thành công khi nâng cấp mề đay.', 57, 1, 0, 1, 0, 0),
+	(352, 353, 500, 'Ngọc hỗn nguyên cấp 1 ', 'Khảm vô vũ khí, khi đánh trúng 25 hit lên [người khác, boss] sẽ được x2 sát thương, giảm 50% Hp, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0),
+	(353, 354, 500, 'Ngọc hỗn nguyên cấp 2 ', 'Khảm vô vũ khí, khi đánh trúng 20 hit lên [người khác, boss] sẽ được x2 sát thương, giảm 50% Hp, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0),
+	(354, 355, 500, 'Ngọc hỗn nguyên cấp 3 ', 'Khảm vô vũ khí, khi đánh trúng 15 hit lên [người khác, boss] sẽ được x2 sát thương, giảm 50% Hp, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0),
+	(355, 356, 500, 'Ngọc hỗn nguyên cấp 4 ', 'Khảm vô vũ khí, khi đánh trúng 10 hit lên [người khác, boss] sẽ được x2 sát thương, giảm 50% Hp, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0),
+	(356, 357, 500, 'Ngọc hỗn nguyên cấp 5 ', 'Khảm vô vũ khí, khi đánh trúng 5 hit lên [người khác, boss] sẽ được x2 sát thương, giảm 50% Hp, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0),
+	(357, 358, 500, 'Ngọc khải hoàn cấp 1', 'Khảm vô vũ khí. Khi bị đánh trúng 25 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, bị giảm tỷ lệ né tránh, chí mạng, phảm đam, xuyên giáp đi 20%, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0),
+	(358, 359, 500, 'Ngọc khải hoàn cấp 2', 'Khảm vô vũ khí. Khi bị đánh trúng 20 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, bị giảm tỷ lệ né tránh, chí mạng, phảm đam, xuyên giáp đi 20%, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0),
+	(359, 360, 500, 'Ngọc khải hoàn cấp 3', 'Khảm vô vũ khí. Khi bị đánh trúng 15 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, bị giảm tỷ lệ né tránh, chí mạng, phảm đam, xuyên giáp đi 20%, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0),
+	(360, 361, 500, 'Ngọc khải hoàn cấp 4', 'Khảm vô vũ khí. Khi bị đánh trúng 10 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, bị giảm tỷ lệ né tránh, chí mạng, phảm đam, xuyên giáp đi 20%, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0),
+	(361, 362, 500, 'Ngọc khải hoàn cấp 5', 'Khảm vô vũ khí. Khi bị đánh trúng 5 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật,  bị giảm tỷ lệ né tránh, chí mạng, phảm đam, xuyên giáp đi 20%, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0),
+	(362, 363, 500, 'Ngọc lục bảo cấp 1', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, không hồi hp trong thời gian này, tồn tại trong 3 giây, tỷ lệ xuất hiện: 0.5%', 49, 1, 0, 1, 0, 0),
+	(363, 364, 500, 'Ngọc lục bảo cấp 2', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, không hồi hp trong thời gian này, tồn tại trong 3 giây, tỷ lệ xuất hiện: 1.0%', 49, 1, 0, 1, 0, 0),
+	(364, 365, 500, 'Ngọc lục bảo cấp 3', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, không hồi hp trong thời gian này, tồn tại trong 3 giây, tỷ lệ xuất hiện: 1.5%', 49, 1, 0, 1, 0, 0),
+	(365, 366, 500, 'Ngọc lục bảo cấp 4', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, không hồi hp trong thời gian này, tồn tại trong 3 giây, tỷ lệ xuất hiện: 2.5%', 49, 1, 0, 1, 0, 0),
+	(366, 367, 500, 'Ngọc lục bảo cấp 5', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, không hồi hp trong thời gian này, tồn tại trong 3 giây, tỷ lệ xuất hiện: 3.5%', 49, 1, 0, 1, 0, 0),
+	(367, 368, 500, 'Ngọc phong ma cấp 1', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 20% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 1% hp sau mỗi nhát đánh, tồn tại trong 3 giây, tỉ lệ 0.5%', 49, 1, 0, 1, 0, 0),
+	(368, 369, 500, 'Ngọc phong ma cấp 2', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 30% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 2% hp sau mỗi nhát đánh, tồn tại trong 3 giây, tỉ lệ 1.0%', 49, 1, 0, 1, 0, 0),
+	(369, 370, 500, 'Ngọc phong ma cấp 3', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 40% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 5% hp sau mỗi nhát đánh, tồn tại trong 3 giây, tỉ lệ 1.5%', 49, 1, 0, 1, 0, 0),
+	(370, 371, 500, 'Ngọc phong ma cấp 4', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 50% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 7% hp sau mỗi nhát đánh, tồn tại trong 3 giây, tỉ lệ 2.5%', 49, 1, 0, 1, 0, 0),
+	(371, 372, 500, 'Ngọc phong ma cấp 5', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 70% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 10% hp sau mỗi nhát đánh, tồn tại trong 3 giây, tỉ lệ 3.5%', 49, 1, 0, 1, 0, 0),
+	(372, 373, 500, 'Ngọc sinh mệnh cấp 1', 'Khảm vô nhẫn, dây chuyền. Giảm 20% sát thương khi đánh quái, tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 2.0%', 49, 1, 0, 1, 0, 0),
+	(373, 374, 500, 'Ngọc sinh mệnh cấp 2', 'Khảm vô nhẫn, dây chuyền. Giảm 20% sát thương khi đánh quái, tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 2.5%', 49, 1, 0, 1, 0, 0),
+	(374, 375, 500, 'Ngọc sinh mệnh cấp 3', 'Khảm vô nhẫn, dây chuyền. Giảm 20% sát thương khi đánh quái, tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 3.0%', 49, 1, 0, 1, 0, 0),
+	(375, 376, 500, 'Ngọc sinh mệnh cấp 4', 'Khảm vô nhẫn, dây chuyền. Giảm 20% sát thương khi đánh quái, tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 3.5%', 49, 1, 0, 1, 0, 0),
+	(376, 377, 500, 'Ngọc sinh mệnh cấp 5', 'Khảm vô nhẫn, dây chuyền. Giảm 20% sát thương khi đánh quái, tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 4.5%', 49, 1, 0, 1, 0, 0),
+	(377, 378, 500, 'Ngọc tâm linh cấp 1 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 3.0%', 49, 1, 0, 1, 0, 0),
+	(378, 379, 500, 'Ngọc tâm linh cấp 2 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 5.0%', 49, 1, 0, 1, 0, 0),
+	(379, 380, 500, 'Ngọc tâm linh cấp 3 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 7.0%', 49, 1, 0, 1, 0, 0),
+	(380, 381, 500, 'Ngọc tâm linh cấp 4 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 9.0%', 49, 1, 0, 1, 0, 0),
+	(381, 382, 500, 'Ngọc tâm linh cấp 5 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 14.0%', 49, 1, 0, 1, 0, 0),
+	(382, 383, 500, 'Ngọc hỗn nguyên tinh luyện cấp 1 ', 'Khảm vô vũ khí, khi đánh trúng 25 hit lên [người khác, boss] sẽ được x2 sát thương, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0),
+	(383, 384, 500, 'Ngọc hỗn nguyên tinh luyện cấp 2 ', 'Khảm vô vũ khí, khi đánh trúng 20 hit lên [người khác, boss] sẽ được x2 sát thương, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0),
+	(384, 385, 500, 'Ngọc hỗn nguyên tinh luyện cấp 3 ', 'Khảm vô vũ khí, khi đánh trúng 15 hit lên [người khác, boss] sẽ được x2 sát thương, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0),
+	(385, 386, 500, 'Ngọc hỗn nguyên tinh luyện cấp 4 ', 'Khảm vô vũ khí, khi đánh trúng 10 hit lên [người khác, boss] sẽ được x2 sát thương, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0),
+	(386, 387, 500, 'Ngọc hỗn nguyên tinh luyện cấp 5 ', 'Khảm vô vũ khí, khi đánh trúng 5 hit lên [người khác, boss] sẽ được x2 sát thương, tồn tại trong 3 giây ', 49, 1, 0, 1, 0, 0),
+	(387, 388, 500, 'Ngọc khải hoàn tinh luyện cấp 1', 'Khảm vô vũ khí. Khi bị đánh trúng 25 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0),
+	(388, 389, 500, 'Ngọc khải hoàn tinh luyện cấp 2', 'Khảm vô vũ khí. Khi bị đánh trúng 20 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0),
+	(389, 390, 500, 'Ngọc khải hoàn tinh luyện cấp 3', 'Khảm vô vũ khí. Khi bị đánh trúng 15 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0),
+	(390, 391, 500, 'Ngọc khải hoàn tinh luyện cấp 4', 'Khảm vô vũ khí. Khi bị đánh trúng 10 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0),
+	(391, 392, 500, 'Ngọc khải hoàn tinh luyện cấp 5', 'Khảm vô vũ khí. Khi bị đánh trúng 5 hit sẽ kháng tất cả các loại hiệu ứng lên nhân vật, tồn tại trong 3 giây', 49, 1, 0, 1, 0, 0),
+	(392, 393, 500, 'Ngọc lục bảo tinh luyện cấp 1', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, tồn tại trong 3 giây, tỷ lệ xuất hiện: 0.5%', 49, 1, 0, 1, 0, 0),
+	(393, 394, 500, 'Ngọc lục bảo tinh luyện cấp 2', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, tồn tại trong 3 giây, tỷ lệ xuất hiện: 1.0%', 49, 1, 0, 1, 0, 0),
+	(394, 395, 500, 'Ngọc lục bảo tinh luyện cấp 3', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, tồn tại trong 3 giây, tỷ lệ xuất hiện: 1.5%', 49, 1, 0, 1, 0, 0),
+	(395, 396, 500, 'Ngọc lục bảo tinh luyện cấp 4', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, tồn tại trong 3 giây, tỷ lệ xuất hiện: 2.5%', 49, 1, 0, 1, 0, 0),
+	(396, 397, 500, 'Ngọc lục bảo tinh luyện cấp 5', 'Khảm vô áo, quần, nón, găng tay, giày. Chuyển 10% sát thương của đối thủ thành máu cho mình, tồn tại trong 3 giây, tỷ lệ xuất hiện: 3.5%', 49, 1, 0, 1, 0, 0),
+	(397, 398, 500, 'Ngọc phong ma tinh luyện cấp 1', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 20% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 1% hp sau mỗi nhát đánh, tồn tại trong 5 giây, tỉ lệ 1.5%', 49, 1, 0, 1, 0, 0),
+	(398, 399, 500, 'Ngọc phong ma tinh luyện cấp 2', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 30% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 2% hp sau mỗi nhát đánh, tồn tại trong 5 giây, tỉ lệ 2.0%', 49, 1, 0, 1, 0, 0),
+	(399, 400, 500, 'Ngọc phong ma tinh luyện cấp 3', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 40% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 5% hp sau mỗi nhát đánh, tồn tại trong 5 giây, tỉ lệ 2.5%', 49, 1, 0, 1, 0, 0),
+	(400, 401, 500, 'Ngọc phong ma tinh luyện cấp 4', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 50% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 7% hp sau mỗi nhát đánh, tồn tại trong 5 giây, tỉ lệ 3.5%', 49, 1, 0, 1, 0, 0),
+	(401, 402, 500, 'Ngọc phong ma tinh luyện cấp 5', 'Khảm vô áo, quần, nón, găng tay, giày. Khi hp < 70% sẽ có khả năng xảy ra sau mỗi lần tấn công, hồi 10% hp sau mỗi nhát đánh, tồn tại trong 5 giây, tỉ lệ 4.5%', 49, 1, 0, 1, 0, 0),
+	(402, 403, 500, 'Ngọc sinh mệnh tinh luyện cấp 1', 'Khảm vô nhẫn, dây chuyền. Tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 2.0%', 49, 1, 0, 1, 0, 0),
+	(403, 404, 500, 'Ngọc sinh mệnh tinh luyện cấp 2', 'Khảm vô nhẫn, dây chuyền. Tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 2.5%', 49, 1, 0, 1, 0, 0),
+	(404, 405, 500, 'Ngọc sinh mệnh tinh luyện cấp 3', 'Khảm vô nhẫn, dây chuyền. Tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 3.0%', 49, 1, 0, 1, 0, 0),
+	(405, 406, 500, 'Ngọc sinh mệnh tinh luyện cấp 4', 'Khảm vô nhẫn, dây chuyền. Tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 3.5%', 49, 1, 0, 1, 0, 0),
+	(406, 407, 500, 'Ngọc sinh mệnh tinh luyện cấp 5', 'Khảm vô nhẫn, dây chuyền. Tăng 50% sát thương khi đánh boss trong thời gian 3 giây, tỉ lệ 4.5%', 49, 1, 0, 1, 0, 0),
+	(407, 408, 500, 'Ngọc tâm linh tinh luyện cấp 1 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 3.0%', 49, 1, 0, 1, 0, 0),
+	(408, 409, 500, 'Ngọc tâm linh tinh luyện cấp 2', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 5.0%', 49, 1, 0, 1, 0, 0),
+	(409, 410, 500, 'Ngọc tâm linh tinh luyện cấp 3', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 7.0%', 49, 1, 0, 1, 0, 0),
+	(410, 411, 500, 'Ngọc tâm linh tinh luyện cấp 4 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 9.0%', 49, 1, 0, 1, 0, 0),
+	(411, 412, 500, 'Ngọc tâm linh tinh luyện cấp 5 ', 'Khảm vô nhẫn, dây chuyền. + sát thương chí mạng 14.0%', 49, 1, 0, 1, 0, 0),
+	(412, 413, 500, 'Ngọc nguyên thủy cấp 1', 'Khảm vô mề đay, xuất hiện đánh đối thủ đăng xuất 1%', 49, 1, 0, 1, 1, 0),
+	(413, 414, 500, 'Ngọc nguyên thủy cấp 2', 'Khảm vô mề đay, xuất hiện đánh đối thủ đăng xuất 3%', 49, 1, 0, 1, 1, 0),
+	(414, 415, 500, 'Ngọc nguyên thủy cấp 3', 'Khảm vô mề đay, xuất hiện đánh đối thủ đăng xuất 5%', 49, 1, 0, 1, 1, 0),
+	(415, 416, 500, 'Ngọc nguyên thủy cấp 4', 'Khảm vô mề đay, xuất hiện đánh đối thủ đăng xuất 7%', 49, 1, 0, 1, 1, 0),
+	(416, 417, 500, 'Ngọc nguyên thủy cấp 5', 'Khảm vô mề đay, xuất hiện đánh đối thủ đăng xuất 9%', 49, 1, 0, 1, 1, 0),
+	(417, 418, 5000000, 'Kim cương thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(418, 419, 5000000, 'Bạc tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(419, 420, 5000000, 'Thiên thạch sao thủy', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(420, 421, 5000000, 'Đá ảo giác', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(421, 422, 5000000, 'Ngọc trai thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(422, 423, 5000000, 'Thép tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(423, 424, 5000000, 'Thiên thạch sao kim', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(424, 425, 5000000, 'Đá thiên hà', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(425, 426, 5000000, 'Xà cừ thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(426, 427, 5000000, 'Thạch anh tím', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(427, 428, 5000000, 'Thiên thạch sao hỏa', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(428, 429, 5000000, 'Đá phù thủy', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(429, 430, 5000000, 'Thạch anh tím thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(430, 431, 5000000, 'Đồng tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(431, 432, 5000000, 'Thiên thạch sao mộc', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(432, 433, 5000000, 'Đá lời nguyền', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(433, 434, 5000000, 'Lam bảo thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(434, 435, 5000000, 'Lục bảo tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(435, 436, 5000000, 'Thiên thạch sao hải vương', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(436, 437, 5000000, 'Đá tiên tri', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(437, 438, 5000000, 'Lục bảo thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(438, 439, 5000000, 'Sắt tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(439, 440, 5000000, 'Thiên thạch sao thiên vương', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(440, 441, 5000000, 'Đá giả kim', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(441, 442, 5000000, 'Hoàng ngọc thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(442, 443, 5000000, 'Vàng tinh luyện', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(443, 444, 5000000, 'Thiên thạch sao diêm vương', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(444, 445, 5000000, 'Đá phục sinh', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(445, 446, 5000000, 'Ngọc bích thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(446, 447, 5000000, 'Ngọc xà cừ', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(447, 448, 5000000, 'Thiên thạch sao thổ', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(448, 449, 5000000, 'Đá pha lê', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(449, 450, 5000000, 'Nham thạch thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(450, 451, 5000000, 'Ngọc mắt mèo', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(451, 452, 5000000, 'Thiên thạch mặt trăng', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(452, 453, 5000000, 'Nước mắt thiên sứ', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(453, 454, 5000000, 'Cẩm thạch thô', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(454, 455, 5000000, 'Đá hồng ngọc', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(455, 456, 5000000, 'Mảnh hóa thạch', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(456, 457, 5000000, 'Đá trường sinh', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(457, 458, 5000000, 'Lửa cực quang', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(458, 459, 5000000, 'Lửa bóng tối', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(459, 460, 5000000, 'Lửa kỳ lân', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(460, 461, 5000000, 'Lửa trường sinh', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(461, 462, 5000000, 'Lửa rồng gai', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(462, 463, 5000000, 'Lửa địa ngục', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(463, 464, 5000000, 'Lửa ánh sao', 'Nguyên liệu dùng chế vật phẩm tinh tú', 69, 0, 0, 1, 0, 0),
+	(464, 465, 5000000, 'Ngọc 1 sao', '', 70, 0, 0, 1, 0, 0),
+	(465, 466, 5000000, 'Ngọc 2 sao', '', 70, 0, 0, 1, 0, 0),
+	(466, 467, 5000000, 'Ngọc 3 sao', '', 70, 0, 0, 1, 0, 0),
+	(467, 468, 5000000, 'Ngọc 4 sao', '', 70, 0, 0, 1, 0, 0),
+	(468, 469, 5000000, 'Ngọc 5 sao', '', 70, 0, 0, 1, 0, 0),
+	(469, 470, 5000000, 'Ngọc 6 sao', '', 70, 0, 0, 1, 0, 0),
+	(470, 471, 5000000, 'Ngọc 7 sao', '', 70, 0, 0, 1, 0, 0),
+	(471, 472, 40000, 'Đá hỏa tinh', 'Không tụt độ bền đồ tinh tú khi nâng cấp.\n- Tăng 5% thành công', 79, 1, 0, 1, 0, 0),
+	(472, 473, 40000, 'Mảnh sách đỏ 1', 'Dùng ghép sách kĩ năng vật lý 110', 81, 1, 0, 1, 0, 0),
+	(473, 474, 40000, 'Mảnh sách đỏ 2', 'Dùng ghép sách kĩ năng vật lý 110', 81, 1, 0, 1, 0, 0),
+	(474, 475, 40000, 'Mảnh sách đỏ 3', 'Dùng ghép sách kĩ năng vật lý 110', 81, 1, 0, 1, 0, 0),
+	(475, 476, 40000, 'Mảnh sách đỏ 4', 'Dùng ghép sách kĩ năng vật lý 110', 81, 1, 0, 1, 0, 0),
+	(476, 477, 40000, 'Mảnh sách xanh 1', 'Dùng ghép sách kĩ năng phép 110', 81, 1, 0, 1, 0, 0),
+	(477, 478, 40000, 'Mảnh sách xanh 2', 'Dùng ghép sách kĩ năng phép 110', 81, 1, 0, 1, 0, 0),
+	(478, 479, 40000, 'Mảnh sách xanh 3', 'Dùng ghép sách kĩ năng phép 110', 81, 1, 0, 1, 0, 0),
+	(479, 480, 40000, 'Mảnh sách xanh 4', 'Dùng ghép sách kĩ năng phép 110', 81, 1, 0, 1, 0, 0),
+	(480, 481, 40000, 'Thẻ hợp thể pet', 'Dùng để hợp thể pet', 82, 1, 0, 1, 0, 0),
+	(481, 482, 40000, 'Hồ quang bạc', 'Nguyên liệu chế tạo giáp siêu nhân bạc', 83, 1, 0, 1, 0, 0),
+	(482, 483, 40000, 'Hồ quang tím', 'Nguyên liệu chế tạo giáp siêu nhân tím', 83, 1, 0, 1, 0, 0),
+	(483, 484, 40000, 'Hồ quang xanh', 'Nguyên liệu chế tạo giáp siêu nhân xanh', 83, 1, 0, 1, 0, 0),
+	(484, 485, 40000, 'Hồ quang vàng', 'Nguyên liệu chế tạo giáp siêu nhân vàng', 83, 1, 0, 1, 0, 0),
+	(485, 490, 40000, 'Hồ quang bạc cấp 2', 'Nguyên liệu nâng cấp giáp siêu nhân bạc cấp 5-7', 83, 1, 0, 1, 0, 0),
+	(486, 488, 40000, 'Hồ quang tím cấp 2', 'Nguyên liệu nâng cấp giáp siêu nhân tím cấp 5-7', 83, 1, 0, 1, 0, 0),
+	(487, 489, 40000, 'Hồ quang xanh cấp 2', 'Nguyên liệu nâng cấp giáp siêu nhân xanh cấp 5-7', 83, 1, 0, 1, 0, 0),
+	(488, 487, 40000, 'Hồ quang vàng cấp 2', 'Nguyên liệu nâng cấp giáp siêu nhân vàng cấp 5-7', 83, 1, 0, 1, 0, 0),
+	(489, 494, 40000, 'Hồ quang bạc cấp 3', 'Nguyên liệu nâng cấp giáp siêu nhân bạc cấp 8-10', 83, 1, 0, 1, 0, 0),
+	(490, 492, 40000, 'Hồ quang tím cấp 3', 'Nguyên liệu nâng cấp giáp siêu nhân tím cấp 8-10', 83, 1, 0, 1, 0, 0),
+	(491, 493, 40000, 'Hồ quang xanh cấp 3', 'Nguyên liệu nâng cấp giáp siêu nhân xanh cấp 8-10', 83, 1, 0, 1, 0, 0),
+	(492, 491, 40000, 'Hồ quang vàng cấp 3', 'Nguyên liệu nâng cấp giáp siêu nhân vàng cấp 8-10', 83, 1, 0, 1, 0, 0),
+	(493, 486, 40000, 'Đá hỏa tinh cấp 2', 'Không tụt độ bền đồ tinh tú khi nâng cấp.- Tăng 10% thành công', 79, 1, 0, 1, 0, 0),
+	(494, 481, 40000, 'Đồng money', 'Dùng để đổi money', 82, 1, 0, 1, 0, 0),
+	(495, 495, 40000, 'Vật phẩm nâng cấp', 'Dùng để nâng cấp trang bị', 82, 1, 0, 1, 0, 0);
 
--- Dumping structure for table srcbanquyen.itemoption
+-- Dumping structure for table sqlcu.itemoption
 CREATE TABLE IF NOT EXISTS `itemoption` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(500) DEFAULT NULL,
@@ -6279,7 +6267,7 @@ CREATE TABLE IF NOT EXISTS `itemoption` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.itemoption: ~191 rows (approximately)
+-- Dumping data for table sqlcu.itemoption: ~191 rows (approximately)
 DELETE FROM `itemoption`;
 INSERT INTO `itemoption` (`id`, `name`, `colorInfoItem`, `isPercentInfoItem`) VALUES
 	(0, 'S.thương vật lý', 0, 0),
@@ -6474,7 +6462,7 @@ INSERT INTO `itemoption` (`id`, `name`, `colorInfoItem`, `isPercentInfoItem`) VA
 	(189, 'Áo giáp lửa', 6, 1),
 	(190, 'Đặt trứng vào chuồng thú để ấp', 1, 0);
 
--- Dumping structure for table srcbanquyen.itemsell
+-- Dumping structure for table sqlcu.itemsell
 CREATE TABLE IF NOT EXISTS `itemsell` (
   `id` int(11) NOT NULL,
   `namenpc` varchar(255) DEFAULT NULL,
@@ -6482,14 +6470,14 @@ CREATE TABLE IF NOT EXISTS `itemsell` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.itemsell: ~20 rows (approximately)
+-- Dumping data for table sqlcu.itemsell: ~19 rows (approximately)
 DELETE FROM `itemsell`;
 INSERT INTO `itemsell` (`id`, `namenpc`, `data`) VALUES
-	(0, 'Lisa', '[327,245,261,25,5 ,6 ,7 ,10 ,13 ,26 ,16 ,24 ,69,164,166,168,170,70,71,72,73,74,125,135,52,57,58,59,207,205]'),
-	(1, 'Doubar_chienbinh', '[[40,0,2,500,1,0,[[7,100],[14,18]],0],[60,0,2,500,1,0,[[9,100],[14,16]],0],[80,0,0,1000,1,0,[[14,52],[16,100]],0],[100,0,0,1000,1,0,[[14,50],[18,100]],0],[120,0,1,500,1,0,[[14,18],[25,3]],0],[140,0,1,500,1,0,[[14,16],[23,3]],0],[360,0,2,600,10,0,[[7,300],[14,27]],0],[380,0,2,600,10,0,[[9,300],[14,25]],0],[400,0,0,1200,10,0,[[14,68],[16,200]],0],[420,0,0,1200,10,0,[[14,65],[18,200]],0],[440,0,1,600,10,0,[[14,27],[25,4]],0],[460,0,1,600,10,0,[[14,25],[23,4]],0],[680,0,2,700,20,0,[[7,500],[14,46]],0],[700,0,2,700,20,0,[[9,500],[14,43]],0],[720,0,0,1400,20,0,[[14,93],[16,200]],0],[740,0,0,1400,20,0,[[14,90],[18,200]],0],[760,0,1,700,20,0,[[14,46],[25,5]],0],[780,0,1,700,20,0,[[14,43],[23,5]],0],[1000,0,2,800,30,0,[[7,700],[14,74]],0],[1020,0,2,800,30,0,[[9,700],[14,71]],0],[1040,0,0,1600,30,0,[[14,129],[16,300]],0],[1060,0,0,1600,30,0,[[14,125],[18,300]],0],[1080,0,1,800,30,0,[[14,74],[25,6]],0],[1100,0,1,800,30,0,[[14,71],[23,6]],0],[1320,0,2,900,40,0,[[7,900],[14,113]],0],[1340,0,2,900,40,0,[[9,900],[14,109]],0],[1360,0,0,1800,40,0,[[14,174],[16,300]],0],[1380,0,0,1800,40,0,[[14,170],[18,300]],0],[1400,0,1,900,40,0,[[14,113],[25,8]],0],[1420,0,1,900,40,0,[[14,109],[23,8]],0],[3602,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[3603,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[4593,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4594,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4619,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4620,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4696,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4697,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[37,1]],1],[4753,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4754,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4740,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1],[4714,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1]]'),
-	(2, 'Doubar_satthu', '[[45,1,2,500,1,0,[[7,100],[14,16]],0],[65,1,2,500,1,0,[[11,100],[14,18]],0],[85,1,0,1000,1,0,[[14,50],[16,100]],0],[105,1,0,1000,1,0,[[14,52],[20,100]],0],[125,1,1,500,1,0,[[14,16],[23,3]],0],[145,1,1,500,1,0,[[14,18],[24,3]],0],[365,1,2,600,10,0,[[7,300],[14,25]],0],[385,1,2,600,10,0,[[11,300],[14,27]],0],[405,1,0,1200,10,0,[[14,65],[16,200]],0],[425,1,0,1200,10,0,[[14,68],[20,200]],0],[445,1,1,600,10,0,[[14,25],[23,4]],0],[465,1,1,600,10,0,[[14,27],[24,4]],0],[685,1,2,700,20,0,[[7,500],[14,43]],0],[705,1,2,700,20,0,[[11,500],[14,46]],0],[725,1,0,1400,20,0,[[14,90],[16,200]],0],[745,1,0,1400,20,0,[[14,93],[20,200]],0],[765,1,1,700,20,0,[[14,43],[23,5]],0],[785,1,1,700,20,0,[[14,46],[24,5]],0],[1005,1,2,800,30,0,[[7,700],[14,71]],0],[1025,1,2,800,30,0,[[11,700],[14,74]],0],[1045,1,0,1600,30,0,[[14,125],[16,300]],0],[1065,1,0,1600,30,0,[[14,129],[20,300]],0],[1085,1,1,800,30,0,[[14,71],[23,6]],0],[1105,1,1,800,30,0,[[14,74],[24,6]],0],[1325,1,2,900,40,0,[[7,900],[14,109]],0],[1345,1,2,900,40,0,[[11,900],[14,113]],0],[1365,1,0,1800,40,0,[[14,170],[16,300]],0],[1385,1,0,1800,40,0,[[14,174],[20,300]],0],[1405,1,1,900,40,0,[[14,109],[23,8]],0],[1425,1,1,900,40,0,[[14,113],[24,8]],0],[3602,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[3603,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[4593,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4594,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4619,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4620,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4696,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4697,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[37,1]],1],[4753,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4754,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4740,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1],[4714,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1]]'),
-	(3, 'Doubar_phapsu', '[[50,2,2,500,1,0,[[7,200],[14,12]],0],[70,2,2,500,1,0,[[8,200],[14,14]],0],[90,2,0,1000,1,0,[[14,42],[16,200]],0],[110,2,0,1000,1,0,[[14,44],[17,200]],0],[130,2,1,500,1,0,[[14,12],[26,4]],0],[150,2,1,500,1,0,[[14,14],[25,4]],0],[370,2,2,600,10,0,[[7,400],[14,20]],0],[390,2,2,600,10,0,[[8,400],[14,22]],0],[410,2,0,1200,10,0,[[14,56],[16,300]],0],[430,2,0,1200,10,0,[[14,58],[17,300]],0],[450,2,1,600,10,0,[[14,20],[26,5]],0],[470,2,1,600,10,0,[[14,22],[25,5]],0],[690,2,2,700,20,0,[[7,600],[14,37]],0],[710,2,2,700,20,0,[[8,600],[14,40]],0],[730,2,0,1400,20,0,[[14,79],[16,300]],0],[750,2,0,1400,20,0,[[14,82],[17,300]],0],[770,2,1,700,20,0,[[14,37],[26,6]],0],[790,2,1,700,20,0,[[14,40],[25,6]],0],[1010,2,2,800,30,0,[[7,800],[14,65]],0],[1030,2,2,800,30,0,[[8,800],[14,68]],0],[1050,2,0,1600,30,0,[[14,113],[16,400]],0],[1070,2,0,1600,30,0,[[14,116],[17,400]],0],[1090,2,1,800,30,0,[[14,65],[26,8]],0],[1110,2,1,800,30,0,[[14,68],[25,8]],0],[1330,2,2,900,40,0,[[7,1000],[14,102]],0],[1350,2,2,900,40,0,[[8,1000],[14,106]],0],[1370,2,0,1800,40,0,[[14,156],[16,400]],0],[1390,2,0,1800,40,0,[[14,160],[17,400]],0],[1410,2,1,900,40,0,[[14,102],[26,9]],0],[1430,2,1,900,40,0,[[14,106],[25,9]],0],[3602,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[3603,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[4593,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4594,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4619,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4620,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4696,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4697,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[37,1]],1],[4753,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4754,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4740,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1],[4715,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1]]'),
-	(4, 'Doubar_xathu', '[[55,3,2,500,1,0,[[7,200],[14,14]],0],[75,3,2,500,1,0,[[10,200],[14,12]],0],[95,3,0,1000,1,0,[[14,44],[16,200]],0],[115,3,0,1000,1,0,[[14,42],[19,200]],0],[135,3,1,500,1,0,[[14,14],[24,4]],0],[155,3,1,500,1,0,[[14,12],[26,4]],0],[375,3,2,600,10,0,[[7,400],[14,22]],0],[395,3,2,600,10,0,[[10,400],[14,20]],0],[415,3,0,1200,10,0,[[14,58],[16,300]],0],[435,3,0,1200,10,0,[[14,56],[19,300]],0],[455,3,1,600,10,0,[[14,22],[24,5]],0],[475,3,1,600,10,0,[[14,20],[26,5]],0],[695,3,2,700,20,0,[[7,600],[14,40]],0],[715,3,2,700,20,0,[[10,600],[14,37]],0],[735,3,0,1400,20,0,[[14,82],[16,300]],0],[755,3,0,1400,20,0,[[14,79],[19,300]],0],[775,3,1,700,20,0,[[14,40],[24,6]],0],[795,3,1,700,20,0,[[14,37],[26,6]],0],[1015,3,2,800,30,0,[[7,800],[14,68]],0],[1035,3,2,800,30,0,[[10,800],[14,65]],0],[1055,3,0,1600,30,0,[[14,116],[16,400]],0],[1075,3,0,1600,30,0,[[14,113],[19,400]],0],[1095,3,1,800,30,0,[[14,68],[24,8]],0],[1115,3,1,800,30,0,[[14,65],[26,8]],0],[1335,3,2,900,40,0,[[7,1000],[14,106]],0],[1355,3,2,900,40,0,[[10,1000],[14,102]],0],[1375,3,0,1800,40,0,[[14,160],[16,400]],0],[1395,3,0,1800,40,0,[[14,156],[19,400]],0],[1415,3,1,900,40,0,[[14,106],[24,9]],0],[1435,3,1,900,40,0,[[14,102],[26,9]],0],[3602,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[3603,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[4593,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4594,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4619,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4620,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4696,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4697,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[37,1]],1],[4753,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4754,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4740,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1],[4715,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1]]'),
+	(0, 'Lisa', '[327,245,261,25,5 ,10 ,13 ,26 ,16 ,24 ,69,164,166,168,170,70,71,72,73,74,125,223,247,270,135,52,57,58,59,282,272,276,302,219,247,300,282]'),
+	(1, 'Doubar_chienbinh', '[[40,0,2,500,1,0,[[7,100],[14,18]],0],[60,0,2,500,1,0,[[9,100],[14,16]],0],[80,0,0,1000,1,0,[[14,52],[16,100]],0],[100,0,0,1000,1,0,[[14,50],[18,100]],0],[120,0,1,500,1,0,[[14,18],[25,3]],0],[140,0,1,500,1,0,[[14,16],[23,3]],0],[360,0,2,600,10,0,[[7,300],[14,27]],0],[380,0,2,600,10,0,[[9,300],[14,25]],0],[400,0,0,1200,10,0,[[14,68],[16,200]],0],[420,0,0,1200,10,0,[[14,65],[18,200]],0],[440,0,1,600,10,0,[[14,27],[25,4]],0],[460,0,1,600,10,0,[[14,25],[23,4]],0],[680,0,2,700,20,0,[[7,500],[14,46]],0],[700,0,2,700,20,0,[[9,500],[14,43]],0],[720,0,0,1400,20,0,[[14,93],[16,200]],0],[740,0,0,1400,20,0,[[14,90],[18,200]],0],[760,0,1,700,20,0,[[14,46],[25,5]],0],[780,0,1,700,20,0,[[14,43],[23,5]],0],[1000,0,2,800,30,0,[[7,700],[14,74]],0],[1020,0,2,800,30,0,[[9,700],[14,71]],0],[1040,0,0,1600,30,0,[[14,129],[16,300]],0],[1060,0,0,1600,30,0,[[14,125],[18,300]],0],[1080,0,1,800,30,0,[[14,74],[25,6]],0],[1100,0,1,800,30,0,[[14,71],[23,6]],0],[1320,0,2,900,40,0,[[7,900],[14,113]],0],[1340,0,2,900,40,0,[[9,900],[14,109]],0],[1360,0,0,1800,40,0,[[14,174],[16,300]],0],[1380,0,0,1800,40,0,[[14,170],[18,300]],0],[1400,0,1,900,40,0,[[14,113],[25,8]],0],[1420,0,1,900,40,0,[[14,109],[23,8]],0],[3602,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[3603,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[4593,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4594,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4619,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4620,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4696,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4697,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4753,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4754,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4740,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1],[4714,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1]]'),
+	(2, 'Doubar_satthu', '[[45,1,2,500,1,0,[[7,100],[14,16]],0],[65,1,2,500,1,0,[[11,100],[14,18]],0],[85,1,0,1000,1,0,[[14,50],[16,100]],0],[105,1,0,1000,1,0,[[14,52],[20,100]],0],[125,1,1,500,1,0,[[14,16],[23,3]],0],[145,1,1,500,1,0,[[14,18],[24,3]],0],[365,1,2,600,10,0,[[7,300],[14,25]],0],[385,1,2,600,10,0,[[11,300],[14,27]],0],[405,1,0,1200,10,0,[[14,65],[16,200]],0],[425,1,0,1200,10,0,[[14,68],[20,200]],0],[445,1,1,600,10,0,[[14,25],[23,4]],0],[465,1,1,600,10,0,[[14,27],[24,4]],0],[685,1,2,700,20,0,[[7,500],[14,43]],0],[705,1,2,700,20,0,[[11,500],[14,46]],0],[725,1,0,1400,20,0,[[14,90],[16,200]],0],[745,1,0,1400,20,0,[[14,93],[20,200]],0],[765,1,1,700,20,0,[[14,43],[23,5]],0],[785,1,1,700,20,0,[[14,46],[24,5]],0],[1005,1,2,800,30,0,[[7,700],[14,71]],0],[1025,1,2,800,30,0,[[11,700],[14,74]],0],[1045,1,0,1600,30,0,[[14,125],[16,300]],0],[1065,1,0,1600,30,0,[[14,129],[20,300]],0],[1085,1,1,800,30,0,[[14,71],[23,6]],0],[1105,1,1,800,30,0,[[14,74],[24,6]],0],[1325,1,2,900,40,0,[[7,900],[14,109]],0],[1345,1,2,900,40,0,[[11,900],[14,113]],0],[1365,1,0,1800,40,0,[[14,170],[16,300]],0],[1385,1,0,1800,40,0,[[14,174],[20,300]],0],[1405,1,1,900,40,0,[[14,109],[23,8]],0],[1425,1,1,900,40,0,[[14,113],[24,8]],0],[3602,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[3603,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[4593,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4594,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4619,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4620,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4696,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4697,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4753,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4754,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4740,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1],[4714,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1]]'),
+	(3, 'Doubar_phapsu', '[[50,2,2,500,1,0,[[7,200],[14,12]],0],[70,2,2,500,1,0,[[8,200],[14,14]],0],[90,2,0,1000,1,0,[[14,42],[16,200]],0],[110,2,0,1000,1,0,[[14,44],[17,200]],0],[130,2,1,500,1,0,[[14,12],[26,4]],0],[150,2,1,500,1,0,[[14,14],[25,4]],0],[370,2,2,600,10,0,[[7,400],[14,20]],0],[390,2,2,600,10,0,[[8,400],[14,22]],0],[410,2,0,1200,10,0,[[14,56],[16,300]],0],[430,2,0,1200,10,0,[[14,58],[17,300]],0],[450,2,1,600,10,0,[[14,20],[26,5]],0],[470,2,1,600,10,0,[[14,22],[25,5]],0],[690,2,2,700,20,0,[[7,600],[14,37]],0],[710,2,2,700,20,0,[[8,600],[14,40]],0],[730,2,0,1400,20,0,[[14,79],[16,300]],0],[750,2,0,1400,20,0,[[14,82],[17,300]],0],[770,2,1,700,20,0,[[14,37],[26,6]],0],[790,2,1,700,20,0,[[14,40],[25,6]],0],[1010,2,2,800,30,0,[[7,800],[14,65]],0],[1030,2,2,800,30,0,[[8,800],[14,68]],0],[1050,2,0,1600,30,0,[[14,113],[16,400]],0],[1070,2,0,1600,30,0,[[14,116],[17,400]],0],[1090,2,1,800,30,0,[[14,65],[26,8]],0],[1110,2,1,800,30,0,[[14,68],[25,8]],0],[1330,2,2,900,40,0,[[7,1000],[14,102]],0],[1350,2,2,900,40,0,[[8,1000],[14,106]],0],[1370,2,0,1800,40,0,[[14,156],[16,400]],0],[1390,2,0,1800,40,0,[[14,160],[17,400]],0],[1410,2,1,900,40,0,[[14,102],[26,9]],0],[1430,2,1,900,40,0,[[14,106],[25,9]],0],[3602,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[3603,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[4593,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4594,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4619,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4620,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4696,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4697,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4753,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4754,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4740,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1],[4715,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1]]'),
+	(4, 'Doubar_xathu', '[[55,3,2,500,1,0,[[7,200],[14,14]],0],[75,3,2,500,1,0,[[10,200],[14,12]],0],[95,3,0,1000,1,0,[[14,44],[16,200]],0],[115,3,0,1000,1,0,[[14,42],[19,200]],0],[135,3,1,500,1,0,[[14,14],[24,4]],0],[155,3,1,500,1,0,[[14,12],[26,4]],0],[375,3,2,600,10,0,[[7,400],[14,22]],0],[395,3,2,600,10,0,[[10,400],[14,20]],0],[415,3,0,1200,10,0,[[14,58],[16,300]],0],[435,3,0,1200,10,0,[[14,56],[19,300]],0],[455,3,1,600,10,0,[[14,22],[24,5]],0],[475,3,1,600,10,0,[[14,20],[26,5]],0],[695,3,2,700,20,0,[[7,600],[14,40]],0],[715,3,2,700,20,0,[[10,600],[14,37]],0],[735,3,0,1400,20,0,[[14,82],[16,300]],0],[755,3,0,1400,20,0,[[14,79],[19,300]],0],[775,3,1,700,20,0,[[14,40],[24,6]],0],[795,3,1,700,20,0,[[14,37],[26,6]],0],[1015,3,2,800,30,0,[[7,800],[14,68]],0],[1035,3,2,800,30,0,[[10,800],[14,65]],0],[1055,3,0,1600,30,0,[[14,116],[16,400]],0],[1075,3,0,1600,30,0,[[14,113],[19,400]],0],[1095,3,1,800,30,0,[[14,68],[24,8]],0],[1115,3,1,800,30,0,[[14,65],[26,8]],0],[1335,3,2,900,40,0,[[7,1000],[14,106]],0],[1355,3,2,900,40,0,[[10,1000],[14,102]],0],[1375,3,0,1800,40,0,[[14,160],[16,400]],0],[1395,3,0,1800,40,0,[[14,156],[19,400]],0],[1415,3,1,900,40,0,[[14,106],[24,9]],0],[1435,3,1,900,40,0,[[14,102],[26,9]],0],[3602,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[3603,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[62,10000]],1],[4593,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4594,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[15,1000],[62,10000]],1],[4619,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4620,4,15,150,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],1],[4696,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4697,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[15,1000],[37,1]],1],[4753,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4754,4,15,99,1,5,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,3000]],1],[4740,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1],[4715,4,15,99,1,5,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000],[122,10000]],1]]'),
 	(5, 'Hammer_chienbinh', '[[0,0,8,500,1,0,[[0,54],[40,120]],0],[20,0,8,500,1,0,[[2,50],[40,120]],0],[320,0,8,600,10,0,[[0,69],[40,149]],0],[340,0,8,600,10,0,[[2,65],[40,149]],0],[640,0,8,700,20,0,[[0,95],[40,188]],0],[660,0,8,700,20,0,[[2,90],[40,188]],0],[960,0,8,800,30,0,[[0,131],[40,237]],0],[980,0,8,800,30,0,[[2,125],[40,237]],0],[1280,0,8,900,40,0,[[0,177],[40,296]],0],[1300,0,8,900,40,0,[[2,170],[40,296]],0],[4700,4,25,50,0,5,[[15,100]],1],[4703,4,25,50,0,5,[[27,100]],1],[4704,4,25,50,0,5,[[15,100]],1],[4705,4,25,50,0,5,[[15,100]],1],[4706,4,25,50,0,5,[[27,100]],1]]'),
 	(6, 'Hammer_satthu', '[[5,1,9,500,1,0,[[0,54],[40,120]],0],[25,1,9,500,1,0,[[4,50],[40,120]],0],[325,1,9,600,10,0,[[0,69],[40,149]],0],[345,1,9,600,10,0,[[4,65],[40,149]],0],[645,1,9,700,20,0,[[0,95],[40,188]],0],[665,1,9,700,20,0,[[4,90],[40,188]],0],[965,1,9,800,30,0,[[0,131],[40,237]],0],[985,1,9,800,30,0,[[4,125],[40,237]],0],[1285,1,9,900,40,0,[[0,177],[40,296]],0],[1305,1,9,900,40,0,[[4,170],[40,296]],0],[4700,4,25,50,0,5,[[15,100]],1],[4703,4,25,50,0,5,[[27,100]],1],[4704,4,25,50,0,5,[[15,100]],1],[4705,4,25,50,0,5,[[15,100]],1],[4706,4,25,50,0,5,[[27,100]],1]]'),
 	(7, 'Hammer_phapsu', '[[10,2,11,500,1,0,[[0,50],[40,120]],0],[30,2,11,500,1,0,[[1,54],[40,120]],0],[330,2,11,600,10,0,[[0,65],[40,149]],0],[350,2,11,600,10,0,[[1,69],[40,149]],0],[650,2,11,700,20,0,[[0,90],[40,188]],0],[670,2,11,700,20,0,[[1,95],[40,188]],0],[970,2,11,800,30,0,[[0,125],[40,237]],0],[990,2,11,800,30,0,[[1,131],[40,237]],0],[1290,2,11,900,40,0,[[0,170],[40,296]],0],[1310,2,11,900,40,0,[[1,177],[40,296]],0],[4700,4,25,50,0,5,[[15,100]],1],[4703,4,25,50,0,5,[[27,100]],1],[4704,4,25,50,0,5,[[15,100]],1],[4705,4,25,50,0,5,[[15,100]],1],[4706,4,25,50,0,5,[[27,100]],1]]'),
@@ -6503,10 +6491,9 @@ INSERT INTO `itemsell` (`id`, `namenpc`, `data`) VALUES
 	(15, 'Blackeye_phapsu', '[[1290,2,11,900,40,0,[[0,170],[40,296]],0],[1310,2,11,900,40,0,[[1,177],[40,296]],0],[1610,2,11,1000,50,0,[[0,225],[40,365]],0],[1630,2,11,1000,50,0,[[1,233],[40,365]],0],[1930,2,11,1100,60,0,[[0,290],[40,444]],0],[1950,2,11,1100,60,0,[[1,298],[40,444]],0],[2250,2,11,1200,70,0,[[0,365],[40,533]],0],[2270,2,11,1200,70,0,[[1,374],[40,533]],0],[2570,2,11,1300,80,0,[[0,450],[40,632]],0],[2590,2,11,1300,80,0,[[1,460],[40,632]],0],[2955,2,11,1400,90,0,[[0,545],[40,741]],0],[2975,2,11,1400,90,0,[[1,556],[40,741]],0],[3627,2,11,1600,110,0,[[0,918],[40,989],[71,153]],0],[3647,2,11,1600,110,0,[[1,932],[40,989],[71,153]],0],[3947,2,11,1700,120,0,[[0,1068],[40,1128],[71,153]],0],[3967,2,11,1700,120,0,[[1,1084],[40,1128],[71,153]],0],[4267,2,11,1800,130,0,[[0,1230],[40,1277],[71,153]],0],[4287,2,11,1800,130,0,[[1,1247],[40,1277],[71,153]],0],[4700,4,25,50,0,5,[[15,100]],1],[4703,4,25,50,0,5,[[27,100]],1],[4704,4,25,50,0,5,[[15,100]],1],[4705,4,25,50,0,5,[[15,100]],1],[4706,4,25,50,0,5,[[27,100]],1]]'),
 	(16, 'Blackeye_xathu', '[[1295,3,10,900,40,0,[[0,170],[40,296]],0],[1315,3,10,900,40,0,[[3,177],[40,296]],0],[1615,3,10,1000,50,0,[[0,225],[40,365]],0],[1635,3,10,1000,50,0,[[3,233],[40,365]],0],[1935,3,10,1100,60,0,[[0,290],[40,444]],0],[1955,3,10,1100,60,0,[[3,298],[40,444]],0],[2255,3,10,1200,70,0,[[0,365],[40,533]],0],[2275,3,10,1200,70,0,[[3,374],[40,533]],0],[2575,3,10,1300,80,0,[[0,450],[40,632]],0],[2595,3,10,1300,80,0,[[3,460],[40,632]],0],[2960,3,10,1400,90,0,[[0,545],[40,741]],0],[2980,3,10,1400,90,0,[[3,556],[40,741]],0],[3632,3,10,1600,110,0,[[0,918],[40,989],[71,153]],0],[3652,3,10,1600,110,0,[[3,932],[40,989],[71,153]],0],[3952,3,10,1700,120,0,[[0,1068],[40,1128],[71,153]],0],[3972,3,10,1700,120,0,[[3,1084],[40,1128],[71,153]],0],[4272,3,10,1800,130,0,[[0,1230],[40,1277],[71,153]],0],[4292,3,10,1800,130,0,[[3,1247],[40,1277],[71,153]],0],[4700,4,25,50,0,5,[[15,100]],1],[4703,4,25,50,0,5,[[27,100]],1],[4704,4,25,50,0,5,[[15,100]],1],[4705,4,25,50,0,5,[[15,100]],1],[4706,4,25,50,0,5,[[27,100]],1]]'),
 	(17, 'shopnguyenlieu', '[1,4,5,6,7,33,346,347,348,0,13,14,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,435,436,437,438,439,440,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,471,485]'),
-	(18, 'shop_ruong', '[205,206,207]'),
-	(99, 'shopnlcoin', '[246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345]');
+	(18, 'shop_ruong', '[205,206,207]');
 
--- Dumping structure for table srcbanquyen.king_cup
+-- Dumping structure for table sqlcu.king_cup
 CREATE TABLE IF NOT EXISTS `king_cup` (
   `group_65_74` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `group_75_84` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -6518,12 +6505,12 @@ CREATE TABLE IF NOT EXISTS `king_cup` (
   `turn_king_cup` smallint(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table srcbanquyen.king_cup: ~1 rows (approximately)
+-- Dumping data for table sqlcu.king_cup: ~1 rows (approximately)
 DELETE FROM `king_cup`;
 INSERT INTO `king_cup` (`group_65_74`, `group_75_84`, `group_85_94`, `group_95_104`, `group_105_114`, `group_115_124`, `group_125_139`, `turn_king_cup`) VALUES
-	('[]', '[]', '[]', '[]', '[]', '[]', '[]', 0);
+	('[]', '[]', '[]', '[]', '[]', '[]', '[]', 7);
 
--- Dumping structure for table srcbanquyen.level
+-- Dumping structure for table sqlcu.level
 CREATE TABLE IF NOT EXISTS `level` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `level` varchar(255) DEFAULT NULL,
@@ -6531,9 +6518,9 @@ CREATE TABLE IF NOT EXISTS `level` (
   `tiemnang` int(11) DEFAULT NULL,
   `kynang` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.level: ~144 rows (approximately)
+-- Dumping data for table sqlcu.level: ~140 rows (approximately)
 DELETE FROM `level`;
 INSERT INTO `level` (`id`, `level`, `exp`, `tiemnang`, `kynang`) VALUES
 	(1, '1', 2000, 5, 1),
@@ -6674,14 +6661,10 @@ INSERT INTO `level` (`id`, `level`, `exp`, `tiemnang`, `kynang`) VALUES
 	(136, '136', 180000000000, 5, 1),
 	(137, '137', 190000000000, 5, 1),
 	(138, '138', 200000000000, 5, 1),
-	(139, '139', 400000000000, 5, 1),
-	(140, '140', 600000000000, 5, 1),
-	(141, '141', 800000000000, 5, 1),
-	(142, '142', 1000000000000, 5, 1),
-	(143, '143', 1200000000000, 5, 1),
-	(144, '144', 1400000000000, 5, 1);
+	(139, '139', 21000000000000000, 5, 1),
+	(140, '140', 9223372036854775807, 5, 1);
 
--- Dumping structure for table srcbanquyen.loi_dai
+-- Dumping structure for table sqlcu.loi_dai
 CREATE TABLE IF NOT EXISTS `loi_dai` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idx_group` tinyint(4) NOT NULL,
@@ -6691,7 +6674,7 @@ CREATE TABLE IF NOT EXISTS `loi_dai` (
   UNIQUE KEY `uc_idx_group` (`idx_group`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table srcbanquyen.loi_dai: 8 rows
+-- Dumping data for table sqlcu.loi_dai: 8 rows
 DELETE FROM `loi_dai`;
 /*!40000 ALTER TABLE `loi_dai` DISABLE KEYS */;
 INSERT INTO `loi_dai` (`id`, `idx_group`, `data`, `time`) VALUES
@@ -6705,7 +6688,7 @@ INSERT INTO `loi_dai` (`id`, `idx_group`, `data`, `time`) VALUES
 	(8, 7, '[]', '2024-02-23 20:10:10');
 /*!40000 ALTER TABLE `loi_dai` ENABLE KEYS */;
 
--- Dumping structure for table srcbanquyen.maps
+-- Dumping structure for table sqlcu.maps
 CREATE TABLE IF NOT EXISTS `maps` (
   `id` smallint(4) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -6720,129 +6703,129 @@ CREATE TABLE IF NOT EXISTS `maps` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.maps: ~111 rows (approximately)
+-- Dumping data for table sqlcu.maps: ~110 rows (approximately)
 DELETE FROM `maps`;
 INSERT INTO `maps` (`id`, `name`, `type`, `ismaplang`, `showhs`, `maxzone`, `maxplayer`, `vgos`, `npcs`, `mobs`) VALUES
-	(0, 'Ngôi Làng Nhỏ', 0, 0, 0, 9, 15, '[[1,1224,36,"Làng Sói Trắng",528,696]]', '["0_1","0_2"]', '[[0,696,504],\r\n[0,984,552],\r\n[0,1032,576],\r\n[0,888,456],\r\n[0,720,648],\r\n[0,960,192],\r\n[0,720,264],\r\n[0,648,216],\r\n[0,576,216],\r\n[0,936,264],\r\n[0,600,240],\r\n[0,1032,312],\r\n[0,1008,432],\r\n[0,672,456],\r\n[0,960,648],\r\n[0,960,504],\r\n[0,864,408],\r\n[0,696,552],\r\n[0,768,432],\r\n[0,720,240],\r\n[0,1032,312],\r\n[0,1056,552],\r\n[0,1104,336],\r\n[0,1104,528],\r\n[0,720,264],\r\n[0,936,264], [0,878,582], [0,838,582], [0,858,602], [0,858,562]]'),
-	(1, 'Làng Sói Trắng', 0, 1, 0, 9, 15, '[[2,900,120,"Khu mỏ",396,696],[3,24,372,"Bìa Rừng",936,252],[0,528,696,"Ngôi Làng Nhỏ",1224,36],[7,552,24,"Cánh Đồng Sói",480,852],[50,1032,396,"Khu vườn",24,468]]', '["1_1","1_2"]', '[]'),
-	(2, 'Khu mỏ', 0, 0, 0, 9, 15, '[[1,396,696,"Làng Sói Trắng",900,120]]', '["2_1"]', '[[84,468,444]]'),
-	(3, 'Bìa Rừng', 0, 0, 0, 9, 15, '[[4,204,744,"Hang Lửa",852,876],[1,936,252,"Làng Sói Trắng",24,372]]', '["3_1","3_2"]', '[[0,792,312],[0,720,336],[0,720,390],[0,624,378],[0,540,366],[0,564,438],[0,456,378],[0,360,408],[0,432,450],[0,516,492],[0,606,516],[0,518,582],[1,115,347],[1,187,347],[1,241,394],[1,211,459],[1,121,449],[1,97,399],[1,615,795],[1,674,844],[1,714,844],[1,679,944],[1,542,940],[1,481,981],[1,466,846],[1,508,796],[1,563,861],[1,169,819],[1,265,819],[1,289,897],[1,199,939],[1,97,939]]'),
-	(4, 'Hang Lửa', 0, 0, 0, 9, 15, '[[3,852,876,"Bìa Rừng",204,744],[5,24,204,"Rừng Ảo Giác",1224,960]]', '["4_1","4_2","4_3"]', '[[2,864,702],[2,864,768],[2,714,738],[2,714,816],[2,918,816],[2,570,750],[2,510,822],[2,390,822],[2,390,822],[2,414,726],[2,198,678],[2,198,588],[2,60,648],[2,102,552],[2,276,480],[3,474,534],[3,516,432],[3,624,474],[3,522,396],[3,582,330],[3,576,258],[3,576,180],[3,576,180],[3,444,162],[3,474,210],[3,456,210],[3,300,138],[3,186,150],[3,186,234],[3,294,234]]'),
-	(5, 'Rừng Ảo Giác', 0, 0, 0, 9, 15, '[[4,1224,960,"Hang Lửa",24,204],[6,24,336,"Khe Vực",816,588]]', '["5_1","5_2"]', '[[3,1068,978],[3,1062,894],[3,1062,894],[3,990,894],[3,912,894],[3,906,972],[3,1074,768],[3,1008,720],[3,903,750],[4,732,942],[4,774,576],[4,648,522],[4,486,894],[4,486,936],[4,486,996],[4,426,864],[4,384,924],[4,384,978],[4,336,930],[4,300,870],[4,216,840],[4,132,882],[4,132,940],[4,198,954],[4,282,990],[4,216,588],[4,276,486],[4,300,396],[4,210,372],[4,138,432]]'),
-	(6, 'Khe Vực', 0, 0, 0, 9, 15, '[[5,816,588,"Rừng Ảo Giác",24,336]]', '["6_1"]', '[[5,312,438]]'),
-	(7, 'Cánh Đồng Sói', 0, 0, 0, 9, 15, '[[1,480,852,"Làng Sói Trắng",552,24],[11,936,468,"Bờ Biển",24,864],[15,288,24,"Đầm Lầy",408,1272],[18,708,120,"Hang Sói Quỷ",492,708],[8,24,408,"Thung Lũng Kỳ Bí",1080,84]]', '["7_1","7_2"]', '[[6,828,594],[6,750,582],[6,702,642],[6,750,582],[6,240,660],[6,240,726],[6,150,762],[6,108,768],[6,312,618],[6,288,408],[6,312,486],[6,204,486],[6,186,402],[6,186,324],[6,126,366],[7,474,342],[7,564,342],[7,648,342],[7,540,326],[7,648,216],[7,750,216],[7,624,192],[7,522,234],[7,522,234],[7,420,126],[7,300,126],[7,210,138],[7,210,192],[7,288,234],[103,432,512]]'),
-	(8, 'Thung Lũng Kỳ Bí', 0, 0, 0, 9, 15, '[[9,24,984,"Hồ Ký Ức",1464,912],[7,1080,84,"Cánh Đồng Sói",24,408]]', '["8_1","8_2"]', '[[8,234,117],[8,234,167],[8,234,217],[8,234,267],[8,234,317],[8,234,367],[8,488,207],[8,438,207],[8,388,207],[8,338,207],[8,288,207],[8,984,267],[8,934,267],[8,884,267],[8,834,267],[8,732,315],[8,732,365],[8,732,415],[8,732,465],[9,459,769],[9,509,769],[9,559,769],[9,609,769],[9,659,769],[9,539,922],[9,539,872],[9,539,822],[9,539,772],[9,539,722],[9,954,604],[9,904,604],[9,854,604],[9,804,604],[9,949,684],[9,899,684],[9,849,684],[9,799,684],[9,991,928],[9,941,928],[9,891,928],[9,841,928],[9,791,928]]'),
-	(9, 'Hồ Ký Ức', 0, 0, 0, 9, 15, '[[8,1464,912,"Thung Lũng Kỳ Bí",24,984],[10,1260,24,"Bãi Đất Trống",468,696]]', '["9_1","9_2"]', '[[9,318,942],[9,268,942],[9,208,942],[9,168,960],[9,168,910],[9,168,860],[9,168,810],[9,168,138],[9,218,138],[9,268,138],[9,318,138],[9,368,138],[9,204,168],[9,204,218],[9,204,268],[9,204,318],[9,204,368],[10,1079,701],[10,1029,701],[10,979,701],[10,929,701],[10,879,701],[10,829,701],[10,779,701],[10,729,701],[10,679,701],[10,629,701],[10,480,391],[10,480,441],[10,480,491],[10,480,541],[10,480,591],[10,480,641],[10,480,691],[10,573,463],[10,573,513],[10,573,563],[10,892,331],[10,842,331],[10,792,331],[10,742,331],[10,692,331],[10,642,331]]'),
-	(10, 'Bãi Đất Trống', 0, 0, 0, 9, 15, '[[9,468,696,"Hồ Ký Ức",1260,24]]', '["10_1","10_2"]', '[[11,468,336]]'),
-	(11, 'Bờ Biển', 0, 0, 0, 9, 15, '[[7,24,864,"Cánh Đồng Sói",936,468],[12,1248,672,"Vực Đá",24,852]]', '["11_1","11_2","11_3"]', '[[12,366,738],[12,316,738],[12,296,738],[12,348,798],[12,298,738],[12,246,738],[12,360,336],[12,310,336],[12,290,336],[12,318,396],[12,268,396],[12,218,396],[12,168,396],[12,660,882],[12,710,882],[12,760,882],[12,810,882],[12,672,726],[12,672,776],[12,672,826],[12,996,792],[12,996,842],[12,996,892],[12,1092,768],[12,1092,818],[12,1092,868],[13,805,210],[13,855,210],[13,905,210],[13,955,210],[13,1005,210],[13,840,290],[13,840,290],[13,890,290],[13,940,290],[13,990,290],[13,905,420],[13,955,420],[13,1005,420],[13,1055,420],[13,1105,420]]'),
-	(12, 'Vực Đá', 0, 0, 0, 9, 15, '[[11,24,852,"Bờ Biển",1248,672],[13,1368,948,"Rặng Đá Ngầm",24,984]]', '["12_1","12_2"]', '[[14,330,888],[14,280,888],[14,230,888],[14,180,888],[14,210,726],[14,210,676],[14,210,626],[14,450,456],[14,366,462],[14,366,528],[14,360,582],[14,222,318],[14,272,318],[14,322,318],[14,234,384],[14,284,384],[14,234,334],[15,1122,294],[15,1072,294],[15,1022,294],[15,972,294],[15,1164,372],[15,1114,372],[15,1064,372],[15,1014,372],[15,888,444],[15,978,444],[15,960,504]]'),
-	(13, 'Rặng Đá Ngầm', 0, 0, 0, 9, 15, '[[12,24,984,"Vực Đá",1368,948],[14,444,24,"Nghĩa Địa Tàu Đắm",432,768]]', '["13_1","13_2"]', '[[15,771,914],[15,721,914],[15,671,914],[15,761,979],[15,711,979],[15,661,979],[15,299,911],[15,249,911],[15,199,911],[15,149,911],[15,99,911],[16,162,528],[16,162,578],[16,162,628],[16,162,678],[16,162,728],[16,162,528],[16,162,578],[16,162,628],[16,162,678],[16,162,728],[16,162,778],[16,774,571],[16,774,621],[16,774,671],[16,774,721],[16,668,381],[16,668,431],[16,668,481],[16,668,531],[16,668,581],[16,606,106],[16,606,156],[16,606,206],[16,606,256],[16,606,306],[16,239,199],[16,239,249],[16,239,299],[16,239,199],[16,319,124],[16,319,174],[16,319,224]]'),
-	(14, 'Nghĩa Địa Tàu Đắm', 0, 0, 0, 9, 15, '[[13,432,768,"Rặng Đá Ngầm",444,24]]', '["14_1"]', '[[14,432,373]]'),
-	(15, 'Đầm Lầy', 0, 0, 0, 9, 15, '[[16,492,24,"Đền Cổ",612,1236],[7,408,1272,"Cánh Đồng Sói",288,24]]', '["15_1","15_2"]', '[[18,779,853],[18,779,903],[18,779,953],[18,779,1003],[18,779,1053],[18,779,1103],[18,370,1054],[18,420,1054],[18,470,1054],[18,520,1054],[18,570,1054],[18,620,1054],[18,423,948],[18,523,948],[18,108,787],[18,158,787],[18,208,787],[18,258,787],[18,308,787],[18,358,787],[19,854,537],[19,854,587],[19,854,637],[19,854,687],[19,854,737],[19,910,133],[19,860,133],[19,810,133],[19,760,133],[19,710,133],[19,660,133],[19,85,385],[19,135,385],[19,185,385],[19,235,385],[19,285,385],[19,335,385],[19,61,89],[19,111,89],[19,161,89],[19,211,89],[19,261,89],[19,311,89],[104,530,213]]'),
-	(16, 'Đền Cổ', 0, 0, 0, 9, 15, '[[15,612,1236,"Đầm Lầy",492,24],[17,600,48,"Hang Dơi",564,816]]', '["16_1","16_2"]', '[[20,233,921],[20,233,971],[20,233,1021],[20,233,1071],[20,233,1121],[20,338,1046],[20,338,1096],[20,338,1146],[20,338,1196],[20,338,1246],[20,976,927],[20,976,977],[20,976,1027],[20,976,1077],[20,976,1127],[20,1066,1067],[20,1066,1117],[20,1066,1167],[20,1066,1217],[20,1066,1267],[21,492,653],[21,542,653],[21,592,653],[21,642,653],[21,692,653],[21,742,653],[21,84,203],[21,84,253],[21,84,303],[21,84,353],[21,84,403],[21,612,275],[21,612,325],[21,612,375],[21,612,425],[21,612,475],[21,612,525],[21,1146,269],[21,1096,269],[21,1046,269],[21,996,269],[21,946,269],[21,896,269]]'),
-	(17, 'Hang Dơi', 0, 0, 0, 9, 15, '[[16,564,816,"Đền Cổ",600,48]]', '["17_1","17_2"]', '[[22,636,660],[22,540,672],[22,690,714],[22,174,408],[22,174,458],[22,174,508],[22,372,480],[22,322,480],[22,272,480],[22,468,192],[22,518,192],[22,568,192],[22,618,192],[22,668,192],[22,462,282],[22,512,282],[22,562,282],[22,612,282],[22,662,282],[22,740,468],[22,948,420],[22,462,282],[22,936,534]]'),
-	(18, 'Hang Sói Quỷ', 0, 0, 0, 9, 15, '[[7,492,708,"Cánh Đồng Sói",708,120],[25,468,12,"Rừng Chết",720,996]]', '["18_1"]', '[[23,498,300]]'),
-	(19, 'Cửa Biển', 0, 0, 0, 9, 15, '[[24,1128,816,"Nghĩa địa cát",612,24],[47,24,240,"Đồi xác chết",816,420]]', '["19_1","19_2"]', '[[49,1242,546],[49,1308,546],[49,1368,582],[49,1272,594],[49,1266,678],[49,1344,468],[49,1254,462],[49,1218,384],[49,1296,330],[49,1308,378],[49,1212,306],[49,660,246],[49,732,228],[49,732,294],[49,624,312],[49,576,354],[49,684,354],[49,774,294],[49,672,402],[49,888,378],[49,954,420],[49,864,462],[49,900,618]\r\n,[50,218,618],[50,180,618],[50,114,576],[50,216,576],[50,288,540],[50,78,486],[50,162,486],[50,252,456],[50,144,330],[50,162,246],[50,246,264],[50,324,282],[50,306,330],[50,210,318]]'),
-	(20, 'Sa Mạc', 0, 0, 0, 9, 15, '[[34,936,1020,"Khu phía Tây",24,348],[23,300,24,"Hố Tử Thần",492,1416]]', '["20_1","20_2"]', '[[41,834,1092],[41,756,1092],[41,798,1146],[41,726,1146],[41,546,1122],[41,546,1044],[41,474,1014],[41,414,1092],[41,348,1026],[41,348,1134],[41,294,1080],[41,294,1164],[42,294,336],[42,186,318],[42,270,270],[42,60,306],[42,66,192],[42,114,138],[42,192,108],[42,150,186],[42,234,180],[42,588,186],[42,606,137],[42,516,138],[42,498,186],[42,540,228],[42,420,108],[42,732,144]]'),
-	(21, 'Đồi Cát', 0, 0, 0, 9, 15, '[[24,24,828,"Nghĩa địa cát",1176,276],[37,936,132,"Rừng cao nguyên",24,840]]', '["21_1"]', '[[48,222,714],[48,222,762],[48,732,600],[48,804,600],[48,804,678],[48,738,648],[48,714,618],[48,672,654],[48,744,696],[48,372,90],[48,306,108],[48,246,108],[48,192,138],[48,138,162],[48,138,210],[48,234,222],[48,324,110],[48,414,210],[48,390,144],[48,330,144],[48,252,156],[48,210,180],[48,396,96]]'),
-	(22, 'Vực Lún', 0, 0, 0, 9, 15, '[[24,1416,192,"Nghĩa địa cát",24,648],[42,24,732,"Đèo hoang sơ",936,108]]', '["22_1","22_2"]', '[[47,618,444],[47,570,444],[47,500,444],[47,348,444],[47,300,444],[47,250,444],[47,672,552],[47,620,552],[47,590,552],[47,240,330],[47,210,330],[47,180,330],[47,1158,750],[47,1080,750],[47,1030,750],[47,1158,798],[47,1080,798],[47,1030,798]]'),
-	(23, 'Hố Tử Thần', 0, 0, 0, 9, 15, '[[20,492,1416,"Sa Mạc",300,24],[24,348,24,"Nghĩa địa cát",660,1188]]', '["23_1"]', '[[43,108,1434],[43,216,1386],[43,126,1350],[43,48,1380],[43,612,1368],[43,72,990],[43,126,1020],[43,54,1050],[43,126,1140],[43,702,762],[43,774,810],[43,624,810],[43,720,846],[43,714,900],[43,600,876],[43,588,948],[43,720,972],[43,552,972],[43,672,1062],[44,96,504],[44,114,546],[44,210,558],[44,198,510],[44,258,558],[44,192,534],[44,258,474],[44,492,516],[44,600,504],[44,582,432],[44,684,408],[44,588,348],[44,486,414],[44,432,360],[44,552,348],[44,786,234],[44,732,180],[44,690,234],[44,642,126],[44,552,120],[44,252,72],[44,222,138],[44,324,138],[44,552,222]]'),
-	(24, 'Nghĩa địa cát', 0, 0, 0, 9, 15, '[[22,24,648,"Vực Lún",1416,192],[21,1176,276,"Đồi Cát",24,828],[23,660,1188,"Hố Tử Thần",348,24],[19,612,24,"Cửa Biển",1128,816]]', '["24_1","24_2","24_3"]', '[[45,648,1026],[45,576,1020],[45,582,906],[45,666,912],[45,708,996],[45,696,1014],[45,654,852],[45,642,990],[45,216,900],[45,156,870],[45,222,840],[45,228,840],[45,228,888],[45,210,870],[46,480,486],[46,564,486],[46,642,540],[46,558,552],[46,558,618],[46,168,402],[46,252,402],[46,282,456],[46,234,504],[46,132,438],[46,240,120],[46,312,120],[46,384,156],[46,306,174],[46,234,216],[46,348,234],[46,282,240],[46,786,90],[46,726,138],[46,864,156],[46,786,258],[46,804,162]]'),
-	(25, 'Rừng Chết', 0, 0, 0, 9, 15, '[[18,720,996,"Hang Sói Quỷ",468,12],[26,12,564,"Suối Ma",1344,408],[33,672,12,"Thành Phố Kho Báu",480,744]]', '["25_1","25_2"]', '[[25,310,945],[25,188,939],[25,71,918],[25,98,834],[25,219,781],[25,84,731],[25,312,612],[25,312,534],[25,408,528],[25,408,576],[25,444,636],[25,552,618],[25,552,634],[26,998,753],[26,1008,753],[26,1154,753],[26,1028,657],[26,1124,657],[26,974,583],[26,974,509],[26,1040,485],[26,1160,510],[26,1160,585],[26,950,177],[26,1064,192],[26,1129,227],[26,1129,292],[26,1129,355],[26,1139,331],[26,935,331],[27,470,208],[27,378,208],[27,240,208],[27,170,208],[27,50,233],[27,50,320],[27,237,335],[27,342,335],[27,450,335],[27,365,262],[27,240,262],[27,325,231],[27,128,260],[101,204,284]]'),
-	(26, 'Suối Ma', 0, 0, 0, 9, 15, '[[25,1344,408,"Rừng Chết",12,564],[27,24,324,"Thung Lũng Đá",1176,396]]', '["26_1","26_2"]', '[[28,1261,562],[28,1211,562],[28,1161,562],[28,1261,646],[28,1211,646],[28,1161,646],[28,955,330],[28,955,380],[28,955,430],[28,1051,360],[28,1051,410],[28,1051,460],[28,1176,41],[28,1176,91],[28,1176,141],[28,1176,191],[28,1071,31],[28,1071,81],[28,1071,131],[28,1071,181],[29,595,57],[29,595,107],[29,595,157],[29,712,57],[29,712,107],[29,712,157],[29,712,207],[29,511,492],[29,561,492],[29,611,492],[29,661,492],[29,546,568],[29,596,568],[29,646,568],[29,696,568],[29,746,568],[30,353,88],[30,353,138],[30,353,188],[30,353,238],[30,251,130],[30,251,180],[30,251,230],[30,251,280],[30,300,636],[30,300,596],[30,300,536],[30,192,624],[30,192,574],[30,192,524],[174,775,437]]'),
-	(27, 'Thung Lũng Đá', 0, 0, 0, 9, 15, '[[28,24,372,"Boss Guardian",816,372],[26,1176,396,"Suối Ma",24,324]]', '["27_1"]', '[[32,798,354],[32,748,354],[32,698,354],[32,786,438],[32,736,438],[32,686,434],[32,294,570],[32,344,570],[32,394,570],[32,444,570],[32,354,642],[32,404,642],[32,454,642],[32,504,642],[31,948,618],[31,898,618],[31,848,618],[31,948,684],[31,898,684],[31,848,684],[31,990,114],[31,940,114],[31,890,114],[31,840,114],[31,960,186],[31,910,186],[31,860,186],[31,810,186],[31,540,108],[31,490,108],[31,440,108],[31,402,216],[31,402,166],[31,402,116]]'),
-	(28, 'Boss Guardian', 0, 0, 0, 9, 15, '[[27,816,372,"Thung Lũng Đá",24,372]]', '["28_1"]', '[[51,444,360]]'),
-	(29, 'Hầm Mộ Tầng 1', 0, 0, 0, 9, 15, '[[35,420,720,"Khu phía Đông",444,120],[30,816,276,"Hầm Mộ Tầng 2",24,324]]', '["29_1","29_2"]', '[[33,168,504],[33,168,554],[33,168,604],[33,168,654],[33,66,462],[33,66,512],[33,66,562],[33,66,612],[33,624,504],[33,624,554],[33,624,604],[33,624,654],[33,750,510],[33,750,560],[33,750,610],[33,750,660],[34,522,258],[34,472,258],[34,422,258],[34,372,258],[34,516,330],[34,466,330],[34,416,330],[34,366,330],[35,84,96],[35,134,96],[35,184,96],[35,72,168],[35,122,168],[35,172,168],[35,642,84],[35,642,134],[35,642,184],[35,768,90],[35,768,140],[35,768,190]]'),
-	(30, 'Hầm Mộ Tầng 2', 0, 0, 0, 9, 15, '[[31,444,48,"Hầm Mộ Tầng 3",372,696],[29,24,324,"Hầm Mộ Tầng 1",816,276]]', '["30_1"]', '[[36,72,534],[36,122,534],[36,172,534],[36,60,636],[36,110,636],[36,160,636],[37,438,246],[37,438,296],[37,438,346],[37,438,396],[37,438,446],[37,306,246],[37,306,296],[37,306,346],[37,306,396],[37,306,446],[38,210,108],[38,160,108],[38,110,108],[38,210,186],[38,160,186],[38,110,186],[36,588,564],[36,638,564],[36,688,564],[36,738,564],[36,552,636],[36,602,636],[36,652,636],[36,702,636],[38,732,120],[38,732,170],[38,732,220],[38,612,90],[38,612,140],[38,612,190]]'),
-	(31, 'Hầm Mộ Tầng 3', 0, 0, 0, 9, 15, '[[30,372,696,"Hầm Mộ Tầng 2",444,48],[32,720,96,"Hầm mộ quái vật",24,372]]', '["31_1","31_2"]', '[[39,654,432],[39,654,482],[39,654,532],[39,654,582],[39,576,444],[39,576,494],[39,576,544],[39,576,594],[39,78,414],[39,78,464],[39,78,514],[39,78,564],[39,78,614],[39,162,426],[39,162,476],[39,162,526],[39,162,576],[40,96,90],[40,96,140],[40,96,190],[40,96,240],[40,96,290],[40,306,162],[40,256,162],[40,206,162],[40,156,162],[40,106,162],[40,618,222],[40,618,272],[40,618,322],[40,702,222],[40,702,272],[40,702,322]]'),
-	(32, 'Hầm mộ quái vật', 0, 0, 0, 9, 15, '[[31,24,372,"Hầm Mộ Tầng 3",720,96]]', '["32_1"]', '[[52,402,360]]'),
-	(33, 'Thành Phố Kho Báu', 0, 1, 0, 9, 15, '[[25,480,744,"Rừng Chết",672,12],[34,24,600,"Khu phía Tây",696,480],[35,936,588,"Khu phía Đông",24,516],[36,480,24,"Đấu Trường",516,696]]', '["33_1","33_2"]', '[]'),
-	(34, 'Khu phía Tây', 0, 1, 0, 9, 15, '[[33,696,480,"Thành Phố Kho Báu",24,600],[20,24,348,"Sa Mạc",936,1020]]', '["34_1","34_2"]', '[]'),
-	(35, 'Khu phía Đông', 0, 1, 0, 9, 15, '[[33,24,516,"Thành Phố Kho Báu",936,588],[29,444,120,"Hầm Mộ Tầng 1",420,720]]', '["35_1","35_2"]', '[]'),
-	(36, 'Đấu Trường', 0, 0, 0, 9, 15, '[[33,516,696,"Thành Phố Kho Báu",480,24]]', '["36_1"]', '[]'),
-	(37, 'Rừng cao nguyên', 0, 0, 0, 9, 15, '[[21,24,840,"Đồi Cát",936,132],[38,1176,252,"Con đường hiểm trở",24,1212]]', '["37_1","37_2"]', '[[55,120,660],[55,180,666],[55,252,702],[55,192,714],[55,282,738],[55,108,738],[55,1140,678],[55,1140,612],[55,1144,606],[55,990,678],[55,1080,698],[55,1062,738],[55,996,468],[55,1074,474],[55,1038,516],[57,858,564],[57,780,558],[57,726,600],[57,726,672],[57,786,714],[57,870,648],[57,666,666],[57,288,450],[57,186,390],[57,72,378],[57,198,276],[57,96,222],[57,204,162],[57,684,306],[57,648,354],[57,684,402],[57,756,402],[57,756,318],[57,708,354],[57,720,168],[57,756,234],[84,160,224]]'),
-	(38, 'Con đường hiểm trở', 0, 0, 0, 9, 15, '[[37,24,1212,"Rừng cao nguyên",1176,252],[39,660,12,"Vách đá cheo leo",180,1128]]', '["38_1"]', '[[59,162,804],[59,102,840],[59,66,894],[59,126,966],[59,150,1032],[59,228,1032],[59,294,966],[59,294,888],[59,246,828],[59,834,600],[59,780,582],[59,708,618],[59,702,678],[59,810,720],[59,774,642],[59,618,702],[61,264,546],[61,390,546],[61,300,612],[61,396,594],[61,474,696],[61,738,144],[61,642,204],[61,666,270],[61,780,186],[61,810,258],[61,810,336],[61,252,126],[61,336,150],[61,336,210],[61,300,264],[61,810,336],[61,204,264],[61,138,198]]'),
-	(39, 'Vách đá cheo leo', 0, 0, 0, 9, 15, '[[38,180,1128,"Con đường hiểm trở",660,12],[40,936,276,"Núi Cầu Vòng",24,648]]', '["39_1","39_2"]', '[[63,60,864],[63,126,864],[63,156,900],[63,156,963],[63,78,924],[63,30,888],[63,780,726],[63,696,726],[63,648,798],[63,636,864],[63,618,942],[63,714,984],[63,828,924],[63,798,870],[63,798,780],[63,714,870],[67,576,576],[67,642,576],[67,648,612],[67,660,642],[67,600,648],[67,564,694],[67,546,702],[67,144,390],[67,192,378],[67,210,432],[67,174,486],[67,96,456],[67,822,444],[67,750,438],[67,666,414],[67,666,348],[67,750,342],[67,810,348],[67,876,366],[67,924,402]]'),
-	(40, 'Núi Cầu Vòng', 0, 0, 0, 9, 15, '[[39,24,648,"Vách đá cheo leo",936,276],[41,1320,144,"Lối lên Thượng giới",24,588]]', '["40_1"]', '[[69,330,516],[69,348,564],[69,348,618],[69,282,660],[69,210,648],[69,618,648],[69,186,600],[69,186,540],[69,306,570],[69,210,282],[69,264,294],[69,276,342],[69,264,384],[69,198,396],[69,150,360],[69,666,864],[69,576,762],[69,468,642],[69,468,588],[69,426,534],[69,408,486],[69,498,468],[69,576,516],[69,576,576],[69,504,534],[71,1038,342],[71,1026,498],[71,1038,342],[71,966,534],[71,888,528],[71,930,432],[71,924,708],[71,978,762],[71,1086,756],[71,1116,672],[71,1068,636],[71,978,678],[71,1104,576],[71,1146,516],[71,1212,564],[71,1248,618],[71,1260,672],[71,1158,690],[71,1134,642],[71,960,102],[71,876,138],[71,822,168],[71,960,174],[71,906,216],[71,828,264]]'),
-	(41, 'Lối lên Thượng giới', 0, 0, 0, 9, 15, '[[40,24,588,"Núi Cầu Vòng",1320,144],[51,1656,324,"Cổng thiên đàng",24,1500]]', '["41_1","41_2"]', '[[73,324,342],[73,384,342],[73,474,342],[73,504,834],[73,486,432],[73,414,426],[73,336,426],[73,552,486],[73,1548,672],[73,1416,654],[73,1416,582],[73,1440,510],[73,1530,480],[73,1566,546],[73,1536,360],[73,1638,546],[73,1638,450],[73,1530,408],[75,924,228],[75,1008,204],[75,1092,216],[75,1128,270],[75,1056,312],[75,972,294],[75,1224,300],[75,1056,558],[75,1056,612],[75,1134,660],[75,1218,660],[75,1266,588],[75,1266,534],[75,1200,486],[75,1110,480],[75,1350,108],[75,1440,78],[75,1548,90],[75,1602,138],[75,1620,192],[75,1494,192],[75,1416,192],[75,1446,258]]'),
-	(42, 'Đèo hoang sơ', 0, 0, 0, 9, 15, '[[22,936,108,"Vực Lún",24,732],[43,528,948,"Đường xuống lòng đất",348,24]]', '["42_1"]', '[[56,120,66],[56,160,66],[56,190,66],[56,90,150],[56,120,150],[56,150,150],[56,378,282],[56,378,324],[56,378,364],[56,276,336],[56,378,376],[56,60,474],[56,100,474],[56,140,474],[56,180,474],[56,48,546],[56,88,546],[56,128,546],[56,528,336],[56,528,376],[56,528,406],[56,618,348],[56,618,388],[56,618,428],[56,780,690],[56,740,690],[56,700,690],[56,768,762],[56,728,762],[56,688,762],[56,336,840],[56,296,840],[56,256,840],[56,360,894],[56,320,894],[56,280,894]]'),
-	(43, 'Đường xuống lòng đất', 0, 0, 0, 9, 15, '[[42,348,24,"Đèo hoang sơ",528,948],[44,24,1140,"Cây cầu ma ám",696,732]]', '["43_1","43_2"]', '[[58,222,102],[58,222,152],[58,222,202],[58,222,252],[58,138,108],[58,138,158],[58,138,208],[58,138,258],[58,468,324],[58,360,324],[58,276,372],[58,198,612],[58,198,564],[58,198,510],[58,276,630],[58,276,580],[58,276,530],[60,90,864],[60,140,864],[60,190,864],[60,240,864],[60,96,948],[60,146,948],[60,196,948],[60,246,948],[60,480,1206],[60,480,1164],[60,480,1114],[60,384,1206],[60,480,1166],[60,480,1116]]'),
-	(44, 'Cây cầu ma ám', 0, 0, 0, 9, 15, '[[43,696,732,"Đường xuống lòng đất",24,1140],[45,24,732,"Cổng vào Hạ giới",1128,228]]', '["44_1"]', '[[62,576,510],[62,526,510],[62,476,510],[62,426,510],[62,582,588],[62,532,588],[62,482,588],[62,432,588],[62,330,552],[62,280,552],[62,230,552],[62,342,618],[62,292,618],[62,242,618],[66,612,282],[66,562,282],[66,512,282],[66,462,282],[66,558,348],[66,508,348],[66,458,348],[66,390,264],[66,340,264],[66,290,264],[66,240,264],[66,288,372],[66,288,324],[66,360,228]]'),
-	(45, 'Cổng vào Hạ giới', 0, 0, 0, 9, 15, '[[44,1128,228,"Cây cầu ma ám",24,732],[52,1008,936,"Cổng địa ngục",252,24]]', '["45_1","45_2"]', '[[68,132,270],[68,132,320],[68,132,370],[68,132,420],[68,204,288],[68,204,338],[68,204,388],[68,204,438],[70,486,462],[70,486,512],[70,486,562],[70,546,468],[70,546,518],[70,546,568],[70,654,654],[70,604,654],[70,554,654],[70,504,654],[70,654,732],[70,604,732],[70,554,732],[70,504,732],[70,312,798],[70,396,822],[70,306,858],[72,144,894],[72,144,944],[72,144,994],[72,144,1044],[72,144,1094],[72,144,1144],[72,144,1194],[72,240,936],[72,240,986],[72,240,1036],[72,240,1086],[72,240,1136],[72,240,1186],[72,240,1236],[74,546,996],[74,596,996],[74,646,996],[74,546,1050],[74,596,1050],[74,646,1050],[74,1092,670],[74,1042,970],[74,992,970],[74,942,970],[74,1128,1090],[74,1078,1090],[74,1028,1090],[74,978,1090],[105,816,1064]]'),
-	(46, 'Khu vực săn boss', 0, 0, 0, 9, 15, '[]', '[]', '[]'),
-	(47, 'Đồi xác chết', 0, 0, 0, 9, 15, '[[19,816,420,"Cửa Biển",24,240]]', '["47_1"]', '[[53,384,384]]'),
-	(48, 'Ngã tư tử thần', 2, 0, 0, 9, 15, '[]', '["48_1"]', '[]'),
-	(50, 'Khu vườn', 3, 0, 0, 9, 15, '[[1,24,468,"Làng Sói Trắng",1032,396]]', '["50_1","50_2"]', '[]'),
-	(51, 'Cổng thiên đàng', 0, 0, 0, 9, 15, '[[41,24,1500,"Lối lên Thượng giới",1656,324]]', '["51_1"]', '[[85,312,1410],[85,312,1464],[85,732,1434],[85,810,1398],[85,870,1828],[85,870,1424],[85,930,1482],[85,906,1548],[85,864,1590],[85,756,1554],[85,684,1524],[85,696,1614],[85,804,1512],[85,564,1068],[85,480,1068],[85,400,1068],[85,320,1068],[85,220,1068],[85,516,1176],[85,430,1176],[85,370,1176],[85,300,1176],[85,220,1176],[87,906,906],[87,906,960],[87,906,1010],[87,906,1050],[87,1020,1074],[87,1020,1032],[87,1020,1000],[87,1020,950],[87,318,510],[87,276,510],[87,200,510],[87,120,510],[87,306,558],[87,252,576],[87,200,576],[87,120,576],[85,624,582],[85,624,534],[85,624,490],[85,624,440],[85,624,398],[85,750,582],[85,750,552],[85,750,520],[85,750,490],[85,750,460],[87,90,48],[87,150,48],[87,190,48],[87,230,48],[87,270,48],[87,300,48],[87,90,132],[87,156,132],[87,200,132],[87,240,132],[87,280,132],[87,320,132],[83,320,1520]]'),
-	(52, 'Cổng địa ngục', 0, 0, 0, 9, 15, '[[45,252,24,"Cổng vào Hạ giới",1008,936],[62,1092,1008,"Địa ngục tầng 1",72,612]]', '["52_1"]', '[[86,636,408],[86,636,358],[86,636,308],[86,558,432],[86,558,382],[86,558,332],[86,1062,54],[86,1062,104],[86,1062,154],[86,1062,204],[86,996,60],[86,996,110],[86,996,160],[86,996,210],[88,1092,450],[88,1042,450],[88,992,450],[88,942,450],[88,1086,528],[88,1036,528],[88,986,528],[88,936,528],[88,300,606],[88,300,656],[88,300,706],[88,300,756],[88,408,612],[88,408,662],[88,408,712],[88,408,762],[86,138,1146],[86,188,1146],[86,238,1146],[86,288,1146],[86,114,1218],[86,164,1218],[86,214,1218],[86,264,1218],[88,966,1170],[88,966,1220],[88,966,1270],[88,966,1320],[88,840,1134],[88,840,1184],[88,840,1234],[88,840,1284]]'),
-	(53, 'Chuẩn bị', 0, 0, 0, 9, 40, '[[54,48,120,"Làng ánh sáng",672,696]]', '[]', '[]'),
-	(54, 'Làng ánh sáng', 0, 0, 0, 9, 40, '[[61,84,72,"Chiến trường",1032,996],[53,672,696,"Chuẩn bị",48,120]]', '["54_1","54_2","54_3"]', '[[91,342,470]]'),
-	(55, 'Chuẩn bị', 0, 0, 0, 9, 40, '[[56,228,12,"Làng gió",384,708]]', '["55_1"]', '[]'),
-	(56, 'Làng gió', 0, 0, 0, 9, 40, '[[61,624,72,"Chiến trường",48,972],[55,384,708,"Chuẩn bị",228,12]]', '["56_1","56_2"]', '[[90,432,504]]'),
-	(57, 'Chuẩn bị', 0, 0, 0, 9, 40, '[[58,24,432,"Làng sét",660,24]]', '["57_1"]', '[]'),
-	(58, 'Làng sét', 0, 0, 0, 9, 40, '[[61,84,696,"Chiến trường",960,60],[57,660,24,"Chuẩn bị",24,432]]', '["58_1","58_2"]', '[[89,462,264]]'),
-	(59, 'Chuẩn bị', 0, 0, 0, 9, 40, '[[60,240,468,"Làng lửa",384,12]]', '["59_1"]', '[]'),
-	(60, 'Làng lửa', 0, 0, 0, 9, 40, '[[61,600,708,"Chiến trường",72,48],[59,384,12,"Chuẩn bị",240,468]]', '["60_1","60_2"]', '[[92,384,168]]'),
-	(61, 'Chiến trường', 0, 0, 0, 9, 40, '[[60,72,48,"Làng lửa",600,708],[58,960,60,"Làng sét",84,696],[54,1032,996,"Làng ánh sáng",84,72],[56,48,972,"Làng gió",624,72]]', '["61_1"]', '[[100,621,476],[99,625,443],[98,610,499],[97,621,460],[96,539,458],[95,555,256],[94,590,500],[93,500,500],[94,527,498],[95,520,399],[96,431,615],[97,431,615],[98,450,600],[99,450,600],[100,600,300],[99,600,367],[98,500,555],[97,500,555],[96,555,600],[95,555,600],[94,419,527],[93,466,527],[94,475,527],[95,500,527],[96,566,527],[97,600,527],[98,630,527],[99,680,527],[100,580,545],[101,487,510]]'),
-	(62, 'Địa ngục tầng 1', 0, 0, 0, 9, 15, '[[52,72,612,"Cổng địa ngục",1092,1008]]', '["62_1"]', '[[106,468,498]]'),
-	(63, 'Rừng medusa', 0, 0, 0, 9, 15, '[[64,24,156,"Rừng Chimera",696,72],[70,24,660,"Khu bờ tây",672,36],[65,696,588,"Rừng quái vật",24,72],[72,336,24,"Rừng hoa đỏ",540,576]]', '["63_1"]', '[[117,348,108],[117,298,108],[117,248,108],[117,198,108],[117,354,168],[117,294,168],[117,244,168],[117,194,168],[111,276,396],[111,226,396],[111,176,396],[111,252,468],[111,202,468],[111,152,468],[111,406,612],[111,356,612],[111,306,612],[111,594,540]]'),
-	(64, 'Rừng Chimera', 0, 0, 0, 9, 15, '[[63,696,72,"Rừng medusa",24,156],[66,12,384,"Thác reo",432,24],[70,696,480,"Khu bờ tây",60,48],[71,48,60,"Rừng chuột",48,696]]', '["64_1"]', '[[118,372,492],[118,322,492],[118,272,492],[118,222,492],[118,324,414],[118,274,414],[118,224,414],[118,240,234],[118,240,284],[118,240,334],[118,180,270],[118,180,330],[114,474,246],[114,424,246],[114,374,246],[114,324,246],[114,390,186],[114,324,186],[114,510,72],[114,460,72],[114,410,72],[114,516,120],[114,466,120],[114,416,120]]'),
-	(65, 'Rừng quái vật', 0, 0, 0, 9, 15, '[[68,24,636,"Khu bờ nam",696,168],[63,24,72,"Rừng medusa",696,588]]', '["65_1"]', '[[121,102,306],[121,102,356],[121,102,406],[121,102,456],[121,246,180],[121,246,230],[121,246,280],[121,246,330],[119,648,42],[119,598,42],[119,548,42],[119,690,108],[119,640,108],[119,590,108],[121,618,300],[121,568,300],[121,518,300],[121,618,372],[121,568,372],[121,518,372],[119,648,42],[119,438,480],[119,438,530],[119,438,580],[119,438,630],[119,408,642],[119,358,642],[119,308,642],[119,358,642]]'),
-	(66, 'Thác reo', 0, 0, 0, 9, 15, '[[64,432,24,"Rừng Chimera",12,384],[69,696,408,"Khu bờ bắc",24,360]]', '["66_1"]', '[[120,474,432],[120,424,432],[120,374,432],[120,462,366],[120,412,366],[120,382,366],[120,120,384],[120,120,432],[120,120,482],[120,192,390],[120,192,440],[120,192,490],[113,636,84],[113,586,84],[113,536,84],[113,666,180],[113,616,180],[113,566,180]]'),
-	(67, 'Thành phố cảng', 0, 1, 0, 9, 15, '[[69,24,300,"Khu bờ bắc",696,120],[68,768,72,"Khu bờ nam",24,216],[70,276,24,"Khu bờ tây",408,696]]', '["67_1","67_2","67_3"]', '[]'),
-	(68, 'Khu bờ nam', 0, 1, 0, 9, 15, '[[67,24,216,"Thành phố cảng",768,72],[65,696,168,"Rừng quái vật",24,636]]', '["68_1","68_2"]', '[]'),
-	(69, 'Khu bờ bắc', 0, 1, 0, 9, 15, '[[66,24,360,"Thác reo",696,408],[67,696,120,"Thành phố cảng",24,300]]', '["69_1","69_2"]', '[]'),
-	(70, 'Khu bờ tây', 0, 1, 0, 9, 15, '[[67,408,696,"Thành phố cảng",276,24],[64,60,48,"Rừng Chimera",696,480],[63,672,36,"Rừng medusa",24,660]]', '["70_1","70_2"]', '[]'),
-	(71, 'Rừng chuột', 0, 0, 0, 9, 15, '[[64,48,696,"Rừng Chimera",48,60],[73,492,24,"Vịnh Caribe",96,996]]', '["71_1"]', '[[115,108,276],[115,108,326],[115,108,376],[115,216,228],[115,216,278],[115,216,328],[115,180,132],[115,180,182],[115,180,232],[115,264,126],[115,264,176],[115,264,232],[112,486,528],[112,436,528],[112,386,528],[112,336,528],[112,286,528],[112,390,402],[112,390,452],[112,390,502],[112,522,264],[112,472,264],[112,534,330],[112,484,330]]'),
-	(72, 'Rừng hoa đỏ', 0, 0, 0, 9, 15, '[[63,540,576,"Rừng medusa",336,24],[73,72,48,"Vịnh Caribe",444,996]]', '["72_1","72_2"]', '[[123,132,96],[123,132,146],[123,132,196],[124,108,378],[124,108,428],[124,108,478],[124,354,264],[124,304,264],[124,254,264],[124,348,318],[124,298,318],[124,248,318],[124,198,318],[123,378,108],[123,378,158],[123,378,208],[123,378,258],[123,480,84],[123,480,134],[123,480,184],[123,480,234],[123,540,408],[123,462,408],[123,438,474],[123,528,474]]'),
-	(73, 'Vịnh Caribe', 0, 0, 0, 9, 15, '[[72,444,996,"Rừng hoa đỏ",72,48],[71,96,996,"Rừng chuột",492,24],[74,252,24,"Mê cung",120,48]]', '["73_1"]', '[[125,240,690],[125,240,740],[125,240,790],[125,336,612],[125,336,662],[125,336,712],[125,258,600],[125,336,822],[116,312,378],[116,262,378],[116,212,378],[116,324,432],[116,186,174],[116,186,224],[116,186,274],[116,270,162],[116,270,212],[116,270,262]]'),
-	(74, 'Mê cung', 0, 0, 0, 9, 15, '[[73,120,48,"Vịnh Caribe",252,24],[75,564,708,"Mê cung tầng 1",72,48]]', '["74_1","74_2"]', '[[138,60,300],[138,110,300],[138,160,300],[138,60,354],[138,110,354],[138,160,354],[138,384,72],[138,384,122],[138,384,172],[138,564,156],[138,514,156],[138,464,172],[137,288,264],[137,338,264],[137,388,264],[137,438,264],[137,282,342],[137,332,342],[137,382,342],[137,442,342],[137,522,534],[137,522,484],[137,522,434]]'),
-	(75, 'Mê cung tầng 1', 0, 0, 0, 9, 15, '[[74,72,48,"Mê cung",564,708],[76,936,120,"Mê cung tầng 2",96,36]]', '["75_1"]', '[[139,282,90],[139,282,140],[139,282,190],[139,282,216],[139,332,216],[139,382,216],[139,372,558],[139,372,508],[139,372,458],[139,372,408],[139,504,378],[139,454,378],[139,404,378],[139,558,456],[139,508,456],[139,458,456],[140,786,282],[140,786,332],[140,786,382],[140,696,270],[140,696,320],[140,696,370]]'),
-	(76, 'Mê cung tầng 2', 0, 0, 0, 9, 15, '[[75,96,36,"Mê cung tầng 1",936,120],[77,528,756,"Mê cung tầng 3",60,576]]', '["76_1"]', '[[141,420,96],[141,370,96],[141,320,96],[141,280,96],[141,420,174],[141,370,174],[141,320,174],[141,270,174],[141,220,408],[142,284,408],[142,234,408],[142,184,408],[142,366,498],[142,316,498],[142,266,498],[142,216,498],[142,72,762],[142,122,762],[142,172,762],[141,360,768],[142,310,762],[149,204,762]]'),
-	(77, 'Mê cung tầng 3', 0, 0, 0, 9, 15, '[[76,60,576,"Mê cung tầng 2",528,756],[78,744,588,"Mê cung tầng 4",72,36]]', '["77_1","77_2"]', '[[143,156,138],[143,156,188],[143,156,238],[143,156,288],[143,156,338],[143,156,388],[143,156,438],[143,156,488],[143,414,276],[143,414,326],[143,414,376],[143,414,426],[143,414,476],[143,414,526],[143,576,84],[143,408,96],[143,396,162],[144,762,84],[144,762,134],[144,762,184],[144,780,198],[144,730,198],[144,680,198],[144,780,306],[144,730,198],[144,660,198],[144,780,426],[144,780,366]]'),
-	(78, 'Mê cung tầng 4', 0, 0, 0, 9, 15, '[[77,72,36,"Mê cung tầng 3",744,588],[79,960,552,"Mê cung tầng cuối",384,24]]', '["78_1"]', '[[145,320,354],[145,270,354],[145,220,354],[145,170,354],[145,90,360],[145,90,410],[145,90,460],[145,90,510],[145,132,486],[145,182,486],[145,232,486],[145,282,486],[146,894,78],[146,844,78],[146,794,78],[146,744,78],[146,694,78],[146,644,78],[146,618,246],[146,568,246],[146,518,246],[146,468,246],[146,480,294],[146,480,342],[146,530,342],[146,580,342],[146,630,342],[146,618,288],[146,708,402],[146,658,402],[146,608,402],[145,960,354],[145,910,354],[145,860,354],[145,966,414],[145,916,414],[145,866,414]]'),
-	(79, 'Mê cung tầng cuối', 0, 0, 0, 9, 15, '[[78,384,24,"Mê cung tầng 4",960,552],[92,264,828,"Cổng trắng",216,12]]', '["79_1","79_2"]', '[[148,270,84],[148,396,144],[148,346,144],[148,126,168],[148,176,168],[148,226,168],[148,114,228],[148,164,228],[148,214,228],[148,378,384],[148,328,384],[148,278,384],[148,228,384],[148,36,396],[148,86,396],[148,136,396],[148,114,606],[148,164,606],[148,214,606],[148,264,606],[147,786,126],[148,744,78],[148,694,78],[148,644,78],[148,594,78],[148,726,162],[148,676,162],[148,626,162],[148,576,162],[148,606,324],[148,702,324],[148,690,372],[148,630,372],[148,618,702],[148,568,702],[148,518,702],[148,468,702],[148,418,702],[155,534,732]]'),
-	(82, 'Khu mua bán', 0, 0, 0, 9, 15, '[]', '["82_1","82_2"]', '[]'),
-	(88, 'Khu hang động', 0, 0, 0, 9, 15, '[]', '["88_1","88_2"]', '[[169,63,671],[169,163,671],[169,263,671],[169,267,347],[169,267,397],[169,51,195],[169,51,245],[169,51,295],[169,195,29],[169,717,665],[169,861,683],[169,759,557],[169,915,557],[169,801,623],[169,885,395],[169,705,305],[171,681,47],[171,207,239],[171,489,353],[171,439,353],[171,389,353],[171,435,419],[171,385,419],[171,335,419]]'),
-	(89, 'Khu đồi cát', 0, 0, 0, 9, 15, '[]', '["89_1","89_2"]', '[[170,108,648],[170,158,648],[170,208,648],[170,372,330],[170,372,380],[170,372,430],[170,384,90],[170,334,90],[170,284,90],[170,234,90],[170,642,138],[170,642,188],[170,642,238],[170,642,288],[168,888,216],[168,838,216],[168,788,216],[168,738,216],[168,36,318],[168,36,368],[168,36,418],[168,36,468],[168,600,492],[168,600,542],[168,648,636],[168,698,636],[168,924,570],[168,906,468],[168,756,450]]'),
-	(90, 'Khu thảo nguyên', 0, 0, 0, 9, 15, '[]', '["90_1","90_2"]', '[[167,312,474],[167,262,474],[167,324,552],[167,274,552],[167,156,654],[167,42,570],[167,42,444],[167,558,648],[167,608,648],[167,658,648],[167,708,648],[167,720,42],[167,770,42],[167,820,42],[167,684,138],[167,734,138],[167,784,138],[167,456,84],[167,456,134],[167,552,54],[167,552,105],[172,156,228],[172,226,228],[172,156,332],[172,226,332],[172,660,294],[172,710,294],[172,760,294],[172,720,372],[172,720,422],[172,720,472]]'),
-	(91, 'Khu đồi cỏ', 0, 0, 0, 9, 15, '[]', '["91_1","91_2"]', '[[170,678,546],[170,678,596],[170,678,646],[170,846,480],[170,846,530],[170,846,580],[170,522,600],[170,798,42],[170,728,42],[170,658,42],[170,598,42],[167,288,228],[167,338,228],[167,388,228],[167,438,228],[167,414,294],[167,414,344],[167,414,394],[167,414,444],[167,60,222],[167,156,270],[167,156,320],[167,60,720],[167,110,720],[167,160,720],[167,288,642],[167,238,642],[167,188,642]]'),
-	(92, 'Cổng trắng', 0, 0, 0, 9, 15, '[[79,216,12,"Mê cung tầng cuối",264,828],[93,468,276,"Thị trấn mùa đông",12,420]]', '["92_1"]', '[]'),
-	(93, 'Thị trấn mùa đông', 0, 1, 0, 9, 15, '[[92,12,420,"Cổng trắng",468,276],[94,948,432,"Thung lũng băng giá",12,336]]', '["93_1","93_2"]', '[] '),
-	(94, 'Thung lũng băng giá', 0, 0, 0, 9, 15, '[[93,12,336,"Thị trấn mùa đông",948,432],[95,324,12,"Chân núi tuyết",168,684]]', '["94_1","94_2"]', '[[157,222,450],[157,186,474],[157,114,516],[157,48,582],[157,98,582],[157,148,582],[157,198,582],[157,60,642],[157,110,642],[157,160,642],[157,210,642],[157,426,258],[157,426,308],[157,426,358],[157,426,408],[157,540,288],[157,540,338],[157,540,388],[157,540,438],[158,336,402],[158,336,452],[158,414,480],[158,414,530],[158,414,580],[158,414,630],[158,330,594],[158,380,594],[158,430,594],[158,480,594],[158,654,144],[158,654,194],[158,654,244],[158,654,294],[158,582,174],[158,582,224],[158,582,274],[158,582,324]]'),
-	(95, 'Chân núi tuyết', 0, 0, 0, 9, 15, '[[94,168,684,"Thung lũng băng giá",324,12],[96,12,300,"Đèo băng giá",708,216]]', '["95_1","95_2"]', '[[159,360,420],[159,310,420],[159,260,420],[159,210,420],[159,240,474],[159,290,474],[159,340,474],[159,390,474],[159,489,318],[159,498,368],[159,498,418],[159,486,444],[159,536,444],[159,586,444],[159,636,444],[159,558,30],[159,608,30],[159,658,30],[159,708,30],[159,540,96],[159,590,96],[159,640,96],[159,690,96],[160,690,204],[160,690,254],[160,684,276],[160,634,276],[160,584,276],[160,534,276],[160,480,180],[160,480,260],[160,396,36],[160,296,36],[160,196,36],[160,240,126],[160,240,176],[160,240,226],[160,306,162],[160,366,162],[160,406,162],[160,466,162],[160,336,222]]'),
-	(96, 'Đèo băng giá', 0, 0, 0, 9, 15, '[[97,468,12,"Vực thẳm sương mù",432,540],[95,708,216,"Chân núi tuyết",12,300]]', '["96_1","96_2","96_3"]', '[[162,324,162],[162,274,162],[162,224,162],[162,306,192],[162,256,192],[162,206,192],[162,174,594],[162,224,594],[162,276,594],[162,138,546],[162,188,546],[162,238,546],[162,492,486],[162,442,486],[162,392,486],[162,342,486],[162,492,540],[162,442,540],[162,392,540],[162,342,540],[162,450,300],[162,500,300],[162,600,252],[162,600,302],[161,582,432],[161,582,482],[161,582,532],[161,582,582],[161,660,402],[161,660,452],[161,660,502],[161,660,552],[161,642,630],[161,592,630],[161,438,642],[161,282,708],[161,232,708],[161,182,708],[161,132,708],[161,228,648],[161,178,648],[161,128,648],[161,78,648],[161,66,162],[161,66,212],[161,66,262],[161,66,312],[161,66,362],[161,66,412],[161,66,462]]'),
-	(97, 'Vực thẳm sương mù', 0, 0, 0, 9, 15, '[[96,432,540,"Đèo băng giá",468,12],[98,756,12,"Trạm núi tuyết",276,708]]', '["97_1","97_2"]', '[[164,300,450],[164,300,510],[164,356,498],[164,416,498],[164,456,498],[164,516,498],[164,480,432],[164,420,432],[164,360,432],[164,750,360],[164,750,300],[164,750,260],[164,666,384],[164,666,324],[164,666,264],[163,384,192],[163,384,242],[163,384,292],[163,384,342],[163,468,210],[163,468,260],[163,468,310],[163,468,360]]'),
-	(98, 'Trạm núi tuyết', 0, 0, 0, 9, 15, '[[97,276,708,"Vực thẳm sương mù",756,12]]', '["98_1","98_2"]', '[[165,72,72],[165,72,108],[165,156,72],[165,72,48],[165,306,426],[165,356,426],[165,406,426],[165,456,426],[165,438,330],[165,438,390],[165,438,430],[165,438,490],[166,42,372],[166,92,372],[166,142,372],[166,192,372],[166,30,456],[166,90,456],[166,130,456],[166,200,456],[166,324,138],[166,324,198],[166,324,238],[166,420,132],[166,420,182],[166,420,232]]'),
-	(100, 'Loi Dai', 0, 0, 0, 9, 15, '[]', '["102_1"]', '[]'),
-	(102, 'Loi Dai', 0, 0, 1, 9, 15, '[]', '["102_1"]', '[]'),
-	(103, 'Làng Phủ Sương', 0, 1, 0, 9, 15, '[]', '["135_2","135_1","11_3"]', '[]'),
-	(104, 'Làng Phủ Sương 1', 0, 0, 0, 9, 15, '[]', '["135_2"]', '[[189,72,72],[189,72,108],[189,156,72],[189,72,48],[189,306,426],[189,356,426],[189,406,426],[189,456,426],[189,438,330],[189,438,390],[189,438,430],[189,438,490],[189,42,372],[189,92,372],[189,142,372],[189,192,372],[189,30,456],[189,90,456],[189,130,456],[189,200,456],[189,324,138],[189,324,198],[189,324,238],[189,420,132],[189,420,182],[189,420,232]]'),
-	(105, 'Làng Phủ Sương 2', 0, 0, 0, 9, 15, '[]', '["135_2"]', '[[190,72,72],[190,72,108],[190,156,72],[190,72,48],[190,306,426],[190,356,426],[190,406,426],[190,456,426],[190,438,330],[190,438,390],[190,438,430],[190,438,490],[190,42,372],[190,92,372],[190,142,372],[190,192,372],[190,30,456],[190,90,456],[190,130,456],[190,200,456],[190,324,138],[190,324,198],[190,324,238],[190,420,132],[190,420,182],[190,420,232]]'),
-	(106, 'Làng Phủ Sương 3', 0, 0, 0, 9, 15, '[]', '["135_2"]', '[[191,72,72],[191,72,108],[191,156,72],[191,72,48],[191,306,426],[191,356,426],[191,406,426],[191,456,426],[191,438,330],[191,438,390],[191,438,430],[191,438,490],[191,42,372],[191,92,372],[191,142,372],[191,192,372],[191,30,456],[191,90,456],[191,130,456],[191,200,456],[191,324,138],[191,324,198],[191,324,238],[191,420,132],[191,420,182],[191,420,232]]'),
-	(107, 'Làng Phủ Sương 4', 0, 0, 0, 9, 15, '[]', '["135_2"]', '[[192,72,72],[192,72,108],[192,156,72],[192,72,48],[192,306,426],[192,356,426],[192,406,426],[192,456,426],[192,438,330],[192,438,390],[192,438,430],[192,438,490],[192,42,372],[192,92,372],[192,142,372],[192,192,372],[192,30,456],[192,90,456],[192,130,456],[192,200,456],[192,324,138],[192,324,198],[192,324,238],[192,420,132],[192,420,182],[192,420,232]]'),
-	(108, 'Làng Phủ Sương 5', 0, 0, 0, 9, 15, '[]', '["135_2"]', '[[193,72,72],[193,72,108],[193,156,72],[193,72,48],[193,306,426],[193,356,426],[193,406,426],[193,456,426],[193,438,330],[193,438,390],[193,438,430],[193,438,490],[193,42,372],[193,92,372],[193,142,372],[193,192,372],[193,30,456],[193,90,456],[193,130,456],[193,200,456],[193,324,138],[193,324,198],[193,324,238],[193,420,132],[193,420,182],[193,420,232]]'),
-	(109, 'Boss Even 0', 0, 0, 0, 9, 15, '[]', '["2_1","135_2"]', '[[186,492,420]]'),
-	(110, 'Boss Even 1', 0, 0, 0, 9, 15, '[]', '["2_1","135_2"]', '[[187,492,420]]'),
-	(111, 'Boss SK', 0, 0, 0, 9, 15, '[]', '["2_1","135_2"]', '[[188,492,420],[219,492,420]]'),
-	(112, 'Boss Even 3', 0, 0, 0, 9, 15, '[]', '["2_1","135_2"]', '[[195,492,420]]'),
-	(113, 'Boss Even 4', 0, 0, 0, 9, 15, '[]', '["2_1","135_2"]', '[[173,492,420]]'),
-	(114, 'Boss Even 5', 0, 0, 0, 9, 15, '[]', '["2_1","135_2"]', '[[197,492,420]]'),
-	(115, 'Boss Even 6', 0, 0, 0, 9, 15, '[]', '["2_1","135_2"]', '[[196,492,420]]'),
-	(125, 'Map 10x', 0, 0, 0, 9, 20, '[]', '["125_1"]', '[[213,552,672],\r\n[213,674,729],\r\n[213,528,696],\r\n[213,528,648],\r\n[213,552,720],\r\n[213,698,744],\r\n[213,816,768],\r\n[213,698,720],\r\n[213,698,729],\r\n[214,312,672],\r\n[214,346,420],\r\n[214,312,432],\r\n[214,346,396],\r\n[214,346,408],\r\n[214,346,432],\r\n[213,677,292],\r\n[213,672,292],\r\n[213,648,292],\r\n[213,677,292],\r\n[214,168,696],\r\n[214,144,648],\r\n[214,120,600],\r\n[213,648,168]]'),
-	(127, 'Map 11x', 0, 0, 0, 9, 20, '[]', '["127_1"]', '[[205,360,384],\r\n[205,144,384],\r\n[205,384,360],\r\n[205,196,460],\r\n[205,196,460],\r\n[205,196,460],\r\n[205,351,595],\r\n[205,351,595],\r\n[205,375,571],\r\n[205,360,576],\r\n[205,360,595],\r\n[205,408,408],\r\n[205,288,744],\r\n[205,76,900],\r\n[205,76,900],\r\n[205,76,900],\r\n[205,264,1008],\r\n[205,288,1032],\r\n[205,288,1080],\r\n[205,432,840],\r\n[209,528,1128],\r\n[205,504,792],\r\n[205,456,792],\r\n[209,600,1080],\r\n[209,552,1080],\r\n[209,780,956],\r\n[209,780,956],\r\n[209,816,768],\r\n[209,780,956],\r\n[209,780,960],\r\n[209,792,744],\r\n[209,792,888],\r\n[209,744,956],\r\n[209,892,636],\r\n[209,648,600],\r\n[209,696,624],\r\n[205,588,84],\r\n[205,351,600]]'),
-	(129, 'Map 12x', 0, 0, 0, 9, 20, '[]', '["129_1"]', '[[217,264,408],\r\n[217,240,360],\r\n[217,264,192],\r\n[217,168,360],\r\n[217,168,264],\r\n[217,120,192],\r\n[217,268,175],\r\n[217,192,336],\r\n[217,268,199],\r\n[217,292,168],\r\n[217,264,175],\r\n[218,720,696],\r\n[217,336,144],\r\n[217,312,72],\r\n[217,144,240],\r\n[217,360,432],\r\n[217,264,456],\r\n[217,192,552],\r\n[217,360,528],\r\n[217,168,552],\r\n[217,288,528],\r\n[217,312,480],\r\n[217,72,624],\r\n[217,120,648],\r\n[217,120,720],\r\n[216,624,744],\r\n[216,744,720],\r\n[216,696,576],\r\n[216,672,648],\r\n[216,648,696],\r\n[216,720,672],\r\n[216,888,696],\r\n[216,912,648],\r\n[216,960,600],\r\n[216,1008,624],\r\n[216,1056,600],\r\n[216,1080,648],\r\n[216,1080,600],\r\n[216,1056,672],\r\n[216,1056,672],\r\n[216,1056,552],\r\n[216,888,336],\r\n[216,968,123],\r\n[216,968,123],\r\n[216,960,131],\r\n[216,968,131],\r\n[216,968,96],\r\n[216,816,216],\r\n[216,840,168],\r\n[216,792,312],\r\n[216,744,144],\r\n[216,792,48],\r\n[216,792,288]\r\n]'),
-	(132, 'Map 13x', 0, 0, 0, 9, 20, '[]', '["132_1"]', '[[210,96,192],\r\n[210,408,144],\r\n[210,384,240],\r\n[210,72,240],\r\n[210,240,288],\r\n[210,384,264],\r\n[210,72,288],\r\n[210,336,240],\r\n[210,240,264],\r\n[210,96,312],\r\n[210,264,240],\r\n[210,288,192],\r\n[210,0,936],\r\n[210,312,912],\r\n[210,360,960],\r\n[210,408,960],\r\n[210,384,984],\r\n[210,432,984],\r\n[210,240,1008],\r\n[210,408,1008],\r\n[210,408,1032],\r\n[210,96,1032],\r\n[210,144,1032],\r\n[210,384,1056],\r\n[210,120,1080],\r\n[210,144,1104],\r\n[210,144,1152],\r\n[210,72,1152],\r\n[210,480,960],\r\n[210,432,1080],\r\n[210,552,1056],\r\n[210,456,1032],\r\n[210,552,1152],\r\n[210,576,1080],\r\n[210,576,1056],\r\n[210,600,1032],\r\n[210,648,1080],\r\n[210,648,1128],\r\n[212,720,936],\r\n[212,792,912],\r\n[212,902,845],\r\n[212,792,840],\r\n[212,936,845],\r\n[212,1008,984],\r\n[212,960,816],\r\n[212,792,792],\r\n[212,720,792],\r\n[212,888,888],\r\n[212,960,888],\r\n[212,984,552],\r\n[212,1080,432],\r\n[212,984,456],\r\n[212,936,480],\r\n[212,960,504],\r\n[212,768,312],\r\n[212,792,144],\r\n[212,744,168],\r\n[212,744,216],\r\n[212,792,72],\r\n[212,720,168],\r\n[212,672,336],\r\n[212,648,432],\r\n[212,648,264],\r\n[212,624,288],\r\n[212,600,408],\r\n[212,600,336],\r\n[212,552,456],\r\n[212,552,384],\r\n[212,861,816],\r\n[212,864,600],\r\n[212,912,864],\r\n[212,720,936],\r\n[212,871,861],\r\n[212,864,864],\r\n[212,840,792],\r\n[212,744,744],\r\n[212,936,792],\r\n[212,864,768],\r\n[212,888,816]\r\n]'),
-	(135, 'Làng phủ sương', 0, 0, 0, 9, 20, '[]', '["135_1","135_2","135_3","135_4","135_5","135_6","135_7"]', '[]');
+	(0, 'Ngôi Làng Nhỏ', 0, 0, 0, 7, 15, '[[1,1224,36,"Làng Sói Trắng",528,696]]', '["0_1","0_2"]', '[[0,696,504],\r\n[0,984,552],\r\n[0,1032,576],\r\n[0,888,456],\r\n[0,720,648],\r\n[0,960,192],\r\n[0,720,264],\r\n[0,648,216],\r\n[0,576,216],\r\n[0,936,264],\r\n[0,600,240],\r\n[0,1032,312],\r\n[0,1008,432],\r\n[0,672,456],\r\n[0,960,648],\r\n[0,960,504],\r\n[0,864,408],\r\n[0,696,552],\r\n[0,768,432],\r\n[0,720,240],\r\n[0,1032,312],\r\n[0,1056,552],\r\n[0,1104,336],\r\n[0,1104,528],\r\n[0,720,264],\r\n[0,936,264], [0,878,582], [0,838,582], [0,858,602], [0,858,562]]'),
+	(1, 'Làng Sói Trắng', 0, 1, 0, 7, 15, '[[2,900,120,"Khu mỏ",396,696],[3,24,372,"Bìa Rừng",936,252],[0,528,696,"Ngôi Làng Nhỏ",1224,36],[7,552,24,"Cánh Đồng Sói",480,852],[50,1032,396,"Khu vườn",24,468]]', '["1_1","1_2"]', '[]'),
+	(2, 'Khu mỏ', 0, 0, 0, 7, 15, '[[1,396,696,"Làng Sói Trắng",900,120]]', '["2_1"]', '[[84,468,444]]'),
+	(3, 'Bìa Rừng', 0, 0, 0, 7, 15, '[[4,204,744,"Hang Lửa",852,876],[1,936,252,"Làng Sói Trắng",24,372]]', '["3_1","3_2"]', '[[0,792,312],[0,720,336],[0,720,390],[0,624,378],[0,540,366],[0,564,438],[0,456,378],[0,360,408],[0,432,450],[0,516,492],[0,606,516],[0,518,582],[1,115,347],[1,187,347],[1,241,394],[1,211,459],[1,121,449],[1,97,399],[1,615,795],[1,674,844],[1,714,844],[1,679,944],[1,542,940],[1,481,981],[1,466,846],[1,508,796],[1,563,861],[1,169,819],[1,265,819],[1,289,897],[1,199,939],[1,97,939]]'),
+	(4, 'Hang Lửa', 0, 0, 0, 7, 15, '[[3,852,876,"Bìa Rừng",204,744],[5,24,204,"Rừng Ảo Giác",1224,960]]', '["4_1","4_2","4_3"]', '[[2,864,702],[2,864,768],[2,714,738],[2,714,816],[2,918,816],[2,570,750],[2,510,822],[2,390,822],[2,390,822],[2,414,726],[2,198,678],[2,198,588],[2,60,648],[2,102,552],[2,276,480],[3,474,534],[3,516,432],[3,624,474],[3,522,396],[3,582,330],[3,576,258],[3,576,180],[3,576,180],[3,444,162],[3,474,210],[3,456,210],[3,300,138],[3,186,150],[3,186,234],[3,294,234]]'),
+	(5, 'Rừng Ảo Giác', 0, 0, 0, 7, 15, '[[4,1224,960,"Hang Lửa",24,204],[6,24,336,"Khe Vực",816,588]]', '["5_1","5_2"]', '[[3,1068,978],[3,1062,894],[3,1062,894],[3,990,894],[3,912,894],[3,906,972],[3,1074,768],[3,1008,720],[3,903,750],[4,732,942],[4,774,576],[4,648,522],[4,486,894],[4,486,936],[4,486,996],[4,426,864],[4,384,924],[4,384,978],[4,336,930],[4,300,870],[4,216,840],[4,132,882],[4,132,940],[4,198,954],[4,282,990],[4,216,588],[4,276,486],[4,300,396],[4,210,372],[4,138,432]]'),
+	(6, 'Khe Vực', 0, 0, 0, 7, 15, '[[5,816,588,"Rừng Ảo Giác",24,336]]', '["6_1"]', '[[5,312,438]]'),
+	(7, 'Cánh Đồng Sói', 0, 0, 0, 7, 15, '[[1,480,852,"Làng Sói Trắng",552,24],[11,936,468,"Bờ Biển",24,864],[15,288,24,"Đầm Lầy",408,1272],[18,708,120,"Hang Sói Quỷ",492,708],[8,24,408,"Thung Lũng Kỳ Bí",1080,84]]', '["7_1","7_2"]', '[[6,828,594],[6,750,582],[6,702,642],[6,750,582],[6,240,660],[6,240,726],[6,150,762],[6,108,768],[6,312,618],[6,288,408],[6,312,486],[6,204,486],[6,186,402],[6,186,324],[6,126,366],[7,474,342],[7,564,342],[7,648,342],[7,540,326],[7,648,216],[7,750,216],[7,624,192],[7,522,234],[7,522,234],[7,420,126],[7,300,126],[7,210,138],[7,210,192],[7,288,234],[103,432,512]]'),
+	(8, 'Thung Lũng Kỳ Bí', 0, 0, 0, 7, 15, '[[9,24,984,"Hồ Ký Ức",1464,912],[7,1080,84,"Cánh Đồng Sói",24,408]]', '["8_1","8_2"]', '[[8,234,117],[8,234,167],[8,234,217],[8,234,267],[8,234,317],[8,234,367],[8,488,207],[8,438,207],[8,388,207],[8,338,207],[8,288,207],[8,984,267],[8,934,267],[8,884,267],[8,834,267],[8,732,315],[8,732,365],[8,732,415],[8,732,465],[9,459,769],[9,509,769],[9,559,769],[9,609,769],[9,659,769],[9,539,922],[9,539,872],[9,539,822],[9,539,772],[9,539,722],[9,954,604],[9,904,604],[9,854,604],[9,804,604],[9,949,684],[9,899,684],[9,849,684],[9,799,684],[9,991,928],[9,941,928],[9,891,928],[9,841,928],[9,791,928]]'),
+	(9, 'Hồ Ký Ức', 0, 0, 0, 7, 15, '[[8,1464,912,"Thung Lũng Kỳ Bí",24,984],[10,1260,24,"Bãi Đất Trống",468,696]]', '["9_1","9_2"]', '[[9,318,942],[9,268,942],[9,208,942],[9,168,960],[9,168,910],[9,168,860],[9,168,810],[9,168,138],[9,218,138],[9,268,138],[9,318,138],[9,368,138],[9,204,168],[9,204,218],[9,204,268],[9,204,318],[9,204,368],[10,1079,701],[10,1029,701],[10,979,701],[10,929,701],[10,879,701],[10,829,701],[10,779,701],[10,729,701],[10,679,701],[10,629,701],[10,480,391],[10,480,441],[10,480,491],[10,480,541],[10,480,591],[10,480,641],[10,480,691],[10,573,463],[10,573,513],[10,573,563],[10,892,331],[10,842,331],[10,792,331],[10,742,331],[10,692,331],[10,642,331]]'),
+	(10, 'Bãi Đất Trống', 0, 0, 0, 7, 15, '[[9,468,696,"Hồ Ký Ức",1260,24]]', '["10_1","10_2"]', '[[11,468,336]]'),
+	(11, 'Bờ Biển', 0, 0, 0, 7, 15, '[[7,24,864,"Cánh Đồng Sói",936,468],[12,1248,672,"Vực Đá",24,852]]', '["11_1","11_2","11_3"]', '[[12,366,738],[12,316,738],[12,296,738],[12,348,798],[12,298,738],[12,246,738],[12,360,336],[12,310,336],[12,290,336],[12,318,396],[12,268,396],[12,218,396],[12,168,396],[12,660,882],[12,710,882],[12,760,882],[12,810,882],[12,672,726],[12,672,776],[12,672,826],[12,996,792],[12,996,842],[12,996,892],[12,1092,768],[12,1092,818],[12,1092,868],[13,805,210],[13,855,210],[13,905,210],[13,955,210],[13,1005,210],[13,840,290],[13,840,290],[13,890,290],[13,940,290],[13,990,290],[13,905,420],[13,955,420],[13,1005,420],[13,1055,420],[13,1105,420]]'),
+	(12, 'Vực Đá', 0, 0, 0, 7, 15, '[[11,24,852,"Bờ Biển",1248,672],[13,1368,948,"Rặng Đá Ngầm",24,984]]', '["12_1","12_2"]', '[[14,330,888],[14,280,888],[14,230,888],[14,180,888],[14,210,726],[14,210,676],[14,210,626],[14,450,456],[14,366,462],[14,366,528],[14,360,582],[14,222,318],[14,272,318],[14,322,318],[14,234,384],[14,284,384],[14,234,334],[15,1122,294],[15,1072,294],[15,1022,294],[15,972,294],[15,1164,372],[15,1114,372],[15,1064,372],[15,1014,372],[15,888,444],[15,978,444],[15,960,504]]'),
+	(13, 'Rặng Đá Ngầm', 0, 0, 0, 7, 15, '[[12,24,984,"Vực Đá",1368,948],[14,444,24,"Nghĩa Địa Tàu Đắm",432,768]]', '["13_1","13_2"]', '[[15,771,914],[15,721,914],[15,671,914],[15,761,979],[15,711,979],[15,661,979],[15,299,911],[15,249,911],[15,199,911],[15,149,911],[15,99,911],[16,162,528],[16,162,578],[16,162,628],[16,162,678],[16,162,728],[16,162,528],[16,162,578],[16,162,628],[16,162,678],[16,162,728],[16,162,778],[16,774,571],[16,774,621],[16,774,671],[16,774,721],[16,668,381],[16,668,431],[16,668,481],[16,668,531],[16,668,581],[16,606,106],[16,606,156],[16,606,206],[16,606,256],[16,606,306],[16,239,199],[16,239,249],[16,239,299],[16,239,199],[16,319,124],[16,319,174],[16,319,224]]'),
+	(14, 'Nghĩa Địa Tàu Đắm', 0, 0, 0, 7, 15, '[[13,432,768,"Rặng Đá Ngầm",444,24]]', '["14_1"]', '[[14,432,373]]'),
+	(15, 'Đầm Lầy', 0, 0, 0, 7, 15, '[[16,492,24,"Đền Cổ",612,1236],[7,408,1272,"Cánh Đồng Sói",288,24]]', '["15_1","15_2"]', '[[18,779,853],[18,779,903],[18,779,953],[18,779,1003],[18,779,1053],[18,779,1103],[18,370,1054],[18,420,1054],[18,470,1054],[18,520,1054],[18,570,1054],[18,620,1054],[18,423,948],[18,523,948],[18,108,787],[18,158,787],[18,208,787],[18,258,787],[18,308,787],[18,358,787],[19,854,537],[19,854,587],[19,854,637],[19,854,687],[19,854,737],[19,910,133],[19,860,133],[19,810,133],[19,760,133],[19,710,133],[19,660,133],[19,85,385],[19,135,385],[19,185,385],[19,235,385],[19,285,385],[19,335,385],[19,61,89],[19,111,89],[19,161,89],[19,211,89],[19,261,89],[19,311,89],[104,530,213]]'),
+	(16, 'Đền Cổ', 0, 0, 0, 7, 15, '[[15,612,1236,"Đầm Lầy",492,24],[17,600,48,"Hang Dơi",564,816]]', '["16_1","16_2"]', '[[20,233,921],[20,233,971],[20,233,1021],[20,233,1071],[20,233,1121],[20,338,1046],[20,338,1096],[20,338,1146],[20,338,1196],[20,338,1246],[20,976,927],[20,976,977],[20,976,1027],[20,976,1077],[20,976,1127],[20,1066,1067],[20,1066,1117],[20,1066,1167],[20,1066,1217],[20,1066,1267],[21,492,653],[21,542,653],[21,592,653],[21,642,653],[21,692,653],[21,742,653],[21,84,203],[21,84,253],[21,84,303],[21,84,353],[21,84,403],[21,612,275],[21,612,325],[21,612,375],[21,612,425],[21,612,475],[21,612,525],[21,1146,269],[21,1096,269],[21,1046,269],[21,996,269],[21,946,269],[21,896,269]]'),
+	(17, 'Hang Dơi', 0, 0, 0, 7, 15, '[[16,564,816,"Đền Cổ",600,48]]', '["17_1","17_2"]', '[[22,636,660],[22,540,672],[22,690,714],[22,174,408],[22,174,458],[22,174,508],[22,372,480],[22,322,480],[22,272,480],[22,468,192],[22,518,192],[22,568,192],[22,618,192],[22,668,192],[22,462,282],[22,512,282],[22,562,282],[22,612,282],[22,662,282],[22,740,468],[22,948,420],[22,462,282],[22,936,534]]'),
+	(18, 'Hang Sói Quỷ', 0, 0, 0, 7, 15, '[[7,492,708,"Cánh Đồng Sói",708,120],[25,468,12,"Rừng Chết",720,996]]', '["18_1"]', '[[23,498,300]]'),
+	(19, 'Cửa Biển', 0, 0, 0, 7, 15, '[[24,1128,816,"Nghĩa địa cát",612,24],[47,24,240,"Đồi xác chết",816,420]]', '["19_1","19_2"]', '[[49,1242,546],[49,1308,546],[49,1368,582],[49,1272,594],[49,1266,678],[49,1344,468],[49,1254,462],[49,1218,384],[49,1296,330],[49,1308,378],[49,1212,306],[49,660,246],[49,732,228],[49,732,294],[49,624,312],[49,576,354],[49,684,354],[49,774,294],[49,672,402],[49,888,378],[49,954,420],[49,864,462],[49,900,618]\r\n,[50,218,618],[50,180,618],[50,114,576],[50,216,576],[50,288,540],[50,78,486],[50,162,486],[50,252,456],[50,144,330],[50,162,246],[50,246,264],[50,324,282],[50,306,330],[50,210,318]]'),
+	(20, 'Sa Mạc', 0, 0, 0, 7, 15, '[[34,936,1020,"Khu phía Tây",24,348],[23,300,24,"Hố Tử Thần",492,1416]]', '["20_1","20_2"]', '[[41,834,1092],[41,756,1092],[41,798,1146],[41,726,1146],[41,546,1122],[41,546,1044],[41,474,1014],[41,414,1092],[41,348,1026],[41,348,1134],[41,294,1080],[41,294,1164],[42,294,336],[42,186,318],[42,270,270],[42,60,306],[42,66,192],[42,114,138],[42,192,108],[42,150,186],[42,234,180],[42,588,186],[42,606,137],[42,516,138],[42,498,186],[42,540,228],[42,420,108],[42,732,144]]'),
+	(21, 'Đồi Cát', 0, 0, 0, 7, 15, '[[24,24,828,"Nghĩa địa cát",1176,276],[37,936,132,"Rừng cao nguyên",24,840]]', '["21_1"]', '[[48,222,714],[48,222,762],[48,732,600],[48,804,600],[48,804,678],[48,738,648],[48,714,618],[48,672,654],[48,744,696],[48,372,90],[48,306,108],[48,246,108],[48,192,138],[48,138,162],[48,138,210],[48,234,222],[48,324,110],[48,414,210],[48,390,144],[48,330,144],[48,252,156],[48,210,180],[48,396,96]]'),
+	(22, 'Vực Lún', 0, 0, 0, 7, 15, '[[24,1416,192,"Nghĩa địa cát",24,648],[42,24,732,"Đèo hoang sơ",936,108]]', '["22_1","22_2"]', '[[47,618,444],[47,570,444],[47,500,444],[47,348,444],[47,300,444],[47,250,444],[47,672,552],[47,620,552],[47,590,552],[47,240,330],[47,210,330],[47,180,330],[47,1158,750],[47,1080,750],[47,1030,750],[47,1158,798],[47,1080,798],[47,1030,798]]'),
+	(23, 'Hố Tử Thần', 0, 0, 0, 7, 15, '[[20,492,1416,"Sa Mạc",300,24],[24,348,24,"Nghĩa địa cát",660,1188]]', '["23_1"]', '[[43,108,1434],[43,216,1386],[43,126,1350],[43,48,1380],[43,612,1368],[43,72,990],[43,126,1020],[43,54,1050],[43,126,1140],[43,702,762],[43,774,810],[43,624,810],[43,720,846],[43,714,900],[43,600,876],[43,588,948],[43,720,972],[43,552,972],[43,672,1062],[44,96,504],[44,114,546],[44,210,558],[44,198,510],[44,258,558],[44,192,534],[44,258,474],[44,492,516],[44,600,504],[44,582,432],[44,684,408],[44,588,348],[44,486,414],[44,432,360],[44,552,348],[44,786,234],[44,732,180],[44,690,234],[44,642,126],[44,552,120],[44,252,72],[44,222,138],[44,324,138],[44,552,222]]'),
+	(24, 'Nghĩa địa cát', 0, 0, 0, 7, 15, '[[22,24,648,"Vực Lún",1416,192],[21,1176,276,"Đồi Cát",24,828],[23,660,1188,"Hố Tử Thần",348,24],[19,612,24,"Cửa Biển",1128,816]]', '["24_1","24_2","24_3"]', '[[45,648,1026],[45,576,1020],[45,582,906],[45,666,912],[45,708,996],[45,696,1014],[45,654,852],[45,642,990],[45,216,900],[45,156,870],[45,222,840],[45,228,840],[45,228,888],[45,210,870],[46,480,486],[46,564,486],[46,642,540],[46,558,552],[46,558,618],[46,168,402],[46,252,402],[46,282,456],[46,234,504],[46,132,438],[46,240,120],[46,312,120],[46,384,156],[46,306,174],[46,234,216],[46,348,234],[46,282,240],[46,786,90],[46,726,138],[46,864,156],[46,786,258],[46,804,162]]'),
+	(25, 'Rừng Chết', 0, 0, 0, 7, 15, '[[18,720,996,"Hang Sói Quỷ",468,12],[26,12,564,"Suối Ma",1344,408],[33,672,12,"Thành Phố Kho Báu",480,744]]', '["25_1","25_2"]', '[[25,310,945],[25,188,939],[25,71,918],[25,98,834],[25,219,781],[25,84,731],[25,312,612],[25,312,534],[25,408,528],[25,408,576],[25,444,636],[25,552,618],[25,552,634],[26,998,753],[26,1008,753],[26,1154,753],[26,1028,657],[26,1124,657],[26,974,583],[26,974,509],[26,1040,485],[26,1160,510],[26,1160,585],[26,950,177],[26,1064,192],[26,1129,227],[26,1129,292],[26,1129,355],[26,1139,331],[26,935,331],[27,470,208],[27,378,208],[27,240,208],[27,170,208],[27,50,233],[27,50,320],[27,237,335],[27,342,335],[27,450,335],[27,365,262],[27,240,262],[27,325,231],[27,128,260],[101,204,284]]'),
+	(26, 'Suối Ma', 0, 0, 0, 7, 15, '[[25,1344,408,"Rừng Chết",12,564],[27,24,324,"Thung Lũng Đá",1176,396]]', '["26_1","26_2"]', '[[28,1261,562],[28,1211,562],[28,1161,562],[28,1261,646],[28,1211,646],[28,1161,646],[28,955,330],[28,955,380],[28,955,430],[28,1051,360],[28,1051,410],[28,1051,460],[28,1176,41],[28,1176,91],[28,1176,141],[28,1176,191],[28,1071,31],[28,1071,81],[28,1071,131],[28,1071,181],[29,595,57],[29,595,107],[29,595,157],[29,712,57],[29,712,107],[29,712,157],[29,712,207],[29,511,492],[29,561,492],[29,611,492],[29,661,492],[29,546,568],[29,596,568],[29,646,568],[29,696,568],[29,746,568],[30,353,88],[30,353,138],[30,353,188],[30,353,238],[30,251,130],[30,251,180],[30,251,230],[30,251,280],[30,300,636],[30,300,596],[30,300,536],[30,192,624],[30,192,574],[30,192,524],[174,775,437]]'),
+	(27, 'Thung Lũng Đá', 0, 0, 0, 7, 15, '[[28,24,372,"Boss Guardian",816,372],[26,1176,396,"Suối Ma",24,324]]', '["27_1"]', '[[32,798,354],[32,748,354],[32,698,354],[32,786,438],[32,736,438],[32,686,434],[32,294,570],[32,344,570],[32,394,570],[32,444,570],[32,354,642],[32,404,642],[32,454,642],[32,504,642],[31,948,618],[31,898,618],[31,848,618],[31,948,684],[31,898,684],[31,848,684],[31,990,114],[31,940,114],[31,890,114],[31,840,114],[31,960,186],[31,910,186],[31,860,186],[31,810,186],[31,540,108],[31,490,108],[31,440,108],[31,402,216],[31,402,166],[31,402,116]]'),
+	(28, 'Boss Guardian', 0, 0, 0, 7, 15, '[[27,816,372,"Thung Lũng Đá",24,372]]', '["28_1"]', '[[51,444,360]]'),
+	(29, 'Hầm Mộ Tầng 1', 0, 0, 0, 7, 15, '[[35,420,720,"Khu phía Đông",444,120],[30,816,276,"Hầm Mộ Tầng 2",24,324]]', '["29_1","29_2"]', '[[33,168,504],[33,168,554],[33,168,604],[33,168,654],[33,66,462],[33,66,512],[33,66,562],[33,66,612],[33,624,504],[33,624,554],[33,624,604],[33,624,654],[33,750,510],[33,750,560],[33,750,610],[33,750,660],[34,522,258],[34,472,258],[34,422,258],[34,372,258],[34,516,330],[34,466,330],[34,416,330],[34,366,330],[35,84,96],[35,134,96],[35,184,96],[35,72,168],[35,122,168],[35,172,168],[35,642,84],[35,642,134],[35,642,184],[35,768,90],[35,768,140],[35,768,190]]'),
+	(30, 'Hầm Mộ Tầng 2', 0, 0, 0, 7, 15, '[[31,444,48,"Hầm Mộ Tầng 3",372,696],[29,24,324,"Hầm Mộ Tầng 1",816,276]]', '["30_1"]', '[[36,72,534],[36,122,534],[36,172,534],[36,60,636],[36,110,636],[36,160,636],[37,438,246],[37,438,296],[37,438,346],[37,438,396],[37,438,446],[37,306,246],[37,306,296],[37,306,346],[37,306,396],[37,306,446],[38,210,108],[38,160,108],[38,110,108],[38,210,186],[38,160,186],[38,110,186],[36,588,564],[36,638,564],[36,688,564],[36,738,564],[36,552,636],[36,602,636],[36,652,636],[36,702,636],[38,732,120],[38,732,170],[38,732,220],[38,612,90],[38,612,140],[38,612,190]]'),
+	(31, 'Hầm Mộ Tầng 3', 0, 0, 0, 7, 15, '[[30,372,696,"Hầm Mộ Tầng 2",444,48],[32,720,96,"Hầm mộ quái vật",24,372]]', '["31_1","31_2"]', '[[39,654,432],[39,654,482],[39,654,532],[39,654,582],[39,576,444],[39,576,494],[39,576,544],[39,576,594],[39,78,414],[39,78,464],[39,78,514],[39,78,564],[39,78,614],[39,162,426],[39,162,476],[39,162,526],[39,162,576],[40,96,90],[40,96,140],[40,96,190],[40,96,240],[40,96,290],[40,306,162],[40,256,162],[40,206,162],[40,156,162],[40,106,162],[40,618,222],[40,618,272],[40,618,322],[40,702,222],[40,702,272],[40,702,322]]'),
+	(32, 'Hầm mộ quái vật', 0, 0, 0, 7, 15, '[[31,24,372,"Hầm Mộ Tầng 3",720,96]]', '["32_1"]', '[[52,402,360]]'),
+	(33, 'Thành Phố Kho Báu', 0, 1, 0, 7, 15, '[[25,480,744,"Rừng Chết",672,12],[34,24,600,"Khu phía Tây",696,480],[35,936,588,"Khu phía Đông",24,516],[36,480,24,"Đấu Trường",516,696]]', '["33_1","33_2"]', '[]'),
+	(34, 'Khu phía Tây', 0, 1, 0, 7, 15, '[[33,696,480,"Thành Phố Kho Báu",24,600],[20,24,348,"Sa Mạc",936,1020]]', '["34_1","34_2"]', '[]'),
+	(35, 'Khu phía Đông', 0, 1, 0, 7, 15, '[[33,24,516,"Thành Phố Kho Báu",936,588],[29,444,120,"Hầm Mộ Tầng 1",420,720]]', '["35_1","35_2"]', '[]'),
+	(36, 'Đấu Trường', 0, 0, 0, 7, 15, '[[33,516,696,"Thành Phố Kho Báu",480,24]]', '["36_1"]', '[]'),
+	(37, 'Rừng cao nguyên', 0, 0, 0, 7, 15, '[[21,24,840,"Đồi Cát",936,132],[38,1176,252,"Con đường hiểm trở",24,1212]]', '["37_1","37_2"]', '[[55,120,660],[55,180,666],[55,252,702],[55,192,714],[55,282,738],[55,108,738],[55,1140,678],[55,1140,612],[55,1144,606],[55,990,678],[55,1080,698],[55,1062,738],[55,996,468],[55,1074,474],[55,1038,516],[57,858,564],[57,780,558],[57,726,600],[57,726,672],[57,786,714],[57,870,648],[57,666,666],[57,288,450],[57,186,390],[57,72,378],[57,198,276],[57,96,222],[57,204,162],[57,684,306],[57,648,354],[57,684,402],[57,756,402],[57,756,318],[57,708,354],[57,720,168],[57,756,234],[84,160,224]]'),
+	(38, 'Con đường hiểm trở', 0, 0, 0, 7, 15, '[[37,24,1212,"Rừng cao nguyên",1176,252],[39,660,12,"Vách đá cheo leo",180,1128]]', '["38_1"]', '[[59,162,804],[59,102,840],[59,66,894],[59,126,966],[59,150,1032],[59,228,1032],[59,294,966],[59,294,888],[59,246,828],[59,834,600],[59,780,582],[59,708,618],[59,702,678],[59,810,720],[59,774,642],[59,618,702],[61,264,546],[61,390,546],[61,300,612],[61,396,594],[61,474,696],[61,738,144],[61,642,204],[61,666,270],[61,780,186],[61,810,258],[61,810,336],[61,252,126],[61,336,150],[61,336,210],[61,300,264],[61,810,336],[61,204,264],[61,138,198]]'),
+	(39, 'Vách đá cheo leo', 0, 0, 0, 7, 15, '[[38,180,1128,"Con đường hiểm trở",660,12],[40,936,276,"Núi Cầu Vòng",24,648]]', '["39_1","39_2"]', '[[63,60,864],[63,126,864],[63,156,900],[63,156,963],[63,78,924],[63,30,888],[63,780,726],[63,696,726],[63,648,798],[63,636,864],[63,618,942],[63,714,984],[63,828,924],[63,798,870],[63,798,780],[63,714,870],[67,576,576],[67,642,576],[67,648,612],[67,660,642],[67,600,648],[67,564,694],[67,546,702],[67,144,390],[67,192,378],[67,210,432],[67,174,486],[67,96,456],[67,822,444],[67,750,438],[67,666,414],[67,666,348],[67,750,342],[67,810,348],[67,876,366],[67,924,402]]'),
+	(40, 'Núi Cầu Vòng', 0, 0, 0, 7, 15, '[[39,24,648,"Vách đá cheo leo",936,276],[41,1320,144,"Lối lên Thượng giới",24,588]]', '["40_1"]', '[[69,330,516],[69,348,564],[69,348,618],[69,282,660],[69,210,648],[69,618,648],[69,186,600],[69,186,540],[69,306,570],[69,210,282],[69,264,294],[69,276,342],[69,264,384],[69,198,396],[69,150,360],[69,666,864],[69,576,762],[69,468,642],[69,468,588],[69,426,534],[69,408,486],[69,498,468],[69,576,516],[69,576,576],[69,504,534],[71,1038,342],[71,1026,498],[71,1038,342],[71,966,534],[71,888,528],[71,930,432],[71,924,708],[71,978,762],[71,1086,756],[71,1116,672],[71,1068,636],[71,978,678],[71,1104,576],[71,1146,516],[71,1212,564],[71,1248,618],[71,1260,672],[71,1158,690],[71,1134,642],[71,960,102],[71,876,138],[71,822,168],[71,960,174],[71,906,216],[71,828,264]]'),
+	(41, 'Lối lên Thượng giới', 0, 0, 0, 7, 15, '[[40,24,588,"Núi Cầu Vòng",1320,144],[51,1656,324,"Cổng thiên đàng",24,1500]]', '["41_1","41_2"]', '[[73,324,342],[73,384,342],[73,474,342],[73,504,834],[73,486,432],[73,414,426],[73,336,426],[73,552,486],[73,1548,672],[73,1416,654],[73,1416,582],[73,1440,510],[73,1530,480],[73,1566,546],[73,1536,360],[73,1638,546],[73,1638,450],[73,1530,408],[75,924,228],[75,1008,204],[75,1092,216],[75,1128,270],[75,1056,312],[75,972,294],[75,1224,300],[75,1056,558],[75,1056,612],[75,1134,660],[75,1218,660],[75,1266,588],[75,1266,534],[75,1200,486],[75,1110,480],[75,1350,108],[75,1440,78],[75,1548,90],[75,1602,138],[75,1620,192],[75,1494,192],[75,1416,192],[75,1446,258]]'),
+	(42, 'Đèo hoang sơ', 0, 0, 0, 7, 15, '[[22,936,108,"Vực Lún",24,732],[43,528,948,"Đường xuống lòng đất",348,24]]', '["42_1"]', '[[56,120,66],[56,160,66],[56,190,66],[56,90,150],[56,120,150],[56,150,150],[56,378,282],[56,378,324],[56,378,364],[56,276,336],[56,378,376],[56,60,474],[56,100,474],[56,140,474],[56,180,474],[56,48,546],[56,88,546],[56,128,546],[56,528,336],[56,528,376],[56,528,406],[56,618,348],[56,618,388],[56,618,428],[56,780,690],[56,740,690],[56,700,690],[56,768,762],[56,728,762],[56,688,762],[56,336,840],[56,296,840],[56,256,840],[56,360,894],[56,320,894],[56,280,894]]'),
+	(43, 'Đường xuống lòng đất', 0, 0, 0, 7, 15, '[[42,348,24,"Đèo hoang sơ",528,948],[44,24,1140,"Cây cầu ma ám",696,732]]', '["43_1","43_2"]', '[[58,222,102],[58,222,152],[58,222,202],[58,222,252],[58,138,108],[58,138,158],[58,138,208],[58,138,258],[58,468,324],[58,360,324],[58,276,372],[58,198,612],[58,198,564],[58,198,510],[58,276,630],[58,276,580],[58,276,530],[60,90,864],[60,140,864],[60,190,864],[60,240,864],[60,96,948],[60,146,948],[60,196,948],[60,246,948],[60,480,1206],[60,480,1164],[60,480,1114],[60,384,1206],[60,480,1166],[60,480,1116]]'),
+	(44, 'Cây cầu ma ám', 0, 0, 0, 7, 15, '[[43,696,732,"Đường xuống lòng đất",24,1140],[45,24,732,"Cổng vào Hạ giới",1128,228]]', '["44_1"]', '[[62,576,510],[62,526,510],[62,476,510],[62,426,510],[62,582,588],[62,532,588],[62,482,588],[62,432,588],[62,330,552],[62,280,552],[62,230,552],[62,342,618],[62,292,618],[62,242,618],[66,612,282],[66,562,282],[66,512,282],[66,462,282],[66,558,348],[66,508,348],[66,458,348],[66,390,264],[66,340,264],[66,290,264],[66,240,264],[66,288,372],[66,288,324],[66,360,228]]'),
+	(45, 'Cổng vào Hạ giới', 0, 0, 0, 7, 15, '[[44,1128,228,"Cây cầu ma ám",24,732],[52,1008,936,"Cổng địa ngục",252,24]]', '["45_1","45_2"]', '[[68,132,270],[68,132,320],[68,132,370],[68,132,420],[68,204,288],[68,204,338],[68,204,388],[68,204,438],[70,486,462],[70,486,512],[70,486,562],[70,546,468],[70,546,518],[70,546,568],[70,654,654],[70,604,654],[70,554,654],[70,504,654],[70,654,732],[70,604,732],[70,554,732],[70,504,732],[70,312,798],[70,396,822],[70,306,858],[72,144,894],[72,144,944],[72,144,994],[72,144,1044],[72,144,1094],[72,144,1144],[72,144,1194],[72,240,936],[72,240,986],[72,240,1036],[72,240,1086],[72,240,1136],[72,240,1186],[72,240,1236],[74,546,996],[74,596,996],[74,646,996],[74,546,1050],[74,596,1050],[74,646,1050],[74,1092,670],[74,1042,970],[74,992,970],[74,942,970],[74,1128,1090],[74,1078,1090],[74,1028,1090],[74,978,1090],[105,816,1064]]'),
+	(46, 'Khu Vực Săn Boss', 0, 0, 0, 7, 15, '[]', '[]', '[]'),
+	(47, 'Đồi xác chết', 0, 0, 0, 7, 15, '[[19,816,420,"Cửa Biển",24,240]]', '["47_1"]', '[[53,384,384]]'),
+	(48, 'Ngã tư tử thần', 2, 0, 0, 7, 15, '[]', '["48_1"]', '[]'),
+	(50, 'Khu vườn', 3, 0, 0, 7, 15, '[[1,24,468,"Làng Sói Trắng",1032,396]]', '["50_1","50_2"]', '[]'),
+	(51, 'Cổng thiên đàng', 0, 0, 0, 7, 15, '[[41,24,1500,"Lối lên Thượng giới",1656,324]]', '["51_1"]', '[[85,312,1410],[85,312,1464],[85,732,1434],[85,810,1398],[85,870,1828],[85,870,1424],[85,930,1482],[85,906,1548],[85,864,1590],[85,756,1554],[85,684,1524],[85,696,1614],[85,804,1512],[85,564,1068],[85,480,1068],[85,400,1068],[85,320,1068],[85,220,1068],[85,516,1176],[85,430,1176],[85,370,1176],[85,300,1176],[85,220,1176],[87,906,906],[87,906,960],[87,906,1010],[87,906,1050],[87,1020,1074],[87,1020,1032],[87,1020,1000],[87,1020,950],[87,318,510],[87,276,510],[87,200,510],[87,120,510],[87,306,558],[87,252,576],[87,200,576],[87,120,576],[85,624,582],[85,624,534],[85,624,490],[85,624,440],[85,624,398],[85,750,582],[85,750,552],[85,750,520],[85,750,490],[85,750,460],[87,90,48],[87,150,48],[87,190,48],[87,230,48],[87,270,48],[87,300,48],[87,90,132],[87,156,132],[87,200,132],[87,240,132],[87,280,132],[87,320,132],[83,320,1520]]'),
+	(52, 'Cổng địa ngục', 0, 0, 0, 7, 15, '[[45,252,24,"Cổng vào Hạ giới",1008,936],[62,1092,1008,"Địa ngục tầng 1",72,612]]', '["52_1"]', '[[86,636,408],[86,636,358],[86,636,308],[86,558,432],[86,558,382],[86,558,332],[86,1062,54],[86,1062,104],[86,1062,154],[86,1062,204],[86,996,60],[86,996,110],[86,996,160],[86,996,210],[88,1092,450],[88,1042,450],[88,992,450],[88,942,450],[88,1086,528],[88,1036,528],[88,986,528],[88,936,528],[88,300,606],[88,300,656],[88,300,706],[88,300,756],[88,408,612],[88,408,662],[88,408,712],[88,408,762],[86,138,1146],[86,188,1146],[86,238,1146],[86,288,1146],[86,114,1218],[86,164,1218],[86,214,1218],[86,264,1218],[88,966,1170],[88,966,1220],[88,966,1270],[88,966,1320],[88,840,1134],[88,840,1184],[88,840,1234],[88,840,1284]]'),
+	(53, 'Chuẩn bị', 0, 0, 0, 1, 40, '[[54,48,120,"Làng ánh sáng",672,696]]', '[]', '[]'),
+	(54, 'Làng ánh sáng', 0, 0, 0, 7, 40, '[[61,84,72,"Chiến trường",1032,996],[53,672,696,"Chuẩn bị",48,120]]', '["54_1","54_2","54_3"]', '[[91,342,470]]'),
+	(55, 'Chuẩn bị', 0, 0, 0, 1, 40, '[[56,228,12,"Làng gió",384,708]]', '["55_1"]', '[]'),
+	(56, 'Làng gió', 0, 0, 0, 7, 40, '[[61,624,72,"Chiến trường",48,972],[55,384,708,"Chuẩn bị",228,12]]', '["56_1","56_2"]', '[[90,432,504]]'),
+	(57, 'Chuẩn bị', 0, 0, 0, 1, 40, '[[58,24,432,"Làng sét",660,24]]', '["57_1"]', '[]'),
+	(58, 'Làng sét', 0, 0, 0, 7, 40, '[[61,84,696,"Chiến trường",960,60],[57,660,24,"Chuẩn bị",24,432]]', '["58_1","58_2"]', '[[89,462,264]]'),
+	(59, 'Chuẩn bị', 0, 0, 0, 1, 40, '[[60,240,468,"Làng lửa",384,12]]', '["59_1"]', '[]'),
+	(60, 'Làng lửa', 0, 0, 0, 7, 40, '[[61,600,708,"Chiến trường",72,48],[59,384,12,"Chuẩn bị",240,468]]', '["60_1","60_2"]', '[[92,384,168]]'),
+	(61, 'Chiến trường', 0, 0, 0, 7, 40, '[[60,72,48,"Làng lửa",600,708],[58,960,60,"Làng sét",84,696],[54,1032,996,"Làng ánh sáng",84,72],[56,48,972,"Làng gió",624,72]]', '["61_1"]', '[[100,621,476],[99,625,443],[98,610,499],[97,621,460],[96,539,458],[95,555,256],[94,590,500],[93,500,500],[94,527,498],[95,520,399],[96,431,615],[97,431,615],[98,450,600],[99,450,600],[100,600,300],[99,600,367],[98,500,555],[97,500,555],[96,555,600],[95,555,600],[94,419,527],[93,466,527],[94,475,527],[95,500,527],[96,566,527],[97,600,527],,[98,630,527],[99,680,527],[100,580,545]]'),
+	(62, 'Địa ngục tầng 1', 0, 0, 0, 7, 15, '[[52,72,612,"Cổng địa ngục",1092,1008]]', '["62_1"]', '[[106,468,498]]'),
+	(63, 'Rừng medusa', 0, 0, 0, 7, 15, '[[64,24,156,"Rừng Chimera",696,72],[70,24,660,"Khu bờ tây",672,36],[65,696,588,"Rừng quái vật",24,72],[72,336,24,"Rừng hoa đỏ",540,576]]', '["63_1"]', '[[117,348,108],[117,298,108],[117,248,108],[117,198,108],[117,354,168],[117,294,168],[117,244,168],[117,194,168],[111,276,396],[111,226,396],[111,176,396],[111,252,468],[111,202,468],[111,152,468],[111,406,612],[111,356,612],[111,306,612],[111,594,540]]'),
+	(64, 'Rừng Chimera', 0, 0, 0, 7, 15, '[[63,696,72,"Rừng medusa",24,156],[66,12,384,"Thác reo",432,24],[70,696,480,"Khu bờ tây",60,48],[71,48,60,"Rừng chuột",48,696]]', '["64_1"]', '[[118,372,492],[118,322,492],[118,272,492],[118,222,492],[118,324,414],[118,274,414],[118,224,414],[118,240,234],[118,240,284],[118,240,334],[118,180,270],[118,180,330],[114,474,246],[114,424,246],[114,374,246],[114,324,246],[114,390,186],[114,324,186],[114,510,72],[114,460,72],[114,410,72],[114,516,120],[114,466,120],[114,416,120]]'),
+	(65, 'Rừng quái vật', 0, 0, 0, 7, 15, '[[68,24,636,"Khu bờ nam",696,168],[63,24,72,"Rừng medusa",696,588]]', '["65_1"]', '[[121,102,306],[121,102,356],[121,102,406],[121,102,456],[121,246,180],[121,246,230],[121,246,280],[121,246,330],[119,648,42],[119,598,42],[119,548,42],[119,690,108],[119,640,108],[119,590,108],[121,618,300],[121,568,300],[121,518,300],[121,618,372],[121,568,372],[121,518,372],[119,648,42],[119,438,480],[119,438,530],[119,438,580],[119,438,630],[119,408,642],[119,358,642],[119,308,642],[119,358,642]]'),
+	(66, 'Thác reo', 0, 0, 0, 7, 15, '[[64,432,24,"Rừng Chimera",12,384],[69,696,408,"Khu bờ bắc",24,360]]', '["66_1"]', '[[120,474,432],[120,424,432],[120,374,432],[120,462,366],[120,412,366],[120,382,366],[120,120,384],[120,120,432],[120,120,482],[120,192,390],[120,192,440],[120,192,490],[113,636,84],[113,586,84],[113,536,84],[113,666,180],[113,616,180],[113,566,180]]'),
+	(67, 'Thành phố cảng', 0, 1, 0, 7, 15, '[[69,24,300,"Khu bờ bắc",696,120],[68,768,72,"Khu bờ nam",24,216],[70,276,24,"Khu bờ tây",408,696]]', '["67_1","67_2","67_3"]', '[]'),
+	(68, 'Khu bờ nam', 0, 1, 0, 7, 15, '[[67,24,216,"Thành phố cảng",768,72],[65,696,168,"Rừng quái vật",24,636]]', '["68_1","68_2"]', '[]'),
+	(69, 'Khu bờ bắc', 0, 1, 0, 7, 15, '[[66,24,360,"Thác reo",696,408],[67,696,120,"Thành phố cảng",24,300]]', '["69_1","69_2"]', '[]'),
+	(70, 'Khu bờ tây', 0, 1, 0, 7, 15, '[[67,408,696,"Thành phố cảng",276,24],[64,60,48,"Rừng Chimera",696,480],[63,672,36,"Rừng medusa",24,660]]', '["70_1","70_2"]', '[]'),
+	(71, 'Rừng chuột', 0, 0, 0, 7, 15, '[[64,48,696,"Rừng Chimera",48,60],[73,492,24,"Vịnh Caribe",96,996]]', '["71_1"]', '[[115,108,276],[115,108,326],[115,108,376],[115,216,228],[115,216,278],[115,216,328],[115,180,132],[115,180,182],[115,180,232],[115,264,126],[115,264,176],[115,264,232],[112,486,528],[112,436,528],[112,386,528],[112,336,528],[112,286,528],[112,390,402],[112,390,452],[112,390,502],[112,522,264],[112,472,264],[112,534,330],[112,484,330]]'),
+	(72, 'Rừng hoa đỏ', 0, 0, 0, 7, 15, '[[63,540,576,"Rừng medusa",336,24],[73,72,48,"Vịnh Caribe",444,996]]', '["72_1","72_2"]', '[[123,132,96],[123,132,146],[123,132,196],[124,108,378],[124,108,428],[124,108,478],[124,354,264],[124,304,264],[124,254,264],[124,348,318],[124,298,318],[124,248,318],[124,198,318],[123,378,108],[123,378,158],[123,378,208],[123,378,258],[123,480,84],[123,480,134],[123,480,184],[123,480,234],[123,540,408],[123,462,408],[123,438,474],[123,528,474]]'),
+	(73, 'Vịnh Caribe', 0, 0, 0, 7, 15, '[[72,444,996,"Rừng hoa đỏ",72,48],[71,96,996,"Rừng chuột",492,24],[74,252,24,"Mê cung",120,48]]', '["73_1"]', '[[125,240,690],[125,240,740],[125,240,790],[125,336,612],[125,336,662],[125,336,712],[125,258,600],[125,336,822],[116,312,378],[116,262,378],[116,212,378],[116,324,432],[116,186,174],[116,186,224],[116,186,274],[116,270,162],[116,270,212],[116,270,262]]'),
+	(74, 'Mê cung', 0, 0, 0, 7, 15, '[[73,120,48,"Vịnh Caribe",252,24],[75,564,708,"Mê cung tầng 1",72,48]]', '["74_1","74_2"]', '[[138,60,300],[138,110,300],[138,160,300],[138,60,354],[138,110,354],[138,160,354],[138,384,72],[138,384,122],[138,384,172],[138,564,156],[138,514,156],[138,464,172],[137,288,264],[137,338,264],[137,388,264],[137,438,264],[137,282,342],[137,332,342],[137,382,342],[137,442,342],[137,522,534],[137,522,484],[137,522,434]]'),
+	(75, 'Mê cung tầng 1', 0, 0, 0, 7, 15, '[[74,72,48,"Mê cung",564,708],[76,936,120,"Mê cung tầng 2",96,36]]', '["75_1"]', '[[139,282,90],[139,282,140],[139,282,190],[139,282,216],[139,332,216],[139,382,216],[139,372,558],[139,372,508],[139,372,458],[139,372,408],[139,504,378],[139,454,378],[139,404,378],[139,558,456],[139,508,456],[139,458,456],[140,786,282],[140,786,332],[140,786,382],[140,696,270],[140,696,320],[140,696,370]]'),
+	(76, 'Mê cung tầng 2', 0, 0, 0, 7, 15, '[[75,96,36,"Mê cung tầng 1",936,120],[77,528,756,"Mê cung tầng 3",60,576]]', '["76_1"]', '[[141,420,96],[141,370,96],[141,320,96],[141,280,96],[141,420,174],[141,370,174],[141,320,174],[141,270,174],[141,220,408],[142,284,408],[142,234,408],[142,184,408],[142,366,498],[142,316,498],[142,266,498],[142,216,498],[142,72,762],[142,122,762],[142,172,762],[141,360,768],[142,310,762],[149,204,762]]'),
+	(77, 'Mê cung tầng 3', 0, 0, 0, 7, 15, '[[76,60,576,"Mê cung tầng 2",528,756],[78,744,588,"Mê cung tầng 4",72,36]]', '["77_1","77_2"]', '[[143,156,138],[143,156,188],[143,156,238],[143,156,288],[143,156,338],[143,156,388],[143,156,438],[143,156,488],[143,414,276],[143,414,326],[143,414,376],[143,414,426],[143,414,476],[143,414,526],[143,576,84],[143,408,96],[143,396,162],[144,762,84],[144,762,134],[144,762,184],[144,780,198],[144,730,198],[144,680,198],[144,780,306],[144,730,198],[144,660,198],[144,780,426],[144,780,366]]'),
+	(78, 'Mê cung tầng 4', 0, 0, 0, 7, 15, '[[77,72,36,"Mê cung tầng 3",744,588],[79,960,552,"Mê cung tầng cuối",384,24]]', '["78_1"]', '[[145,320,354],[145,270,354],[145,220,354],[145,170,354],[145,90,360],[145,90,410],[145,90,460],[145,90,510],[145,132,486],[145,182,486],[145,232,486],[145,282,486],[146,894,78],[146,844,78],[146,794,78],[146,744,78],[146,694,78],[146,644,78],[146,618,246],[146,568,246],[146,518,246],[146,468,246],[146,480,294],[146,480,342],[146,530,342],[146,580,342],[146,630,342],[146,618,288],[146,708,402],[146,658,402],[146,608,402],[145,960,354],[145,910,354],[145,860,354],[145,966,414],[145,916,414],[145,866,414]]'),
+	(79, 'Mê cung tầng cuối', 0, 0, 0, 7, 15, '[[78,384,24,"Mê cung tầng 4",960,552],[92,264,828,"Cổng trắng",216,12]]', '["79_1","79_2"]', '[[148,270,84],[148,396,144],[148,346,144],[148,126,168],[148,176,168],[148,226,168],[148,114,228],[148,164,228],[148,214,228],[148,378,384],[148,328,384],[148,278,384],[148,228,384],[148,36,396],[148,86,396],[148,136,396],[148,114,606],[148,164,606],[148,214,606],[148,264,606],[147,786,126],[148,744,78],[148,694,78],[148,644,78],[148,594,78],[148,726,162],[148,676,162],[148,626,162],[148,576,162],[148,606,324],[148,702,324],[148,690,372],[148,630,372],[148,618,702],[148,568,702],[148,518,702],[148,468,702],[148,418,702],[155,534,732]]'),
+	(82, 'Khu mua bán', 0, 0, 0, 7, 15, '[]', '["82_1","82_2"]', '[]'),
+	(88, 'Khu hang động', 0, 0, 0, 7, 15, '[]', '["88_1","88_2"]', '[[169,63,671],[169,163,671],[169,263,671],[169,267,347],[169,267,397],[169,51,195],[169,51,245],[169,51,295],[169,195,29],[169,717,665],[169,861,683],[169,759,557],[169,915,557],[169,801,623],[169,885,395],[169,705,305],[171,681,47],[171,207,239],[171,489,353],[171,439,353],[171,389,353],[171,435,419],[171,385,419],[171,335,419]]'),
+	(89, 'Khu đồi cát', 0, 0, 0, 7, 15, '[]', '["89_1","89_2"]', '[[170,108,648],[170,158,648],[170,208,648],[170,372,330],[170,372,380],[170,372,430],[170,384,90],[170,334,90],[170,284,90],[170,234,90],[170,642,138],[170,642,188],[170,642,238],[170,642,288],[168,888,216],[168,838,216],[168,788,216],[168,738,216],[168,36,318],[168,36,368],[168,36,418],[168,36,468],[168,600,492],[168,600,542],[168,648,636],[168,698,636],[168,924,570],[168,906,468],[168,756,450]]'),
+	(90, 'Khu thảo nguyên', 0, 0, 0, 7, 15, '[]', '["90_1","90_2"]', '[[167,312,474],[167,262,474],[167,324,552],[167,274,552],[167,156,654],[167,42,570],[167,42,444],[167,558,648],[167,608,648],[167,658,648],[167,708,648],[167,720,42],[167,770,42],[167,820,42],[167,684,138],[167,734,138],[167,784,138],[167,456,84],[167,456,134],[167,552,54],[167,552,105],[172,156,228],[172,226,228],[172,156,332],[172,226,332],[172,660,294],[172,710,294],[172,760,294],[172,720,372],[172,720,422],[172,720,472]]'),
+	(91, 'Khu đồi cỏ', 0, 0, 0, 7, 15, '[]', '["91_1","91_2"]', '[[170,678,546],[170,678,596],[170,678,646],[170,846,480],[170,846,530],[170,846,580],[170,522,600],[170,798,42],[170,728,42],[170,658,42],[170,598,42],[167,288,228],[167,338,228],[167,388,228],[167,438,228],[167,414,294],[167,414,344],[167,414,394],[167,414,444],[167,60,222],[167,156,270],[167,156,320],[167,60,720],[167,110,720],[167,160,720],[167,288,642],[167,238,642],[167,188,642]]'),
+	(92, 'Cổng trắng', 0, 0, 0, 7, 15, '[[79,216,12,"Mê cung tầng cuối",264,828],[93,468,276,"Thị trấn mùa đông",12,420]]', '["92_1"]', '[]'),
+	(93, 'Thị trấn mùa đông', 0, 1, 0, 7, 15, '[[92,12,420,"Cổng trắng",468,276],[94,948,432,"Thung lũng băng giá",12,336]]', '["93_1","93_2"]', '[] '),
+	(94, 'Thung lũng băng giá', 0, 0, 0, 7, 15, '[[93,12,336,"Thị trấn mùa đông",948,432],[95,324,12,"Chân núi tuyết",168,684]]', '["94_1","94_2"]', '[[157,222,450],[157,186,474],[157,114,516],[157,48,582],[157,98,582],[157,148,582],[157,198,582],[157,60,642],[157,110,642],[157,160,642],[157,210,642],[157,426,258],[157,426,308],[157,426,358],[157,426,408],[157,540,288],[157,540,338],[157,540,388],[157,540,438],[158,336,402],[158,336,452],[158,414,480],[158,414,530],[158,414,580],[158,414,630],[158,330,594],[158,380,594],[158,430,594],[158,480,594],[158,654,144],[158,654,194],[158,654,244],[158,654,294],[158,582,174],[158,582,224],[158,582,274],[158,582,324]]'),
+	(95, 'Chân núi tuyết', 0, 0, 0, 7, 15, '[[94,168,684,"Thung lũng băng giá",324,12],[96,12,300,"Đèo băng giá",708,216]]', '["95_1","95_2"]', '[[159,360,420],[159,310,420],[159,260,420],[159,210,420],[159,240,474],[159,290,474],[159,340,474],[159,390,474],[159,489,318],[159,498,368],[159,498,418],[159,486,444],[159,536,444],[159,586,444],[159,636,444],[159,558,30],[159,608,30],[159,658,30],[159,708,30],[159,540,96],[159,590,96],[159,640,96],[159,690,96],[160,690,204],[160,690,254],[160,684,276],[160,634,276],[160,584,276],[160,534,276],[160,480,180],[160,480,260],[160,396,36],[160,296,36],[160,196,36],[160,240,126],[160,240,176],[160,240,226],[160,306,162],[160,366,162],[160,406,162],[160,466,162],[160,336,222]]'),
+	(96, 'Đèo băng giá', 0, 0, 0, 7, 15, '[[97,468,12,"Vực thẳm sương mù",432,540],[95,708,216,"Chân núi tuyết",12,300]]', '["96_1","96_2","96_3"]', '[[162,324,162],[162,274,162],[162,224,162],[162,306,192],[162,256,192],[162,206,192],[162,174,594],[162,224,594],[162,276,594],[162,138,546],[162,188,546],[162,238,546],[162,492,486],[162,442,486],[162,392,486],[162,342,486],[162,492,540],[162,442,540],[162,392,540],[162,342,540],[162,450,300],[162,500,300],[162,600,252],[162,600,302],[161,582,432],[161,582,482],[161,582,532],[161,582,582],[161,660,402],[161,660,452],[161,660,502],[161,660,552],[161,642,630],[161,592,630],[161,438,642],[161,282,708],[161,232,708],[161,182,708],[161,132,708],[161,228,648],[161,178,648],[161,128,648],[161,78,648],[161,66,162],[161,66,212],[161,66,262],[161,66,312],[161,66,362],[161,66,412],[161,66,462]]'),
+	(97, 'Vực thẳm sương mù', 0, 0, 0, 7, 15, '[[96,432,540,"Đèo băng giá",468,12],[98,756,12,"Trạm núi tuyết",276,708]]', '["97_1","97_2"]', '[[164,300,450],[164,300,510],[164,356,498],[164,416,498],[164,456,498],[164,516,498],[164,480,432],[164,420,432],[164,360,432],[164,750,360],[164,750,300],[164,750,260],[164,666,384],[164,666,324],[164,666,264],[163,384,192],[163,384,242],[163,384,292],[163,384,342],[163,468,210],[163,468,260],[163,468,310],[163,468,360]]'),
+	(98, 'Trạm núi tuyết', 0, 0, 0, 7, 15, '[[97,276,708,"Vực thẳm sương mù",756,12]]', '["98_1","98_2"]', '[[165,72,72],[165,72,108],[165,156,72],[165,72,48],[165,306,426],[165,356,426],[165,406,426],[165,456,426],[165,438,330],[165,438,390],[165,438,430],[165,438,490],[166,42,372],[166,92,372],[166,142,372],[166,192,372],[166,30,456],[166,90,456],[166,130,456],[166,200,456],[166,324,138],[166,324,198],[166,324,238],[166,420,132],[166,420,182],[166,420,232]]'),
+	(100, 'Loi Dai', 0, 0, 0, 6, 15, '[]', '["102_1"]', '[]'),
+	(102, 'Loi Dai', 0, 0, 1, 20, 15, '[]', '["102_1"]', '[]'),
+	(103, 'Làng Phủ Sương', 0, 1, 0, 1, 15, '[]', '["135_2","135_1","11_3"]', '[]'),
+	(104, 'Làng Phủ Sương 1', 0, 0, 0, 1, 15, '[]', '["135_2"]', '[[189,72,72],[189,72,108],[189,156,72],[189,72,48],[189,306,426],[189,356,426],[189,406,426],[189,456,426],[189,438,330],[189,438,390],[189,438,430],[189,438,490],[189,42,372],[189,92,372],[189,142,372],[189,192,372],[189,30,456],[189,90,456],[189,130,456],[189,200,456],[189,324,138],[189,324,198],[189,324,238],[189,420,132],[189,420,182],[189,420,232]]'),
+	(105, 'Làng Phủ Sương 2', 0, 0, 0, 1, 15, '[]', '["135_2"]', '[[190,72,72],[190,72,108],[190,156,72],[190,72,48],[190,306,426],[190,356,426],[190,406,426],[190,456,426],[190,438,330],[190,438,390],[190,438,430],[190,438,490],[190,42,372],[190,92,372],[190,142,372],[190,192,372],[190,30,456],[190,90,456],[190,130,456],[190,200,456],[190,324,138],[190,324,198],[190,324,238],[190,420,132],[190,420,182],[190,420,232]]'),
+	(106, 'Làng Phủ Sương 3', 0, 0, 0, 1, 15, '[]', '["135_2"]', '[[191,72,72],[191,72,108],[191,156,72],[191,72,48],[191,306,426],[191,356,426],[191,406,426],[191,456,426],[191,438,330],[191,438,390],[191,438,430],[191,438,490],[191,42,372],[191,92,372],[191,142,372],[191,192,372],[191,30,456],[191,90,456],[191,130,456],[191,200,456],[191,324,138],[191,324,198],[191,324,238],[191,420,132],[191,420,182],[191,420,232]]'),
+	(107, 'Làng Phủ Sương 4', 0, 0, 0, 1, 15, '[]', '["135_2"]', '[[192,72,72],[192,72,108],[192,156,72],[192,72,48],[192,306,426],[192,356,426],[192,406,426],[192,456,426],[192,438,330],[192,438,390],[192,438,430],[192,438,490],[192,42,372],[192,92,372],[192,142,372],[192,192,372],[192,30,456],[192,90,456],[192,130,456],[192,200,456],[192,324,138],[192,324,198],[192,324,238],[192,420,132],[192,420,182],[192,420,232]]'),
+	(108, 'Làng Phủ Sương 5', 0, 0, 0, 1, 15, '[]', '["135_2"]', '[[193,72,72],[193,72,108],[193,156,72],[193,72,48],[193,306,426],[193,356,426],[193,406,426],[193,456,426],[193,438,330],[193,438,390],[193,438,430],[193,438,490],[193,42,372],[193,92,372],[193,142,372],[193,192,372],[193,30,456],[193,90,456],[193,130,456],[193,200,456],[193,324,138],[193,324,198],[193,324,238],[193,420,132],[193,420,182],[193,420,232]]'),
+	(109, 'Boss Even 0', 0, 0, 0, 3, 15, '[]', '["2_1","135_2"]', '[[186,492,420]]'),
+	(110, 'Boss Even 1', 0, 0, 0, 3, 15, '[]', '["2_1","135_2"]', '[[187,492,420]]'),
+	(111, 'Boss SK', 0, 0, 0, 8, 15, '[]', '["2_1","135_2"]', '[[188,492,420],[219,492,420]]'),
+	(112, 'Boss Even 3', 0, 0, 0, 3, 15, '[]', '["2_1","135_2"]', '[[195,492,420]]'),
+	(113, 'Boss Even 4', 0, 0, 0, 3, 15, '[]', '["2_1","135_2"]', '[[173,492,420]]'),
+	(114, 'Boss Even 5', 0, 0, 0, 3, 15, '[]', '["2_1","135_2"]', '[[197,492,420]]'),
+	(115, 'Boss Even 6', 0, 0, 0, 3, 15, '[]', '["2_1","135_2"]', '[[196,492,420]]'),
+	(125, 'Map 10x', 0, 0, 0, 1, 20, '[]', '["125_1"]', '[[213,552,672],\r\n[213,674,729],\r\n[213,528,696],\r\n[213,528,648],\r\n[213,552,720],\r\n[213,698,744],\r\n[213,816,768],\r\n[213,698,720],\r\n[213,698,729],\r\n[214,312,672],\r\n[214,346,420],\r\n[214,312,432],\r\n[214,346,396],\r\n[214,346,408],\r\n[214,346,432],\r\n[213,677,292],\r\n[213,672,292],\r\n[213,648,292],\r\n[213,677,292],\r\n[214,168,696],\r\n[214,144,648],\r\n[214,120,600],\r\n[213,648,168]]'),
+	(127, 'Map 11x', 0, 0, 0, 1, 20, '[]', '["127_1"]', '[[205,360,384],\r\n[205,144,384],\r\n[205,384,360],\r\n[205,196,460],\r\n[205,196,460],\r\n[205,196,460],\r\n[205,351,595],\r\n[205,351,595],\r\n[205,375,571],\r\n[205,360,576],\r\n[205,360,595],\r\n[205,408,408],\r\n[205,288,744],\r\n[205,76,900],\r\n[205,76,900],\r\n[205,76,900],\r\n[205,264,1008],\r\n[205,288,1032],\r\n[205,288,1080],\r\n[205,432,840],\r\n[209,528,1128],\r\n[205,504,792],\r\n[205,456,792],\r\n[209,600,1080],\r\n[209,552,1080],\r\n[209,780,956],\r\n[209,780,956],\r\n[209,816,768],\r\n[209,780,956],\r\n[209,780,960],\r\n[209,792,744],\r\n[209,792,888],\r\n[209,744,956],\r\n[209,892,636],\r\n[209,648,600],\r\n[209,696,624],\r\n[205,588,84],\r\n[205,351,600]]'),
+	(129, 'Map 12x', 0, 0, 0, 1, 20, '[]', '["129_1"]', '[[217,264,408],\r\n[217,240,360],\r\n[217,264,192],\r\n[217,168,360],\r\n[217,168,264],\r\n[217,120,192],\r\n[217,268,175],\r\n[217,192,336],\r\n[217,268,199],\r\n[217,292,168],\r\n[217,264,175],\r\n[218,720,696],\r\n[217,336,144],\r\n[217,312,72],\r\n[217,144,240],\r\n[217,360,432],\r\n[217,264,456],\r\n[217,192,552],\r\n[217,360,528],\r\n[217,168,552],\r\n[217,288,528],\r\n[217,312,480],\r\n[217,72,624],\r\n[217,120,648],\r\n[217,120,720],\r\n[216,624,744],\r\n[216,744,720],\r\n[216,696,576],\r\n[216,672,648],\r\n[216,648,696],\r\n[216,720,672],\r\n[216,888,696],\r\n[216,912,648],\r\n[216,960,600],\r\n[216,1008,624],\r\n[216,1056,600],\r\n[216,1080,648],\r\n[216,1080,600],\r\n[216,1056,672],\r\n[216,1056,672],\r\n[216,1056,552],\r\n[216,888,336],\r\n[216,968,123],\r\n[216,968,123],\r\n[216,960,131],\r\n[216,968,131],\r\n[216,968,96],\r\n[216,816,216],\r\n[216,840,168],\r\n[216,792,312],\r\n[216,744,144],\r\n[216,792,48],\r\n[216,792,288]\r\n]'),
+	(132, 'Map 13x', 0, 0, 0, 1, 20, '[]', '["132_1"]', '[[210,96,192],\r\n[210,408,144],\r\n[210,384,240],\r\n[210,72,240],\r\n[210,240,288],\r\n[210,384,264],\r\n[210,72,288],\r\n[210,336,240],\r\n[210,240,264],\r\n[210,96,312],\r\n[210,264,240],\r\n[210,288,192],\r\n[210,0,936],\r\n[210,312,912],\r\n[210,360,960],\r\n[210,408,960],\r\n[210,384,984],\r\n[210,432,984],\r\n[210,240,1008],\r\n[210,408,1008],\r\n[210,408,1032],\r\n[210,96,1032],\r\n[210,144,1032],\r\n[210,384,1056],\r\n[210,120,1080],\r\n[210,144,1104],\r\n[210,144,1152],\r\n[210,72,1152],\r\n[210,480,960],\r\n[210,432,1080],\r\n[210,552,1056],\r\n[210,456,1032],\r\n[210,552,1152],\r\n[210,576,1080],\r\n[210,576,1056],\r\n[210,600,1032],\r\n[210,648,1080],\r\n[210,648,1128],\r\n[212,720,936],\r\n[212,792,912],\r\n[212,902,845],\r\n[212,792,840],\r\n[212,936,845],\r\n[212,1008,984],\r\n[212,960,816],\r\n[212,792,792],\r\n[212,720,792],\r\n[212,888,888],\r\n[212,960,888],\r\n[212,984,552],\r\n[212,1080,432],\r\n[212,984,456],\r\n[212,936,480],\r\n[212,960,504],\r\n[212,768,312],\r\n[212,792,144],\r\n[212,744,168],\r\n[212,744,216],\r\n[212,792,72],\r\n[212,720,168],\r\n[212,672,336],\r\n[212,648,432],\r\n[212,648,264],\r\n[212,624,288],\r\n[212,600,408],\r\n[212,600,336],\r\n[212,552,456],\r\n[212,552,384],\r\n[212,861,816],\r\n[212,864,600],\r\n[212,912,864],\r\n[212,720,936],\r\n[212,871,861],\r\n[212,864,864],\r\n[212,840,792],\r\n[212,744,744],\r\n[212,936,792],\r\n[212,864,768],\r\n[212,888,816]\r\n]'),
+	(135, 'Làng phủ sương', 0, 0, 0, 6, 20, '[]', '["135_1","135_2","135_3","135_4","135_5","135_6","135_7"]', '[]');
 
--- Dumping structure for table srcbanquyen.map_data
+-- Dumping structure for table sqlcu.map_data
 CREATE TABLE IF NOT EXISTS `map_data` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.map_data: ~124 rows (approximately)
+-- Dumping data for table sqlcu.map_data: ~124 rows (approximately)
 DELETE FROM `map_data`;
 INSERT INTO `map_data` (`id`, `name`) VALUES
 	(0, 'Ngôi Làng Nhỏ'),
@@ -6970,7 +6953,7 @@ INSERT INTO `map_data` (`id`, `name`) VALUES
 	(122, 'Đảo đầu lâu'),
 	(123, 'Đảo Marshall');
 
--- Dumping structure for table srcbanquyen.mconfig
+-- Dumping structure for table sqlcu.mconfig
 CREATE TABLE IF NOT EXISTS `mconfig` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -6978,7 +6961,7 @@ CREATE TABLE IF NOT EXISTS `mconfig` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table srcbanquyen.mconfig: 19 rows
+-- Dumping data for table sqlcu.mconfig: 19 rows
 DELETE FROM `mconfig`;
 /*!40000 ALTER TABLE `mconfig` DISABLE KEYS */;
 INSERT INTO `mconfig` (`id`, `name`, `data`) VALUES
@@ -7003,7 +6986,7 @@ INSERT INTO `mconfig` (`id`, `name`, `data`) VALUES
 	(19, 'ratio_vang', '40000');
 /*!40000 ALTER TABLE `mconfig` ENABLE KEYS */;
 
--- Dumping structure for table srcbanquyen.messager
+-- Dumping structure for table sqlcu.messager
 CREATE TABLE IF NOT EXISTS `messager` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tile` text NOT NULL,
@@ -7011,7 +6994,7 @@ CREATE TABLE IF NOT EXISTS `messager` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table srcbanquyen.messager: ~9 rows (approximately)
+-- Dumping data for table sqlcu.messager: ~9 rows (approximately)
 DELETE FROM `messager`;
 INSERT INTO `messager` (`id`, `tile`, `content`) VALUES
 	(52, 'LỊCH OPEN VÀ ĐUA TOP', '<p><span style="background-color: #2dc26b;">SERVER HSO FINAL SẼ OPEN V&Agrave;O L&Uacute;C <span style="background-color: #e03e2d;">19:00 / 27/7/2023</span></span></p>\r\n<ol>\r\n<li>Qu&agrave; đua top nạp:\r\n<ul style="list-style-type: circle;">\r\n<li>&nbsp;</li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Top 1: </span>\r\n<ol>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Gi&aacute;p kỵ sĩ rồng vĩnh viễn Mặt nạ băng gi&aacute; vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Tia s&eacute;t vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Trứng pet phượng ho&agrave;ng băng vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Th&uacute; cưỡi Hỏa k&igrave; l&acirc;n vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">&Aacute;o cho&agrave;ng tỷ ph&uacute; vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Khẩu trang đỏ vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Tai nghe vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">4 s&aacute;ch skill 110 ( ramdom) </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">20 đ&aacute; hỏa tinh 20 đ&aacute; kryton c3 </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">3500 l&ocirc;ng c&aacute;nh mỗi loại </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">30 đ&aacute; 3 m&agrave;u</span></li>\r\n</ol>\r\n</li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Top2: </span>\r\n<ol>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Gi&aacute;p kỵ si rồng vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Mặt nạ băng gi&aacute; vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 trứng p&eacute;t phượng ho&agrave;ng băng vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Th&uacute; cưỡi Phượng ho&agrave;ng lữa vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 &aacute;o cho&agrave;ng triệu ph&uacute; vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Khẩu trang đỏ vĩnh viễn 1 </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">tai nghe vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">3 s&aacute;ch skill 110 ( random) </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">15 đ&aacute; hỏa tinh </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">15 đ&aacute; kryton c3 </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">2500 l&ocirc;ng c&aacute;nh mỗi loại </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">20 đ&aacute; 3 m&agrave;u</span></li>\r\n</ol>\r\n</li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Top 3: </span>\r\n<ol>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Gi&aacute;p kỵ sĩ rồng vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Mặt nạ băng gi&aacute; vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 trứng p&eacute;t phượng ho&agrave;ng băng vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 th&uacute; cưỡi rồng băng vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 &aacute;o cho&agrave;ng đại gia vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 kh&acirc;u trang đỏ vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">2 s&aacute;ch skill 110 (random) </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">10 đ&aacute; hỏa tinh 10 đ&aacute; kryton </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1500 l&ocirc;ng c&aacute;nh mỗi loại </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">15 đ&aacute; 3 m&agrave;u</span></li>\r\n</ol>\r\n</li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Top 4_10 </span>\r\n<ol>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Gi&aacute;p kỵ sĩ rồng 30 ng&agrave;y </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Mặt nạ băng gi&aacute; 30 ng&agrave;y </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 trứng p&eacute;t rồng lửa vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 th&uacute; cưỡi voi ma m&uacute;t vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 kh&acirc;u trang đỏ 30 ng&agrave;y </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 s&aacute;ch skill 110 (random) </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">5 đ&aacute; hỏa tinh 5 đ&aacute; kryton c3 </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1000 l&ocirc;ng c&aacute;nh mỗi loại </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">10 đ&aacute; 3 m&agrave;u</span></li>\r\n</ol>\r\n</li>\r\n</ul>\r\n</li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Qu&agrave; đua level</span>\r\n<ul style="list-style-type: circle;">\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Top 1 : </span>\r\n<ol>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Gi&aacute;p ma tốc độ vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Mặt nạ ma tốc độ vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Moto vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Khẩu trang đỏ vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 trứng pet đại b&agrave;ng vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 s&aacute;ch skill 110 ( random) </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">10 đ&aacute; kryton c3 </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">10 đ&aacute; hỏa tinh </span></li>\r\n</ol>\r\n</li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Top 2: </span>\r\n<ol>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Gi&aacute;p ma tốc độ vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Mặt nạ ma tốc độ vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Moto vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 trứng pet sao la </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 s&aacute;ch skill 110 ( ramdom) </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">6 đ&aacute; kryton c3 </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">6 đ&aacute; hỏa tinh </span></li>\r\n</ol>\r\n</li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Top 3 </span>\r\n<ol>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Gi&aacute;p ma tốc độ vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Mặt nạ ma tốc độ vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Moto vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 trứng pet b&oacute;ng ma vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 s&aacute;ch skill 110 ( ramdom) </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">3 đ&aacute; kryton c3 </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">3 đ&aacute; hỏa tinh </span></li>\r\n</ol>\r\n</li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Top 4-10 </span>\r\n<ol>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Gi&aacute;p ma tốc độ 30 ng&agrave;y </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Mặt nạ ma tốc độ 30 ng&agrave;y </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">Moto vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 trứng pet b&oacute;ng ma vĩnh viễn </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 s&aacute;ch skill 110 ( ramdom) </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 đ&aacute; kryton c3 </span></li>\r\n<li><span style="color: #081c36; font-family: SegoeuiPc, \'Segoe UI\', \'San Francisco\', \'Helvetica Neue\', Helvetica, \'Lucida Grande\', Roboto, Ubuntu, Tahoma, \'Microsoft Sans Serif\', Arial, sans-serif; font-size: 15px; letter-spacing: 0.2px; white-space-collapse: preserve; background-color: #ffffff;">1 đ&aacute; hỏa tinh</span></li>\r\n</ol>\r\n</li>\r\n</ul>\r\n</li>\r\n<li><span style="background-color: #2dc26b;">Thời gian diễn ra sự kiện từ <span style="background-color: #e03e2d;">19:00 27/7/2023 - 19:00 3/8/2023&nbsp;</span></span></li>\r\n<li><span style="background-color: #2dc26b;">Kh&ocirc;ng ghi nhận đồng hạng, ai xếp trước nhận trước</span></li>\r\n<li>Trong thời gian diễn ra sự kiện đua top sẽ mở x2 gi&aacute; trị nạp thẻ v&agrave; momo tối thiểu từ 20K trở l&ecirc;n</li>\r\n</ol>'),
@@ -7024,7 +7007,7 @@ INSERT INTO `messager` (`id`, `tile`, `content`) VALUES
 	(59, 'SỰ KIỆN VU LAN', '<div class="box_ndung_bviet"><center><img src="http://my.teamobi.com/app/view/forum/16594960179349.png" /></center><br /><br /><center><span style="color: red;">B&Oacute; HOA VU LAN</span></center><br /><br />- Trong thời gian diễn ra sự kiện vu lan . Tất cả hiệp sĩ h&atilde;y c&ugrave;ng nhau thu thập những b&ocirc;ng sen trắng <img src="http://my.teamobi.com/app/view/forum/16594932482829.png" /> rồi đem đến NPC Miss Sophia để đổi những b&oacute; hoa nh&eacute;<br /><br />- C&aacute;c hoạt động sẽ rơi b&ocirc;ng sen trắng <br /><br />1. Đ&aacute;nh qu&aacute;i +- 5 level<br />2. <span style="color: #626262;">Đ&aacute;nh qu&aacute;i trong</span> ph&oacute; bản&nbsp;</div>\r\n<div class="box_ndung_bviet">3.&nbsp;<span style="color: #626262;">Đ&aacute;nh qu&aacute;i level 133 trờ l&ecirc;n</span><br />- Khi c&aacute;c bạn thu thập đủ b&ocirc;ng sen trắng <img src="http://my.teamobi.com/app/view/forum/16594932482829.png" /> c&oacute; thể đổi lấy th&agrave;nh b&oacute; hoa trắng <img src="http://my.teamobi.com/app/view/forum/16594932488707.png" /> c&ocirc;ng thức :<br /><br />30 b&ocirc;ng sen trắng <img src="http://my.teamobi.com/app/view/forum/16594932482829.png" /> + v&agrave;ng = 1 b&oacute; sen trắng <img src="http://my.teamobi.com/app/view/forum/16594932488707.png" /><br /><br />- D&ugrave;ng b&oacute; hoa trắng sẽ ngẫu nhi&ecirc;n nhận được vật phẩm sau :<br /><br />Kẹo bạc h&agrave; <br />Kẹo hương cam<br />Kẹo the<br />Kẹo sữa<br />Rương đỏ<br />Rương t&iacute;m<br />Titan<br />Sắt vụn<br />Cỏ ba l&aacute; <br />Kim loại vũ trụ<br />L&ocirc;ng xanh<br />L&ocirc;ng đỏ<br />L&ocirc;ng v&agrave;ng<br />Nl tinh t&uacute;&nbsp;<br />Hồi sinh tại chỗ<br />200-300 B&igrave;nh HP 6.000<br />200-300 B&igrave;nh MP 600<br />Nước rửa tội<br />V&eacute; mở ly&nbsp;<br />M&acirc;y<br />B&ograve; v&agrave;ng<br />S&aacute;ch tri thức<br /><br /><br />Lưu &yacute; : <br />- H&agrave;nh trang đầy sẽ mất qu&agrave; admin kh&ocirc;ng chịu tr&aacute;ch nhiệm<br />- Lồng đ&egrave;n sao hồng b&aacute;n bằng v&agrave;ng trong Lisa , thời gian sử dụng l&agrave; 1 tiếng v&agrave; loại 10 tiếng . Kh&ocirc;ng thể sử dụng cộng dồn. V&agrave; khi th&aacute;o lồng đ&egrave;n l&agrave; sẽ mất lu&ocirc;n<br />- Max nhập số lượng đổi 1 lần l&agrave; 200<br /><br /><center><span style="color: red;">B&Oacute; HOA SEN HỒNG</span></center><br /><br />- C&oacute; thể đổi b&ocirc;ng sen trắng th&agrave;nh b&ocirc;ng sen hồng theo c&ocirc;ng thức<br /><br />10 b&ocirc;ng sen trắng <img src="http://my.teamobi.com/app/view/forum/16594932482829.png" /> + v&agrave;ng = 1 b&ocirc;ng sen hồng <img src="http://my.teamobi.com/app/view/forum/16594932485118.png" /> <br /><br />5 b&ocirc;ng sen hồng <img src="http://my.teamobi.com/app/view/forum/16594932485118.png" /> + ngọc = 1 b&oacute; sen hồng <img src="http://my.teamobi.com/app/view/forum/16594941922226.png" /><br /><br />- Khi sử dụng b&oacute; sen hồng <img src="http://my.teamobi.com/app/view/forum/16594941922226.png" /> nhận được ngẫu nhi&ecirc;n<br /><br />Ngẫu nhi&ecirc;n v&agrave;ng<br />Rương v&agrave;ng<br />V&eacute; x2 đi bu&ocirc;n<br />Cỏ 4 l&aacute;<br />Cỏ 3 l&aacute;<br />Hỏa ỳ l&acirc;n<br />M&acirc;y<br />Đ&aacute; ba m&agrave;u<br />V&eacute; mở ly<br />V&eacute; tự động đ&aacute;nh<br />Đ&aacute; hỏa tinh<br />nltt ngẫu nhi&ecirc;u<br />Nguy&ecirc;n liệu mề đay v&agrave;ng/t&iacute;m cấp 1 ngẫu nhi&ecirc;n<br />Th&aacute;nh gi&aacute;<br />Xương<br />Đục huyền b&iacute; cấp 1<br />Đ&aacute; thạch anh cấp 1<br /><span style="color: #626262;">S&aacute;ch skill 110 kh&ocirc;ng kh&oacute;a</span><br /><br /><br />Lưu &yacute; : <br />- H&agrave;nh trang đầy sẽ mất qu&agrave; admin kh&ocirc;ng chịu tr&aacute;ch nhiệm<br />- Max nhập số lượng đổi 1 lần l&agrave; 200<br /><br /><center><span style="color: red;">ƯỚC NGUYỆN C&Ugrave;NG BẠN</span></center><br /><center><img src="http://my.teamobi.com/app/view/forum/16594941925168.png" /></center><br /><br /><img src="http://my.teamobi.com/app/view/forum/16594949977250.png" /> Hoa đăng b&aacute;n ở cửa h&agrave;ng Lisa/Emma. Hiệp sĩ khi sử dụng hoa đăng nhập t&ecirc;n nh&acirc;n vật kh&aacute;c để c&ugrave;ng nhau ước nguyện nhận qu&agrave; tặng. Cả người tặng v&agrave; người được tặng đều c&oacute; qu&agrave;.<br />- Phần qu&agrave; ước nguyện hoa đăng ngẫu nhi&ecirc;n :<br /><br /><br />Rương v&agrave;ng<br />V&eacute; x2 đi bu&ocirc;n <br />Cỏ 4 l&aacute;<br />Cỏ 3 l&aacute;<br />Hỏa kỳ l&acirc;n<br />M&acirc;y<br />Đ&aacute; ba m&agrave;u<br />V&eacute; mở ly<br />V&eacute; tự động đ&aacute;nh <br />Đ&aacute; hỏa tinh<br />NLTT ngẫu nhi&ecirc;n<br />Nguy&ecirc;n liệu mề đay v&agrave;ng/t&iacute;m cấp 1 ngẫu nhi&ecirc;n<br />Th&aacute;nh gi&aacute;<br />Xương<br />Đục huyền b&iacute; cấp 1<br />Đ&aacute; thạch anh cấp 1<br />Kim loại vũ trụ<br />Đ&aacute; may mắn<br />L&ocirc;ng xanh/đỏ/v&agrave;ng<br />Tăng tốc c&aacute;nh cấp 1<br />B&ocirc;ng sen trắng/hồng<br />S&aacute;ch skill 110 kh&ocirc;ng kh&oacute;a<br /><br /><br />Lưu &yacute; : <br />- H&agrave;nh trang đầy sẽ mất qu&agrave; admin kh&ocirc;ng chịu tr&aacute;ch nhiệm<br />- Max nhập số lượng đổi 1 lần l&agrave; 200<br />- Người tặng v&agrave; được tặng phải đứng gần nhau nh&eacute;<br /><br /><center><span style="color: red;">ĐUA TOP HOA ĐĂNG</span></center><br /><br />Top 1 :<br />1 d&acirc;y chuyền mặt trăng vĩnh viễn kh&ocirc;ng kh&oacute;a [được tặng]<br />1 trứng pet rồng lửa vĩnh viễn [được tặng]<br />1 c&aacute;nh thời trang vĩnh viễn ngẫu nhi&ecirc;n<br />5 đ&aacute; krypton cấp 2<br /><br />Top 2 :<br />1 nhẫn mặt trăng vĩnh viễn [được tặng]<br />1 trứng pet rồng lửa vĩnh viễn [được chọn nh&acirc;n vật tặng]<br />1 c&aacute;nh thời trang 6 th&aacute;ng&nbsp;<span style="color: #626262;">ngẫu nhi&ecirc;n</span><br />3 đ&aacute; krypton cấp 1<br /><br />Top 3 :<br />1 nhẫn mặt trăng vĩnh viễn [được tặng]<br />1 trứng pet rồng lửa 6 th&aacute;ng&nbsp;<br /><span style="color: #626262;">1 c&aacute;nh thời trang 6 th&aacute;ng&nbsp;</span><span style="color: #626262;">ngẫu nhi&ecirc;n</span><br />2 đ&aacute; krypton cấp 1<br /><br />Top 4-10<br />1 tai nghe xanh/đỏ vĩnh viễn [tự chọn]<br />1 trứng pet rồng lửa 6 th&aacute;ng<br /><span style="color: #626262;">1 c&aacute;nh thời trang 2 th&aacute;ng </span><span style="color: #626262;">ngẫu nhi&ecirc;n</span><br /><br /><br />Lưu &yacute; :</div>\r\n<div class="box_ndung_bviet">- <span style="background-color: #f8cac6;">Đ&Egrave;N HOA ĐĂNG C&Oacute; GI&Aacute; 1TR V&Agrave;NG</span></div>\r\n<div class="box_ndung_bviet">- TOP KH&Ocirc;NG T&Iacute;NH ĐỒNG HẠNG [NGƯỜI N&Agrave;O ĐẠT SỐ LƯỢNG Đ&Oacute; TRƯỚC XẾP TRƯỚC LẤY TRƯỚC]<br />- Tối thiểu top phải đạt số lượng &gt; 3.000. Ri&ecirc;ng top 1-2-3 phải tối thiểu &gt; 5.000<br /><br /><center><span style="color: red;">ĐỔI QU&Agrave; ĐẶC BIỆT</span></center><br /><br />50 b&ocirc;ng sen hồng + 200ngọc = 1 t<span style="color: #444444; font-family: sans-serif; font-size: 13.12px; white-space-collapse: preserve; background-color: #ffffff;">rứng khỉ n&acirc;u</span>&nbsp;[thời hạn 15 ng&agrave;y]<br />50 b&ocirc;ng sen hồng + 200ngọc = 1 trứng tiểu y&ecirc;u tinh [thời hạn 15 ng&agrave;y]<br />50 b&ocirc;ng sen hồng + 500ngọc = 1 c<span style="background-color: #ffffff; color: #000000; font-family: sans-serif; font-size: 13.12px; white-space-collapse: preserve;">&aacute;nh l&ocirc;ng vũ thời trang</span>&nbsp;[thời hạn 30 ng&agrave;y]</div>\r\n<div class="box_ndung_bviet">10 b&ocirc;ng sen hồng + 100ngọc = 100 th&uacute; cưỡi con l&acirc;n<br /><br /><br />Lưu &yacute;<br />Trứng c&oacute; thời hạn như trang bị, kể cả kh&ocirc;ng ấp vẫn hết hạn b&igrave;nh thường<br /><br /><br /><strong>Thời gian diễn ra v&agrave; kết th&uacute;c sự kiện sẽ được BQT th&ocirc;ng b&aacute;o sau<br /></strong><br /><center></center></div>'),
 	(60, 'QUÀ TOP NẠP SK VULAN', '<p>Top 1:</p>\r\n<p>Gi&aacute;p Hellwing vĩnh viễn&nbsp;</p>\r\n<p>D&acirc;y chuyền mặt trăng vĩnh viễn</p>\r\n<p>Gậy mặt trăng vĩnh viễn</p>\r\n<p>Th&uacute; cưỡi C&acirc;n đẩu v&acirc;n vĩnh viễn</p>\r\n<p>&Aacute;o cho&agrave;ng tỷ ph&uacute; vĩnh viễn&nbsp;</p>\r\n<p>Khẩu trang đỏ vĩnh viễn&nbsp;</p>\r\n<p>Tai nghe vĩnh viễn&nbsp;</p>\r\n<p>100 nguy&ecirc;n liệu v&agrave;ng c3 ( ramdom)&nbsp;</p>\r\n<p>100 nguy&ecirc;n liệu t&iacute;m c3</p>\r\n<p>40 đ&aacute; hỏa tinh&nbsp;</p>\r\n<p>40 đ&aacute; kryton c3&nbsp;</p>\r\n<p>30 đ&aacute; 3 m&agrave;u</p>\r\n<p>Top 2:</p>\r\n<p>Gi&aacute;p Deathwing vĩnh viễn&nbsp;</p>\r\n<p>Gậy mặt trăng 30 ng&agrave;y</p>\r\n<p>Nhẫn mặt trăng vĩnh viễn</p>\r\n<p>Th&uacute; cưỡi Ngựa Skeleton vĩnh viễn</p>\r\n<p>&Aacute;o cho&agrave;ng triệu ph&uacute; vĩnh viễn&nbsp;</p>\r\n<p>Khẩu trang đỏ vĩnh viễn&nbsp;</p>\r\n<p>50 nguy&ecirc;n liệu v&agrave;ng c3 ( ramdom)&nbsp;</p>\r\n<p>50 nguy&ecirc;n liệu t&iacute;m c3</p>\r\n<p>15 đ&aacute; hỏa tinh&nbsp;</p>\r\n<p>15 đ&aacute; kryton c3&nbsp;</p>\r\n<p>20 đ&aacute; 3 m&agrave;u</p>\r\n<p>Top 3:</p>\r\n<p>Gi&aacute;p Deathwing vĩnh viễn&nbsp;</p>\r\n<p>Th&uacute; cưỡi Rồng băng vĩnh viễn</p>\r\n<p>&Aacute;o cho&agrave;ng đại gia vĩnh viễn&nbsp;</p>\r\n<p>Khẩu trang đỏ vĩnh viễn&nbsp;</p>\r\n<p>25 nguy&ecirc;n liệu v&agrave;ng c3 ( ramdom)&nbsp;</p>\r\n<p>25 nguy&ecirc;n liệu t&iacute;m c3</p>\r\n<p>10 đ&aacute; hỏa tinh&nbsp;</p>\r\n<p>10 đ&aacute; kryton c3&nbsp;</p>\r\n<p>15 đ&aacute; 3 m&agrave;u</p>\r\n<p>Top 4 &ndash; 10:</p>\r\n<p>Gi&aacute;p Xương kh&ocirc; vĩnh viễn</p>\r\n<p>Th&uacute; cưỡi Ngựa skeleton x99</p>\r\n<p>10 nguy&ecirc;n liệu v&agrave;ng c3 ( ramdom)&nbsp;</p>\r\n<p>10 nguy&ecirc;n liệu t&iacute;m c3</p>\r\n<p>7 đ&aacute; hỏa tinh&nbsp;</p>\r\n<p>7 đ&aacute; kryton c3&nbsp;</p>\r\n<p>10 đ&aacute; 3 m&agrave;u&nbsp;</p>\r\n<p>Lưu &yacute;; T<span style="color: #626262; background-color: #f8cac6;">op 1 2 3 phải nạp từ 2tr coin trở l&ecirc;n mới nhận được t&iacute;nh, nếu kh&ocirc;ng sẽ nhận qu&agrave; như top 4-10</span></p>\r\n<p>Sk đua top nạp kết th&uacute;c 23 :59 27/8</p>');
 
--- Dumping structure for table srcbanquyen.mobs
+-- Dumping structure for table sqlcu.mobs
 CREATE TABLE IF NOT EXISTS `mobs` (
   `id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
@@ -7034,7 +7017,7 @@ CREATE TABLE IF NOT EXISTS `mobs` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.mobs: ~220 rows (approximately)
+-- Dumping data for table sqlcu.mobs: ~220 rows (approximately)
 DELETE FROM `mobs`;
 INSERT INTO `mobs` (`id`, `name`, `level`, `hp`, `typemove`) VALUES
 	(0, 'Smiley', 1, 500, 1),
@@ -7120,8 +7103,8 @@ INSERT INTO `mobs` (`id`, `name`, `level`, `hp`, `typemove`) VALUES
 	(80, 'Phù Thủy Quạ', 90, 10000, 3),
 	(81, 'Nhện Nổ', 90, 10000, 0),
 	(82, 'Quỷ Nham Thạch', 90, 10000, 0),
-	(83, 'Dê Bạc', 95, 160000000, 0),
-	(84, 'Dê Vàng', 75, 100000000, 0),
+	(83, 'Dê Bạc', 95, 260000000, 0),
+	(84, 'Dê Vàng', 75, 160000000, 0),
 	(85, 'Thỏ bay', 91, 186800, 3),
 	(86, 'Ma cây mập', 92, 190900, 0),
 	(87, 'Nhân sâm', 93, 195100, 0),
@@ -7140,10 +7123,10 @@ INSERT INTO `mobs` (`id`, `name`, `level`, `hp`, `typemove`) VALUES
 	(100, 'Thiết kích hộ vệ', 1, 2000000, 1),
 	(101, 'Xà nữ', 55, 25000000, 0),
 	(102, 'Heo', 1, 10000, 0),
-	(103, 'Bọ cạp chúa', 15, 50000000, 0),
-	(104, 'Quỷ một mắt', 35, 20000000, 0),
-	(105, 'Quỷ đầu bò', 85, 130000000, 0),
-	(106, 'Kỵ sĩ địa ngục', 105, 200000000, 0),
+	(103, 'Bọ cạp chúa', 15, 10000000, 0),
+	(104, 'Quỷ một mắt', 35, 25000000, 0),
+	(105, 'Quỷ đầu bò', 85, 150000000, 0),
+	(106, 'Kỵ sĩ địa ngục', 105, 240000000, 0),
 	(107, 'Quỷ địa ngục', 94, 199300, 0),
 	(108, 'Pháp sư địa ngục', 94, 199300, 0),
 	(109, 'Thùng gỗ', 1, 1, 13),
@@ -7186,13 +7169,13 @@ INSERT INTO `mobs` (`id`, `name`, `level`, `hp`, `typemove`) VALUES
 	(146, 'Mực ma', 121, 382200, 3),
 	(147, 'Dế ma', 122, 402400, 0),
 	(148, 'Xương ma', 123, 412600, 0),
-	(149, 'Nhện chúa', 115, 250000000, 0),
+	(149, 'Nhện chúa', 115, 280000000, 0),
 	(150, 'Mỵ nương', 40, 1, 15),
 	(151, 'Trụ phụ', 1, 1000, 18),
 	(152, 'Trụ chính', 1, 1000, 18),
 	(153, 'Cổng thành', 1, 1000, 16),
 	(154, 'Lính gác thành', 100, 1000, 17),
-	(155, 'Giant Skeleton', 125, 500000000, 0),
+	(155, 'Giant Skeleton', 125, 550000000, 0),
 	(156, 'Ice Golem', 124, 544567, 0),
 	(157, 'Griffin', 125, 435653, 0),
 	(158, 'Yêu tinh tuyết', 126, 476553, 0),
@@ -7210,7 +7193,7 @@ INSERT INTO `mobs` (`id`, `name`, `level`, `hp`, `typemove`) VALUES
 	(170, 'Khải hoàn', 1, 10, 0),
 	(171, 'Tâm linh', 1, 10, 0),
 	(172, 'Hỗn nguyên', 1, 10, 0),
-	(173, 'Thỏ trắng', 85, 500000000, 0),
+	(173, 'Thỏ trắng', 85, 600000000, 0),
 	(174, 'Voi rừng', 90, 10000, 0),
 	(175, 'Đứa bé', 60, 1, 15),
 	(176, 'Voi nâu', 60, 1, 14),
@@ -7232,9 +7215,9 @@ INSERT INTO `mobs` (`id`, `name`, `level`, `hp`, `typemove`) VALUES
 	(192, 'Bóng ma tím', 135, 2100000000, 0),
 	(193, 'Thợ săn', 135, 2100000000, 0),
 	(194, 'Lính súng cối', 135, 2100000000, 0),
-	(195, 'Godzilla', 75, 200000000, 0),
-	(196, 'King kong', 135, 1500000000, 0),
-	(197, 'Gà trống', 115, 830000000, 0),
+	(195, 'Godzilla', 75, 210000000, 0),
+	(196, 'King kong', 135, 2100000000, 0),
+	(197, 'Gà trống', 115, 1030000000, 0),
 	(198, 'Chó đá', 125, 225400, 0),
 	(199, 'Khói ma', 120, 225400, 0),
 	(200, 'Nấm xanh', 105, 225400, 0),
@@ -7258,7 +7241,7 @@ INSERT INTO `mobs` (`id`, `name`, `level`, `hp`, `typemove`) VALUES
 	(218, 'Mèo mập', 124, 199300, 0),
 	(219, 'Frieza Hắc Ám', 123, 123456700, 0);
 
--- Dumping structure for table srcbanquyen.momo
+-- Dumping structure for table sqlcu.momo
 CREATE TABLE IF NOT EXISTS `momo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -7273,10 +7256,10 @@ CREATE TABLE IF NOT EXISTS `momo` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.momo: ~0 rows (approximately)
+-- Dumping data for table sqlcu.momo: ~0 rows (approximately)
 DELETE FROM `momo`;
 
--- Dumping structure for table srcbanquyen.naptien
+-- Dumping structure for table sqlcu.naptien
 CREATE TABLE IF NOT EXISTS `naptien` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -7291,10 +7274,10 @@ CREATE TABLE IF NOT EXISTS `naptien` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.naptien: ~0 rows (approximately)
+-- Dumping data for table sqlcu.naptien: ~0 rows (approximately)
 DELETE FROM `naptien`;
 
--- Dumping structure for table srcbanquyen.nap_tay
+-- Dumping structure for table sqlcu.nap_tay
 CREATE TABLE IF NOT EXISTS `nap_tay` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -7306,14 +7289,12 @@ CREATE TABLE IF NOT EXISTS `nap_tay` (
   `logger` text NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Dumping data for table srcbanquyen.nap_tay: ~0 rows (approximately)
+-- Dumping data for table sqlcu.nap_tay: ~0 rows (approximately)
 DELETE FROM `nap_tay`;
-INSERT INTO `nap_tay` (`id`, `user_id`, `user_name`, `user_actions`, `type`, `coin`, `vnd`, `logger`, `time`) VALUES
-	(1, 1, '', '', 0, 0, 0, '', '0000-00-00 00:00:00');
 
--- Dumping structure for table srcbanquyen.npc_data
+-- Dumping structure for table sqlcu.npc_data
 CREATE TABLE IF NOT EXISTS `npc_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -7322,7 +7303,7 @@ CREATE TABLE IF NOT EXISTS `npc_data` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table srcbanquyen.npc_data: ~33 rows (approximately)
+-- Dumping data for table sqlcu.npc_data: ~33 rows (approximately)
 DELETE FROM `npc_data`;
 INSERT INTO `npc_data` (`id`, `name`, `map`) VALUES
 	(-93, 'Cây lòng đèn ', 0),
@@ -7359,7 +7340,7 @@ INSERT INTO `npc_data` (`id`, `name`, `map`) VALUES
 	(-3, 'lisa', 0),
 	(-2, 'zoro', 0);
 
--- Dumping structure for table srcbanquyen.order_vang
+-- Dumping structure for table sqlcu.order_vang
 CREATE TABLE IF NOT EXISTS `order_vang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `player_id` int(11) NOT NULL,
@@ -7374,7 +7355,7 @@ CREATE TABLE IF NOT EXISTS `order_vang` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Dumping data for table srcbanquyen.order_vang: ~4 rows (approximately)
+-- Dumping data for table sqlcu.order_vang: ~4 rows (approximately)
 DELETE FROM `order_vang`;
 INSERT INTO `order_vang` (`id`, `player_id`, `player_name`, `tranId`, `partnerId`, `partnerName`, `amount`, `amount_vang`, `comment`, `time`) VALUES
 	(14, 1, 'ôngnội', '44076168079', '01284162280', 'Bùi Đinh Hợi', '8000', 320000000, 'JMP_ôngnội', '2023-08-20 21:06:18'),
@@ -7382,7 +7363,7 @@ INSERT INTO `order_vang` (`id`, `player_id`, `player_name`, `tranId`, `partnerId
 	(19, 417, 'clonee1', '44229311802', '01867679008', 'Nguyễn Xuân Kim', '200000', 8000000000, 'JMP_clonee1', '2023-08-23 09:25:23'),
 	(20, 417, 'clonee1', '44294810657', '01867679008', 'Nguyễn Xuân Kim', '200000', 8000000000, 'JMP_clonee1', '2023-08-24 17:57:24');
 
--- Dumping structure for table srcbanquyen.pet
+-- Dumping structure for table sqlcu.pet
 CREATE TABLE IF NOT EXISTS `pet` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -7400,12 +7381,12 @@ CREATE TABLE IF NOT EXISTS `pet` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.pet: ~0 rows (approximately)
+-- Dumping data for table sqlcu.pet: ~1 rows (approximately)
 DELETE FROM `pet`;
 INSERT INTO `pet` (`id`, `name`, `level`, `exp`, `dataicon`, `age`, `grown`, `point1`, `point2`, `point3`, `point4`, `point`, `data`) VALUES
 	(0, 'Cú', 1, 0, '[0,3,3,0]', 25, '[1,300]', 111, 222, 333, 444, 10000, '[[1,1800,2460],[23,3,0],[24,13,0],[26,16,0],[25,47,0]]');
 
--- Dumping structure for table srcbanquyen.player
+-- Dumping structure for table sqlcu.player
 CREATE TABLE IF NOT EXISTS `player` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -7418,12 +7399,12 @@ CREATE TABLE IF NOT EXISTS `player` (
   `typeexp` tinyint(4) DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
   `exp` bigint(20) DEFAULT NULL,
-  `chuyensinh` int(11) DEFAULT 0,
-  `luyenthe` int(11) DEFAULT 0,
-  `kinhmach` int(11) DEFAULT 0,
-  `tutien` int(11) DEFAULT 0,
-  `mm_cs` int(11) DEFAULT 0,
+  `chuyensinh` tinyint(4) DEFAULT 0,
+  `luyenthe` tinyint(4) DEFAULT 0,
+  `kinhmach` tinyint(4) DEFAULT 0,
+  `tutien` tinyint(4) DEFAULT 0,
   `exptt` int(11) DEFAULT 0,
+  `mm_cs` int(11) DEFAULT 0,
   `site` varchar(255) DEFAULT NULL,
   `rms_save` varchar(1000) DEFAULT NULL,
   `friend` text DEFAULT NULL,
@@ -7450,8 +7431,10 @@ CREATE TABLE IF NOT EXISTS `player` (
   `giftcode` text DEFAULT NULL,
   `date` varchar(255) DEFAULT NULL,
   `medal_create_material` varchar(255) DEFAULT NULL,
-  `NL_do_than` varchar(255) NOT NULL DEFAULT '[]',
   `item_star_material` varchar(255) NOT NULL DEFAULT '[]',
+  `NL_do_than` varchar(255) NOT NULL DEFAULT '[]',
+  `NL_tb2` varchar(255) NOT NULL DEFAULT '[]',
+  `NL_tb1` varchar(255) NOT NULL DEFAULT '[]',
   `point_active` varchar(255) DEFAULT NULL,
   `chucphuc` int(11) DEFAULT 1,
   `hieuchien` int(11) DEFAULT 0,
@@ -7463,41 +7446,30 @@ CREATE TABLE IF NOT EXISTS `player` (
   `dibuon` int(11) NOT NULL DEFAULT 0,
   `dicuop` int(11) DEFAULT NULL,
   `skill_110` varchar(50) NOT NULL DEFAULT '[0,0]',
-  `danhvong` bigint(20) unsigned zerofill DEFAULT NULL,
   `group_king_cup` tinyint(4) DEFAULT -1,
   `point_king_cup` smallint(6) DEFAULT 0,
   `type_reward_king_cup` tinyint(4) DEFAULT 0,
-  `type_use_mount` tinyint(4) DEFAULT -1,
+  `type_use_mount` tinyint(4) DEFAULT 0,
   `doiqua` int(11) DEFAULT NULL,
-  `khu2` tinyint(4) DEFAULT 1,
+  `danhvong` bigint(20) DEFAULT NULL,
+  `sk_hongio` int(11) DEFAULT 0,
   `phoban` int(11) DEFAULT 0,
   `boss` int(11) DEFAULT 0,
-  `st_ran` varchar(50) DEFAULT '[0,0,0,0,0]',
-  `sc_ran` varchar(50) DEFAULT '[0,0,0,0,0]',
+  `boss_rieng` int(11) DEFAULT 0,
+  `banclone` tinyint(4) DEFAULT 0,
   `dokho` tinyint(4) DEFAULT 0,
-  `boss_rieng` tinyint(4) DEFAULT 0,
-  `banclone` tinyint(4) DEFAULT 1,
+  `khu2` tinyint(4) DEFAULT 2,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.player: ~7 rows (approximately)
+-- Dumping data for table sqlcu.player: ~2 rows (approximately)
 DELETE FROM `player`;
-INSERT INTO `player` (`id`, `name`, `kimcuong`, `vang`, `body`, `clazz`, `maxbag`, `diemdanh`, `typeexp`, `level`, `exp`, `chuyensinh`, `luyenthe`, `kinhmach`, `tutien`, `mm_cs`, `exptt`, `site`, `rms_save`, `friend`, `eff`, `enemies`, `skill`, `item3`, `item4`, `item5`, `item7`, `itembox3`, `itembox4`, `itembox5`, `itembox7`, `itemwear`, `pet`, `tiemnang`, `kynang`, `point1`, `point2`, `point3`, `point4`, `point_arena`, `giftcode`, `date`, `medal_create_material`, `NL_do_than`, `item_star_material`, `point_active`, `chucphuc`, `hieuchien`, `id_name`, `time_block_ctg`, `quest_daily`, `chuyencan`, `diemsukien`, `dibuon`, `dicuop`, `skill_110`, `danhvong`, `group_king_cup`, `point_king_cup`, `type_reward_king_cup`, `type_use_mount`, `doiqua`, `khu2`, `phoban`, `boss`, `st_ran`, `sc_ran`, `dokho`, `boss_rieng`, `banclone`) VALUES
-	(1, 'vinhloh', 1999969220, 5989025608, '[0,11,3]', 3, 126, 1, 1, 111, 2564, 0, 0, 0, 0, 0, 0, '[1,725,214]', '[[0,2,0,0,0,4,0,0,0,0,0,0,0,6,0,0,0,8,0,0,0,0,-1,0,0,0,-1,0,0,0,0,0,0,0,-1,0,0,0,-1,0,0,0,-1,0,0,0,-1,0,0,0,0,0,0,0,-1,0,0,0,-1,0],[0,50,50,1,0,0,0,0,0,0,0]]', '[]', '[]', '["ngunguoi"]', '[1,0,10,0,10,0,10,0,5,0,0,0,0,0,0,0,0,0,0,0,0]', '[[4862,4,3,1,13107,5,0,1,15,[[10,8050],[14,2331],[31,1580],[36,880],[-103,2546],[-91,2535],[-89,2451]],1,0,0],[4840,2,0,1,13097,5,91,1,15,[[14,1976],[15,5000],[16,2250],[26,55],[-110,2383],[-108,2397],[-111,2409]],0,0,0],[4850,3,1,1,13102,5,92,1,15,[[14,1692],[16,1850],[24,80],[29,1500],[-110,2389],[-107,2415],[-109,2369]],0,0,0],[4590,4,16,10,957,5,0,1,15,[[3,1000],[96,10],[24,22],[88,1],[87,1]],1,0,0],[4847,2,1,1,13101,5,91,1,15,[[14,1692],[16,1950],[26,80],[30,1500],[-110,2389],[-107,2415],[-109,2369]],0,0,0],[4854,1,2,1,13104,5,91,1,15,[[11,7500],[14,1808],[27,4950],[34,800],[-113,2415],[-105,2406],[-102,2352]],9,0,0],[4831,0,8,1,13111,5,21,1,15,[[2,2446],[33,900],[37,2],[40,2651],[-80,153000],[-101,2381],[-86,2441]],0,0,0],[4839,2,0,1,13097,5,91,1,15,[[14,1976],[15,5000],[17,2250],[25,52],[-110,2383],[-108,2397],[-111,2409]],0,0,0],[4756,4,15,10,13143,4,0,1,0,[[7,2000],[8,2000],[9,2000],[10,2000],[11,2000],[27,2000],[28,2000],[37,1],[38,1]],0,0,0]]', '[]', '[]', '[[0,336],[1,408],[2,432],[3,516],[328,39],[8,183],[9,111],[10,180],[11,66],[13,108],[109,765],[494,6],[110,765],[111,645],[273,1],[19,11]]', '[]', '[]', '[]', '[]', '[[4833,3,10,10,13113,5,23,0,[[3,500],[36,400],[37,2],[40,800],[-125,60],[99,60],[-128,60]],0,0,0],[4841,3,0,10,13098,5,92,0,[[14,400],[15,2000],[16,1800],[26,35],[-122,60],[-120,60],[-123,60]],1,0,0],[4859,4,3,10,13107,5,0,0,[[10,4500],[14,300],[31,6],[36,4],[-115,60],[-92,60],[-90,60]],2,0,0],[4867,4,4,10,13108,5,0,0,[[10,4500],[26,35],[36,400],[99,60],[-88,60],[-116,60]],3,0,0],[4872,4,5,10,13109,5,0,0,[[28,4000],[37,2],[-117,60],[-88,60],[-115,60]],4,0,0],[4667,3,2,45,13106,5,93,1,[[10,4400],[14,232],[28,2800],[36,400],[-91,147],[-127,10000],[-126,295]],6,0,0],[4849,3,1,10,13102,5,92,0,[[14,300],[19,1300],[26,55],[30,600],[-122,60],[-119,60],[-121,60]],7,0,0],[4864,4,6,10,13110,5,0,0,[[14,300],[26,50],[32,600],[36,400],[-115,60],[-92,60],[-116,60]],8,0,0],[4867,4,4,10,13108,5,0,0,[[10,4500],[26,35],[36,400],[99,60],[-88,60],[-116,60]],9,0,0],[4756,4,15,10,13143,4,0,0,[[7,2000],[8,2000],[9,2000],[10,2000],[11,2000],[27,2000],[28,2000]],11,0,0],[4587,4,16,10,954,4,0,15,[[2,1000000000],[9,1000000000],[23,1000000000],[24,1000000000],[33,1000000000],[34,1000000000],[36,1000000000],[27,1000000000],[28,1000000000],[29,1000000000],[30,1000000000],[14,1000000000],[15,1000000000],[37,5],[38,5],[15,1000000000],[76,1000000000],[77,1000000000],[78,1000000000],[79,1000000000],[80,1000000000],[81,10000],[82,10000],[85,1000000000],[86,1000000000],[87,1000000000],[88,1000000000]],12,0,0],[4689,4,23,10,13051,5,18,0,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],15,0,0],[4766,4,27,10,13153,5,78,0,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,1500],[28,1500]],19,0,0]]', '[]', 551, 111, 115, 115, 115, 115, 2, '["tanthu"]', 'Sun Jun 23 01:48:30 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[424,440,334,343,460,424,438,331,340,457,433,450,328,341,462,420,447,327,340,457,431,444,331,339,458,429,443,330,340,460,430,439,329,345,459,430,450,331,338,458]', '[429,447,326,345,459,433,440,334,336,463,433,452,330,338,461,419,443,333,338,463,421,439,335,343,459,418,438,334,336,462,426,438,326,338,458,432,437,333,337,461]', '[5,0,0]', 1, 0, -1, 0, '[-1,-1,0,0,10]', 0, 0, 0, 0, '[0,0]', 00000000000007205709, -1, 0, 0, -1, 0, 2, 123, 23, '[4,7,2,4,4]', '[1,4,8,7,0]', 0, 0, 1),
-	(2, 'ngunguoi', 1161280, 12679405717, '[0,8,39]', 0, 126, 1, 0, 122, 0, 0, 8, 8, 8, 0, -51920, '[33,560,520]', '[[0,6,0,0,0,4,0,0,0,2,0,0,0,8,0,0,0,7,0,0,0,0,-1,0,0,0,-1,0,0,0,0,0,0,0,-1,0,0,0,-1,0,0,0,-1,0,0,0,-1,0,0,0,0,0,0,0,-1,0,0,0,-1,0],[0,50,50,1,4,0,0,0,0,0,0]]', '[]', '[]', '[]', '[1,0,10,0,10,0,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0]', '[[4270,2,11,134,882,3,23,0,0,[[0,1254],[36,479],[40,1308],[71,137]],0,0,0],[4332,3,2,130,895,0,19,0,0,[[10,2852],[14,863],[71,156]],0,0,0],[4300,0,2,134,888,3,16,0,0,[[7,4162],[14,1153],[27,2817],[71,146]],0,0,0],[4552,4,5,130,939,0,0,0,0,[[27,2928],[71,140]],0,0,0],[4217,4,5,120,872,0,0,0,0,[[16,797],[17,730],[18,765],[19,763],[20,742],[71,142]],0,0,0],[4445,4,3,134,917,3,0,0,0,[[11,4039],[14,903],[33,386],[71,143]],0,0,0],[4128,4,3,120,854,1,0,0,0,[[8,3086],[14,700],[71,144]],0,0,0],[4868,4,4,1,13108,5,0,1,15,[[11,7200],[23,54],[34,800],[-86,2373],[-87,2412],[-84,2243]],0,0,0]]', '[[0,18],[1,13],[2,25],[3,21],[4,18],[5,18],[346,549]]', '[]', '[[0,435],[1,396],[2,414],[3,474],[8,216],[9,114],[10,132],[11,69],[13,8280],[494,129],[116,195],[117,210],[118,183],[119,237],[120,222],[345,1],[121,201],[122,207],[123,213],[124,186],[125,186]]', '[[4587,4,16,10,954,4,0,1,15,[[2,700],[37,1],[24,28],[77,1437],[76,1289],[8,325],[16,103],[30,174],[80,1326],[18,101],[27,1000000000],[38,1],[82,1463],[81,1238],[58,416],[59,416],[116,1800]],0,0,0]]', '[]', '[]', '[[345,1000],[344,1000],[343,1000],[342,1000],[341,1000],[340,1000],[339,1000],[338,1000],[337,1000],[336,1000],[335,1000],[334,1000],[333,1000],[332,1000],[331,1000],[330,1000],[329,1000],[326,1000],[327,1000],[328,1000]]', '[[4831,0,8,1,13111,5,21,15,[[2,2446],[33,900],[37,2],[40,2651],[-81,153000],[-128,2381],[99,2441],[58,27],[59,-1],[60,-1],[6,1600]],0,0,0],[4835,0,0,1,13095,5,89,15,[[14,2570],[15,5000],[18,2000],[23,52],[-122,2383],[-120,2397],[-123,2409]],1,0,0],[4859,4,3,1,13107,5,0,15,[[9,7200],[14,1692],[31,1500],[33,800],[-115,2446],[-92,2435],[-90,2351]],2,0,0],[4867,4,4,1,13108,5,0,15,[[9,7200],[23,54],[33,800],[99,2373],[-88,2412],[-85,2243]],3,0,0],[4873,4,5,1,13109,5,0,15,[[23,82],[33,900],[-117,2384],[-88,2424],[-115,2284]],4,0,0],[4664,0,2,125,13103,5,90,0,[[7,3000],[14,190],[27,1950],[35,300],[-104,153],[25,10000],[-127,10000],[-126,243]],6,0,0],[4843,0,1,1,13099,5,89,15,[[14,2160],[18,1800],[23,75],[30,1500],[-122,2389],[-119,2415],[-121,2369]],7,1,0],[4864,4,6,1,13110,5,0,15,[[14,1698],[23,76],[32,1500],[33,800],[-115,2370],[-92,2373],[-116,2438]],8,0,0],[4867,4,4,1,13108,5,0,15,[[9,7200],[23,54],[33,800],[99,2373],[-88,2412],[-85,2243]],9,0,0],[4759,4,15,10,13146,5,0,0,[[7,2000],[8,2000],[9,2000],[10,2000],[11,2000],[27,2000],[28,2000],[37,1],[38,1]],11,0,0],[4587,4,16,10,954,4,0,15,[[2,1000000000],[9,1000000000],[23,1000000000],[24,1000000000],[33,1000000000],[34,1000000000],[36,1000000000],[27,1000000000],[28,1000000000],[29,1000000000],[30,1000000000],[14,1000000000],[15,1000000000],[37,5],[38,5],[15,1000000000],[76,1000000000],[77,1000000000],[78,1000000000],[79,1000000000],[80,1000000000],[81,10000],[82,10000],[85,1000000000],[86,1000000000],[87,1000000000],[88,1000000000]],12,0,0],[4803,4,21,1,971,5,4,0,[[7,2000],[8,2500],[9,2000],[10,2000],[11,2000],[66,1000]],13,0,0],[4713,4,22,10,13075,5,42,0,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500]],14,0,0],[4801,4,23,1,13133,5,69,0,[[7,4000],[8,4000],[9,4000],[10,4000],[11,4000]],15,0,0],[4706,4,25,10,13068,5,33,0,[[23,10],[24,10],[25,10],[26,10]],16,0,0],[4718,4,26,10,13080,5,98,0,[[7,500],[8,500],[9,500],[10,500],[11,500],[-76,500]],18,0,0],[4721,4,27,10,13089,5,39,0,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,1500],[28,1500]],19,0,0],[4728,4,55,10,13115,5,0,0,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000]],21,0,0],[4729,4,102,10,13116,5,0,0,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000]],22,0,0]]', '[]', 606, 122, 126, 126, 126, 126, 5146, '["tanthu","codemd","codett","test","test","test","ngockham","itembuff","itembuff","buff","buff","buff","buff","buff","bbb","bbb"]', 'Sat Jun 29 09:25:29 ICT 2024', '[283,313,324,331,336,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[430,442,331,344,457,429,455,330,341,463,417,443,334,336,461,435,443,334,337,459,417,442,331,338,462,430,451,327,341,462,425,453,334,342,458,436,439,328,345,459]', '[420,440,333,344,457,418,445,330,337,461,432,456,326,341,458,427,451,331,337,462,427,444,332,337,458,422,442,335,338,461,420,453,331,341,461,417,443,327,336,458]', '[5,0,0]', 1, 0, -1, 0, '[-1,-1,0,0,10]', 0, 0, 0, 0, '[0,0]', 00000000000000028511, -1, 0, 0, 10, 0, 2, 12, 1234, '[1,9,5,0,0]', '[0,0,0,0,0]', 0, 0, 1),
-	(3, 'haylam', 1999968650, 1999990000, '[0,8,0]', 0, 42, 1, 1, 111, 0, 0, 0, 0, 0, 0, 0, '[1,432,354]', '[[],[]]', '[]', '[]', '["ngunguoi"]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[[4860,4,3,1,13107,5,0,1,15,[[11,8800],[14,6497],[31,1820],[33,1120],[-103,2846],[-91,2835],[-89,2751]],13,0,0],[4869,4,4,1,13108,5,0,1,15,[[8,7200],[26,54],[35,800],[-86,2373],[-87,2412],[-84,2243]],9,0,0],[4840,2,0,1,13097,5,91,1,15,[[14,1976],[15,5000],[16,2250],[26,55],[-110,2383],[-108,2397],[-111,2409]],9,0,0],[4833,3,10,1,13113,5,23,1,15,[[3,2471],[36,850],[37,2],[40,2551],[-80,153000],[-101,2381],[-86,2441]],9,0,0],[4854,1,2,1,13104,5,91,1,15,[[11,7500],[14,1808],[27,4950],[34,800],[-113,2415],[-105,2406],[-102,2352]],9,0,0],[4800,4,24,1,13166,5,93,0,0,[[7,4000],[8,4000],[9,4000],[10,4000],[11,4000],[-72,500],[62,10000]],0,0,1719901063200]]', '[[345,109],[346,111],[11,1],[14,1]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[0,0,8,1,0,0,0,0,[[0,54],[40,120]],0,0,0],[80,0,0,1,16,0,0,0,[[14,52],[16,100]],1,0,0],[120,0,1,1,24,0,0,0,[[14,18],[25,3]],7,0,0]]', '[]', 551, 111, 30000, 115, 115, 115, 0, '["bbb1"]', 'Sat Jun 29 09:34:21 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[425,456,333,340,462,423,437,331,344,458,435,443,333,339,458,429,450,331,341,460,421,455,327,345,460,436,442,328,341,459,417,451,327,342,462,425,452,331,344,458]', '[434,451,334,340,458,424,444,335,339,458,429,448,330,336,459,426,446,331,342,458,430,444,330,342,457,431,440,329,337,459,425,439,331,336,461,424,456,327,338,460]', '[5,0]', 1, 0, -1, 0, '[-1,-1,0,0,10]', 0, 0, 0, 0, '[0,0]', 00000000000000000000, -1, 0, 0, 10, 0, 2, 0, 0, '[4,5,3,6,0]', '[0,0,0,0,0]', 0, 0, 1),
-	(4, 'gagagaga', 2000000000, 2000000000, '[0,10,2]', 2, 42, 1, 1, 88, 0, 0, 0, 0, 0, 0, 0, '[1,350,350]', '[[],[]]', '[]', '[]', '[]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[]', '[[11,1],[14,1]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[10,2,11,1,2,0,0,0,[[0,50],[40,120]],0,0,0],[90,2,0,1,18,0,2,0,[[14,42],[16,200]],1,0,0],[50,2,2,1,10,0,2,0,[[7,200],[14,12]],6,0,0],[130,2,1,1,26,0,2,0,[[14,12],[26,4]],7,0,0]]', '[]', 436, 88, 92, 92, 92, 92, 0, '[]', 'Thu Jun 27 08:47:33 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[279,264,323,333,339,298,249,322,326,345,254,315,322,326,340,271,272,325,333,340,283,250,321,329,345,268,314,324,330,342,263,246,316,328,341,300,248,323,333,343]', '[426,442,332,336,458,435,439,332,341,463,420,444,329,343,461,419,455,331,336,459,422,439,328,344,462,421,456,332,341,458,424,449,331,341,461,426,442,326,345,458]', '[5,0]', 1, 0, -1, 0, '[-1,-1,0,0,10]', 0, 0, 0, 0, '[0,0]', 00000000000000000000, -1, 0, 0, -1, 0, 2, 0, 0, '[0,0,0,0,0]', '[0,0,0,0,0]', 0, 0, 1),
-	(5, 'hyhyhy', 1999959160, 1987910000, '[0,8,39]', 0, 42, 1, 1, 139, 0, 0, 0, 0, 0, 0, 0, '[1,455,302]', '[[0,0,-1,0,0,0,-1,0,0,0,0,0,0,0,-1,0,0,0,-1,0,0,2,0,0,0,4,0,0,0,6,0,0,0,8,0,0,0,20,0,0,0,0,-1,0,0,0,-1,0,0,0,0,0,0,0,-1,0,0,0,-1,0],[]]', '[]', '[]', '[]', '[1,0,10,0,10,0,10,0,10,0,0,0,0,0,0,0,0,0,0,10,10]', '[[4846,1,1,1,13100,5,90,1,15,[[14,1708],[16,1800],[23,76],[30,1500],[-110,2389],[-107,2415],[-109,2369]],0,0,0]]', '[[84,27],[328,1],[11,1],[124,97],[14,1]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[4831,0,8,1,13111,5,21,15,[[2,2446],[33,900],[37,2],[40,2651],[-81,153000],[-128,2381],[99,2441]],0,0,0],[4835,0,0,1,13095,5,89,15,[[14,2570],[15,5000],[18,2000],[23,52],[-122,2383],[-120,2397],[-123,2409]],1,0,0],[4859,4,3,1,13107,5,0,15,[[9,7200],[14,1692],[31,1500],[33,800],[-115,2446],[-92,2435],[-90,2351]],2,0,0],[4867,4,4,1,13108,5,0,15,[[9,7200],[23,54],[33,800],[99,2373],[-88,2412],[-85,2243]],3,0,0],[4873,4,5,1,13109,5,0,15,[[23,82],[33,900],[-117,2384],[-88,2424],[-115,2284]],4,0,0],[4851,0,2,1,13103,5,90,15,[[9,7500],[14,2222],[28,4950],[33,800],[-125,2415],[-117,2406],[-114,2352]],6,0,0],[4843,0,1,1,13099,5,89,15,[[14,2160],[18,1800],[23,75],[30,1500],[-122,2389],[-119,2415],[-121,2369]],7,1,0],[4864,4,6,1,13110,5,0,15,[[14,1698],[23,76],[32,1500],[33,800],[-115,2370],[-92,2373],[-116,2438]],8,0,0],[4867,4,4,1,13108,5,0,15,[[9,7200],[23,54],[33,800],[99,2373],[-88,2412],[-85,2243]],9,0,0],[4759,4,15,10,13146,5,0,0,[[7,2000],[8,2000],[9,2000],[10,2000],[11,2000],[27,2000],[28,2000],[37,1],[38,1]],11,0,0],[4587,4,16,10,954,4,0,15,[[2,700],[37,1],[24,28],[77,1437],[76,1289],[8,325],[16,103],[30,174],[80,1326],[18,101],[38,1],[82,1463],[81,1238]],12,0,0],[4803,4,21,1,971,5,4,0,[[7,2000],[8,2500],[9,2000],[10,2000],[11,2000],[66,1000]],13,0,0],[4713,4,22,10,13075,5,42,0,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500]],14,0,0],[4746,4,23,10,13133,5,69,0,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000],[27,1000],[28,1000]],15,0,0],[4706,4,25,10,13068,5,33,0,[[23,10],[24,10],[25,10],[26,10]],16,0,0],[4692,4,24,10,13054,5,21,0,[[23,50],[24,50],[25,50],[26,50],[33,500],[89,1000]],17,0,0],[4718,4,26,10,13080,5,98,0,[[7,500],[8,500],[9,500],[10,500],[11,500],[-76,500]],18,0,0],[4721,4,27,10,13089,5,39,0,[[7,1500],[8,1500],[9,1500],[10,1500],[11,1500],[27,1500],[28,1500]],19,0,0],[4787,4,28,10,13184,5,0,0,[[7,3000],[8,3000],[9,3000],[10,3000],[11,3000],[27,3000],[15,3000],[5,500],[6,500]],20,0,0],[4728,4,55,10,13115,5,0,0,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000]],21,0,0],[4729,4,102,10,13116,5,0,0,[[7,1000],[8,1000],[9,1000],[10,1000],[11,1000]],22,0,0]]', '[]', 0, 79, 834, 143, 143, 143, 0, '[]', 'Sat Jun 29 09:25:17 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[432,447,331,340,458,435,445,335,341,461,423,447,326,340,458,424,451,327,344,457,424,438,334,340,462,430,456,335,340,462,429,451,334,343,457,431,449,331,340,460]', '[428,444,331,344,459,436,448,328,341,459,435,449,332,344,459,421,437,328,340,458,425,445,333,340,457,428,454,330,340,460,428,437,329,338,459,418,441,333,345,458]', '[5,0]', 1, 0, -1, 0, '[-1,-1,0,0,10]', 0, 0, 0, 0, '[0,0]', 00000000000000000015, -1, 0, 0, 10, 0, 2, 0, 0, '[0,0,0,0,0]', '[0,0,0,0,0]', 0, 0, 1),
-	(6, 'kkkkkkk', 2000000000, 2000000000, '[0,11,3]', 3, 42, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, '[0,216,384]', '[[],[]]', '[]', '[]', '[]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[]', '[[11,1],[14,1]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[15,3,10,1,3,0,0,0,[[0,50],[40,120]],0,0,0],[95,3,0,1,19,0,3,0,[[14,44],[16,200]],1,0,0],[55,3,2,1,11,0,3,0,[[7,200],[14,14]],6,0,0],[135,3,1,1,27,0,3,0,[[14,14],[24,4]],7,0,0]]', '[]', 5, 1, 5, 5, 5, 5, 0, '[]', 'Sun Jun 30 21:18:53 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[312,256,321,332,337,302,294,316,328,336,293,315,316,327,342,300,252,322,330,343,262,269,316,326,345,254,291,322,330,341,265,260,321,332,337,289,282,316,327,344]', '[419,438,332,345,457,436,439,327,345,462,429,452,332,341,457,430,437,330,340,460,428,437,327,340,457,427,451,328,345,459,434,455,330,343,462,422,455,328,342,457]', '[3,0]', 1, 0, -1, 0, '[0,0,0,0,0]', 0, 0, 0, 0, '[0,0]', 00000000000000000000, -1, 0, 0, -1, 0, 1, 0, 0, '[0,0,0,0,0]', '[0,0,0,0,0]', 0, 0, 1),
-	(7, 'kkkkkk', 2000000000, 2000000000, '[0,9,1]', 1, 42, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, '[0,132,354]', '[[],[]]', '[]', '[]', '[]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[]', '[[11,1],[14,1]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[5,1,9,1,1,0,0,0,[[0,54],[40,120]],0,0,0],[105,1,0,1,21,0,1,0,[[14,52],[20,100]],1,0,0],[145,1,1,1,29,0,1,0,[[14,18],[24,3]],7,0,0]]', '[]', 5, 1, 5, 5, 5, 5, 0, '[]', 'Sun Jun 30 21:27:41 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[246,301,317,330,337,271,301,322,332,336,311,255,321,331,341,307,301,317,331,337,281,266,317,328,340,284,248,317,326,338,250,246,319,332,338,246,256,324,334,344]', '[435,448,332,340,460,429,448,335,344,457,426,454,335,341,457,419,454,328,336,459,427,441,335,337,457,420,445,329,338,459,429,448,334,341,462,426,451,326,342,462]', '[3,0]', 1, 0, -1, 0, '[0,0,0,0,0]', 0, 0, 0, 0, '[0,0]', 00000000000000000000, -1, 0, 0, -1, 0, 1, 0, 0, '[0,0,0,0,0]', '[0,0,0,0,0]', 0, 0, 1),
-	(8, 'hhhhyyyy', 2000000000, 2000000000, '[0,11,3]', 3, 42, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, '[0,132,354]', '[[],[]]', '[]', '[]', '[]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[]', '[[11,1],[14,1]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[15,3,10,1,3,0,0,0,[[0,50],[40,120]],0],[95,3,0,1,19,0,3,0,[[14,44],[16,200]],1],[55,3,2,1,11,0,3,0,[[7,200],[14,14]],6],[135,3,1,1,27,0,3,0,[[14,14],[24,4]],7]]', '[]', 5, 1, 5, 5, 5, 5, 0, '[]', 'Mon Jul 01 07:16:19 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[]', '[]', '[3,0]', 1, 0, -1, 0, '[0,0,0,0,0]	', 0, 0, 0, NULL, '[0,0]', NULL, -1, 0, 0, -1, NULL, 1, 0, 0, '[0,0,0,0,0]', '[0,0,0,0,0]', 0, 0, 1),
-	(9, 'tttttttt', 2000000000, 2000000000, '[0,8,0]', 0, 42, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, '[0,132,354]', '[[],[]]', '[]', '[]', '[]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[]', '[[11,1],[14,1]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[0,0,8,1,0,0,0,0,[[0,54],[40,120]],0],[80,0,0,1,16,0,0,0,[[14,52],[16,100]],1],[120,0,1,1,24,0,0,0,[[14,18],[25,3]],7]]', '[]', 5, 1, 5, 5, 5, 5, 0, '[]', 'Mon Jul 01 07:16:35 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[]', '[]', '[3,0]', 1, 0, -1, 0, '[0,0,0,0,0]	', 0, 0, 0, NULL, '[0,0]', NULL, -1, 0, 0, -1, NULL, 1, 0, 0, '[0,0,0,0,0]', '[0,0,0,0,0]', 0, 0, 1),
-	(10, 'hhhhhh', 2000000000, 2000000000, '[0,8,0]', 0, 42, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, '[0,132,354]', '[[],[]]', '[]', '[]', '[]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[]', '[[11,1],[14,1]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[0,0,8,1,0,0,0,0,[[0,54],[40,120]],0],[80,0,0,1,16,0,0,0,[[14,52],[16,100]],1],[120,0,1,1,24,0,0,0,[[14,18],[25,3]],7]]', '[]', 5, 1, 5, 5, 5, 5, 0, '[]', 'Mon Jul 01 07:25:14 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[]', '[]', '[3,0]', 1, 0, -1, 0, '[0,0,0,0,0]	', 0, 0, 0, NULL, '[0,0]', NULL, -1, 0, 0, -1, NULL, 1, 0, 0, '[0,0,0,0,0]', '[0,0,0,0,0]', 0, 0, 1),
-	(11, 'yyyyyyyyyy', 2000000000, 2000000000, '[0,9,1]', 1, 42, 1, 1, 48, 39656805, 0, 0, 0, 0, 0, 0, '[1,816,372]', '[[],[]]', '[]', '[]', '[]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[]', '[[11,1],[14,1]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[5,1,9,1,1,0,0,0,[[0,54],[40,120]],0,0,0],[105,1,0,1,21,0,1,0,[[14,52],[20,100]],1,0,0],[145,1,1,1,29,0,1,0,[[14,18],[24,3]],7,0,0]]', '[]', 240, 48, 52, 52, 52, 52, 0, '[]', 'Mon Jul 01 07:34:56 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[287,296,324,332,339,279,273,321,335,343,298,277,316,328,343,254,268,325,334,340,306,280,317,326,341,290,301,323,335,345,309,278,325,326,341,263,315,322,326,340]', '[424,440,330,341,462,426,449,330,343,461,419,456,331,336,460,434,455,332,340,463,425,448,331,341,463,436,450,333,339,460,430,452,334,342,460,432,440,327,345,460]', '[3,0]', 1, 0, -1, 0, '[0,0,0,0,0]', 0, 0, 0, 0, '[0,0]', 00000000000000000000, -1, 0, 0, -1, 0, 1, 0, 0, '[0,0,0,0,0]', '[0,0,0,0,0]', 0, 0, 1),
-	(12, 'sssssss', 2000000000, 2000000000, '[0,8,0]', 0, 42, 1, 1, 48, 39656805, 0, 0, 0, 0, 0, 0, '[1,714,214]', '[[],[]]', '[]', '[]', '[]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[]', '[[11,1],[14,1]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[0,0,8,1,0,0,0,0,[[0,54],[40,120]],0,0,0],[80,0,0,1,16,0,0,0,[[14,52],[16,100]],1,0,0],[120,0,1,1,24,0,0,0,[[14,18],[25,3]],7,0,0]]', '[]', 240, 48, 52, 52, 52, 52, 0, '[]', 'Mon Jul 01 07:49:36 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[315,311,324,331,345,303,256,318,326,345,279,288,321,332,343,291,267,319,330,340,295,250,322,334,340,250,263,318,331,342,253,260,322,331,345,315,270,317,333,342]', '[422,447,331,337,457,425,440,333,337,459,419,451,334,336,459,420,454,330,343,460,425,442,335,344,462,427,455,328,339,461,427,450,326,338,463,433,440,331,339,457]', '[3,0]', 1, 0, -1, 0, '[0,0,0,0,0]', 0, 0, 0, 0, '[0,0]', 00000000000000000000, -1, 0, 0, -1, 0, 1, 0, 0, '[0,0,0,0,0]', '[0,0,0,0,0]', 0, 0, 1);
+INSERT INTO `player` (`id`, `name`, `kimcuong`, `vang`, `body`, `clazz`, `maxbag`, `diemdanh`, `typeexp`, `level`, `exp`, `chuyensinh`, `luyenthe`, `kinhmach`, `tutien`, `exptt`, `mm_cs`, `site`, `rms_save`, `friend`, `eff`, `enemies`, `skill`, `item3`, `item4`, `item5`, `item7`, `itembox3`, `itembox4`, `itembox5`, `itembox7`, `itemwear`, `pet`, `tiemnang`, `kynang`, `point1`, `point2`, `point3`, `point4`, `point_arena`, `giftcode`, `date`, `medal_create_material`, `item_star_material`, `NL_do_than`, `NL_tb2`, `NL_tb1`, `point_active`, `chucphuc`, `hieuchien`, `id_name`, `time_block_ctg`, `quest_daily`, `chuyencan`, `diemsukien`, `dibuon`, `dicuop`, `skill_110`, `group_king_cup`, `point_king_cup`, `type_reward_king_cup`, `type_use_mount`, `doiqua`, `danhvong`, `sk_hongio`, `phoban`, `boss`, `boss_rieng`, `banclone`, `dokho`, `khu2`) VALUES
+	(1, 'y', 147483647, 1999800001003500, '[0,8,0]', 0, 126, 1, 1, 44, 0, 0, 0, 0, 0, 0, 0, '[1,702,390]', '[[],[]]', '[]', '[]', '[]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[[4583,3,53,110,950,5,0,0,0,[],0,0,0]]', '[[352,10014],[353,10014],[354,10014],[355,10015],[356,10015],[347,9973],[348,9998],[349,10000],[350,10000],[351,10000]]', '[]', '[[258,4],[99,4],[195,2],[100,30],[453,4],[134,3],[103,4],[199,3],[424,7],[170,4],[107,2],[301,4],[109,3],[462,6],[495,1],[143,2],[50,3],[276,3],[279,3],[250,2],[221,2],[222,4]]', '[]', '[]', '[]', '[]', '[[0,0,8,1,0,0,0,0,[[0,54],[40,120]],0,0,0],[80,0,0,1,16,0,0,0,[[14,52],[16,100]],1,0,0],[120,0,1,1,24,0,0,0,[[14,18],[25,3]],7,0,0]]', '[]', 216, 44, 48, 48, 48, 48, 0, '["ruongvip","ruongvip"]', 'Fri Jul 19 00:00:01 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[418,439,334,340,458,428,442,332,336,460,426,449,326,337,458,417,451,326,336,462,434,455,330,343,463,419,449,331,336,458,434,456,330,344,457,434,452,331,338,458]', '[311,257,318,326,339,271,290,317,329,342,260,252,325,329,341,300,268,324,335,342,247,263,322,330,343,252,264,319,333,342,266,266,321,330,345,281,289,323,330,344]', '[493,493,493,493,493,493,493,493]', '[299,324,334,339,495,299,324,334,339,495,299,324,334,339,495,299,324,334,339,495,299,324,334,339,495,299,324,334,339,495,299,324,334,339,495,299,324,334,339,495]', '[5,0,0]', 1, 0, -1, 0, '[-1,-1,0,0,10]', 0, 0, 0, 0, '[0,0]', -1, 0, 0, -1, 0, 7, 0, 0, 0, 0, 0, 0, 2),
+	(2, 'haylam', 1999998500, 1999893000, '[0,8,0]', 0, 42, 1, 0, 45, 39564640, 127, 100, 100, 127, 0, 0, '[1,502,252]', '[[0,2,0,0,0,4,0,0,0,6,0,0,0,8,0,0,0,7,0,0,0,0,-1,0,0,0,-1,0,0,0,0,0,0,0,-1,0,0,0,-1,0,0,0,-1,0,0,0,-1,0,0,0,0,0,0,0,-1,0,0,0,-1,0],[]]', '[]', '[]', '[]', '[1,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10]', '[[784,0,1,25,156,5,8,1,41,[[14,3397559],[18,6080],[23,304],[30,4080]],0,0,0],[4660,0,1,45,13099,5,89,0,0,[[14,930],[18,3750],[23,187],[30,2250],[-104,102],[-127,10000],[-126,262]],0,0,0],[1360,0,0,40,272,0,16,0,0,[[14,1740],[16,3000]],0,0,0],[1423,0,1,44,284,3,16,0,0,[[14,1200],[18,4000],[23,200]],0,0,0],[1362,0,0,42,272,2,16,0,0,[[14,1810],[16,5000],[25,60]],0,0,0],[1401,0,1,40,280,1,16,0,0,[[14,1160],[25,120]],0,0,0],[1283,0,8,44,256,3,8,0,0,[[0,2070],[35,2000],[40,3560]],0,0,0],[1360,0,0,40,272,0,16,0,0,[[14,1740],[16,3000]],0,0,0],[1283,0,8,44,256,3,8,0,0,[[0,2070],[35,2000],[40,3560]],0,0,0],[1342,0,2,42,268,2,16,0,0,[[9,15000],[14,1160],[28,9000]],0,0,0],[1364,0,0,45,272,4,16,0,0,[[14,1880],[15,9000],[16,7000],[25,150]],0,0,0],[0,0,8,1,0,0,0,1,0,[[0,54],[40,120]],0,0,0],[1282,0,8,42,256,2,8,0,0,[[0,1970],[35,2000],[40,3360]],0,0,0],[1404,0,1,45,280,4,16,0,0,[[14,1270],[16,5000],[25,250],[29,3000]],0,0,0],[4660,0,1,45,13099,5,89,0,0,[[14,1240],[18,5000],[23,250],[30,3000],[-104,196],[-127,10000],[-126,152]],0,0,0],[4660,0,1,45,13099,5,89,0,0,[[14,1587],[16,6250],[25,312],[29,3750],[-91,185],[-127,10000],[-126,107]],0,0,0],[1403,0,1,44,280,3,16,0,0,[[14,1240],[16,4000],[25,200]],0,0,0],[1424,0,1,45,284,4,16,0,0,[[14,1240],[18,5000],[23,250],[30,3000]],0,0,0],[1300,0,8,40,260,0,9,0,0,[[2,1700],[40,2960]],0,0,0],[1340,0,2,40,268,0,16,0,0,[[9,9000],[14,1090]],0,0,0],[1323,0,2,44,264,3,16,0,0,[[7,17000],[14,1240],[27,11000]],0,0,0],[1343,0,2,44,268,3,16,0,0,[[9,17000],[14,1200],[28,11000]],0,0,0],[1322,0,2,42,264,2,16,0,0,[[7,15000],[14,1200],[27,9000]],0,0,0],[1341,0,2,40,268,1,16,0,0,[[9,12000],[14,1130]],0,0,0],[1361,0,0,40,272,1,16,0,0,[[14,1780],[16,4000]],0,0,0],[1343,0,2,44,268,3,16,0,0,[[9,17000],[14,1200],[28,11000]],0,0,0],[1342,0,2,42,268,2,16,0,0,[[9,15000],[14,1160],[28,9000]],0,0,0],[4784,4,28,1,13181,5,0,1,0,[[7,2500],[8,2500],[9,2500],[10,2500],[11,2500]],0,0,0],[4785,4,28,1,13182,5,0,1,0,[[7,2500],[8,2500],[9,2500],[10,2500],[11,2500]],0,0,0]]', '[[347,1],[205,4]]', '[]', '[]', '[]', '[]', '[]', '[]', '[[1304,0,8,45,260,4,9,0,[[2,2100],[33,3000],[37,1],[40,3760]],0,0,0],[80,0,0,1,16,0,0,0,[[14,52],[16,100]],1,0,0],[1344,0,2,45,268,4,16,0,[[9,20000],[14,1240],[28,13000],[33,2000]],6,0,0],[120,0,1,1,24,0,0,0,[[14,18],[25,3]],7,0,0],[4588,4,16,10,955,4,0,0,[[1,1000],[96,10]],12,0,0]]', '[]', 0, 0, 270, 49, 49, 49, 0, '[]', 'Fri Jul 19 00:00:01 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[423,450,333,341,458,425,454,327,342,458,421,444,332,337,460,429,449,329,345,462,423,439,334,343,462,424,450,333,345,460,428,442,328,341,461,418,450,329,340,462]', '[287,285,325,328,345,284,282,322,335,344,262,279,318,327,341,286,295,316,333,337,315,271,324,332,336,297,255,316,326,344,291,276,318,326,343,260,285,317,330,342]', '[493,493,493,493,493,493,493,493]', '[259,317,326,345,495,259,317,326,345,495,259,317,326,345,495,259,317,326,345,495,259,317,326,345,495,259,317,326,345,495,259,317,326,345,495,259,317,326,345,495]', '[5,0]', 1, 0, -1, 0, '[-1,-1,0,0,10]', 0, 0, 0, 0, '[0,0]', -1, 0, 0, -1, 0, 73, 0, 0, 0, 0, 0, 0, 2);
 
--- Dumping structure for table srcbanquyen.posts
+-- Dumping structure for table sqlcu.posts
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tieude` varchar(75) NOT NULL,
@@ -7512,7 +7484,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.posts: ~14 rows (approximately)
+-- Dumping data for table sqlcu.posts: ~14 rows (approximately)
 DELETE FROM `posts`;
 INSERT INTO `posts` (`id`, `tieude`, `noidung`, `username`, `created_at`, `theloai`, `ghimbai`, `image`, `trangthai`, `tinhtrang`) VALUES
 	(1, 'Tính năng Mở Lý Cánh Thời Trang', '[left][color=#000000][size=20][font=Arial]- Mở ly sẽ update thêm vật phẩn mới : Cánh Thiên Thanh , Cánh Ngũ Sắc , Cánh Hỏa Tinh , Cánh Cầu Vòng \n- Để mở ly cánh thời trang các bạn cần vé mở ly cánh.\n- Nếu may mắn các bạn thể mở được vật phẩm vĩnh viễn.[/font][/size][/color][/left]\n\n', 'chipdev', '2023-11-05 22:45:27', 0, 1, NULL, 0, 0),
@@ -7530,34 +7502,7 @@ INSERT INTO `posts` (`id`, `tieude`, `noidung`, `username`, `created_at`, `thelo
 	(13, 'Hướng Dẫn - Chức năng BANG HỘI', '[color=#1e5b7e][size=15][font=Arial][b]Hướng Dẫn - Chức năng BANG HỘI[/b][/font][/size][/color]\r\n[center][color=#000000][size=15][font=Arial][color=red][b]Cánh Thời Trang BANG HỘI[/b][/color][/font][/size][/color][/center]\r\n\r\n\r\n[center][/center]\r\n[color=#000000][size=15][font=Arial]\r\n\r\n- Để có thể mua cánh thời trang các bạn cần đủ tiền trong quỹ bang và vé mua cánh thời trang bang\r\n- Vé mua cánh thời trang bang hội có thể kiếm trong chiếm mỏ , khi các bạn đánh sập mỏ thì sẽ có khả năng nhặt được vật phẩm này\r\n- Vé có thể mua bán nên các bạn có thể chuyển cho thủ lĩnh\r\n\r\n[b]Lưu ý: Tất cả cánh thời trang có dòng không tăng exp chỉ tính khi đánh quái , mở quà có exp . Không áp dụng cho thu hoạch mỏ , đánh cướp[/b]\r\n[/font][/size][/color]\r\n[center][color=#000000][size=15][font=Arial][color=red][b]Boss Bang Hội[/b][/color][/font][/size][/color][/center]\r\n\r\n[center][color=#000000][size=15][font=Arial][img]http://my.teamobi.com/app/view/forum/16430766984715.png[/img][/font][/size][/color][/center]\r\n[color=#000000][size=15][font=Arial]\r\n\r\n- Bang level từ 40 ở lên được mua Bùa gọi boss.\r\n- Chỉ Thủ Lĩnh mới được gọi boss lên đánh\r\n- Boss bang chỉ đánh người của bang đó và chỉ người bang đó mới đánh được Boss\r\n- 1 khu chỉ có 1 bang được gọi boss\r\n- Khi còn boss bang thì không gọi tiếp được.\r\n- Sau khi giết boss bang thì bang được gọi tiếp sau 6 tiếng. Boss Bang sống 6 tiếng nếu không ai giết sẽ tự chết\r\n- Quà của Boss Bang :\r\nLông xanh\r\nLông đỏ\r\nLông vàng\r\nCỏ 4 lá\r\nĐá 3 màu\r\nTrang bị cam\r\nĐùi gà\r\nĐồng bạc Tyche\r\nĐá hỏa tinh\r\nKim loại vũ trụ\r\nThỏi titan\r\nHồi sinh tại chỗ\r\nĐá may mắn\r\nVé x2 đi buôn\r\nMây\r\nThánh giá\r\nNgẫu nhiên 1 item vàng/tím KHÓA\r\nLửa tinh tú\r\nPhù về làng\r\n[/font][/size][/color]\r\n[center][color=#000000][size=15][font=Arial][color=red][b]1 Số Thay Đổi về boss bang [ áp dụng từ 27/5/2022[/b][/color][/font][/size][/color][/center]\r\n[color=#000000][size=15][font=Arial]\r\n\r\n- Sau khi giết boss bang thì bang được gọi tiếp sau 3 tiếng. Boss Bang sống 3 tiếng nếu không ai giết sẽ tự chết\r\n- Tăng số lượng nl tinh tú trong quà boss bang , tăng tỉ lệ ra đồ xịn boss bang[/font][/size][/color]\r\n', 'chipdev', '2023-11-05 23:16:03', 0, 1, NULL, 0, 0),
 	(15, 'Danh sách SCAM LỪA ĐẢO nên kiểm tra trước khi giao dịch', '\n[color=#212529][size=20][font=system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"][i][color=#e60000]Mọi giao dịch lừa đảo đều bị nghiêm cấp tại Server Hiệp Sĩ Gold, những người chơi cung cấp thông tin SCAMMER( NGƯỜI LỪA ĐẢO ) đều sẽ nhận được code từ chúng mình. Cảm ơn mọi người đã xem và cùng chúng mình tạo môi trường chơi game lành mạnh nhé[/color][/i][/font][/size][/color]\n\n[color=#212529][size=15][font=system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"][b][color=#6b24b2]THÔNG BÁO: HIỆN TẠI Ở MỖI BOX ZALO ĐỀU SẼ CÓ GIAO DỊCH VIÊN (KEY BẠC), CÁC BẠN NÊN GIAO DỊCH TRUNG GIAN QUA CÁC GDV NÀY ĐỂ TRÁNH LỪA ĐẢO NHÉ[/color][/b][/font][/size][/color]\n[b][color=#212529][size=15][font=system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"]DƯỚI ĐÂY LÀ DANH SÁCH LỪA ĐẢO, GẶP LÀ BLOCK KHÔNG NÓI NHIỀU[/font][/size][/color][/b]\n[b]Ai Lừa đảo bên mình sẽ list lại cho anh em đề phòng tránh nhé[/b]\n\n[b][color=#6b24b2][size=15][font=system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"]THÔNG BÁO: HIỆN TẠI Ở MỖI BOX ZALO ĐỀU SẼ CÓ GIAO DỊCH VIÊN (KEY BẠC), CÁC BẠN NÊN GIAO DỊCH TRUNG GIAN QUA CÁC GDV NÀY ĐỂ TRÁNH LỪA ĐẢO NHÉ[/font][/size][/color] [/b]', 'chipdev', '2023-11-05 23:30:32', 0, 1, NULL, 0, 0);
 
--- Dumping structure for table srcbanquyen.quanap
-CREATE TABLE IF NOT EXISTS `quanap` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `item3` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `item4` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `item7` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `vang` bigint(20) NOT NULL DEFAULT 0,
-  `ngoc` bigint(20) NOT NULL DEFAULT 0,
-  `coin` int(11) DEFAULT 0,
-  `empty_box` tinyint(4) NOT NULL DEFAULT 0,
-  `date` tinyint(4) NOT NULL DEFAULT 0,
-  `logger` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=915 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- Dumping data for table srcbanquyen.quanap: 5 rows
-DELETE FROM `quanap`;
-/*!40000 ALTER TABLE `quanap` DISABLE KEYS */;
-INSERT INTO `quanap` (`id`, `name`, `item3`, `item4`, `item7`, `vang`, `ngoc`, `coin`, `empty_box`, `date`, `logger`) VALUES
-	(1, 'moc100', '[[4793]]', '[]', '[]', 0, 0, 0, 0, 15, 'Nhận thành công quà 100 điểm'),
-	(2, 'moc200', '[[4794]]', '[]', '[]', 0, 0, 0, 0, 0, 'Nhận thành công quà 200 điểm'),
-	(3, 'moc300', '[[4795],[4748]]', '[]', '[]', 0, 0, 0, 0, 0, 'Nhận thành công quà 300 điểm'),
-	(4, 'moc400', '[[4796],[4747]]', '[]', '[]', 0, 0, 0, 0, 0, 'Nhận thành công quà 400 điểm'),
-	(5, 'moc500', '[[4797],[4746]]', '[]', '[]', 0, 0, 0, 0, 0, 'Nhận thành công quà 500 điểm');
-/*!40000 ALTER TABLE `quanap` ENABLE KEYS */;
-
--- Dumping structure for table srcbanquyen.shopitem3
+-- Dumping structure for table sqlcu.shopitem3
 CREATE TABLE IF NOT EXISTS `shopitem3` (
   `id` int(11) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
@@ -7569,10 +7514,10 @@ CREATE TABLE IF NOT EXISTS `shopitem3` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table srcbanquyen.shopitem3: ~0 rows (approximately)
+-- Dumping data for table sqlcu.shopitem3: ~0 rows (approximately)
 DELETE FROM `shopitem3`;
 
--- Dumping structure for table srcbanquyen.skills
+-- Dumping structure for table sqlcu.skills
 CREATE TABLE IF NOT EXISTS `skills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_skill` int(11) NOT NULL,
@@ -7589,7 +7534,7 @@ CREATE TABLE IF NOT EXISTS `skills` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1205 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.skills: ~1,204 rows (approximately)
+-- Dumping data for table sqlcu.skills: ~1,204 rows (approximately)
 DELETE FROM `skills`;
 INSERT INTO `skills` (`id`, `id_skill`, `name`, `icon`, `type`, `range`, `detail`, `typeBuff`, `subEff`, `performDur`, `typePaint`, `data`) VALUES
 	(1, 20, 'Mưa lửa', 82, 0, 140, 'Tạo ra 1 cơn bão lửa tiêu diệt kẻ địch xung quanh', 0, 6, 0, 1, '[20,110,24000,0,0,0,0,0,[[9,18000],[2,80]],60,140]'),
@@ -8797,7 +8742,7 @@ INSERT INTO `skills` (`id`, `id_skill`, `name`, `icon`, `type`, `range`, `detail
 	(1203, 1, 'Phát súng công phá', 52, 0, 130, 'Phát bắn với sức công phá của đạn hoa cải.', 0, -1, 0, 0, '[90,11,1000,0,0,0,0,0,[[7,26000],[33,400],[0,180]],1,0]'),
 	(1204, 0, 'Bắn thường', 51, 0, 90, 'Sử dụng đạn súng hỏa mai.', 0, -1, 0, 0, '[0,1,1000,0,0,0,0,0,[],1,0]');
 
--- Dumping structure for table srcbanquyen.squire
+-- Dumping structure for table sqlcu.squire
 CREATE TABLE IF NOT EXISTS `squire` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -8832,12 +8777,10 @@ CREATE TABLE IF NOT EXISTS `squire` (
   UNIQUE KEY `name` (`name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table srcbanquyen.squire: ~0 rows (approximately)
+-- Dumping data for table sqlcu.squire: ~0 rows (approximately)
 DELETE FROM `squire`;
-INSERT INTO `squire` (`id`, `name`, `body`, `clazz`, `typeexp`, `level`, `exp`, `site`, `rms_save`, `friend`, `eff`, `enemies`, `skill`, `itemwear`, `pet`, `tiemnang`, `kynang`, `point1`, `point2`, `point3`, `point4`, `point_arena`, `date`, `medal_create_material`, `item_star_material`, `hieuchien`, `time_block_ctg`, `count_dungeon`, `skill_110`) VALUES
-	(-10001, 'vinhloh', '[0,11,2]', 2, 1, 17, 66926, '[]', '[[],[]]', '[]', '[]', '[]', '[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[[10,2,11,1,2,0,0,0,[[0,50],[40,120]],0,0,0],[90,2,0,1,18,0,2,0,[[14,42],[16,200]],1,0,0],[50,2,2,1,10,0,2,0,[[7,200],[14,12]],6,0,0],[130,2,1,1,26,0,2,0,[[14,12],[26,4]],7,0,0]]', '[]', 80, 16, 12, 12, 12, 12, 0, 'Sun Jun 23 16:32:39 ICT 2024', '[295,261,318,328,341,249,285,321,329,344,284,280,316,327,344,288,280,317,327,342]', '[426,443,329,342,463,421,448,326,340,457,425,443,331,336,458,431,439,331,338,462,432,448,332,338,458,432,444,330,340,462,431,445,330,339,460,435,447,328,344,461]', 0, 0, 10, '[0,0]');
 
--- Dumping structure for table srcbanquyen.wedding
+-- Dumping structure for table sqlcu.wedding
 CREATE TABLE IF NOT EXISTS `wedding` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
@@ -8845,7 +8788,7 @@ CREATE TABLE IF NOT EXISTS `wedding` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table srcbanquyen.wedding: ~0 rows (approximately)
+-- Dumping data for table sqlcu.wedding: ~0 rows (approximately)
 DELETE FROM `wedding`;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

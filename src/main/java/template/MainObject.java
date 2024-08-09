@@ -752,14 +752,14 @@ public class MainObject {
                         dame = 0;
                     }
                 }
-                boolean check = (dame < 0
-                        || (focus.isBoss() && Math.abs(focus.level - ObjAtk.level) >= 5 && focus.level < 139 && focus.template.mob_id != 193 && focus.template.mob_id != 178 && !Map.is_map_cant_save_site(focus.map_id))
-                        || (focus.isBoss() && focus.template.mob_id == 178 && map.zone_id == 0 && ObjAtk.level > 89)
-                        || (focus.isBoss() && focus.template.mob_id == 178 && map.zone_id == 2 && !(ObjAtk.level >= 90 && ObjAtk.level < 110))
-                        || (focus.isBoss() && focus.template.mob_id == 178 && map.zone_id == 3 && ObjAtk.level < 110)) && !(map.ismapkogioihan());
-                if (check) {
-                    dame = 0;
-                }
+//                boolean check = (dame < 0
+//                        || (focus.isBoss() && Math.abs(focus.level - ObjAtk.level) >= 5 && focus.level < 120 && focus.template.mob_id != 193 && focus.template.mob_id != 178 && !Map.is_map_cant_save_site(focus.map_id))
+//                        || (focus.isBoss() && focus.template.mob_id == 178 && map.zone_id == 0 && ObjAtk.level > 89)
+//                        || (focus.isBoss() && focus.template.mob_id == 178 && map.zone_id == 2 && !(ObjAtk.level >= 90 && ObjAtk.level < 110))
+//                        || (focus.isBoss() && focus.template.mob_id == 178 && map.zone_id == 3 && ObjAtk.level < 110)) && !(map.ismapkogioihan());
+//                if (check) {
+//                    dame = 0;
+//                }
             }
 
             if (focus.isMoTaiNguyen() && ObjAtk.isPlayer()) {
@@ -1204,6 +1204,24 @@ public class MainObject {
                     expup = (expup * 6) / 10;
                 } else if (Math.abs(p.level - focus.level) > 5) {
                     expup = (expup * 5) / 10;
+                } else if (p.level > 140 && p.level <= 500 && p.map.map_id == 136) {
+                    expup = expup / 10;
+                } else if (p.level > 500 && p.level <= 1000 && p.map.map_id == 136){
+                    expup = expup / 20;
+                } else if (p.level > 1000 && p.level <= 2000 && p.map.map_id == 136){
+                    expup = expup / 30;
+                }
+                else if (p.level > 2000 && p.level <= 4000 && p.map.map_id == 136){
+                    expup = expup / 40;
+                }
+                else if (p.level > 4000 && p.level <= 6000 && p.map.map_id == 136){
+                    expup = expup / 50;
+                }
+                else if (p.level > 6000 && p.level <= 8000 && p.map.map_id == 136){
+                    expup = expup / 60;
+                }
+                else if (p.level > 6000 && p.map.map_id == 136){
+                    expup = expup / 80;
                 }
                 if (p.hieuchien > 0) {
                     expup /= 2;
@@ -1223,7 +1241,9 @@ public class MainObject {
                         expup += (expup * (ef.param / 100)) / 100;
                     }
                     p.update_Exp(expup, true);
-                } else if (expup > 0) {
+                }else if (p.level > 140 && p.map.map_id == 136){
+                    p.update_Exp(expup/10,true);
+                }else if (expup > 0) {
                     p.update_Exp(2, false);
                 }
                 // exp clan

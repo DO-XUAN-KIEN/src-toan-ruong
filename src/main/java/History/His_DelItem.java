@@ -28,7 +28,7 @@ public class His_DelItem {
         String it3 = "[]";
         String it47 = "[]";
         if(tem3!=null)
-            it3 = "["+tem3.id+","+tem3.name+","+tem3.tier+","+tem3.tierStar+","+tem3.color+"]";
+            it3 = "["+tem3.id+","+tem3.name+","+tem3.tier+","+tem3.tierStar+","+tem3.tierhop+","+tem3.color+"]";
         if(tem47 != null)
             it47 = "["+tem47.id+","+tem47.quantity+","+tem47.category+"]";
         String query

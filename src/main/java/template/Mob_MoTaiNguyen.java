@@ -4,12 +4,14 @@ import ai.NhanBan;
 import client.Clan;
 import client.Player;
 import core.Manager;
+import core.Util;
 import io.Message;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import map.Eff_player_in_map;
+import map.LeaveItemMap;
 import map.Map;
 import map.MapService;
 
@@ -67,6 +69,9 @@ public class Mob_MoTaiNguyen extends MainObject{
             ((Player)mainAtk).myclan.add_mo_tai_nguyen(this);
             if (this.clan != null) {
                 this.clan.remove_mo_tai_nguyen(this);
+            }
+            if (Util.random(0,1000)< 2) {
+                LeaveItemMap.leave_item_by_type7(map, (short) Util.random(357, 360), ((Player) mainAtk), this.index);
             }
             this.clan = ((Player)mainAtk).myclan;
             if (this.nhanBans != null) {
