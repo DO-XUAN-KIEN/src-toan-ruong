@@ -1146,15 +1146,15 @@ public class MapService {
                 pr4 = param_sk[index4];
             }
             m.writer().writeByte(0);
-            m.writer().writeInt((p0.body.get_DameProp(0) * (pr0 / 100)) / 100);
+            m.writer().writeLong((p0.body.get_DameProp(0) * (pr0 / 100)) / 100);
             m.writer().writeByte(1);
-            m.writer().writeInt((p0.body.get_DameProp(1) * (pr1 / 100)) / 100);
+            m.writer().writeLong((p0.body.get_DameProp(1) * (pr1 / 100)) / 100);
             m.writer().writeByte(2);
-            m.writer().writeInt((p0.body.get_DameProp(2) * (pr2 / 100)) / 100);
+            m.writer().writeLong((p0.body.get_DameProp(2) * (pr2 / 100)) / 100);
             m.writer().writeByte(3);
-            m.writer().writeInt((p0.body.get_DameProp(3) * (pr3 / 100)) / 100);
+            m.writer().writeLong((p0.body.get_DameProp(3) * (pr3 / 100)) / 100);
             m.writer().writeByte(4);
-            m.writer().writeInt((p0.body.get_DameProp(4) * (pr4 / 100)) / 100);
+            m.writer().writeLong((p0.body.get_DameProp(4) * (pr4 / 100)) / 100);
         } else {
             m.writer().writeByte(0);
         }
@@ -1255,15 +1255,15 @@ public class MapService {
                 pr4 = param_sk[index4];
             }
             m.writer().writeByte(0);
-            m.writer().writeInt((p0.body.get_DameProp(0) * (pr0 / 100)) / 100);
+            m.writer().writeLong((p0.body.get_DameProp(0) * (pr0 / 100)) / 100);
             m.writer().writeByte(1);
-            m.writer().writeInt((p0.body.get_DameProp(1) * (pr1 / 100)) / 100);
+            m.writer().writeLong((p0.body.get_DameProp(1) * (pr1 / 100)) / 100);
             m.writer().writeByte(2);
-            m.writer().writeInt((p0.body.get_DameProp(2) * (pr2 / 100)) / 100);
+            m.writer().writeLong((p0.body.get_DameProp(2) * (pr2 / 100)) / 100);
             m.writer().writeByte(3);
-            m.writer().writeInt((p0.body.get_DameProp(3) * (pr3 / 100)) / 100);
+            m.writer().writeLong((p0.body.get_DameProp(3) * (pr3 / 100)) / 100);
             m.writer().writeByte(4);
-            m.writer().writeInt((p0.body.get_DameProp(4) * (pr4 / 100)) / 100);
+            m.writer().writeLong((p0.body.get_DameProp(4) * (pr4 / 100)) / 100);
         } else {
             m.writer().writeByte(0);
         }
@@ -2028,8 +2028,8 @@ public class MapService {
                         if (d != null) {
                             Mob_Dungeon mod_target_dungeon = d.get_mob(ObjAtk);
                             if (mod_target_dungeon != null) {
-                                //MainObject.MainAttack(map, conn.p, mod_target_dungeon, index_skill, _skill, type);
-                                d.fire_mob(map, mod_target_dungeon, conn.p, index_skill, type);
+                                MainObject.MainAttack(map, conn.p, mod_target_dungeon, index_skill, _skill, type);
+                                //d.fire_mob(map, mod_target_dungeon, conn.p, index_skill, type);
                             }
                         }
                     }else if (conn.p.map.map_id == 46){
@@ -2044,8 +2044,8 @@ public class MapService {
                         Mob_MoTaiNguyen temp_mob = conn.p.myclan.get_mo_tai_nguyen(ObjAtk);
                         if (temp_mob == null) { // Đánh mỏ
                             temp_mob = Manager.gI().chiem_mo.get_mob_in_map(map);
-                            if (temp_mob.nhanban != null){
-                                Service.send_notice_box(conn,"Cook");
+                            if (temp_mob.nhanBans.size() !=0){
+                                Service.send_notice_nobox_white(conn,"Đánh hết nhân bản đi");
                                 return;
                             }
                             MainObject.MainAttack(map, conn.p, temp_mob, index_skill, _skill, type);

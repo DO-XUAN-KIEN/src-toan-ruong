@@ -2131,6 +2131,7 @@ public class TextFromClient {
                 }
                 short   xuan, ha, thu, dong, ruong, chuyendoi;
                 long vag;// lấy số lượng nhân với vàng
+                int coin;
                 xuan = 335;
                 ha = 336;
                 thu = 337;
@@ -2138,8 +2139,13 @@ public class TextFromClient {
                 ruong = 339; // Linh Hồn 4 Mùa Thường
                 chuyendoi = 1;
                 vag = quant * 1_000_000;
+                coin = quant * 100_000;
                 if (vag > conn.p.get_vang()) {
                     Service.send_notice_box(conn, "Không đủ " + vag + " vàng để đổi " + quant + " Linh Hồn 4 Mùa Thường");
+                    return;
+                }
+                if (coin > conn.p.checkcoin()) {
+                    Service.send_notice_box(conn, "Không đủ " + coin + " coin để đổi " + quant + " Linh Hồn 4 Mùa Thường");
                     return;
                 }
                 if (xuan > (ItemTemplate4.item.size() - 1) || xuan < 0 ||
@@ -2176,6 +2182,7 @@ public class TextFromClient {
                     return;
                 }
                 conn.p.update_vang(-(vag));
+                conn.p.update_coin(-coin);
                 Log.gI().add_log(conn.p.name, "Trừ " + vag + " đổi Linh Hồn 4 Mùa Thường");
                 Item47 itbag = new Item47();
                 itbag.id = ruong;
@@ -2209,13 +2216,19 @@ public class TextFromClient {
                 }
                 short   xuan, ha, thu, dong, ruong, chuyendoi;
                 int coin;// lấy số lượng nhân với coin
+                long vang;
                 xuan = 335;
                 ha = 336;
                 thu = 337;
                 dong = 338;
-                ruong = 341; // Linh Hồn 4 Mùa Thường
+                ruong = 341; // Linh Hồn 4 Mùa trung
                 chuyendoi = 1;
-                coin = quant * 50_000;
+                vang = quant * 5_000_000;
+                coin = quant * 300_000;
+                if (vang > conn.p.get_vang()) {
+                    Service.send_notice_box(conn, "Không đủ " + vang + " vàng để đổi " + quant + " Linh Hồn 4 Mùa Trung cấp");
+                    return;
+                }
                 if (coin > conn.p.checkcoin()) {
                     Service.send_notice_box(conn, "Không đủ " + coin + " coin để đổi " + quant + " Linh Hồn 4 Mùa Trung cấp");
                     return;
@@ -2254,6 +2267,7 @@ public class TextFromClient {
                     return;
                 }
                 conn.p.update_coin(-coin);
+                conn.p.update_vang(-vang);
                 Item47 itbag = new Item47();
                 itbag.id = ruong;
                 itbag.quantity = (short) quant;
@@ -2293,8 +2307,8 @@ public class TextFromClient {
                 dong = 338;
                 ruong = 340; // Linh Hồn 4 Mùa Thường
                 chuyendoi = 1;
-                coin = quant * 100_000;
-                vag = quant * 20_000_000;
+                coin = quant * 500_000;
+                vag = quant * 10_000_000;
                 if (coin > conn.p.checkcoin()) {
                     Service.send_notice_box(conn, "Không đủ " + coin + " coin để đổi " + quant + " Linh Hồn 4 Mùa Cao cấp");
                     return;
@@ -2446,12 +2460,16 @@ public class TextFromClient {
                 String namep = m2.reader().readUTF();
                 String type = m2.reader().readUTF();
                 String id = m2.reader().readUTF();
-                String value = m2.reader().readUTF();
-                if (!(Util.isnumber(id) && Util.isnumber(value))) {
+                String quantity = m2.reader().readUTF();
+                if (!(Util.isnumber(id) && Util.isnumber(quantity))) {
                     Service.send_notice_box(conn, "Dữ liệu nhập không phải số!!");
                     return;
                 }
-                Short sl = Short.parseShort(value);
+                Short sl = Short.parseShort(quantity);
+                if (sl > 32_000 || sl <= 0) {
+                    Service.send_notice_box(conn, "Số lượng không hợp lệ!");
+                    return;
+                }
                 Player p0 = null;
                 for (Player p1 : conn.p.map.players) {
                     if (p1.conn != null && p1.conn.connected && p1.name.equals(namep)) {
@@ -2462,10 +2480,6 @@ public class TextFromClient {
                 if (p0 == null) {
                     Service.send_notice_box(conn, "Người chơi không online");
                     break;
-                }
-                if (sl < 0 || sl >= 32000) {
-                    Service.send_notice_box(conn, "Số nhập không hợp lệ");
-                    return;
                 }
                 if (p0.item.get_bag_able() > 0) {
                     switch (type){
@@ -2480,6 +2494,7 @@ public class TextFromClient {
                             itbag.category = 4;
                             p0.item.add_item_bag47(4, itbag);
                             p0.item.char_inventory(4);
+                            break;
                         }
                         case "7": {
                             short iditem = (short) Integer.parseInt(id);
@@ -2488,10 +2503,11 @@ public class TextFromClient {
                             }
                             Item47 itbag = new Item47();
                             itbag.id = iditem;
-                            itbag.quantity = sl;
+                            itbag.quantity = Short.parseShort(quantity);
                             itbag.category = 7;
                             p0.item.add_item_bag47(7, itbag);
                             p0.item.char_inventory(7);
+                            break;
                         }
                     }
                 }
@@ -2662,6 +2678,28 @@ public class TextFromClient {
                         m.cleanup();
                     }
                 }
+                break;
+            }
+            case 62: {
+                String namep = m2.reader().readUTF();
+                Player p0 = null;
+                for (Player p1 : conn.p.map.players) {
+                    if (p1.conn != null && p1.conn.connected && p1.name.equals(namep)) {
+                        p0 = p1;
+                        break;
+                    }
+                }
+                if (p0 == null) {
+                    Service.send_notice_box(conn, "Người chơi không online");
+                    break;
+                }
+                if (p0.conn.status == 0){
+                    Service.send_notice_box(conn,"TK đã kích hoạt rồi!!!");
+                    break;
+                }
+                p0.update_khtk();
+                Service.send_notice_box(conn,"Bạn đã kích hoạt cho "+ namep);
+                break;
             }
             default: {
                 Service.send_notice_box(conn, "Đã xảy ra lỗi");

@@ -88,7 +88,7 @@ public class Mob_MoTaiNguyen extends MainObject{
             this.nhanban = new NhanBan();
             this.nhanban_save = this.nhanban;
             this.nhanban.typepk = 0;
-            this.nhanban.hp_max *= 7;
+            this.nhanban.hp_max *= 2;
             this.nhanban.hp = this.nhanban.hp_max;
             this.nhanban.setup((Player)mainAtk);
             this.nhanban.p_skill_id = 1;

@@ -888,16 +888,16 @@ public class Map implements Runnable {
         if (this.map_id == 1) {
             m = new Message(-50);
             m.writer().writeByte(1);
-            m.writer().writeUTF("Mr Ngọc Hoàng");
+            m.writer().writeUTF("Mr Bồ Đề Tổ sư");
             m.writer().writeUTF("Giao Tiếp");
             m.writer().writeByte(-97);// id npc
-            m.writer().writeByte(57); // icon
-            m.writer().writeShort(612); // x
-            m.writer().writeShort(237); // y
+            m.writer().writeByte(54); // icon
+            m.writer().writeShort(714); // x
+            m.writer().writeShort(432); // y
             m.writer().writeByte(1);
             m.writer().writeByte(1);
             m.writer().writeByte(2);
-            m.writer().writeByte(49); // icon 2
+            m.writer().writeByte(46); // icon 2
             m.writer().writeUTF("Muốn thành tiên thì gặp ta");
             m.writer().writeByte(1);
             m.writer().writeByte(0);

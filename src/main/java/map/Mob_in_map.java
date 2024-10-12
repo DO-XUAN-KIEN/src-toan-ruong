@@ -164,25 +164,25 @@ public class Mob_in_map extends MainObject {
                             }
                         }else if (map.map_id == 137){
                             int percent = 20;
-                            if (p.checkvip() >= 2 && percent > Util.random(0,4000)){
-                                if (percent > Util.random(0, 1000)){
-                                    LeaveItemMap.leave_item_by_type4(map,(short) 205, p, mob.index);
-                                }else if (percent > Util.random(0, 800)){
-                                    LeaveItemMap.leave_item_by_type4(map,(short) 207, p, mob.index);
-                                }
-                            }
-                            if (percent > Util.random(0,5000)){
-                                LeaveItemMap.leave_item_by_type4(map,(short) Util.random(347,352),p,mob.index);
-                            }
-                            if (percent > Util.random(0,10000)){
-                                LeaveItemMap.leave_item_by_type4(map,(short) Util.random(357,360),p,mob.index);
-                            }
-                            if (percent > Util.random(0,3000)){
+//                            if (p.checkvip() >= 1 && percent > Util.random(0,3000)){
+//                                if (percent > Util.random(0, 1000)){
+//                                    LeaveItemMap.leave_item_by_type4(map,(short) 205, p, mob.index);
+//                                }else if (percent > Util.random(0, 800)){
+//                                    LeaveItemMap.leave_item_by_type4(map,(short) 207, p, mob.index);
+//                                }
+//                            }
+//                            if (percent > Util.random(0,3000)){
+//                                LeaveItemMap.leave_item_by_type4(map,(short) Util.random(347,357),p,mob.index);
+//                            }
+//                            if (percent > Util.random(0,33333)){
+//                                LeaveItemMap.leave_item_by_type4(map,(short) Util.random(357,360),p,mob.index);
+//                            }
+                            if (percent > Util.random(0,11111)){
                                 LeaveItemMap.leave_item_by_type4(map,(short) 360, p, mob.index);
                             }
-                            if (percent > Util.random(0,3000)){
-                                LeaveItemMap.leave_item_by_type4(map,(short) 206, p, mob.index);
-                            }
+//                            if (percent > Util.random(0,3000)){
+//                                LeaveItemMap.leave_item_by_type4(map,(short) 206, p, mob.index);
+//                            }
                             if (percent > Util.random(0, 1000)) {
                                 LeaveItemMap.leave_item_4(map, mob, (Player) mainAtk);
                             }
@@ -193,22 +193,22 @@ public class Mob_in_map extends MainObject {
                             int percent = 20;
                             if (zone_id == 1 && !Map.is_map_not_zone2(map_id)
                                     && p.get_EffDefault(-127) != null) {
-                                percent = 40;
+                                percent = 30;
                             }
                             if (Math.abs(mob.level - mainAtk.level) <= 5 && Manager.gI().event == 3 && Util.random_ratio(10)) {
                                 ev_he.Event_3.LeaveItemMap(map, this, mainAtk);
                             }
                             else if (percent > Util.random(0, 2000) && zone_id == 1 && !Map.is_map_not_zone2(map_id)
                                     && p.get_EffDefault(-127) != null) {
-                                if (p.checkvip() >= 2){
-                                    if (percent > Util.random(0, 500)){
+                                if (p.checkvip() >= 1){
+                                    if (percent > Util.random(0, 1000)){
                                         LeaveItemMap.leave_item_by_type4(map,(short) 205, p, mob.index);
-                                    }else if (percent > Util.random(0, 300)){
+                                    }else if (percent > Util.random(0, 800)){
                                         LeaveItemMap.leave_item_by_type4(map,(short) 207, p, mob.index);
                                     }
                                 }
                                 if (percent > Util.random(0,3000)){
-                                    LeaveItemMap.leave_item_by_type4(map,(short) Util.random(347,352),p,mob.index);
+                                    LeaveItemMap.leave_item_by_type4(map,(short) Util.random(347,357),p,mob.index);
                                 }
                                 if (Manager.gI().event == 11){
                                     if (Util.random(500) < 4){
@@ -216,17 +216,17 @@ public class Mob_in_map extends MainObject {
                                     }
                                 }
                             }
-                            if (p.checkvip() >= 2 && percent > Util.random(0,4000)){
+                            if (p.checkvip() >= 1 && percent > Util.random(0,3000)){
                                 if (percent > Util.random(0, 1000)){
                                     LeaveItemMap.leave_item_by_type4(map,(short) 205, p, mob.index);
                                 }else if (percent > Util.random(0, 800)){
                                     LeaveItemMap.leave_item_by_type4(map,(short) 207, p, mob.index);
                                 }
                             }
-                            if (percent > Util.random(0,5000)){
-                                LeaveItemMap.leave_item_by_type4(map,(short) Util.random(347,352),p,mob.index);
+                            if (percent > Util.random(0,4000)){
+                                LeaveItemMap.leave_item_by_type4(map,(short) Util.random(347,357),p,mob.index);
                             }
-                            if (percent > Util.random(0,10000)){
+                            if (percent > Util.random(0,33333)){
                                 LeaveItemMap.leave_item_by_type4(map,(short) Util.random(357,360),p,mob.index);
                             }
                             if (percent > Util.random(0,3000)){

@@ -835,7 +835,6 @@ public class MainObject {
                 }
             }
             //</editor-fold> Phản Dame
-
             //</editor-fold>    hiệu ứng crit vv
             //<editor-fold defaultstate="collapsed" desc="Set hp       ...">
             // xả item chiến trường
@@ -974,11 +973,11 @@ public class MainObject {
                     mw.writer().writeByte(0);
                     mw.writer().writeByte(30);
                     byte[] id__ = new byte[]{7, 8, 9, 10, 11, 15, 0, 1, 2, 3, 4, 16, 17, 18, 19, 20};
-                    int[] par__ = new int[]{4000, 4000, 4000, 4000, 4000, 4000,
-                        4 * (ObjAtk.get_param_view_in4(0) / 10), 4 * (ObjAtk.get_param_view_in4(1) / 10),
-                        4 * (ObjAtk.get_param_view_in4(2) / 10), 4 * (ObjAtk.get_param_view_in4(3) / 10),
-                        4 * (ObjAtk.get_param_view_in4(4) / 10), 4 * (ObjAtk.get_param_view_in4(14) / 10),
-                        4000, 4000, 4000, 4000, 4000};
+                    int[] par__ = new int[]{2000, 2000, 2000, 2000, 2000, 2000,
+                        2 * (ObjAtk.get_param_view_in4(0) / 10), 2 * (ObjAtk.get_param_view_in4(1) / 10),
+                        2 * (ObjAtk.get_param_view_in4(2) / 10), 2 * (ObjAtk.get_param_view_in4(3) / 10),
+                        2 * (ObjAtk.get_param_view_in4(4) / 10), 2 * (ObjAtk.get_param_view_in4(14) / 10),
+                        2000, 2000, 2000, 2000, 2000};
                     mw.writer().writeByte(id__.length);
                     //
                     for (int i = 0; i < id__.length; i++) {
@@ -1159,7 +1158,7 @@ public class MainObject {
             //<editor-fold defaultstate="collapsed" desc="Tính exp       ...">
             if (focus.isMobDungeon()
                     && ObjAtk.isPlayer()) {
-                int expup = 0;
+                long expup = 0;
                 expup = (int) dame; // tinh exp
                 ef = p.get_EffDefault(-125);
                 if (ef != null) {
@@ -1179,8 +1178,25 @@ public class MainObject {
                     && focus.isExp && ObjAtk.isPlayer()) {
                 int expup = 0;
                 expup = (int) dame; // tinh exp
+                if (dame >= 2_000_000_000)
+                    expup = (int) (dame / 2);
                 if (p.level <= 10) {
                     expup = expup * 3;
+                }
+                if (p.level > 140 && p.level <= 500 && p.map.map_id == 136) {
+                    expup = (expup * 5) / 15;
+                } else if (p.level > 500 && p.level <= 1000 && p.map.map_id == 136) {
+                    expup = (expup * 5) / 20;
+                } else if (p.level > 1000 && p.level <= 2000 && p.map.map_id == 136){
+                    expup = (expup * 5) / 22;
+                } else if (p.level > 2000 && p.level <= 4000 && p.map.map_id == 136){
+                    expup = (expup * 5) / 24;
+                } else if (p.level > 4000 && p.level <= 6000 && p.map.map_id == 136){
+                    expup = (expup * 5) / 26;
+                } else if (p.level > 6000 && p.level <= 8000  && p.map.map_id == 136){
+                    expup = (expup * 5) / 28;
+                } else if (p.level > 8000 && p.map.map_id == 136){
+                    expup = (expup * 5) / 30;
                 }
                 if (Math.abs(focus.level - p.level) == 0) {
                     expup = expup;
@@ -1204,27 +1220,14 @@ public class MainObject {
                     expup = (expup * 6) / 10;
                 } else if (Math.abs(p.level - focus.level) > 5) {
                     expup = (expup * 5) / 10;
-                } else if (p.level > 140 && p.level <= 500 && p.map.map_id == 136) {
-                    expup = expup / 10;
-                } else if (p.level > 500 && p.level <= 1000 && p.map.map_id == 136){
-                    expup = expup / 20;
-                } else if (p.level > 1000 && p.level <= 2000 && p.map.map_id == 136){
-                    expup = expup / 30;
-                }
-                else if (p.level > 2000 && p.level <= 4000 && p.map.map_id == 136){
-                    expup = expup / 40;
-                }
-                else if (p.level > 4000 && p.level <= 6000 && p.map.map_id == 136){
-                    expup = expup / 50;
-                }
-                else if (p.level > 6000 && p.level <= 8000 && p.map.map_id == 136){
-                    expup = expup / 60;
-                }
-                else if (p.level > 6000 && p.map.map_id == 136){
-                    expup = expup / 80;
                 }
                 if (p.hieuchien > 0) {
                     expup /= 2;
+                }
+                if (p.level >= 140 && expup > 0  && p.map.map_id == 136) {
+                    p.update_Exp(expup, true);
+                }else if (p.level >= 140 && expup > 0  && p.map.map_id == 136){
+                    p.update_Exp(1000000,false);
                 }
                 if (Math.abs(focus.level - p.level) <= 10 && expup > 0) {
                     if (p.party != null) {
@@ -1241,8 +1244,6 @@ public class MainObject {
                         expup += (expup * (ef.param / 100)) / 100;
                     }
                     p.update_Exp(expup, true);
-                }else if (p.level > 140 && p.map.map_id == 136){
-                    p.update_Exp(expup/10,true);
                 }else if (expup > 0) {
                     p.update_Exp(2, false);
                 }
@@ -1254,7 +1255,6 @@ public class MainObject {
                     }
                     p.myclan.update_exp(exp_clan);
                 }
-
                 if (p.it_wedding != null) {
                     if (p.party != null && p.party.get_mems() != null) {
                         for (int i = 0; i < p.party.get_mems().size(); i++) {
@@ -1268,7 +1268,6 @@ public class MainObject {
                 }
             }
             //</editor-fold>    Tính exp
-
             //<editor-fold defaultstate="collapsed" desc="Pet Attack       ...">
             if (ObjAtk.isPlayer()) {
                 if (!focus.isDie && p.pet_follow != -1) {
@@ -1362,7 +1361,7 @@ public class MainObject {
             case 9:
             case 10:
             case 11: {
-                return get_PercentDameProp(type);
+                return (get_PercentDameProp(type)*4);
             }
             case 14: {
                 return get_DefBase();

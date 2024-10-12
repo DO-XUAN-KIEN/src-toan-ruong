@@ -145,9 +145,6 @@ public class Service {
         if (p.mp > mpMax) {
             p.mp = mpMax;
         }
-        if(p.level >= 2000){
-
-        }
         Message m = new Message(3);
         m.writer().writeShort(p.index);
         m.writer().writeUTF(p.name + " - VIP: " + p.checkvip());
@@ -1946,6 +1943,7 @@ public class Service {
                             itbag.islock = true;
                             itbag.name = ItemTemplate3.item.get(idbuy).getName();
                             itbag.tier = 0;
+                            itbag.tierhop = 100;
                             itbag.op = new ArrayList<>();
                             itbag.op.addAll(itsell3.op);
                             itbag.time_use = 0;
@@ -1977,6 +1975,7 @@ public class Service {
                             itbag.islock = false;
                             itbag.name = ItemTemplate3.item.get(idbuy).getName();
                             itbag.tier = 15;
+
                             itbag.op = new ArrayList<>();
                             itbag.op.addAll(itsell3.op);
                             itbag.time_use = 0;
@@ -2065,6 +2064,7 @@ public class Service {
                                     itbag.islock = true;
                                     itbag.name = ItemTemplate3.item.get(idbuy).getName();
                                     itbag.tier = 0;
+                                    itbag.tierhop = 100;
                                     itbag.op = new ArrayList<>();
                                     for (int i = 0; i < itemsellcoin.op.size(); i++) {
                                         itbag.op.add(new Option(itemsellcoin.op.get(i).id, itemsellcoin.op.get(i).getParam(0)));

@@ -147,7 +147,7 @@ public class BossManager {
                     //System.out.println("Boss "+mob.template.name+" Acctive "+map[mob.zone_id].name+ " khu "+(mob.zone_id+1));
                 }
             }
-            if (time - time_hoi >= 5000){
+            if (time - time_hoi >= 10000){
                 for (Mob_in_map mob : entrys) {
                     mob.hp += 10_000_000;
                     if (mob.hp >= mob.get_HpMax()) {

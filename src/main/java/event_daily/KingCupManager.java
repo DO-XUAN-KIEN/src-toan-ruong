@@ -186,7 +186,10 @@ public class KingCupManager {
             Service.send_notice_box(p.conn, "Bạn không có trong danh sách hoặc đã nhận rồi.");
             return;
         }
-
+        if (p.item.get_bag_able() < 20) {
+            Service.send_notice_nobox_white(p.conn, "Hành trang đầy!");
+            return;
+        }
         short[] id_reward_7;
         short[] quantity_reward_7;
         short[] id_reward_4;

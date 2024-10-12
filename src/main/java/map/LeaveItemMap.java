@@ -304,7 +304,7 @@ public class LeaveItemMap {
             switch (mob.template.mob_id) {
                 case 101, 84, 83, 103, 104, 105, 106, 149,155: { // xa nu
                     id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1,(short) Util.random(347,357)};
-                    id_item_leave7 = new short[]{(short) Util.random(481,493),(short) Util.random(472,480)};
+                    id_item_leave7 = new short[]{(short) Util.random(481,493),(short) Util.random(472,480),(short) Util.random(336,346)};
                     if(Manager.gI().event == 11){
                         id_item_hongio = new short[]{336};
                     }
@@ -314,7 +314,7 @@ public class LeaveItemMap {
                 }
                 case 173, 195, 196, 197, 186, 187, 188: { //tho tuyet
                     id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1,(short) Util.random(347,357)};
-                    id_item_leave7 = new short[]{(short) Util.random(481,493),(short) Util.random(472,480)};
+                    id_item_leave7 = new short[]{(short) Util.random(481,493),(short) Util.random(472,480),(short) Util.random(336,346)};
                     if(Manager.gI().event == 11){
                         id_item_hongio = new short[]{336};
                     }
@@ -337,7 +337,7 @@ public class LeaveItemMap {
                     String chat = "Diệt boss thành công các bạn sẽ thoát khỏi map sau 30s nữa";
                     Service.chat_nhom(p.party,chat);
                     id_item_leave4 = new short[]{-1, -1, -1, -1, -1, -1,(short) Util.random(347,357)};
-                    id_item_leave7 = new short[]{(short) Util.random(481,493),(short) Util.random(472,480)};
+                    id_item_leave7 = new short[]{(short) Util.random(481,493),(short) Util.random(472,480),(short) Util.random(336,346)};
                     p.ngoc_and_coin();
                     break;
                 }
@@ -374,7 +374,7 @@ public class LeaveItemMap {
                     leave_item_by_type4(map, id, p, mob.index, p.index);
                 }
             }
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < Util.random(1,6); i++) {
                 for (short id : id_item_leave7) {
                     leave_item_by_type7(map, id, p, mob.index, p.index);
                 }

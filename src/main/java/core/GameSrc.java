@@ -1849,6 +1849,10 @@ public class GameSrc {
                             Service.send_notice_box(conn, "Giá tiền không phù hợp!");
                             return;
                         }
+                        if (p_store.it_price > 100_000_000 || p_store.it_price < 10_000) {
+                            Service.send_notice_box(conn, "Giá tiền không vượt quá 100 triệu!");
+                            return;
+                        }
                         p_store.it_quant = m2.reader().readShort();
                         p_store.it_type = m2.reader().readByte();
                         if (p_store.it_quant <= 0 || p_store.it_quant > 32_000) {
@@ -1870,7 +1874,8 @@ public class GameSrc {
                                 Service.send_notice_box(conn, "Số lượng không hợp lệ!");
                                 return;
                             }
-                            if (p_store.it_type == 4 && (Helps.CheckItem.item4CanTrade(p_store.it_id) || p_store.it_id == 135 || p_store.it_id == 52 || p_store.it_id == 56 || p_store.it_id == 143 || p_store.it_id == 226 || p_store.it_id == 318 || p_store.it_id == 327 || p_store.it_id == 328 || p_store.it_id == 329 || p_store.it_id == 330 || (p_store.it_id >= 339 && p_store.it_id <= 341))) {
+                            if (p_store.it_type == 4 && (Helps.CheckItem.item4CanTrade(p_store.it_id) || p_store.it_id == 135 || p_store.it_id == 52 || p_store.it_id == 56 || p_store.it_id == 143 || p_store.it_id == 226 || p_store.it_id == 318 || p_store.it_id == 327 || p_store.it_id == 328 || p_store.it_id == 329
+                                    || p_store.it_id == 330 || (p_store.it_id >= 339 && p_store.it_id <= 360))) {
                                 Service.send_notice_box(conn, "Đồ bán không hợp lệ!");
                                 return;
                             }

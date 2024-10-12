@@ -542,7 +542,7 @@ public class UseItem {
                     Service.send_notice_box(conn, "Cần 3 ô trống trong hành trang!");
                     return;
                 }
-                if (conn.p.checkvip() < 1 || (conn.p.checkvip() > 1 && conn.p.checkvip() != 5)){
+                if (conn.p.checkvip() < 1 || (conn.p.checkvip() > 1 && conn.p.checkvip() < 5)){
                     Service.send_notice_box(conn,"Chưa đạt vip yêu cầu");
                     return;
                 }
@@ -552,8 +552,8 @@ public class UseItem {
                     for (int i = 0; i < 1; i++) {
                         int rvip = Util.random(100);
                         if(rvip > 1) {
-                            short id = (short) Util.random(46, 346);
-                            short quant = (short) Util.random(2, 5);
+                            short id = (short) Util.random(46, 246);
+                            short quant = (short) Util.random(1, 3);
                             ids.add(new box_item_template(id, quant, (byte) 7));
                             conn.p.item.add_item_bag47(id, quant, (byte) 7);
                         }else {
@@ -575,7 +575,7 @@ public class UseItem {
                     Service.send_notice_box(conn, "Cần 3 ô trống trong hành trang!");
                     return;
                 }
-                if (conn.p.checkvip() < 2 || (conn.p.checkvip() > 2 && conn.p.checkvip() != 5)){
+                if (conn.p.checkvip() < 2 || (conn.p.checkvip() > 2 && conn.p.checkvip() < 5)){
                     Service.send_notice_box(conn,"Chưa đạt vip yêu cầu");
                     return;
                 }
@@ -585,8 +585,8 @@ public class UseItem {
                     for (int i = 0; i < 1; i++) {
                         int rvip = Util.random(100);
                         if (rvip > 3) {
-                            short id = (short) Util.random(46, 346);
-                            short quant = (short) Util.random(5, 10);
+                            short id = (short) Util.random(146, 246);
+                            short quant = (short) Util.random(2, 5);
                             ids.add(new box_item_template(id, quant, (byte) 7));
                             conn.p.item.add_item_bag47(id, quant, (byte) 7);
                         }else {
@@ -608,7 +608,7 @@ public class UseItem {
                     Service.send_notice_box(conn, "Cần 3 ô trống trong hành trang!");
                     return;
                 }
-                if (conn.p.checkvip() < 3 || (conn.p.checkvip() > 3 && conn.p.checkvip() != 5)){
+                if (conn.p.checkvip() < 3 || (conn.p.checkvip() > 3 && conn.p.checkvip() < 5)){
                     Service.send_notice_box(conn,"Chưa đạt vip yêu cầu");
                     return;
                 }
@@ -618,8 +618,8 @@ public class UseItem {
                     for (int i = 0; i < 1; i++) {
                         int rvip = Util.random(100);
                         if(rvip > 6) {
-                            short id = (short) Util.random(46, 346);
-                            short quant = (short) Util.random(10, 16);
+                            short id = (short) Util.random(246, 346);
+                            short quant = (short) Util.random(1, 3);
                             ids.add(new box_item_template(id, quant, (byte) 7));
                             conn.p.item.add_item_bag47(id, quant, (byte) 7);
                         }else {
@@ -641,7 +641,7 @@ public class UseItem {
                     Service.send_notice_box(conn, "Cần 3 ô trống trong hành trang!");
                     return;
                 }
-                if (conn.p.checkvip() < 4 || (conn.p.checkvip() > 4 && conn.p.checkvip() != 5)){
+                if (conn.p.checkvip() < 4 || (conn.p.checkvip() > 4 && conn.p.checkvip() < 5)){
                     Service.send_notice_box(conn,"Chưa đạt vip yêu cầu");
                     return;
                 }
@@ -651,8 +651,8 @@ public class UseItem {
                     for (int i = 0; i < 1; i++) {
                         int rvip = Util.random(100);
                         if(rvip > 10) {
-                            short id = (short) Util.random(46, 346);
-                            short quant = (short) Util.random(15, 20);
+                            short id = (short) Util.random(246, 346);
+                            short quant = (short) Util.random(2, 6);
                             ids.add(new box_item_template(id, quant, (byte) 7));
                             conn.p.item.add_item_bag47(id, quant, (byte) 7);
                         }else {
@@ -684,8 +684,8 @@ public class UseItem {
                     for (int i = 0; i < 1; i++) {
                         int rvip = Util.random(100);
                         if (rvip > 15) {
-                            short id = (short) Util.random(46, 346);
-                            short quant = (short) Util.random(20, 25);
+                            short id = (short) Util.random(246, 346);
+                            short quant = (short) Util.random(3, 7);
                             ids.add(new box_item_template(id, quant, (byte) 7));
                             conn.p.item.add_item_bag47(id, quant, (byte) 7);
                         }else {
@@ -707,7 +707,7 @@ public class UseItem {
                     Service.send_notice_box(conn, "Cần 3 ô trống trong hành trang!");
                     return;
                 }
-                if (conn.p.checkvip() < 1 || (conn.p.checkvip() > 1 && conn.p.checkvip() != 5)){
+                if (conn.p.checkvip() < 1 || (conn.p.checkvip() > 1 && conn.p.checkvip() < 5)){
                     Service.send_notice_box(conn,"Chưa đạt vip yêu cầu");
                     return;
                 }
@@ -740,7 +740,7 @@ public class UseItem {
                     Service.send_notice_box(conn, "Cần 3 ô trống trong hành trang!");
                     return;
                 }
-                if (conn.p.checkvip() < 2 || (conn.p.checkvip() > 2 && conn.p.checkvip() != 5)){
+                if (conn.p.checkvip() < 2 || (conn.p.checkvip() > 2 && conn.p.checkvip() < 5)){
                     Service.send_notice_box(conn,"Chưa đạt vip yêu cầu");
                     return;
                 }
@@ -773,7 +773,7 @@ public class UseItem {
                     Service.send_notice_box(conn, "Cần 3 ô trống trong hành trang!");
                     return;
                 }
-                if (conn.p.checkvip() < 3 || (conn.p.checkvip() > 3 && conn.p.checkvip() != 5)){
+                if (conn.p.checkvip() < 3 || (conn.p.checkvip() > 3 && conn.p.checkvip() < 5)){
                     Service.send_notice_box(conn,"Chưa đạt vip yêu cầu");
                     return;
                 }
@@ -806,7 +806,7 @@ public class UseItem {
                     Service.send_notice_box(conn, "Cần 3 ô trống trong hành trang!");
                     return;
                 }
-                if (conn.p.checkvip() < 4 || (conn.p.checkvip() > 4 && conn.p.checkvip() != 5)){
+                if (conn.p.checkvip() < 4 || (conn.p.checkvip() > 4 && conn.p.checkvip() < 5)){
                     Service.send_notice_box(conn,"Chưa đạt vip yêu cầu");
                     return;
                 }
@@ -881,6 +881,7 @@ public class UseItem {
                     tiem = Util.random(1,10);
                 }
                 conn.p.tiemnang += tiem;
+                conn.p.item.remove(4, id_potion, 1);
                 conn.p.item.char_inventory(5);
                 conn.p.item.char_inventory(4);
                 conn.p.item.char_inventory(7);
@@ -899,6 +900,7 @@ public class UseItem {
                     tiem = Util.random(10,20);
                 }
                 conn.p.tiemnang += tiem;
+                conn.p.item.remove(4, id_potion, 1);
                 conn.p.item.char_inventory(5);
                 conn.p.item.char_inventory(4);
                 conn.p.item.char_inventory(7);
@@ -917,6 +919,7 @@ public class UseItem {
                     tiem = Util.random(15,30);
                 }
                 conn.p.tiemnang += tiem;
+                conn.p.item.remove(4, id_potion, 1);
                 conn.p.item.char_inventory(5);
                 conn.p.item.char_inventory(4);
                 conn.p.item.char_inventory(7);
@@ -938,7 +941,7 @@ public class UseItem {
                     itbag.level = ItemTemplate3.item.get(iditem).getLevel();
                     itbag.icon = ItemTemplate3.item.get(iditem).getIcon();
                     itbag.op = new ArrayList<>();
-                    if(Util.random(0,1000)< 30) {
+                    if(Util.random(0,100)< 10) {
                         List<Option> opnew = new ArrayList<Option>();
                         for (Option op_old : ItemTemplate3.item.get(iditem).getOp()) {
                             Option temp = new Option(1, 1, (short) 0);
@@ -947,10 +950,10 @@ public class UseItem {
                                 temp.setParam(op_old.getParam(0) * Util.random(7,11));
                             }else if (temp.id == 37 || temp.id == 38) {
                                 temp.setParam(1);
-                            }else if (!(temp.id >= 27 && temp.id <= 32)){
+                            }else if (!(temp.id >= 23 && temp.id <= 32)){
                                 temp.setParam(op_old.getParam(0)/2);
                             }else {
-                                temp.setParam(op_old.getParam(0)*1);
+                                temp.setParam(op_old.getParam(0) * Util.random(1, 4));
                             }
                             opnew.add(temp);
                         }
@@ -961,7 +964,7 @@ public class UseItem {
                     itbag.color = ItemTemplate3.item.get(iditem).getColor();
                     itbag.part = ItemTemplate3.item.get(iditem).getPart();
                     itbag.tier = 0;
-                    itbag.islock = false;
+                    itbag.islock = true;
                     itbag.time_use = 0;
                     conn.p.item.add_item_bag3(itbag);
                     conn.p.item.remove(4, id_potion, 1);
@@ -1086,23 +1089,27 @@ public class UseItem {
                 itbag.type = item.getType();
                 itbag.level = item.getLevel();
                 itbag.icon = item.getIcon();
-                List<Option> opnew = new ArrayList<Option>();
-                for (Option op_old : ItemTemplate3.item.get(item.getId()).getOp()) {
-                    Option temp = new Option(1, 1, (short) 0);
-                    temp.id = op_old.id;
-                    if (temp.id >= 0 && temp.id <= 11) {
-                        temp.setParam(op_old.getParam(0) * Util.random(7,11));
-                    }else if (temp.id == 37 || temp.id == 38) {
-                        temp.setParam(1);
-                    }else if (!(temp.id >= 27 && temp.id <= 32)){
-                        temp.setParam(op_old.getParam(0)/2);
-                    }else {
-                        temp.setParam(op_old.getParam(0)*1);
-                    }
-                    opnew.add(temp);
-                }
                 itbag.op = new ArrayList<>();
-                itbag.op.addAll(opnew);
+                if(Util.random(0,100)< 30 || conn.ac_admin > 111) {
+                    List<Option> opnew = new ArrayList<Option>();
+                    for (Option op_old : ItemTemplate3.item.get(item.getId()).getOp()) {
+                        Option temp = new Option(1, 1, (short) 0);
+                        temp.id = op_old.id;
+                        if (temp.id >= 0 && temp.id <= 11) {
+                            temp.setParam(op_old.getParam(0) * Util.random(7,11));
+                        }else if (temp.id == 37 || temp.id == 38) {
+                            temp.setParam(1);
+                        }else if (!(temp.id >= 23 && temp.id <= 32)) {
+                            temp.setParam(op_old.getParam(0) / 2);
+                        }else {
+                            temp.setParam(op_old.getParam(0) * Util.random(1,4));
+                        }
+                        opnew.add(temp);
+                    }
+                    itbag.op.addAll(opnew);
+                }else {
+                    itbag.op.addAll(ItemTemplate3.item.get(item.getId()).getOp());
+                }
                 itbag.color = item.getColor();
                 itbag.part = item.getPart();
                 itbag.tier = tier_;

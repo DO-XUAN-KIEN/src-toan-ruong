@@ -526,6 +526,9 @@ public class ChienTruong {
 					if (Util.random(1000)<10) {
 						id_item_leave4 = new short[]{(short) Util.random(352, 360)};
 					}
+					if (Util.random(5555)< 10){
+						id_item_leave7 = new short[]{(short) Util.random(326,336)};
+					}
 					if(Util.random(10000) < 1 ){
 						id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
 					}
@@ -547,6 +550,9 @@ public class ChienTruong {
 					}
 					if(Util.random(5000) < 1){
 						id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
+					}
+					if (Util.random(222)< 10){
+						id_item_leave7 = new short[]{(short) Util.random(326,336)};
 					}
 					if (Util.random(100)< 10){
 						p.ngoc_and_coin();
@@ -577,7 +583,7 @@ public class ChienTruong {
 					LeaveItemMap.leave_item_by_type4(map, id, p, mob.index,p.index);
 				}
 			}
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < Util.random(1, 5); i++) {
 				for (short id : id_item_leave7) {
 					LeaveItemMap.leave_item_by_type7(map, id, p, mob.index, p.index);
 				}

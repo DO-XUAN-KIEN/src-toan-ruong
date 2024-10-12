@@ -253,6 +253,10 @@ public class Process_Yes_no_box {
                         Service.send_notice_box(conn, "Không đủ ngọc");
                         return;
                     }
+                    if (conn.p.item.bag3[id_book].islock == false){
+                        Service.send_notice_box(conn,"Không thể nâng bằng sách 0 khóa");
+                        return;
+                    }
                     if (conn.p.item.total_item_book_skill(id_book) >= (level + 1)) {
                         if (Util.nextInt(100) < 22 - level || level == 0) {
                             conn.p.skill_110[conn.p.id_index_temp] += 1;
@@ -853,7 +857,7 @@ public class Process_Yes_no_box {
                                 op.setParam(op.getParam(0)*2);
                             }else if (op.id == 37 || op.id == 38) {
                                 op.setParam(1);
-                            }else if (!(op.id >= 27 && op.id <= 32)){
+                            }else if (!(op.id >= 23 && op.id <= 32)){
                                 op.setParam(op.getParam(0)/2);
                             }else {
                                 op.setParam(op.getParam(0)*1);

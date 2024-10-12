@@ -67,26 +67,7 @@ public class Quask {
 
                 for (int i = 0; i < 3; i++) {
                     int ran = Util.random(101);
-                    if ( ran > 99) { // sách 110
-                        short iditem =(short) Util.random(4577, 4585);
-                        Item3 itbag = new Item3();
-                        itbag.id = iditem;
-                        itbag.name = ItemTemplate3.item.get(iditem).getName();
-                        itbag.clazz = ItemTemplate3.item.get(iditem).getClazz();
-                        itbag.type = ItemTemplate3.item.get(iditem).getType();
-                        itbag.level = ItemTemplate3.item.get(iditem).getLevel();
-                        itbag.icon = ItemTemplate3.item.get(iditem).getIcon();
-                        itbag.op = new ArrayList<>();
-                        itbag.op.addAll(ItemTemplate3.item.get(iditem).getOp());
-                        itbag.color = ItemTemplate3.item.get(iditem).getColor();
-                        itbag.part = ItemTemplate3.item.get(iditem).getPart();
-                        itbag.tier = 0;
-                        itbag.islock = false;
-                        itbag.time_use = 0;
-                        conn.p.item.add_item_bag3(itbag);
-                        conn.p.item.char_inventory(5);
-                        ids.add(new box_item_template(iditem, (short) 1, (byte) 3));
-                    } else if (ran > 95 && ran < 97) { // rương boss phe
+                    if (ran > 100) { // rương boss phe
                         short id = 273;
                         short quant = 1;
                         ids.add(new box_item_template(id, quant, (byte) 4));
@@ -225,7 +206,7 @@ public class Quask {
                         conn.p.item.add_item_bag3(itbag);
                         conn.p.item.char_inventory(5);
                         ids.add(new box_item_template(iditem, (short) 1, (byte) 3));
-                    } else if (ran > 95 && ran < 98) { // sách 110
+                    } else if (ran > 99 && ran < 100) { // sách 110
                         short iditem =(short) Util.random(4577, 4585);
                         Item3 itbag = new Item3();
                         itbag.id = iditem;

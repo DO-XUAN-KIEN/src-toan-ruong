@@ -225,7 +225,6 @@ public class Player extends Body2 {
     public long time_use_item_arena;
     public int id_henshin;
     public int count_special;
-    public ChiemMo mo;
 
     public void ResetCreateItemStar() {
         isCreateItemStar = false;
@@ -1701,6 +1700,10 @@ public class Player extends Body2 {
             Service.send_notice_box(p.conn,"mày đã đi quá xa bò, bò của mày về với tổ tiên r mua bò mới đê");
             return;
         }
+        if(!(vgo.id_map_go >= 0 && vgo.id_map_go <= 7) && conn.status != 0){
+            Service.send_notice_box(conn,"Hãy ib cho Lucy Hso để kích hoạt tài khoản");
+            return;
+        }
         if (map.map_id == 0) {
             Message m = new Message(55);
             m.writer().writeByte(1);
@@ -1831,7 +1834,7 @@ public class Player extends Body2 {
             exp = -(Level.entrys.get(level - 1).exp * 15) / 10;
         }
         int exp_as_int = 0;
-        if (dame_exp > 2_000_000_000L) {
+        if (dame_exp >= 2_000_000_000L) {
             exp_as_int = 2_000_000_000;
         } else {
             exp_as_int = (int) dame_exp;
@@ -1876,7 +1879,6 @@ public class Player extends Body2 {
     }
 
     public void change_zone(Session conn2, Message m2) throws IOException {
-
         if (this.map.map_id == 0) {
             Message m = new Message(55);
             m.writer().writeByte(1);
@@ -1918,24 +1920,6 @@ public class Player extends Body2 {
                             }
                             return;
                         }
-                    }
-                    if (zone == 7 && !Map.is_map_not_zone2(map_change.map_id)) {
-                        if (checkvip() < 1) {
-                            Service.send_notice_box(conn, "Bạn chưa đủ vip 1 để vào");
-                            return;
-                        }
-                        MapService.leave(conn.p.map, conn.p);
-                        conn.p.map = map_change;
-                        MapService.enter(conn.p.map, conn.p);
-                    }
-                    if (zone == 8 && !Map.is_map_not_zone2(map_change.map_id)) {
-                        if (checkvip() < 2) {
-                            Service.send_notice_box(conn, "Bạn chưa đủ vip 2 để vào");
-                            return;
-                        }
-                        MapService.leave(conn.p.map, conn.p);
-                        conn.p.map = map_change;
-                        MapService.enter(conn.p.map, conn.p);
                     }
                     MapService.leave(this.map, this);
                     this.map = map_change;
@@ -2006,6 +1990,19 @@ public class Player extends Body2 {
             result = 0;
         }
         return result;
+    }
+    public synchronized boolean update_khtk() throws IOException {
+        String query = "SELECT `status` FROM `account` WHERE `user` = '" + conn.user + "' LIMIT 1;";
+        try (Connection connection = SQL.gI().getConnection(); Statement ps = connection.createStatement(); ResultSet rs = ps.executeQuery(query)) {
+            rs.next();
+            if (ps.executeUpdate(
+                    "UPDATE `account` SET `status` = 0 WHERE `user` = '" + conn.user + "'") == 1) {
+                connection.commit();
+            }
+        } catch (SQLException e) {
+            Service.send_notice_box(conn, "Đã xảy ra lỗi");
+        }
+        return true;
     }
     public synchronized boolean update_vip(int nap_exchange) throws IOException {
         String query = "SELECT `Vip` FROM `account` WHERE `user` = '" + conn.user + "' LIMIT 1;";

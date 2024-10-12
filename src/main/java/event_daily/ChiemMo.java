@@ -97,7 +97,16 @@ public class ChiemMo {
             nhanBan.x = (short) (moTaiNguyen.x - 30);
             nhanBan.y = (short) (moTaiNguyen.y - 30);
             nhanBan.is_move = true;
-            nhanBan.hp = nhanBan.hp_max;
+          if(moTaiNguyen.nhanban.hp_max >= 1_000_000_000){
+              nhanBan.hp = 1_000_000_000;
+              nhanBan.hp_max = 1_000_000_000;
+              //Service.send_notice_nobox_white(p.conn,"HI1");
+          }else {
+              nhanBan.hp = moTaiNguyen.nhanban.hp_max;
+              nhanBan.hp_max = moTaiNguyen.nhanban.hp_max;
+              //Service.send_notice_nobox_white(p.conn, "HI2 hp_max" + nhanBan.hp_max + "Hp " + nhanBan.hp);
+          }
+            //nhanBan.hp = p.hp_max;
             nhanBan.isDie = false;
             moTaiNguyen.nhanBans.add(nhanBan);
             //
@@ -120,9 +129,17 @@ public class ChiemMo {
             for (int i = 0; i < moTaiNguyen.nhanBans.size(); i++) {
                 NhanBan nhanBan = moTaiNguyen.nhanBans.get(i);
                 if (nhanBan.count_update < 4) {
-                    nhanBan.dame = nhanBan.dame * 11 / 10;
+                    if (nhanBan.dame >= 1_000_000_000){
+                        nhanBan.dame = 1_000_000_000;
+                    }else {
+                        nhanBan.dame = nhanBan.dame * 11 / 10;
+                    }
                     nhanBan.def = nhanBan.def * 11 / 10;
-                    nhanBan.hp_max = nhanBan.hp_max * 11 / 10;
+                    if (nhanBan.hp_max >= 1_000_000_000){
+                        nhanBan.hp_max = 1_000_000_000;
+                    }else {
+                        nhanBan.hp_max = nhanBan.hp_max * 2;
+                    }
                     nhanBan.hp = nhanBan.hp_max;
                     nhanBan.count_update++;
                     m = new Message(33);

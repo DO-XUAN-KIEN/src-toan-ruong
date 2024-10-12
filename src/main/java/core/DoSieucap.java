@@ -353,6 +353,7 @@ public class DoSieucap {
                             item = medal.Upgare_Medal(item);
                             item.color = 5;
                             item.tier++;
+                            item.islock = true;
                             item.tierStar++;
                             item.icon = 13218;
                             item.UpdateName();
@@ -453,7 +454,7 @@ public class DoSieucap {
                        conn.p.checkvip()== 2 && item.tier >= 40 ||
                        conn.p.checkvip()== 3 && item.tier >= 60 ||
                        conn.p.checkvip()== 4 && item.tier >= 80 ||
-                       conn.p.checkvip()== 5 && item.tier >= 100) {
+                       conn.p.checkvip() >= 5 && item.tier >= 100) {
                        Service.send_notice_box(conn,"Bạn đã nâng cấp trang bị tối đa mà VIP của bạn cho phép");
                        return;
                     }
@@ -492,6 +493,14 @@ public class DoSieucap {
                         return;
                     }
                     Item3 item = conn.p.item.bag3[id];
+                    if(conn.p.checkvip()== 1 && item.tier >= 20 ||
+                            conn.p.checkvip()== 2 && item.tier >= 40 ||
+                            conn.p.checkvip()== 3 && item.tier >= 60 ||
+                            conn.p.checkvip()== 4 && item.tier >= 80 ||
+                            conn.p.checkvip() >= 5 && item.tier >= 100) {
+                        Service.send_notice_box(conn,"Bạn đã nâng cấp trang bị tối đa mà VIP của bạn cho phép");
+                        return;
+                    }
                     if (item != null && ((item.type >= 21 && item.type <= 28) || item.type == 55 || item.type == 102) && item.tier < 100) {
 //                        int[] values = {10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40};
 //                        int tier = item.tierStar >= 0 && item.tierStar < values.length ? values[item.tierStar] : item.tierStar;
@@ -509,26 +518,26 @@ public class DoSieucap {
                             }
                         }
                         int ran = Util.random(1000);
-                        boolean suc =(item.tier >= 0 && item.tier < 5) && ran > 100 ||
-                                (item.tier >= 5 && item.tier < 10) && ran > 150 ||
-                                (item.tier >= 10 && item.tier < 15) && ran > 200 ||
-                                (item.tier >= 15 && item.tier < 20) && ran > 250 ||
-                                (item.tier >= 20 && item.tier < 25) && ran > 300 ||
-                                (item.tier >= 25 && item.tier < 30) && ran > 350 ||
-                                (item.tier >= 30 && item.tier < 35) && ran > 400 ||
-                                (item.tier >= 35 && item.tier < 40) && ran > 450 ||
-                                (item.tier >= 40 && item.tier < 45) && ran > 500 ||
-                                (item.tier >= 45 && item.tier < 50) && ran > 550 ||
-                                (item.tier >= 50 && item.tier < 55) && ran > 600 ||
-                                (item.tier >= 55 && item.tier < 60) && ran > 650 ||
-                                (item.tier >= 60 && item.tier < 65) && ran > 700 ||
-                                (item.tier >= 65 && item.tier < 70) && ran > 750 ||
-                                (item.tier >= 70 && item.tier < 75) && ran > 800 ||
-                                (item.tier >= 75 && item.tier < 80) && ran > 850 ||
-                                (item.tier >= 80 && item.tier < 85) && ran > 900 ||
-                                (item.tier >= 85 && item.tier < 90) && ran > 950 ||
-                                (item.tier >= 90 && item.tier < 95) && ran > 980 ||
-                                (item.tier >= 95 && item.tier < 1000) && ran > 990;
+                        boolean suc =(item.tier >= 0 && item.tier < 5) && ran > 300 ||
+                                (item.tier >= 5 && item.tier < 10) && ran > 350 ||
+                                (item.tier >= 10 && item.tier < 15) && ran > 400 ||
+                                (item.tier >= 15 && item.tier < 20) && ran > 450 ||
+                                (item.tier >= 20 && item.tier < 25) && ran > 500 ||
+                                (item.tier >= 25 && item.tier < 30) && ran > 550 ||
+                                (item.tier >= 30 && item.tier < 35) && ran > 600 ||
+                                (item.tier >= 35 && item.tier < 40) && ran > 650 ||
+                                (item.tier >= 40 && item.tier < 45) && ran > 700 ||
+                                (item.tier >= 45 && item.tier < 50) && ran > 750 ||
+                                (item.tier >= 50 && item.tier < 55) && ran > 860 ||
+                                (item.tier >= 55 && item.tier < 60) && ran > 870 ||
+                                (item.tier >= 60 && item.tier < 65) && ran > 880 ||
+                                (item.tier >= 65 && item.tier < 70) && ran > 890 ||
+                                (item.tier >= 70 && item.tier < 75) && ran > 920 ||
+                                (item.tier >= 75 && item.tier < 80) && ran > 940 ||
+                                (item.tier >= 80 && item.tier < 85) && ran > 960 ||
+                                (item.tier >= 85 && item.tier < 90) && ran > 980 ||
+                                (item.tier >= 90 && item.tier < 95) && ran > 990 ||
+                                (item.tier >= 95 && item.tier < 1000) && ran > 995;
                         if (conn.ac_admin > 111 && Manager.BuffAdmin){
                             suc = true;
                         }
@@ -539,12 +548,19 @@ public class DoSieucap {
 //                        }
                         if (suc) {
                             item.tier++;
+                            item.islock = true;
                             item.UpdateName();
                             conn.p.setnltb2();
                             for (int i = 0; i < item.op.size(); i++) {
                                 Option op = item.op.get(i);
                                 if (op.id >= 0 && op.id <= 99 && op.id != 37 && op.id != 38) {
-                                    op.setParam(op.getParam(4));
+                                    if(op.id >= 0 && op.id <= 7){
+                                        op.setParam(op.getParam(Util.random(1,8)));
+                                    }else if (!(op.id >= 33 && op.id <= 36)) {
+                                        op.setParam(op.getParam(Util.random(1, 8)));
+                                    }else {
+                                        op.setParam(op.getParam(1));
+                                    }
                                 }
                             }
                         }
@@ -631,7 +647,7 @@ public class DoSieucap {
                         return;
                     }
                     Item3 item = conn.p.item.bag3[id];
-                    if (item == null || item.tier < 15 || item.color < 4) {
+                    if (item == null || item.tier < 15) {
                         Service.send_notice_box(conn, "Trang bị + 15 trở Lên!");
                         return;
                     }
@@ -639,7 +655,7 @@ public class DoSieucap {
                             conn.p.checkvip()== 2 && item.tier >= 40 ||
                             conn.p.checkvip()== 3 && item.tier >= 60 ||
                             conn.p.checkvip()== 4 && item.tier >= 80 ||
-                            conn.p.checkvip()== 5 && item.tier >= 100) {
+                            conn.p.checkvip() >= 5 && item.tier >= 100) {
                         Service.send_notice_box(conn,"Bạn đã nâng cấp trang bị tối đa mà VIP của bạn cho phép");
                         return;
                     }
@@ -694,6 +710,18 @@ public class DoSieucap {
                         return;
                     }
                     Item3 item = conn.p.item.bag3[id];
+                    if (item == null || item.tier < 15) {
+                        Service.send_notice_box(conn, "Trang bị + 15 trở Lên!");
+                        return;
+                    }
+                    if(conn.p.checkvip()== 1 && item.tier >= 20 ||
+                            conn.p.checkvip()== 2 && item.tier >= 40 ||
+                            conn.p.checkvip()== 3 && item.tier >= 60 ||
+                            conn.p.checkvip()== 4 && item.tier >= 80 ||
+                            conn.p.checkvip() >= 5 && item.tier >= 100) {
+                        Service.send_notice_box(conn,"Bạn đã nâng cấp trang bị tối đa mà VIP của bạn cho phép");
+                        return;
+                    }
                     if (item != null && (item.type >= 0 && item.type <= 11) && item.tier < 100 && item.tier >= 15) {
                         int nlnang = 0;
                         if(item.tier >= 15 && item.tier < 30){
@@ -725,38 +753,45 @@ public class DoSieucap {
                             }
                         }
                         int ran = Util.random(1000);
-                        boolean suc =(item.tier >= 0 && item.tier < 5) && ran > 100 ||
-                                (item.tier >= 5 && item.tier < 10) && ran > 150 ||
-                                (item.tier >= 10 && item.tier < 15) && ran > 200 ||
-                                (item.tier >= 15 && item.tier < 20) && ran > 250 ||
-                                (item.tier >= 20 && item.tier < 25) && ran > 300 ||
-                                (item.tier >= 25 && item.tier < 30) && ran > 350 ||
-                                (item.tier >= 30 && item.tier < 35) && ran > 400 ||
-                                (item.tier >= 35 && item.tier < 40) && ran > 450 ||
-                                (item.tier >= 40 && item.tier < 45) && ran > 500 ||
-                                (item.tier >= 45 && item.tier < 50) && ran > 550 ||
-                                (item.tier >= 50 && item.tier < 55) && ran > 600 ||
-                                (item.tier >= 55 && item.tier < 60) && ran > 650 ||
-                                (item.tier >= 60 && item.tier < 65) && ran > 700 ||
-                                (item.tier >= 65 && item.tier < 70) && ran > 750 ||
-                                (item.tier >= 70 && item.tier < 75) && ran > 800 ||
-                                (item.tier >= 75 && item.tier < 80) && ran > 850 ||
-                                (item.tier >= 80 && item.tier < 85) && ran > 900 ||
-                                (item.tier >= 85 && item.tier < 90) && ran > 950 ||
-                                (item.tier >= 90 && item.tier < 95) && ran > 980 ||
-                                (item.tier >= 95 && item.tier < 1000) && ran > 990;
+                        boolean suc =(item.tier >= 0 && item.tier < 5) && ran > 300 ||
+                                (item.tier >= 5 && item.tier < 10) && ran > 350 ||
+                                (item.tier >= 10 && item.tier < 15) && ran > 400 ||
+                                (item.tier >= 15 && item.tier < 20) && ran > 450 ||
+                                (item.tier >= 20 && item.tier < 25) && ran > 500 ||
+                                (item.tier >= 25 && item.tier < 30) && ran > 550 ||
+                                (item.tier >= 30 && item.tier < 35) && ran > 600 ||
+                                (item.tier >= 35 && item.tier < 40) && ran > 650 ||
+                                (item.tier >= 40 && item.tier < 45) && ran > 700 ||
+                                (item.tier >= 45 && item.tier < 50) && ran > 750 ||
+                                (item.tier >= 50 && item.tier < 55) && ran > 860 ||
+                                (item.tier >= 55 && item.tier < 60) && ran > 870 ||
+                                (item.tier >= 60 && item.tier < 65) && ran > 880 ||
+                                (item.tier >= 65 && item.tier < 70) && ran > 890 ||
+                                (item.tier >= 70 && item.tier < 75) && ran > 920 ||
+                                (item.tier >= 75 && item.tier < 80) && ran > 940 ||
+                                (item.tier >= 80 && item.tier < 85) && ran > 960 ||
+                                (item.tier >= 85 && item.tier < 90) && ran > 980 ||
+                                (item.tier >= 90 && item.tier < 95) && ran > 990 ||
+                                (item.tier >= 95 && item.tier < 1000) && ran > 995;
                         if (conn.ac_admin > 111 && Manager.BuffAdmin){
                             suc = true;
                         }
                         if (suc) {
                             item.tier++;
                             item.color = 5;
+                            item.islock = true;
                             item.UpdateName();
                             conn.p.SetNLtb1();
                             for (int i = 0; i < item.op.size(); i++) {
                                 Option op = item.op.get(i);
                                 if (op.id >= 0 && op.id <= 99 && op.id != 37 && op.id != 38) {
-                                    op.setParam(op.getParam(4));
+                                    if(op.id >= 0 && op.id <= 7){
+                                        op.setParam(op.getParam(0)+50000);
+                                    }else if (!(op.id >= 33 && op.id <= 36)) {
+                                        op.setParam(op.getParam(Util.random(1, 8)));
+                                    }else {
+                                        op.setParam(op.getParam(1));
+                                    }
                                 }
                             }
                         }

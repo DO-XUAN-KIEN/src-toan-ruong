@@ -127,7 +127,11 @@ public class NhanBan extends MainObject {
         hair = nhanban.hair;
         level = nhanban.level;
         hp = nhanban.hp;
-        hp_max = nhanban.hp_max;
+        if (nhanban.hp_max >= 1_000_000_000){
+            nhanban.hp_max = 1_000_000_000;
+        }else {
+            hp_max = nhanban.hp_max;
+        }
         pointpk = nhanban.pointpk;
         clan_icon = nhanban.clan_icon;
         clan_id = nhanban.clan_id;
@@ -142,7 +146,11 @@ public class NhanBan extends MainObject {
         id_wing = nhanban.id_wing;
         danh_hieu = nhanban.danh_hieu;
         type_use_mount = nhanban.type_use_mount;
-        dame = nhanban.get_DameBase()+ 50000;
+        if(nhanban.get_DameBase() >= 1_000_000_000) {
+            dame = 1_000_000_000;
+        }else {
+            dame = nhanban.get_DameBase() + 50000;
+        }
         act_time = nhanban.act_time;
         is_move = nhanban.is_move;
         p_skill_id = nhanban.p_skill_id;
@@ -247,7 +255,11 @@ public class NhanBan extends MainObject {
         this.hair = p0.hair;
         this.level = p0.level;
         this.hp = p0.hp;
-        this.hp_max = p0.body.get_HpMax();
+        if (p0.body.get_HpMax() >= 1_500_000_000){
+            this.hp_max = 1_500_000_000;
+        }else {
+            this.hp_max = p0.body.get_HpMax();
+        }
         this.hieuchien = p0.hieuchien;
         this.clan_icon = p0.myclan.icon;
         this.clan_id = Clan.get_id_clan(p0.myclan);
@@ -262,7 +274,11 @@ public class NhanBan extends MainObject {
         this.id_wing = Service.get_id_wing(p0);
         this.danh_hieu = Service.get_id_danhhieu(p0);
         this.type_use_mount = p0.type_use_mount;
-        this.dame = p0.get_DameBase() + 100000;
+        if(p0.get_DameBase()> 1_500_000_000){
+            this.dame = 1_500_000_000;
+        }else {
+            this.dame = p0.get_DameBase() + 100000;
+        }
         this.map_id = p0.map.map_id;
         this.crit = p0.body.get_Crit();
         this.def = p0.body.get_DefBase();

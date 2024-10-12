@@ -384,7 +384,7 @@ public class Body2 extends MainObject {
             def += 3000;
         }
         if(p.get_EffDefault(EffTemplate.SPECIAL) != null){
-            def *= 1.5;
+            def += 2000;
         }
         if (p.get_EffDefault(StrucEff.NOI_TAI_LUA) != null) {
             def -= 2000;
@@ -456,7 +456,7 @@ public class Body2 extends MainObject {
                 percent += eff.param;
             }
             if (p.getEffTinhTu(EffTemplate.SPECIAL) != null) {
-                percent *= 1.5;
+                percent += 3000;
             }
             EffTemplate temp2 = p.get_EffDefault(StrucEff.PowerWing);
             if (temp2 != null) {
@@ -476,7 +476,7 @@ public class Body2 extends MainObject {
                 percent += 3500;
             }
             //</editor-fold>
-            return percent;
+            return percent / 4;
         }
         int perct = 0;
         switch (p.clazz) {
@@ -558,7 +558,7 @@ public class Body2 extends MainObject {
             }
         }
         if (p.getEffTinhTu(EffTemplate.SPECIAL) != null) {
-            perct *= 1.5;
+            perct += 3000;
         }
         EffTemplate temp2 = p.get_EffDefault(StrucEff.PowerWing);
         if (temp2 != null) {
@@ -578,7 +578,7 @@ public class Body2 extends MainObject {
             perct += 3500;
         }
         //</editor-fold>
-        return perct;
+        return perct / 4;
     }
 
     @Override
@@ -711,6 +711,9 @@ public class Body2 extends MainObject {
             map.send_mount(p);
         }
         Player pATK = mainAtk.isPlayer() ? (Player) mainAtk : null;
+        if (pATK.typepk == 0) {
+            pATK.hieuchien++;
+        }
         if (p.isLiveSquire) {
             Squire.squireLeaveMap(p);
             p.isLiveSquire = false;

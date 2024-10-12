@@ -30,8 +30,8 @@ public class hopdovip {
                 Service.send_notice_box(p.conn, "Không hợp mề đay");
                 return;
             }
-            if ((p.item.bag3[id].type >= 21 && p.item.bag3[id].type <= 28) || p.item.bag3[id].type == 55 || p.item.bag3[id].type == 102){
-                Service.send_notice_box(p.conn,"Chức năng này chỉ dành cho hợp trang bị 1");
+            if (!(p.item.bag3[id].type >= 0 && p.item.bag3[id].type <= 11)){
+                Service.send_notice_box(p.conn,"Chỉ có thể hợp trang bị 1");
                 return;
             }
             if (p.item_replace == -1) {
@@ -95,7 +95,7 @@ public class hopdovip {
             m.cleanup();
         } else if (type == 1) {
             if (p.item.bag3[p.item_replace].tier < p.item.bag3[p.item_replace2].tier) {
-                Service.send_notice_box(p.conn, "Đã chuyển hóa xong rồi!!");
+                Service.send_notice_box(p.conn, "Đã hợp đồ xong rồi!!");
                 return;
             }
             if (!p.item.bag3[p.item_replace2].islock) {
@@ -129,7 +129,7 @@ public class hopdovip {
                 Service.send_notice_box(p.conn, "Không hợp mề đay");
                 return;
             }
-            if (p.item.bag3[id].type >= 0 && p.item.bag3[id].type <= 11){
+            if (!((p.item.bag3[id].type >= 21 && p.item.bag3[id].type <= 28) || p.item.bag3[id].type == 55 || p.item.bag3[id].type == 102)){
                 Service.send_notice_box(p.conn,"Chức năng này chỉ dành cho hợp trang bị 2");
                 return;
             }
@@ -138,8 +138,8 @@ public class hopdovip {
                     Service.send_notice_box(p.conn, "Trang bị không phù hợp!");
                     return;
                 }
-                if (!(p.item.bag3[id].type >= 0 && p.item.bag3[id].type <= 11)){
-                    Service.send_notice_box(p.conn,"Chỉ có thể hợp trang bị 1");
+                if (!((p.item.bag3[id].type >= 21 && p.item.bag3[id].type <= 28) || p.item.bag3[id].type == 55 || p.item.bag3[id].type == 102)){
+                    Service.send_notice_box(p.conn,"Chức năng này chỉ dành cho hợp trang bị 2");
                     return;
                 }
                 if (p.item.bag3[id].color < 4){
@@ -194,7 +194,7 @@ public class hopdovip {
             m.cleanup();
         } else if (type == 1) {
             if (p.item.bag3[p.item_replace].tier < p.item.bag3[p.item_replace2].tier) {
-                Service.send_notice_box(p.conn, "Đã chuyển hóa xong rồi!!");
+                Service.send_notice_box(p.conn, "Đã hợp đồ xong rồi!!");
                 return;
             }
             if (!p.item.bag3[p.item_replace2].islock) {
