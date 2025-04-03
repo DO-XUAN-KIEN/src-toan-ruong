@@ -22,7 +22,7 @@ public class DailyQuest {
     public static void get_quest(Player p, byte select) throws IOException {
         List<Integer> list_mob = new ArrayList<>();
         for (int i = 0; i < Mob.entrys.size(); i++) {
-            if (Math.abs(Mob.entrys.get(i).level - p.level) <= 10 && !Mob.entrys.get(i).is_boss && Mob.entrys.get(i).mob_id != 167
+            if (!Mob.entrys.get(i).is_boss && Mob.entrys.get(i).mob_id != 167
                     && Mob.entrys.get(i).mob_id != 168 && Mob.entrys.get(i).mob_id != 169 && Mob.entrys.get(i).mob_id != 170
                     && Mob.entrys.get(i).mob_id != 171 && Mob.entrys.get(i).mob_id != 172 && Mob.entrys.get(i).mob_id != 5
                     && Mob.entrys.get(i).mob_id != 11 && Mob.entrys.get(i).mob_id != 23 && Mob.entrys.get(i).mob_id != 91

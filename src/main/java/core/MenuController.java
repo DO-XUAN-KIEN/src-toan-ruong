@@ -2074,15 +2074,15 @@ public class MenuController {
         } else if (idmenu == 11 && Manager.gI().event == 11) { // sự kiện hồn gió
             switch (index) {
                 case 0: {
-                    Service.send_box_input_text(conn, 51, "Linh hồn 4 mùa thường", new String[]{"4 loại hồn gió + 1.000.000 vàng"});
+                    Service.send_box_input_text(conn, 51, "Linh hồn 4 mùa thường", new String[]{"4 loại hồn gió + 50tr vàng + 10 tr ngọc + 50k coin"});
                     break;
                 }
                 case 1: {
-                    Service.send_box_input_text(conn, 52, "Linh Hồn 4 Mùa Trung Cấp", new String[]{"4 loại hồn gió + 50.000 coin"});
+                    Service.send_box_input_text(conn, 52, "Linh Hồn 4 Mùa Trung Cấp", new String[]{"4 loại hồn gió + 50tr vàng + 50 tr ngọc + 200k coin"});
                     break;
                 }
                 case 2: {
-                    Service.send_box_input_text(conn, 53, "Linh Hồn 4 Mùa Cao Cấp", new String[]{"4 loại hồn gió + 20.000.000 vàng + 100.000 coin"});
+                    Service.send_box_input_text(conn, 53, "Linh Hồn 4 Mùa Cao Cấp", new String[]{"4 loại hồn gió + 100tr vàng + 50 tr ngọc + 500k coin"});
                     break;
                 }
                 case 3: {

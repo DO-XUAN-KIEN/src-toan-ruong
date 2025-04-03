@@ -98,6 +98,20 @@ public class Mob_in_map extends MainObject {
     public int get_Miss(boolean giam_ne) {
         return 800;
     }
+    @Override
+    public int get_DefBase(){
+        if (this.is_boss == true){
+            return 1_000_000;
+        }
+        return 0;
+    }
+    @Override
+    public int get_PhanDame(){
+        if (this.is_boss == true){
+            return 5000;
+        }
+        return 0;
+    }
 
     @Override
     public void SetDie(Map map, MainObject mainAtk) {
@@ -237,6 +251,11 @@ public class Mob_in_map extends MainObject {
                             }
                             if (percent + 10 > Util.random(0, 300)) {
                                 LeaveItemMap.leave_vang(map, mob, (Player) mainAtk);
+                            }
+                            if (Manager.gI().event == 11){
+                                if (Util.random(2222) < 4){
+                                    LeaveItemMap.leave_item_by_type4(map,(short) Util.random(335, 339),p,mob.index);
+                                }
                             }
                             if (Manager.gI().event != 0 && 30 > Util.random(0, 100) && Math.abs(mob.level - mainAtk.level) <= 5) {
                                 LeaveItemMap.leave_item_event(map, mob, (Player) mainAtk);

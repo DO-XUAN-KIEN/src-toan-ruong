@@ -533,7 +533,7 @@ public class ChienTruong {
 						id_item_leave3 = new short[]{(short) Util.random(4577, 4585)};
 					}
 					if (Manager.gI().event == 11){
-						if (Util.random(100) < 5){
+						if (Util.random(3333) < 5){
 							id_item_hongio = new short[]{337};
 						}
 					}

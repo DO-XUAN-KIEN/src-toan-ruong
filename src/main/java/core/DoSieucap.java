@@ -506,17 +506,18 @@ public class DoSieucap {
 //                        int tier = item.tierStar >= 0 && item.tierStar < values.length ? values[item.tierStar] : item.tierStar;
                         for (int i = 0; i < 5; i++) {
                             if (i < conn.p.NLtb2.length) {
-                                if (conn.p.item.total_item_by_id(7, conn.p.NLtb2[i]) < 100 && (conn.ac_admin < 4 || !Manager.BuffAdmin)) {
+                                if (conn.p.item.total_item_by_id(7, conn.p.NLtb2[i]) < 30 && (conn.ac_admin < 4 || !Manager.BuffAdmin)) {
                                     Service.send_notice_box(conn, "Không đủ " + ItemTemplate7.item.get(conn.p.NLtb2[i]).getName() + "!");
                                     return;
                                 }
                             }
                         }
-                        for (int i = 0; i < 5; i++) {
-                            if (i < conn.p.NLtb2.length) {
-                                conn.p.item.remove(7, conn.p.NLtb2[i], 100);
-                            }
-                        }
+//                        for (int i = 0; i < 5; i++) {
+//                            if (i < conn.p.NLtb2.length) {
+//                                conn.p.item.remove(7, conn.p.NLtb2[i], 100);
+//                            }
+//                        }
+                        conn.p.item.remove(7, 493, 30);
                         int ran = Util.random(1000);
                         boolean suc =(item.tier >= 0 && item.tier < 5) && ran > 300 ||
                                 (item.tier >= 5 && item.tier < 10) && ran > 350 ||
